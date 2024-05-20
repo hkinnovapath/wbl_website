@@ -1,14 +1,14 @@
 import Image from "next/image";
-import TestimonialImage01 from "@/public/images/test1.jpg"; // Replace with the actual path
-import TestimonialImage02 from "@/public/images/test2.jpg"; // Replace with the actual path
+import TestimonialImage01 from "@/public/images/courses/fullstack development.jpeg"; // Replace with the actual path
+import TestimonialImage02 from "@/public/images/courses/datascience.jpg"; // Replace with the actual path
 import TestimonialImage03 from "@/public/images/test3.jpg"; // Replace with the actual path
 
 export default function Cards() {
   return (
-    <div className="max-w-sm  mx-auto grid gap-8 lg:grid-cols-3 lg:gap-6 items-start lg:max-w-none">
+    <div className="mx-auto  grid max-w-sm items-start gap-8 lg:max-w-none lg:grid-cols-3 lg:gap-6">
       {/* 1st testimonial */}
       <div
-        className="flex flex-col h-100 p-6 border border-blue-900 shadow-2xl rounded-2xl"
+        className="h-100 flex flex-col rounded-2xl border border-blue-900 p-6 shadow-2xl"
         data-aos="fade-up"
         data-aos-delay="400"
       >
@@ -30,12 +30,14 @@ export default function Cards() {
             </svg> */}
           {/* </div> */}
         </div>
-        <h1 className="text-2xl font-bold text-center mt-3">Fullstack Developer</h1>
+        <h1 className="mt-3 text-center text-2xl font-bold">
+          Fullstack Developer
+        </h1>
 
-        <div className="text-gray-700 font-medium mt-6 pt-5 text-center border-t border-gray-400">
-          <cite className="text-gray-200 not-italic"></cite> {" "}
+        <div className="mt-6 border-t border-gray-400 pt-5 text-center font-medium text-gray-700">
+          <cite className="not-italic text-gray-200"></cite>{" "}
           <a
-            className="text-blue-600 hover:text-blue-400 transition duration-150 ease-in-out"
+            className="text-blue-600 transition duration-150 ease-in-out hover:text-blue-400"
             href="http://uiprogrammer.com/"
           >
             Visit
@@ -45,7 +47,7 @@ export default function Cards() {
 
       {/* 2nd testimonial */}
       <div
-        className="flex flex-col shadow-2xl  h-100 p-6 border border-blue-900  rounded-2xl"
+        className="h-100 flex flex-col  rounded-2xl border border-blue-900 p-6  shadow-2xl"
         data-aos="fade-up"
         data-aos-delay="400"
       >
@@ -67,12 +69,14 @@ export default function Cards() {
             </svg> */}
           {/* </div> */}
         </div>
-        <h1 className="text-2xl font-bold text-center mt-3">Machine Learning</h1>
+        <h1 className="mt-3 text-center text-2xl font-bold">
+          Machine Learning
+        </h1>
 
-        <div className="text-gray-700 font-medium mt-6 pt-5 text-center border-t border-gray-400">
-          <cite className="text-gray-200 not-italic"></cite> {" "}
+        <div className="mt-6 border-t border-gray-400 pt-5 text-center font-medium text-gray-700">
+          <cite className="not-italic text-gray-200"></cite>{" "}
           <a
-            className="text-blue-600 hover:text-blue-400 transition duration-150 ease-in-out"
+            className="text-blue-600 transition duration-150 ease-in-out hover:text-blue-400"
             href="http://uiprogrammer.com/"
           >
             Visit
@@ -82,7 +86,7 @@ export default function Cards() {
 
       {/* 3rd testimonial */}
       <div
-        className="flex  shadow-2xl  flex-col h-100 p-6 border border-blue-900 rounded-2xl"
+        className="h-100  flex  flex-col rounded-2xl border border-blue-900 p-6 shadow-2xl"
         data-aos="fade-up"
         data-aos-delay="400"
       >
@@ -104,12 +108,14 @@ export default function Cards() {
             </svg> */}
           {/* </div> */}
         </div>
-        <h1 className="text-2xl font-bold text-center mt-3">Data Engineering</h1>
+        <h1 className="mt-3 text-center text-2xl font-bold">
+          Data Engineering
+        </h1>
 
-        <div className="text-green-700 font-medium mt-6 pt-5 text-center border-t border-gray-400">
-          <cite className="text-green-600 not-italic"></cite> {" "}
+        <div className="mt-6 border-t border-gray-400 pt-5 text-center font-medium text-green-700">
+          <cite className="not-italic text-green-600"></cite>{" "}
           <a
-            className="text-blue-600 hover:text-blue-400 transition duration-150 ease-in-out"
+            className="text-blue-600 transition duration-150 ease-in-out hover:text-blue-400"
             href="http://uiprogrammer.com/"
           >
             Visit

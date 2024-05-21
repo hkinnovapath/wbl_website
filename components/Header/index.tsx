@@ -53,20 +53,20 @@ const Header = () => {
                   sticky ? "py-5 lg:py-2" : "py-8"
                 } `}
               >
-                {/* <Image
-                  src="/images/wbl-logo.png"
+                <Image
+                  src="/images/wbl-1.svg"
                   alt="logo"
-                  width={140}
-                  height={30}
-                  className="border border-yellow  w-full dark:hidden"
+                  width={50}
+                  height={50}
+                  className="dark:hidden"
                 />
                 <Image
-                  src="/images/wbl-logo.png"
+                  src="/images/wbl-2.svg"
                   alt="logo"
-                  width={140}
-                  height={30}
-                  className="hidden border border-yellow  w-full dark:block"
-                /> */}
+                  width={50}
+                  height={50}
+                  className="hidden dark:block"
+                />
                 {/* <Image
                   src="/images/logo/logo.svg"
                   alt="logo"

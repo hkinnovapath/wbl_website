@@ -3,7 +3,7 @@ import Link from "next/link";
 const Breadcrumb = ({ currentPage }: any) => {
   return (
     <>
-      <section className="relative z-10 overflow-hidden pt-28 lg:pt-[150px]">
+      <section className="z-10 overflow-hidden pt-28 lg:pt-[150px]">
         <nav className=" flex" aria-label="Breadcrumb">
           <ol className="inline-flex items-center space-x-1 rtl:space-x-reverse md:space-x-2">
             <li className="inline-flex items-center">

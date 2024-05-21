@@ -38,13 +38,13 @@ export default function Recordings() {
       {/* Main content */}
       <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         {/* Navbar */}
-        <nav className="mt-24 flex items-center justify-between">
+        <nav className=" flex items-center justify-between">
           <h1 className="text-4xl font-bold">
             Recordings
             <span className="text-2xl font-light">(Classes)</span>
           </h1>
 
-          <Layout currentPage="Recordings"/>
+          <Layout currentPage="Recordings" />
         </nav>
 
         {/* Section with buttons and dropdowns */}

@@ -18,7 +18,7 @@ const ResourcesTable = (props: any) => {
             >
               <td className="border text-black dark:text-white text-center    dark:border-blue-900 border-primary px-4 py-2">{index + 1}</td>
               <td className="border dark:text-blue-300 text-blue-600 text-center   dark:border-blue-900 border-primary px-4 py-2">
-                <a href={subject.pdfUrl} target='_blank'>{subject.name}</a>
+                <a href={subject.pdfUrl} target='_blank' rel="noreferrer">{subject.name}</a>
               </td>
             </tr>
           ))}

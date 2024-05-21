@@ -39,7 +39,7 @@ export default function SessionComp() {
         <label htmlFor="dropdown1">Group Mock:</label>
         <select
           id="dropdown1"
-          className="border border-gray-300 rounded-md text-purple-700 px-2 py-1"
+          className="border dark:bg-white border-gray-300 rounded-md text-black px-2 py-1"
           value={selectedGroup}
           onChange={handleGroupChange}
         >
@@ -54,7 +54,7 @@ export default function SessionComp() {
         <label htmlFor="dropdown2">Please Select the Subject:</label>
         <select
           id="dropdown2"
-          className="border border-gray-300 text-purple-700 rounded-md px-2 py-1"
+          className="border border-gray-300 dark:bg-white text-black rounded-md px-2 py-1"
           value={selectedSubject}
           onChange={(e) => setSelectedSubject(e.target.value)}
         >

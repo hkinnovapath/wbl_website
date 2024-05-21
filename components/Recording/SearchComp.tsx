@@ -53,12 +53,12 @@ const SearchComp: React.FC = () => {
         value={searchQuery}
         onChange={handleSearchInputChange}
         placeholder="Search for videos..."
-        className="border border-gray-300 text-purple-700 rounded-md px-3 py-2 w-full mb-4"
+        className="border dark:bg-white border-gray-300 text-black rounded-md px-3 py-2 w-full mb-4"
       />
       {showSearchBox && searchResults.length > 0 && ( // Conditionally render the search results box
-        <div className="bg-gray-100 text-purple-700 rounded-md p-4 mb-4 max-h-40 overflow-y-auto">
+        <div className="bg-gray-100  dark:text-black  rounded-md p-4 mb-4 max-h-40 overflow-y-auto">
           {searchResults.map((video) => (
-            <div key={video.id} onClick={() => handleVideoSelect(video)} className="cursor-pointer hover:bg-purple-300 rounded-md px-3 py-2 mb-2 mr-2">
+            <div key={video.id} onClick={() => handleVideoSelect(video)} className="cursor-pointer hover:bg-primarylight rounded-md px-3 py-2 mb-2 mr-2">
               {video.title}
             </div>
           ))}
@@ -68,7 +68,7 @@ const SearchComp: React.FC = () => {
         <div>
           <h2 className="text-xl font-bold mt-4 mb-2">{selectedVideo.title}</h2>
           <video src={selectedVideo.videoUrl} controls className="mb-2" />
-          <p className="text-purple-500">{selectedVideo.description}</p>
+          <p className="text-black dark:text-white">{selectedVideo.description}</p>
         </div>
       )}
     </div>

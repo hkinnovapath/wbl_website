@@ -52,7 +52,7 @@ export default function ClassComp() {
         <label htmlFor="dropdown1">Batch:</label>
         <select
           id="dropdown1"
-          className="border border-gray-300 text-purple-700 rounded-md px-2 py-1"
+          className="border dark:bg-white border-gray-300 text-black rounded-md px-2 py-1"
           value={selectedBatch}
           onChange={handleBatchChange}
         >
@@ -67,7 +67,7 @@ export default function ClassComp() {
         <label htmlFor="dropdown2">Recordings:</label>
         <select
           id="dropdown2"
-          className="border border-gray-300 text-purple-700 rounded-md px-2 py-1"
+          className="border dark:bg-white border-gray-300 text-black rounded-md px-2 py-1"
           onChange={handleVideoSelect}
           disabled={!selectedBatch} // Disable if no batch selected
         >
@@ -85,7 +85,7 @@ export default function ClassComp() {
         <div>
           <h2 className="text-xl font-bold mt-4 mb-2">{selectedVideo.title}</h2>
           <video src={selectedVideo.videoUrl} controls className="mb-2" />
-          <p className="text-purple-500">{selectedVideo.description}</p>
+          <p className="text-black dark:text-white">{selectedVideo.description}</p>
         </div>
       )}
     </div>

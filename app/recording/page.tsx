@@ -1,12 +1,10 @@
 "use client";
-
 import React, { useState } from "react";
-// import Breadcrumb from "../../../components/Breadcrumb";
 import Layout from "../../components/Common/Layout";
 // Components for different sections
-import ClassComp from "./ClassComp";
-import SearchComp from "./SearchComp";
-import SessionComp from "./SessionComp";
+import ClassComp from "../../components/Recording/ClassComp";
+import SearchComp from "../../components/Recording/SearchComp";
+import SessionComp from "../../components/Recording/SessionComp";
 
 type ComponentType = "class" | "search" | "session"; // Define a union type for valid component types
 
@@ -38,39 +36,36 @@ export default function Recordings() {
   return (
     <div className=" ">
       {/* Main content */}
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         {/* Navbar */}
-        <nav className="flex items-center justify-between mt-24">
+        <nav className="mt-24 flex items-center justify-between">
           <h1 className="text-4xl font-bold">
             Recordings
             <span className="text-2xl font-light">(Classes)</span>
           </h1>
-          {/* <Breadcrumb /> */}
-          <Layout currentPage="Recordings">
-      {/* Page content */}
-    </Layout>
 
+          <Layout currentPage="Recordings"/>
         </nav>
 
         {/* Section with buttons and dropdowns */}
-        <section className="flex  justify-between mb-8">
+        <section className="mb-8  flex justify-between">
           {/* Left side */}
-          <div className="flex  mt-10 h-1/2">
+          <div className="mt-10  flex h-1/2">
             <div className="flex flex-col ">
               <button
-                className="bg-blue-500 hover:bg-blue-600 text-white w-36 px-4 py-2 rounded-md mb-1"
+                className="mb-1 w-36 rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
                 onClick={() => handleButtonClick("class")}
               >
                 Class
               </button>
               <button
-                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md mb-1"
+                className="mb-1 rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
                 onClick={() => handleButtonClick("search")}
               >
                 Search
               </button>
               <button
-                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md mb-1"
+                className="mb-1 rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
                 onClick={() => handleButtonClick("session")}
               >
                 Session
@@ -79,10 +74,11 @@ export default function Recordings() {
           </div>
 
           {/* Right side */}
-          <div className="flex-grow  mt-10 space-y-4 ml-20 ">{renderComponent()}</div>
+          <div className="mt-10  ml-20 flex-grow space-y-4 ">
+            {renderComponent()}
+          </div>
         </section>
       </main>
     </div>
   );
 }
-

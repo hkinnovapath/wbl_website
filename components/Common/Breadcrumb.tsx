@@ -1,47 +1,52 @@
 import Link from "next/link";
 
-const Breadcrumb = ({
-  pageName,
-  description,
-}: {
-  pageName: string;
-  description: string;
-}) => {
+const Breadcrumb = ({ currentPage }: any) => {
   return (
     <>
       <section className="relative z-10 overflow-hidden pt-28 lg:pt-[150px]">
-        <div className="container">
-          <div className="-mx-4 flex flex-wrap items-center">
-            <div className="w-full px-4 md:w-8/12 lg:w-7/12">
-              <div className="mb-8 max-w-[570px] md:mb-0 lg:mb-12">
-                <h1 className="mb-5 text-2xl font-bold text-black dark:text-white sm:text-3xl">
-                  {pageName}
-                </h1>
-                <p className="text-base font-medium leading-relaxed text-body-color">
-                  {description}
-                </p>
+        <nav className=" flex" aria-label="Breadcrumb">
+          <ol className="inline-flex items-center space-x-1 rtl:space-x-reverse md:space-x-2">
+            <li className="inline-flex items-center">
+              <Link legacyBehavior href="/">
+                <a className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                  <svg
+                    className="me-2.5 h-3 w-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+                  </svg>
+                  Home
+                </a>
+              </Link>
+            </li>
+
+            <li>
+              <div className="flex items-center">
+                <svg
+                  className="mx-1 h-3 w-3 text-gray-400 rtl:rotate-180"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 6 10"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m1 9 4-4-4-4"
+                  />
+                </svg>
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-400">
+                  {currentPage}
+                </span>
               </div>
-            </div>
-            <div className="w-full px-4 md:w-4/12 lg:w-5/12">
-              <div className="text-end">
-                <ul className="flex items-center md:justify-end">
-                  <li className="flex items-center">
-                    <Link
-                      href="/"
-                      className="pr-1 text-base font-medium text-body-color hover:text-primary"
-                    >
-                      Home
-                    </Link>
-                    <span className="mr-3 block h-2 w-2 rotate-45 border-t-2 border-r-2 border-body-color"></span>
-                  </li>
-                  <li className="text-base font-medium text-primary">
-                    {pageName}
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+            </li>
+          </ol>
+        </nav>
 
         <div>
           <span className="absolute top-0 left-0 z-[-1]">

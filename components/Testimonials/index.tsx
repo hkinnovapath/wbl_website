@@ -13,7 +13,7 @@ const testimonialData: Testimonial[] = [
   },
   {
     id: 2,
-    name: "Hemant",
+    name: "ManiSai",
     designation: "UI Fullstack ",
     content:"The hands-on approach to learning, coupled with practical projects, has equipped me with the skills and confidence needed     to excel in my field. I highly recommend this institute to anyone seeking quality education and a transformative experience.",
     image: "/images/testimonials/auth-02.png",

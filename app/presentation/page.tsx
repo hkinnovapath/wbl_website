@@ -1,24 +1,20 @@
 "use client";
-
 import React, { useState } from "react";
-// import Breadcrumb from "../../../components/Breadcrumb";
 import Layout from "../../components/Common/Layout";
 // Components for different sections
-import Presentation from "./Presentation";
-import Cheatsheets from "./Cheatsheets";
-// import Code from "./Code";
-// import Diagrams from "./Diagrams";
-import Installations from "./Installations";
-import Miscellaneous from "./Miscellaneous";
-import Software from "./Software";
-import Books from "./Books";
+import Presentation from "../../components/Presentation/Presentation";
+import Cheatsheets from "../../components/Presentation/Cheatsheets";
+import Installations from "../../components/Presentation/Installations";
+import Miscellaneous from "../../components/Presentation/Miscellaneous";
+import Software from "../../components/Presentation/Software";
+import Books from "../../components/Presentation/Books";
 type ComponentType =
   | "presentation"
   | "cheatsheets"
   | "installation"
   | "miscellaneous"
-  |  "books"
-  | "software"; 
+  | "books"
+  | "software";
 export default function Recordings() {
   // State to manage active component
   const [activeComponent, setActiveComponent] =
@@ -33,17 +29,13 @@ export default function Recordings() {
   const renderComponent = () => {
     switch (activeComponent) {
       case "presentation":
-        return <Presentation />;          
+        return <Presentation />;
       case "cheatsheets":
         return <Cheatsheets />;
       case "books":
         return <Books />;
       case "software":
         return <Software />;
-      // case "code":
-      //   return <Code />;
-      // case "diagrams":
-      //   return <Diagrams />;
       case "installation":
         return <Installations />;
       case "miscellaneous":
@@ -56,82 +48,64 @@ export default function Recordings() {
   return (
     <div className=" ">
       {/* Main content */}
-      <main className=" max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      <main className=" mx-auto max-w-6xl px-4 py-12 sm:px-6">
         {/* Navbar */}
-        <nav className="flex items-center justify-between mt-24 ">
+        <nav className="mt-24 flex items-center justify-between ">
           <h1 className="text-4xl font-bold">
             Course Material
             <span className="text-2xl font-light"> (PDF)</span>
           </h1>
-          {/* <Breadcrumb /> */}
-          <Layout currentPage="Presentation">{/* Page content */}</Layout>
+          <Layout currentPage="Presentation"/>
         </nav>
 
-        {/* Section with buttons and dropdowns */}
-        {/* <section className="flex border border-red-300 items-center justify-between mb-8"> */}
-        <section className="flex   justify-between mb-8">
+        <section className="mb-8   flex justify-between">
           {/* Left side */}
-          <div className="flex  mt-10 h-1/2">
+          <div className="mt-10  flex h-1/2">
             <div className="flex flex-col ">
               <button
-                className={`bg-blue-500 hover:bg-blue-600 w-36 text-white px-4 py-2 rounded-md mb-1 ${
-                  activeComponent === "presentation" ? "bg-blue-600" : ""
+                className={`mb-1 w-36 rounded-md   dark:text-white   bg-blue-500 px-4 py-2 text-white   hover:bg-blue-600 ${
+                  activeComponent === "presentation" ? " bg-blue-500" : ""
                 }`}
                 onClick={() => handleButtonClick("presentation")}
               >
                 Presentation
               </button>
               <button
-                className={`bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md mb-1 ${
-                  activeComponent === "cheatsheets" ? "bg-blue-600" : ""
+                className={`mb-1 rounded-md  dark:text-white   bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 ${
+                  activeComponent === "cheatsheets" ? " bg-blue-500" : ""
                 }`}
                 onClick={() => handleButtonClick("cheatsheets")}
               >
                 Cheatsheets
               </button>
               <button
-                className={`bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md mb-1 ${
-                  activeComponent === "software" ? "bg-blue-600" : ""
+                className={`mb-1 rounded-md  dark:text-white  bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 ${
+                  activeComponent === "software" ? " bg-blue-500" : ""
                 }`}
                 onClick={() => handleButtonClick("software")}
               >
                 Software
               </button>
-              {/* <button
-                className={`bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md mb-1 ${
-                  activeComponent === "code" ? "bg-blue-600" : ""
-                }`}
-                onClick={() => handleButtonClick("code")}
-              >
-                Code
-              </button> */}
-              {/* <button
-                className={`bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md mb-1 ${
-                  activeComponent === "diagrams" ? "bg-blue-600" : ""
-                }`}
-                onClick={() => handleButtonClick("diagrams")}
-              >
-                Diagrams
-              </button> */}
+
               <button
-                className={`bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md mb-1 ${
-                  activeComponent === "installation" ? "bg-blue-600" : ""
+                className={`mb-1 rounded-md  dark:text-white  bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 ${
+                  activeComponent === "installation" ? " bg-blue-500" : ""
                 }`}
                 onClick={() => handleButtonClick("installation")}
               >
                 Installation
               </button>
               <button
-                className={`bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md mb-1 ${
-                  activeComponent === "installation" ? "bg-blue-600" : ""
+                className={`mb-1 rounded-md  dark:text-white  bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 ${
+                  activeComponent === "books" ? " bg-blue-500" : ""
                 }`}
                 onClick={() => handleButtonClick("books")}
               >
                 Books
               </button>
               <button
-                className={`bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md mb-1 ${
-                  activeComponent === "miscellaneous" ? "bg-blue-600" : ""
+                className={`mb-1 rounded-md  dark:text-white  bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 ${
+                  activeComponent === "miscellaneous" ? "bg-blue-500" : ""
                 }`}
                 onClick={() => handleButtonClick("miscellaneous")}
               >
@@ -141,7 +115,7 @@ export default function Recordings() {
           </div>
 
           {/* Right side */}
-          <div className="flex-grow  ml-20 ">{renderComponent()}</div>
+          <div className="ml-20  flex-grow ">{renderComponent()}</div>
         </section>
       </main>
     </div>

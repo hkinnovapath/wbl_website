@@ -30,5 +30,6 @@ export default function RootLayout({
   );
 }
 
-import { Providers } from "./providers";import { ErrorBoundary } from "next/dist/client/components/error-boundary";
+import { Providers } from "./providers";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 

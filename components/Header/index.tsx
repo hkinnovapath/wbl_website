@@ -54,14 +54,14 @@ const Header = () => {
                 } `}
               >
                 <Image
-                  src="/images/wbl-1.svg"
+                  src="./images/wbl-1.svg"
                   alt="logo"
                   width={50}
                   height={50}
                   className="dark:hidden"
                 />
                 <Image
-                  src="/images/wbl-2.svg"
+                  src="./images/wbl-2.svg"
                   alt="logo"
                   width={50}
                   height={50}

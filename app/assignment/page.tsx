@@ -6,7 +6,7 @@ export default function Assignment() {
       {/* Main content */}
       <main className=" max-w-6xl mx-auto px-4 sm:px-6 py-12">
         {/* Navbar */}
-        <nav className="flex items-center justify-between mt-24 ">
+        <nav className="mt-16 flex items-center justify-between  ">
           <h1 className="text-4xl font-bold">Assignment Page</h1>
           {/* <Breadcrumb /> */}
           <Layout currentPage="Assignment" />

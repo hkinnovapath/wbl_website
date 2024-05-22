@@ -6,10 +6,10 @@ import ContactForm from "@/components/Contact/ContactForm";
 const ContactPage = () => {
   return (
     <>
-      <div className="mx-auto   w-3/4 px-4 py-12 text-white  sm:px-6">
-        <nav className="  flex items-center justify-between ">
+      <div className="mx-auto  w-3/4 px-4 py-12 text-white  sm:px-6">
+        <nav className="mt-16  flex items-center justify-between ">
           {/* <div className=""> */}
-            <h1 className="text-3xl font-bold text-black dark:text-white">Contact Page</h1>
+            <h1 className="text-4xl font-bold text-black dark:text-white">Contact Page</h1>
             {/* <h1 className="text-xl font-light">Get in touch</h1>
             <h1 className="font-semibold">We'd love to hear from you.</h1> */}
           {/* </div> */}
@@ -19,7 +19,7 @@ const ContactPage = () => {
           </div>
         </nav>
         <div className="md:flex">
-          <div className="md:3/4 w-full p-4  ">
+          <div className="md:3/4 w-full ">
             <ContactForm />
           </div>
           {/* <div className=" flex  justify-center   p-4 md:justify-end">

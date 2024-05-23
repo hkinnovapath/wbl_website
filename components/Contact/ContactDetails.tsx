@@ -1,7 +1,7 @@
 const ContactDetails = () => {
   return (
     <div
-      className="wow fadeInUp relative flex  justify-center flex-col   h-1/2 top-1/4  shadow-lg text-black z-10 dark:text-white rounded-2xl bg-primary/[3%] p-8 dark:bg-primary/10 sm:p-11 lg:p-8 xl:p-11"
+      className="wow fadeInUp relative flex bg-gradient-to-br from-pink-400 to-sky-200 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500  justify-center flex-col   h-1/2 top-1/4  shadow-lg text-black z-10 dark:text-white rounded-2xl bg-primary/[3%] p-8 dark:bg-primary/10 sm:p-11 lg:p-8 xl:p-11"
       data-wow-delay=".2s"
     >
       <h3 className="mb-8   text-2xl font-bold leading-tight text-black dark:text-white">
@@ -12,7 +12,7 @@ const ContactDetails = () => {
         massa quis lectus.
       </p> */}
         <p className="mb-2 font-semibold">Fremont Office:</p>
-            <p className="text-xs text-blue-400 ">
+            <p className="text-xs text-blue-400 font-bold dark:text-black">
               6500 Dublin Blvd.,Ste.214 Dublin, CA, 94568.
             </p>
 
@@ -20,14 +20,14 @@ const ContactDetails = () => {
 
             <p className="mb-2 text-xs">
               Tel:{" "}
-              <a className="text-blue-400" href="tel:+19254007330">
+              <a className="text-blue-400 font-bold dark:text-black" href="tel:+19254007330">
                 +1 925-400-7330
               </a>
             </p>
             <p className="text-xs">
               Email:{" "}
               <a
-                className="text-blue-400"
+                className="text-blue-400 font-bold dark:text-black"
                 href="mailto:info@whitebox-learning.com"
               >
                 info@whitebox-learning.com

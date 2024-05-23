@@ -7,11 +7,11 @@ const Footer = () => {
 
   return (
     <>
-      <footer
-        className="wow fadeInUp relative z-10 bg-primary bg-opacity-5 pt-16 md:pt-20 lg:pt-24"
+      <footer 
+        className="wow   fadeInUp relative z-10 shadow-2xl shadow-black bg-primary bg-opacity-5 pt-8 md:pt-12 lg:pt-14"
         data-wow-delay=".1s"
       >
-        <div className="container">
+        <div className="container   h-52">
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4 md:w-1/2 lg:w-4/12 xl:w-5/12">
               <div className="mb-12 max-w-[360px] lg:mb-16">
@@ -44,7 +44,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noreferrer"
                     aria-label="Github"
-                    className="mr-6 text-[#CED3F6] hover:text-primary"
+                    className="mr-6 text-[#858691] hover:text-black dark:text-gray-700 dark:hover:text-white "
                   >
                     <svg
                       className="h-8 w-8 fill-current"
@@ -59,7 +59,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noreferrer"
                     aria-label="Twitter"
-                    className="mr-6 text-[#CED3F6] hover:text-primary"
+                    className="mr-6 text-[#858691] hover:text-black dark:text-gray-700 dark:hover:text-white"
                   >
                     <svg
                       className="h-8 w-8 fill-current"
@@ -72,7 +72,7 @@ const Footer = () => {
                   <a
                     href="/"
                     aria-label="social-link"
-                    className="mr-6 text-[#CED3F6] hover:text-primary"
+                    className="mr-6 text-[#858691] hover:text-red-600 dark:text-gray-700 dark:hover:text-red-600"
                   >
                     <svg
                       width="18"
@@ -88,7 +88,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noreferrer"
                     aria-label="Linkedin"
-                    className="mr-6 text-[#CED3F6] hover:text-primary"
+                    className="mr-6 text-[#858691] hover:text-blue-700 dark:text-gray-700 dark:hover:text-blue-700"
                   >
                     <svg
                       width="17"
@@ -217,9 +217,9 @@ const Footer = () => {
         </div>
 
         {/* Copyrights note */}
-        <div className="bg-primary/10 py-8">
+        <div className="dark:bg-primary/10 flex items-center  h-10  bg-gray-300 py-10 ">
           <div className="container">
-            <p className="text-center text-base text-body-color dark:text-white">
+            <p className="text-center  text-black font-semibold dark:text-white">
               {/* Template by UIdeck and <a href="https://nextjstemplates.com" rel="nofollow noopener">Next.js Templates</a> */}
               &copy; {currentYear} Whitebox Learning. All rights reserved.
             </p>

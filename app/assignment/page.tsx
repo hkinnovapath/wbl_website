@@ -4,7 +4,7 @@ export default function Assignment() {
   return (
     <div>
       {/* Main content */}
-      <main className=" max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      <main className=" max-w-6xl mx-auto px-4 sm:px-6 py-6">
         {/* Navbar */}
         <nav className="mt-16 flex items-center justify-between  ">
           <h1 className="text-4xl font-bold">Assignment Page</h1>

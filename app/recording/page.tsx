@@ -36,7 +36,7 @@ export default function Recordings() {
   return (
     <div className=" ">
       {/* Main content */}
-      <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+      <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
         {/* Navbar */}
         <nav className="mt-16 flex items-center justify-between">
           <h1 className="text-4xl font-bold">

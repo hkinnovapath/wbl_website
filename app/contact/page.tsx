@@ -6,7 +6,7 @@ import ContactForm from "@/components/Contact/ContactForm";
 const ContactPage = () => {
   return (
     <>
-      <div className="mx-auto  w-3/4 px-4 py-12 text-white  sm:px-6">
+      <div className="mx-auto  w-3/4 px-4 py-6 text-white  sm:px-6">
         <nav className="mt-16   flex items-center justify-between ">
           {/* <div className=""> */}
             <h1 className="text-4xl font-bold text-black dark:text-white">Contact Page</h1>

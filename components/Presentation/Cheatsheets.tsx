@@ -15,7 +15,7 @@ const subjects = [
 ];
 const Cheatsheets = () => {
   return (
-    <div className="max-w-6xl  mx-auto px-4 sm:px-6 py-12">
+    <div className="max-w-6xl  mx-auto px-4 sm:px-6 ">
       <h1 className="text-3xl font-bold mb-4">Cheatsheets </h1>
       <ResourcesTable subjects={subjects}/>
     </div>

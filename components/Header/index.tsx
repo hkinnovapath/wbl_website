@@ -38,13 +38,14 @@ const Header = () => {
   return (
     <>
       <header
-        className={`header top-0 left-0 z-40 flex w-full items-center bg-transparent ${
+        className={` header top-0 left-0 z-40 flex w-full items-center bg-transparent ${
           sticky
             ? "!fixed !z-[9999] !bg-white !bg-opacity-80 shadow-sticky backdrop-blur-sm !transition dark:!bg-primary dark:!bg-opacity-20"
             : "absolute"
         }`}
       >
-        <div className="container">
+        <div className="container  mt-5
+         ">
           <div className="relative -mx-4 flex items-center justify-between">
             <div className="w-60 max-w-full px-4 xl:mr-12">
               <Link
@@ -54,16 +55,16 @@ const Header = () => {
                 } `}
               >
                 <Image
-                  src="/images/wbl-dark.png"
+                  src="./images/wbl-dark.png"
                   alt="logo"
-                  width={60}
+                  width={45}
                   height={50}
                   className="dark:hidden"
                 />
                 <Image
-                  src="/images/wbl-light.png"
+                  src="./images/wbl-light.png"
                   alt="logo"
-                  width={60}
+                  width={45}
                   height={50}
                   className="hidden  dark:block"
                 />

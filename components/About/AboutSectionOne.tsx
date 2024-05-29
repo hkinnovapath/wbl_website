@@ -73,7 +73,7 @@ const AboutSectionOne = () => {
                   {[1, 2, 3, 4].map((index) => (
                     <img
                       key={index}
-                      src={`/images/gallery/${index}.jpg`}
+                      src={`./images/gallery/${index}.jpg`}
                       alt={`Gallery image ${index}`}
                       className="absolute inset-0 w-full h-full object-cover transform transition-transform duration-300 hover:scale-110 rounded-md"
                       style={{

@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Cards from "@/components/Cards/cards";
+import Carousel from "@/components/Carousel/Carousel";
 
 const Hero = () => {
   return (
     <>
       <section
         id="home"
-        className="relative z-10 overflow-hidden pt-[120px] pb-16 md:pt-[150px] md:pb-[120px] xl:pt-[180px] xl:pb-[160px] 2xl:pt-[210px] 2xl:pb-[200px]"
+        className="relative z-10 overflow-hidden pt-24 pb-16"
       >
         <div className="container">
           <div className="-mx-4 flex flex-wrap">
@@ -14,13 +15,15 @@ const Hero = () => {
               <div
                 className="wow fadeInUp mx-auto max-w-[800px] text-center"
                 data-wow-delay=".2s"
-              >
+              >3
                 <h1 className="mb-5 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
-                Whitebox Learning                </h1>
-                <p className="mb-12 text-base font-medium !leading-relaxed text-body-color dark:text-white dark:opacity-90 sm:text-lg md:text-xl">
-                A comprehensive learning ecosystem tailored for developers,
-              machine learning enthusiasts, and data engineers..
-                            </p>
+                  Whitebox Learning
+                </h1>
+                <Carousel />
+                <p className="my-12 text-base font-medium !leading-relaxed text-body-color dark:text-white dark:opacity-90 sm:text-lg md:text-xl">
+                  A comprehensive learning ecosystem tailored for developers,
+                  machine learning enthusiasts, and data engineers..
+                </p>
                 {/* <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                   <Link
                     href="https://nextjstemplates.com/templates/startup"
@@ -37,7 +40,7 @@ const Hero = () => {
                 </div> */}
               </div>
             </div>
-          <Cards />
+            <Cards />
           </div>
         </div>
         <div className="absolute top-0 right-0 z-[-1] opacity-30 lg:opacity-100">

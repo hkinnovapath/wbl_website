@@ -19,12 +19,12 @@ const menuData: Menu[] = [
   //   path: "/blog",
   //   newTab: false,
   // },
-  {
-    id: 2,
-    title: "CourseContent",
-    path: "/courseContent",
-    newTab: false,
-  },
+  // {
+  //   id: 2,
+  //   title: "CourseContent",
+  //   path: "/courseContent",
+  //   newTab: false,
+  // },
   {
     id: 3,
     title: "Schedule",
@@ -53,7 +53,7 @@ const menuData: Menu[] = [
         title: "Assignments Page",
         path: "/assignment",
         newTab: false,
-      },     
+      },
     ],
   },
   {
@@ -68,6 +68,5 @@ const menuData: Menu[] = [
     path: "/contact",
     newTab: false,
   },
-  
 ];
 export default menuData;

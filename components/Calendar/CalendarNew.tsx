@@ -7,7 +7,7 @@ import googleCalendarPlugin from "@fullcalendar/google-calendar";
 
 // import Footer from "./ui/footer";
 
-const Example = () => {
+const Calendar = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   // Google Calendar API configuration
@@ -16,7 +16,7 @@ const Example = () => {
     "q84dbo0ucqc7evjifhajadmo80@group.calendar.google.com";
 
   return (
-    <div>
+    <div className="border p-4  dark:border-gray-800">
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, googleCalendarPlugin]}
         initialView="timeGridWeek"
@@ -38,4 +38,4 @@ const Example = () => {
   );
 };
 
-export default Example;
+export default Calendar;

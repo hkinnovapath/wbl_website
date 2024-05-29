@@ -1,16 +1,72 @@
-import Calendar from "@/components/Common/CalendarNew";
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import Layout from "../../components/Common/Layout";
+// Components for different sections
+import Calendar from "@/components/Calendar/CalendarNew";
+import CourseContent from "@/components/courseContent/CourseContent";
 
-const Schedule = () => {
+type ComponentType = "calendar" | "courseContent"; // Define a union type for valid component types
+
+export default function Recordings() {
+  // State to manage active component
+  const [activeComponent, setActiveComponent] =
+    useState<ComponentType>("calendar"); // Specify the type of activeComponent
+
+  // Function to set active component
+  const handleButtonClick = (component: ComponentType) => {
+    // Specify the type of the component parameter
+    setActiveComponent(component);
+  };
+
+  // Render component based on activeComponent state
+  const renderComponent = () => {
+    switch (activeComponent) {
+      case "calendar":
+        return <Calendar />;
+      case "courseContent":
+        return <CourseContent />;
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className="lg:w-4/5 flex flex-col mx-auto w-10 pt-32 pb-10 md:pt-40 md:pb-16 overflow-y-auto">
-      {/* // <div className=" px-4 sm:px-6 w-full md:w-4/5 lg:w-4/5 h-screen flex flex-col">
-    // <div className="lg:w-4/5 h-screen flex flex-col flex-grow mx-auto w-full pt-32 pb-10 md:pt-40 md:pb-16"> */}
-      <Calendar />
-      
-    </div>
-    // </div>
-  );
-};
+    <div className=" ">
+      {/* Main content */}
+      <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
+        {/* Navbar */}
+        <nav className="mt-16 flex items-center justify-between">
+          <h1 className="text-4xl font-bold">Schedule</h1>
 
-export default Schedule;
+          <Layout currentPage="schedule" />
+        </nav>
+
+        {/* Section with buttons and dropdowns */}
+        <section className="mb-8  flex justify-between">
+          {/* Left side */}
+          <div className="mt-10  flex h-1/2 flex-col">
+            {/* <div className="flex  "> */}
+            <button
+              className="mb-1 rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+              onClick={() => handleButtonClick("calendar")}
+            >
+              Calendar
+            </button>
+            <button
+              className="mb-1 rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+              onClick={() => handleButtonClick("courseContent")}
+            >
+              Course Content
+            </button>
+          </div>
+          {/* </div> */}
+
+          {/* Right side */}
+          <div className="mt-10  ml-20 flex-grow space-y-4 ">
+            {renderComponent()}
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+}

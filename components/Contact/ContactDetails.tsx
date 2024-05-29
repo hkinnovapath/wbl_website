@@ -1,3 +1,4 @@
+
 const ContactDetails = () => {
   const address = "6500 Dublin Blvd., Ste. 214 Dublin, CA, 94568";
 
@@ -13,7 +14,7 @@ const ContactDetails = () => {
       <h3 className="mb-8   text-2xl font-bold leading-tight text-black dark:text-white">
         Contact Details
       </h3>
-      <p className="mb-2 font-semibold">Fremont Office:</p>
+      <p className="mb-2 font-bold ">Fremont Office:</p>
 
       <a
         href={googleMapsLink}

@@ -1,3 +1,5 @@
+'use client'
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import SectionTitle from "../Common/SectionTitle";
 
@@ -7,15 +9,28 @@ const checkIcon = (
   </svg>
 );
 
+const List = ({ text }) => (
+  <p className="mb-5 flex items-center text-lg font-medium text-body-color">
+    <span className="mr-4 flex h-[30px] w-[30px] items-center justify-center rounded-md bg-primary bg-opacity-10 text-primary">
+      {checkIcon}
+    </span>
+    {text}
+  </p>
+);
+
 const AboutSectionOne = () => {
-  const List = ({ text }) => (
-    <p className="mb-5 flex items-center text-lg font-medium text-body-color">
-      <span className="mr-4 flex h-[30px] w-[30px] items-center justify-center rounded-md bg-primary bg-opacity-10 text-primary">
-        {checkIcon}
-      </span>
-      {text}
-    </p>
-  );
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [imagePositions, setImagePositions] = useState([]);
+
+  useEffect(() => {
+    const positions = [];
+    for (let i = 0; i < 4; i++) {
+      const top = Math.floor(Math.random() * 200); // Adjust the range as needed
+      const left = Math.floor(Math.random() * 200); // Adjust the range as needed
+      positions.push({ top, left });
+    }
+    setImagePositions(positions);
+  }, []);
 
   return (
     <section id="about" className="pt-16 md:pt-20 lg:pt-28">
@@ -24,7 +39,7 @@ const AboutSectionOne = () => {
           <div className="-mx-4 flex flex-wrap items-center">
             <div className="w-full px-4 lg:w-1/2">
               <SectionTitle
-                title="Crafted for Startup, SaaS and Business Sites."
+                title="Who We Are ?"
                 paragraph="The main ‘thrust’ is to focus on educating attendees on how to best protect highly vulnerable business applications with interactive panel discussions and roundtables."
                 mb="44px"
               />
@@ -51,15 +66,26 @@ const AboutSectionOne = () => {
 
             <div className="w-full px-4 lg:w-1/2">
               <div
-                className="wow fadeInUp relative mx-auto aspect-[25/24] max-w-[500px] lg:mr-0"
+                className=" wow fadeInUp relative mx-auto aspect-[25/24] max-w-[500px] lg:mr-0 group"
                 data-wow-delay=".2s"
               >
-                <Image
-                  src="/images/about/about-image.svg"
-                  alt="about-image"
-                  fill
-                  className="mx-auto max-w-full lg:mr-0"
-                />
+                <div className="relative h-[300px] w-[300px]">
+                  {[1, 2, 3, 4].map((index) => (
+                    <img
+                      key={index}
+                      src={`/images/gallery/${index}.jpg`}
+                      alt={`Gallery image ${index}`}
+                      className="absolute inset-0 w-full h-full object-cover transform transition-transform duration-300 hover:scale-110 rounded-md"
+                      style={{
+                        top: `${imagePositions[index - 1]?.top}px`,
+                        left: `${imagePositions[index - 1]?.left}px`,
+                        zIndex: hoveredIndex === index ? 10 : index,
+                      }}
+                      onMouseEnter={() => setHoveredIndex(index)}
+                      onMouseLeave={() => setHoveredIndex(null)}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>

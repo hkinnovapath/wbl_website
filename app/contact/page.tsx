@@ -1,6 +1,6 @@
 // import Contact from "@/components/Contact";
-import Layout from "../../components/Common/Layout";
 // import ContactDetails from "@/components/Contact/ContactDetails";
+import Layout from "../../components/Common/Layout";
 import ContactForm from "@/components/Contact/ContactForm";
 // import Layout from "@/components/Layout";
 const ContactPage = () => {

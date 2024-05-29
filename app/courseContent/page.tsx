@@ -7,7 +7,7 @@ export default function courseContent() {
       <main className=" mx-auto max-w-6xl px-4 py-6 sm:px-6">
         {/* Navbar */}
         <nav className="mt-16 flex items-center justify-between  ">
-          <h1 className="text-4xl font-bold">CourseContent Page</h1>
+          <h1 className="text-4xl font-bold">Course Content </h1>
           {/* <Breadcrumb /> */}
           <Layout currentPage="courseContent" />
         </nav>

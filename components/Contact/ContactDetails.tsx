@@ -1,39 +1,49 @@
 const ContactDetails = () => {
+  const address = "6500 Dublin Blvd., Ste. 214 Dublin, CA, 94568";
+
+  const googleMapsLink = `https://www.google.com/maps?q=${encodeURIComponent(
+    address
+  )}`;
+
   return (
     <div
-      className="wow fadeInUp relative flex bg-gradient-to-br from-pink-400 to-sky-200 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500  justify-center flex-col   h-1/2 top-1/4  shadow-lg text-black z-10 dark:text-white rounded-2xl bg-primary/[3%] p-8 dark:bg-primary/10 sm:p-11 lg:p-8 xl:p-11"
+      className="wow fadeInUp relative top-1/4 z-10 flex h-1/2 flex-col justify-center rounded-2xl  bg-primary/[3%] bg-gradient-to-br   from-pink-400 to-sky-200  p-8 text-black shadow-lg dark:bg-primary/10 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500 dark:text-white sm:p-11 lg:p-8 xl:p-11"
       data-wow-delay=".2s"
     >
       <h3 className="mb-8   text-2xl font-bold leading-tight text-black dark:text-white">
-      Contact Details
+        Contact Details
       </h3>
-      {/* <p className="mb-11 border-b border-body-color border-opacity-25 pb-11 text-base font-medium leading-relaxed text-body-color dark:border-white dark:border-opacity-25">
-        Lorem ipsum dolor sited Sed ullam corper consectur adipiscing Mae ornare
-        massa quis lectus.
-      </p> */}
-        <p className="mb-2 font-semibold">Fremont Office:</p>
-            <p className="text-xs text-blue-400 font-bold dark:text-black">
-              6500 Dublin Blvd.,Ste.214 Dublin, CA, 94568.
-            </p>
+      <p className="mb-2 font-semibold">Fremont Office:</p>
 
-            <h2 className="mb-2 mt-8 text-base font-bold">All Enquiries</h2>
+      <a
+        href={googleMapsLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-xs font-bold text-blue-400 dark:text-black"
+      >
+        {address}
+      </a>
+      <h2 className="mb-2 mt-8 text-base font-bold">All Enquiries</h2>
 
-            <p className="mb-2 text-xs">
-              Tel:{" "}
-              <a className="text-blue-400 font-bold dark:text-black" href="tel:+19254007330">
-                +1 925-400-7330
-              </a>
-            </p>
-            <p className="text-xs">
-              Email:{" "}
-              <a
-                className="text-blue-400 font-bold dark:text-black"
-                href="mailto:info@whitebox-learning.com"
-              >
-                info@whitebox-learning.com
-              </a>
-            </p>
-    
+      <p className="mb-2 text-xs">
+        Tel:{" "}
+        <a
+          className="font-bold text-blue-400 dark:text-black"
+          href="tel:+19254007330"
+        >
+          +1 925-400-7330
+        </a>
+      </p>
+      <p className="text-xs">
+        Email:{" "}
+        <a
+          className="font-bold text-blue-400 dark:text-black"
+          href="mailto:info@whitebox-learning.com"
+        >
+          info@whitebox-learning.com
+        </a>
+      </p>
+
       <div className="absolute top-0 left-0 z-[-1]">
         <svg
           width="370"

@@ -36,7 +36,7 @@ export default function Recordings() {
       <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
         {/* Navbar */}
         <nav className="mt-16 flex items-center justify-between">
-          <h1 className="text-4xl font-bold">Schedule</h1>
+          <h1 className="text-4xl font-bold ">Schedule</h1>
 
           <Layout currentPage="schedule" />
         </nav>
@@ -47,13 +47,13 @@ export default function Recordings() {
           <div className="mt-10  flex h-1/2 flex-col">
             {/* <div className="flex  "> */}
             <button
-              className="mb-1 rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+              className="mb-1 rounded-md bg-gradient-to-br from-primary to-blue-300 hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
               onClick={() => handleButtonClick("calendar")}
             >
               Calendar
             </button>
             <button
-              className="mb-1 rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+              className="mb-1 rounded-md bg-gradient-to-br from-primary to-blue-300 hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
               onClick={() => handleButtonClick("courseContent")}
             >
               Course Content

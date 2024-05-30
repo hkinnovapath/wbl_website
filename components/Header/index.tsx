@@ -68,7 +68,7 @@ const Header = () => {
                   alt="logo"
                   width={45}
                   height={50}
-                  className="hidden animate-bounce dark:block"
+                  className="hidden  dark:block"
                 />
                 {/* <Image
                   src="/images/logo/logo.svg"
@@ -168,7 +168,7 @@ const Header = () => {
                 </Link>
                 <Link
                   href="/signup"
-                  className="hidden rounded-md bg-gradient-to-br from-primary to-blue-300 py-3 px-8 text-base font-bold text-white hover:bg-opacity-90 hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
+                  className="hidden rounded-md bg-gradient-to-br from-indigo-900  to-purple-400 py-3 px-8 text-base font-bold text-white hover:bg-opacity-90 hover:bg-gradient-to-tl hover:from-indigo-900  hover:to-purple-400 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
                 >
                   Register
                 </Link>

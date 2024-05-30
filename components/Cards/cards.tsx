@@ -8,14 +8,14 @@ export default function Cards() {
     <div className="mx-auto  grid max-w-sm items-start gap-8 lg:max-w-none lg:grid-cols-3 lg:gap-6">
       {/* 1st testimonial */}
       <div
-        className="h-100 flex flex-col rounded-2xl border border-blue-900 p-6 shadow-2xl"
+        className="h-100 hover:scale-105 duration-500 flex flex-col rounded-2xl p-6 shadow-gray-400 dark:shadow-gray-800 shadow-lg"
         data-aos="fade-up"
         data-aos-delay="400"
       >
         <div>
           {/* <div className="relative inline-flex flex-col mb-4"> */}
           <Image
-            className="rounded-xl"
+            className="dark:border-gray-700 border rounded-xl "
             src={TestimonialImage01}
             width={300}
             height={250}
@@ -31,7 +31,7 @@ export default function Cards() {
           {/* </div> */}
         </div>
         <h1 className="mt-3 text-center text-2xl font-bold">
-          Fullstack Developer
+         Fullstack Developer (UI)
         </h1>
 
         <div className="mt-6 border-t border-gray-400 pt-5 text-center font-medium text-gray-700">
@@ -40,21 +40,21 @@ export default function Cards() {
             className="text-blue-600 transition duration-150 ease-in-out hover:text-blue-400"
             href="http://uiprogrammer.com/"
           >
-            Visit
+            Enroll Now
           </a>
         </div>
       </div>
 
       {/* 2nd testimonial */}
       <div
-        className="h-100 flex flex-col  rounded-2xl border border-blue-900 p-6  shadow-2xl"
+        className="h-100 hover:scale-105 duration-500 flex flex-col  rounded-2xl p-6 shadow-gray-400 dark:shadow-gray-800 shadow-lg"
         data-aos="fade-up"
         data-aos-delay="400"
       >
         <div>
           {/* <div className="relative inline-flex flex-col mb-4"> */}
           <Image
-            className="rounded-xl"
+            className="dark:border-gray-700 border rounded-xl"
             src={TestimonialImage02}
             width={300}
             height={250}
@@ -79,21 +79,21 @@ export default function Cards() {
             className="text-blue-600 transition duration-150 ease-in-out hover:text-blue-400"
             href="http://uiprogrammer.com/"
           >
-            Visit
+            Enroll Now
           </a>
         </div>
       </div>
 
       {/* 3rd testimonial */}
       <div
-        className="h-100  flex  flex-col rounded-2xl border border-blue-900 p-6 shadow-2xl"
+        className="h-100 hover:scale-105 duration-500  flex  flex-col rounded-2xl  p-6 shadow-gray-400 dark:shadow-gray-800 shadow-lg"
         data-aos="fade-up"
         data-aos-delay="400"
       >
         <div>
           {/* <div className="relative inline-flex flex-col mb-4"> */}
           <Image
-            className="rounded-xl"
+            className="dark:border-gray-700 border rounded-xl"
             src={TestimonialImage03}
             width={300}
             height={250}
@@ -118,7 +118,7 @@ export default function Cards() {
             className="text-blue-600 transition duration-150 ease-in-out hover:text-blue-400"
             href="http://uiprogrammer.com/"
           >
-            Visit
+            Enroll Now
           </a>
         </div>
       </div>

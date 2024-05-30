@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
@@ -40,37 +40,50 @@ function Carousel() {
     setCurrentIndex(slideIndex);
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 3000); // Change image every 3 seconds
+
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, [currentIndex]); // Run useEffect every time currentIndex changes
+
   return (
-    <div className="  lg: xl: group relative mx-auto h-[200px] w-full max-w-[400px] px-2 md:h-[300px] md:max-w-[600px] lg:h-[350px] lg:max-w-[700px] xl:h-[400px] xl:max-w-[1000px]">
-      <div className="relative h-full w-full rounded-2xl bg-cover bg-center duration-500">
-        <Image
-          src={slides[currentIndex].url}
-          alt={`Slide ${currentIndex}`}
-          layout="fill"
-          objectFit=""
-          className="rounded-2xl border object-fill"
-        />
+    <div className="group relative mx-auto h-[200px] w-full max-w-[400px] px-2 md:h-[300px] md:max-w-[600px] lg:h-[350px] lg:max-w-[700px] xl:h-[400px] xl:max-w-[1000px]">
+      <div className="relative h-full w-full rounded-2xl bg-cover bg-center">
+        {slides.map((slide, index) => (
+          <Image
+            key={index}
+            src={slide.url}
+            alt={`Slide ${index}`}
+            layout="fill"
+            
+            className={`rounded-2xl shadow-lg p-2 shadow-gray-700 transition-opacity duration-1000 ease-in-out ${
+              index === currentIndex ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
       </div>
       {/* Left Arrow */}
       <div
-        className="absolute  top-[50%] left-5 hidden -translate-y-1/2 transform cursor-pointer rounded-full bg-black/30 p-2 text-2xl text-white transition hover:bg-black/50 group-hover:block"
+        className="absolute top-[50%] left-5 hidden -translate-y-1/2 transform cursor-pointer rounded-full bg-black/30 p-2 text-2xl text-white transition hover:bg-black/50 group-hover:block"
         onClick={prevSlide}
       >
         <BsChevronCompactLeft size={30} />
       </div>
       {/* Right Arrow */}
       <div
-        className=" absolute top-[50%] right-5 hidden -translate-y-1/2 transform cursor-pointer rounded-full bg-black/30 p-2 text-2xl text-white transition hover:bg-black/50 group-hover:block"
+        className="absolute top-[50%] right-5 hidden -translate-y-1/2 transform cursor-pointer rounded-full bg-black/30 p-2 text-2xl text-white transition hover:bg-black/50 group-hover:block"
         onClick={nextSlide}
       >
         <BsChevronCompactRight size={30} />
       </div>
-      <div className=" flex justify-center space-x-2 py-4">
+      <div className="flex justify-center space-x-2 py-4">
         {slides.map((slide, slideIndex) => (
           <div
             key={slideIndex}
             onClick={() => goToSlide(slideIndex)}
-            className={` cursor-pointer ${
+            className={`cursor-pointer ${
               slideIndex === currentIndex ? "text-blue-500" : "text-gray-300"
             }`}
           >

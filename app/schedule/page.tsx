@@ -47,13 +47,13 @@ export default function Recordings() {
           <div className="mt-10  flex h-1/2 flex-col">
             {/* <div className="flex  "> */}
             <button
-              className="mb-1 rounded-md bg-gradient-to-br from-primary to-blue-300 hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+              className="mb-1 rounded-md bg-gradient-to-br from-primary to-blue-300 hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 bg-blue-500 px-4 py-2 text-black font-bold hover:bg-blue-600"
               onClick={() => handleButtonClick("calendar")}
             >
-              Calendar
+              Calendar                                                          
             </button>
             <button
-              className="mb-1 rounded-md bg-gradient-to-br from-primary to-blue-300 hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+              className="mb-1 rounded-md bg-gradient-to-br from-primary to-blue-300 hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 bg-blue-500 px-4 py-2 text-black font-bold hover:bg-blue-600"
               onClick={() => handleButtonClick("courseContent")}
             >
               Course Content

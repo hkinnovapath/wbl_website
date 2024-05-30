@@ -21,11 +21,11 @@ export default function Home() {
       <Hero />
       <Features />
       {/* <Schedule /> */}
-      {/* <Video /> */}
       {/* <Brands /> */}
       <AboutSectionOne />
       {/* <AboutSectionTwo /> */}
       <Testimonials />
+      {/* <Video /> */}
       {/* <Pricing /> */}
       {/* <Blog /> */}
       {/* <Contact /> */}

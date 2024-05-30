@@ -9,7 +9,7 @@ const testimonialData: Testimonial[] = [
     designation: "Fullstack (MERN)",
     content:
       "I can't thank the institute enough for the incredible learning journey I've had here. The instructors are highly knowledgeable, supportive, and passionate about teaching. Their dedication has truly inspired me to push my limits and achieve more than I thought possible.",
-    image: "./images/testimonials/auth-01.png",
+    image: "/images/testimonials/auth-01.png",
     star: 5,
   },
   {
@@ -18,7 +18,7 @@ const testimonialData: Testimonial[] = [
     designation: "Fullstack (MERN)",
     content:
       "The hands-on approach to learning, coupled with practical projects, has equipped me with the skills and confidence needed  to excel in my field. I highly recommend this institute to anyone seeking quality education and a transformative experience. lorem Ipsum lorem Ipsum ",
-    image: "./images/testimonials/auth-02.png",
+    image: "/images/testimonials/auth-02.png",
     star: 5,
   },
   {
@@ -27,7 +27,7 @@ const testimonialData: Testimonial[] = [
     designation: "ML Engineer",
     content:
       "I can't thank the institute enough for the incredible learning journey I've had here. The instructors are highly knowledgeable, supportive, and passionate about teaching. Their dedication has truly inspired me to push my limits and achieve more than I thought possible.",
-    image: "./images/testimonials/auth-03.png",
+    image: "/images/testimonials/auth-03.png",
     star: 5,
   },
 ];

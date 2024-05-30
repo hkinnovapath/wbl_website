@@ -1,6 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import SectionTitle from "../Common/SectionTitle";
+import img1 from "@/public/images/gallery/1.jpg";
+import img2 from "@/public/images/gallery/2.jpg";
+import img3 from "@/public/images/gallery/3.jpg";
+import img4 from "@/public/images/gallery/4.jpg";
+
+const imagessrc = [img1, img2, img3, img4]; // Updated array with new images
 
 const checkIcon = (
   <svg width="16" height="13" viewBox="0 0 16 13" className="fill-current">
@@ -23,7 +30,7 @@ const AboutSectionOne = () => {
 
   useEffect(() => {
     const positions = [];
-    const numImages = 4; // Number of images
+    const numImages = imagessrc.length; // Number of images
     const offset = 50; // Offset for each subsequent image
 
     for (let i = 0; i < numImages; i++) {
@@ -36,7 +43,7 @@ const AboutSectionOne = () => {
   }, []);
 
   return (
-    <section id="about" className="  pt-16 md:pt-20 lg:pt-28">
+    <section id="about" className="pt-16 md:pt-20 lg:pt-28">
       <div className="container">
         <div className="border-b border-body-color/[.15] pb-16 dark:border-white/[.15] md:pb-20 lg:pb-28">
           <div className="-mx-4 flex flex-wrap items-center">
@@ -69,24 +76,30 @@ const AboutSectionOne = () => {
 
             <div className="w-full px-4 lg:w-1/2">
               <div
-                className=" wow fadeInUp group relative mx-auto aspect-[25/24] max-w-[500px] lg:mr-0"
+                className="wow fadeInUp group relative mx-auto aspect-[25/24] max-w-[500px] lg:mr-0"
                 data-wow-delay=".2s"
               >
                 <div className="relative h-[300px] w-[300px]">
-                  {[1, 2, 3, 4].map((index) => (
-                    <img
+                  {imagessrc.map((img, index) => (
+                    <div
                       key={index}
-                      src={`./images/gallery/${index}.jpg`}
-                      alt={`Gallery image ${index}`}
-                      className="shadow-lg p-1 shadow-gray-700 absolute h-full w-full transform rounded-md object-cover transition-transform duration-300 hover:scale-110"
+                      className="absolute h-full w-full transform rounded-md object-cover p-1 shadow-lg shadow-gray-700 transition-transform duration-300 hover:scale-110"
                       style={{
-                        top: `${imagePositions[index - 1]?.top}px`,
-                        left: `${imagePositions[index - 1]?.left}px`,
+                        top: `${imagePositions[index]?.top}px`,
+                        left: `${imagePositions[index]?.left}px`,
                         zIndex: hoveredIndex === index ? 10 : index,
                       }}
                       onMouseEnter={() => setHoveredIndex(index)}
                       onMouseLeave={() => setHoveredIndex(null)}
-                    />
+                    >
+                      <Image
+                        src={img}
+                        alt={`Gallery image ${index}`}
+                        layout="fill"
+                        objectFit="cover"
+                        className="rounded-md"
+                      />
+                    </div>
                   ))}
                 </div>
               </div>

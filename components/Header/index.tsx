@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import ThemeToggler from "./ThemeToggler";
 import menuData from "./menuData";
+import WBLlight from "@/public/images/wbl-light.png"; // Replace with the actual path
+import WBLdark from "@/public/images/wbl-dark.png"; // Replace with the actual path
 
 const Header = () => {
   // Navbar toggle
@@ -57,14 +59,16 @@ const Header = () => {
                 } `}
               >
                 <Image
-                  src="./images/wbl-dark.png"
+                  // src="./images/wbl-dark.png"
+                  src={WBLdark}
                   alt="logo"
                   width={45}
                   height={50}
                   className="dark:hidden"
                 />
                 <Image
-                  src="./images/wbl-light.png"
+                  // src="./images/wbl-light.png"
+                  src={WBLlight}
                   alt="logo"
                   width={45}
                   height={50}

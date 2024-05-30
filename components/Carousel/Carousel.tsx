@@ -57,8 +57,7 @@ function Carousel() {
             src={slide.url}
             alt={`Slide ${index}`}
             layout="fill"
-            
-            className={`rounded-2xl shadow-lg p-2 shadow-gray-700 transition-opacity duration-1000 ease-in-out ${
+            className={`rounded-2xl shadow-xl shadow-gray-700 transition-opacity duration-1000 ease-in-out ${
               index === currentIndex ? "opacity-100" : "opacity-0"
             }`}
           />

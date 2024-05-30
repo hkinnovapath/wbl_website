@@ -65,7 +65,7 @@ function Carousel() {
       </div>
       {/* Left Arrow */}
       <div
-        className="absolute top-[50%] left-5 hidden -translate-y-1/2 transform cursor-pointer rounded-full bg-black/30 p-2 text-2xl text-white transition hover:bg-black/50 group-hover:block"
+        className="  absolute top-[50%] left-5 hidden -translate-y-1/2 transform cursor-pointer rounded-full bg-black/30 p-2 text-2xl text-white transition hover:bg-black/50 group-hover:block"
         onClick={prevSlide}
       >
         <BsChevronCompactLeft size={30} />

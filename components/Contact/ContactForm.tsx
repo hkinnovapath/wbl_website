@@ -28,7 +28,7 @@ const Contact = () => {
                         Fill up the form below to send us a message.
                       </p>
                     </div>
-                    <form action="https://fabform.io/f/{form-id}" className="dark:text-white text-black " method="post" >
+                    <form action="#" className="dark:text-white text-black " method="post" >
                       <label htmlFor="name" className="mb-2 block">
                         Name:
                       </label>{" "}

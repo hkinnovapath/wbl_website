@@ -77,7 +77,7 @@ export default function Cards() {
           <cite className="not-italic text-gray-200"></cite>{" "}
           <a
             className="text-blue-600 transition duration-150 ease-in-out hover:text-blue-400"
-            href="http://uiprogrammer.com/"
+            href="./signup"
           >
             Enroll Now
           </a>
@@ -116,7 +116,7 @@ export default function Cards() {
           <cite className="not-italic text-green-600"></cite>{" "}
           <a
             className="text-blue-600 transition duration-150 ease-in-out hover:text-blue-400"
-            href="http://uiprogrammer.com/"
+            href="./signup"
           >
             Enroll Now
           </a>

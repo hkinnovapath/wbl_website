@@ -68,12 +68,12 @@ const Contact = () => {
                       ></textarea>
                       <div className="flex justify-between">
                         <input
-                          className="focus:shadow-outline rounded-lg shadow-xl bg-indigo-600 py-2 px-4 font-bold text-white  w-36 hover:bg-indigo-700 focus:outline-none"
+                          className="focus:shadow-outline rounded-lg bg-gradient-to-br from-indigo-500  to-indigo-200  hover:from-indigo-500 hover:to-indigo-200 py-2 px-4 font-bold dark:text-white text-black w-36 hover:bg-indigo-700 focus:outline-none"
                           type="submit"
                           value="Send ➤"
                         />
                         <input
-                          className="focus:shadow-outline rounded-lg bg-red-600 py-2 px-4 font-bold text-white shadow-xl w-36  hover:bg-red-700 focus:outline-none"
+                          className="focus:shadow-outline rounded-lg  bg-gradient-to-br from-red-500 to-red-200 hover:bg-gradient-to-tl hover:from-red-500 hover:to-red-200 py-2 px-4 font-bold dark:text-white text-black shadow-xl w-36  hover:bg-red-700 focus:outline-none"
                           type="reset"
                         />
                       </div>

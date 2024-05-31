@@ -3,7 +3,6 @@ import videoData from "../../searchvideo.json";
 
 interface Video {
   id: number;
-  // id: string;
   title: string;
   thumbnailUrl: string;
   duration: string;

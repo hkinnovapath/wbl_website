@@ -51,8 +51,7 @@ const SignupPage = () => {
           setMessage(data.error);
         }
       } catch (error) {
-        // Log any errors that occur during the request
-        // console.error("Error:", error);
+
         setMessage("An error occurred during registration");
       }
   

@@ -59,7 +59,6 @@ const Header = () => {
                 } `}
               >
                 <Image
-                  // src="./images/wbl-dark.png"
                   src={WBLdark}
                   alt="logo"
                   width={50}
@@ -67,20 +66,13 @@ const Header = () => {
                   className="dark:hidden"
                 />
                 <Image
-                  // src="./images/wbl-light.png"
                   src={WBLlight}
                   alt="logo"
                   width={50}
                   height={50}
                   className="hidden  dark:block"
                 />
-                {/* <Image
-                  src="/images/logo/logo.svg"
-                  alt="logo"
-                  width={140}
-                  height={30}
-                  className="hidden w-full dark:block"
-                /> */}
+              
               </Link>
             </div>
             <div className="flex w-full items-center justify-between px-4">

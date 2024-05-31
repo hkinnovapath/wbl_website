@@ -32,11 +32,9 @@ const CourseContentTable = (props: any) => {
               </td>
               <td className="border border-primary  px-4 py-2   text-center text-blue-600 dark:border-blue-900 dark:text-white">
                 <p>{subject.name}</p>
-                {/* <a href={subject.pdfUrl} target='_blank' rel="noreferrer">{subject.name}</a> */}
               </td>
               <td className="border border-primary  px-4 py-2   text-center text-blue-600 dark:border-blue-900 dark:text-white">
                 <p>{subject.name2}</p>
-                {/* <a href={subject.pdfUrl2} target='_blank' rel="noreferrer">{subject.name2}</a> */}
               </td>
             </tr>
           ))}

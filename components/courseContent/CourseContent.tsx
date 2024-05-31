@@ -57,8 +57,6 @@ const subjects = [
 const CourseContent = () => {
   return (
     <div className="mx-auto  max-w-4xl px-4  sm:px-6">
-      {/* <h1 className="mb-4 text-3xl font-bold">CourseContent </h1> */}
-
       <CourseContentTable subjects={subjects} />
     </div>
   );

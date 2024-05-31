@@ -1,8 +1,5 @@
-// import Contact from "@/components/Contact";
-// import ContactDetails from "@/components/Contact/ContactDetails";
 import Layout from "../../components/Common/Layout";
 import ContactForm from "@/components/Contact/ContactForm";
-// import Layout from "@/components/Layout";
 const ContactPage = () => {
   return (
     <>
@@ -10,9 +7,6 @@ const ContactPage = () => {
         <nav className="mt-16   flex items-center justify-between ">
           {/* <div className=""> */}
             <h1 className="text-4xl font-bold text-black dark:text-white">Contact Page</h1>
-            {/* <h1 className="text-xl font-light">Get in touch</h1>
-            <h1 className="font-semibold">We'd love to hear from you.</h1> */}
-          {/* </div> */}
           <div className="hidden md:block">
             {/* <Breadcrumb /> */}
             <Layout currentPage="ContactPage">{/* Page content */}</Layout>

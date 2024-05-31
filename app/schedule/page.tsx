@@ -45,7 +45,6 @@ export default function Recordings() {
         <section className="mb-8  flex justify-between">
           {/* Left side */}
           <div className="mt-10  flex h-1/2 flex-col">
-            {/* <div className="flex  "> */}
             <button
               className="mb-1 rounded-md bg-blue-500 bg-gradient-to-br from-primary to-blue-300 px-4 py-2 font-bold text-black hover:bg-blue-600 hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300"
               onClick={() => handleButtonClick("calendar")}

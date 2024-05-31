@@ -30,7 +30,6 @@ const SingleTestimonial = ({ testimonial }: { testimonial: Testimonial }) => {
         </p>
         <div className="flex items-center">
           <div className="relative mr-4 h-[50px] w-full max-w-[50px] overflow-hidden rounded-full">
-            {/* <Image src={image} alt={name} fill /> */}
             <Image src={testimonial.image} alt={testimonial.name} />
           </div>
           <div className="w-full">

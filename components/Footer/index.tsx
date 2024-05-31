@@ -1,14 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-// import logo from "@/public/images/wbl-logo-removebg-preview.svg";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
     <>
-      <footer 
-        className="wow   fadeInUp relative z-10 shadow-2xl shadow-black bg-primary bg-opacity-5 pt-8 md:pt-12 lg:pt-14"
+      <footer
+        className="wow   fadeInUp relative z-10 bg-primary bg-opacity-5 pt-8 shadow-2xl shadow-black md:pt-12 lg:pt-14"
         data-wow-delay=".1s"
       >
         <div className="container   h-52">
@@ -16,28 +15,11 @@ const Footer = () => {
             <div className="w-full px-4 md:w-1/2 lg:w-4/12 xl:w-5/12">
               <div className="mb-12 max-w-[360px] lg:mb-16">
                 <Link href="/" className="inline-block">
-                  {/* <Image
-                    src="images/logo/logo-2.svg"
-                    alt="logo"
-                    className="w-full dark:hidden"
-                    width={140}
-                    height={30}
-                  /> */}
-                  {/* <Image
-                    src="images/logo/logo.svg"
-                    alt="logo"
-                    className="hidden w-full dark:block"
-                    width={140}
-                    height={30}
-                  /> */}
                   <h1 className="mb-10 text-xl font-bold text-black dark:text-white">
                     Whitebox Learning
                   </h1>
                 </Link>
-                {/* <p className="mb-9 text-base font-medium leading-relaxed text-body-color">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Integer lobortis.
-                </p> */}
+
                 <div className="flex items-center">
                   <a
                     href="https://github.com/WhiteboxHub"
@@ -217,10 +199,9 @@ const Footer = () => {
         </div>
 
         {/* Copyrights note */}
-        <div className="dark:bg-primary/10 flex items-center  h-10  bg-gray-300 py-10 ">
+        <div className="flex h-10 items-center  bg-gray-300  py-10 dark:bg-primary/10 ">
           <div className="container">
-            <p className="text-center  text-black font-semibold dark:text-white">
-              {/* Template by UIdeck and <a href="https://nextjstemplates.com" rel="nofollow noopener">Next.js Templates</a> */}
+            <p className="text-center  font-semibold text-black dark:text-white">
               &copy; {currentYear} Whitebox Learning. All rights reserved.
             </p>
           </div>

@@ -3,19 +3,23 @@ import Link from "next/link";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const address = "6500 Dublin Blvd., Ste. 214 Dublin, CA, 94568";
+  const googleMapsLink = `https://www.google.com/maps?q=${encodeURIComponent(
+    address
+  )}`;
 
   return (
     <>
       <footer
-        className="wow   fadeInUp relative z-10 bg-primary bg-opacity-5 pt-8 shadow-2xl shadow-black md:pt-12 lg:pt-14"
+        className="wow   fadeInUp relative z-10 bg-primary bg-opacity-5 pt-8 shadow-2xl shadow-black md:pt-10 lg:pt-12"
         data-wow-delay=".1s"
       >
-        <div className="container   h-52">
-          <div className="-mx-4 flex flex-wrap">
-            <div className="w-full px-4 md:w-1/2 lg:w-4/12 xl:w-5/12">
-              <div className="mb-12 max-w-[360px] lg:mb-16">
+        <div className="container h-48">
+          <div className="-mx-4 flex flex-wrap justify-around   ">
+            <div className="w-full px-4 md:w-1/2 lg:w-4/12  xl:w-5/12">
+              <div className="mb-12  max-w-[360px] lg:mb-16">
                 <Link href="/" className="inline-block">
-                  <h1 className="mb-10 text-xl font-bold text-black dark:text-white">
+                  <h1 className="mb-8 text-2xl font-bold text-black dark:text-white">
                     Whitebox Learning
                   </h1>
                 </Link>
@@ -26,10 +30,12 @@ const Footer = () => {
                     target="_blank"
                     rel="noreferrer"
                     aria-label="Github"
-                    className="mr-6 text-[#858691] hover:text-black dark:text-gray-700 dark:hover:text-white "
+                    className="mr-5  text-[#858691]   duration-500 hover:text-black dark:text-gray-700 dark:hover:text-white "
                   >
                     <svg
-                      className="h-8 w-8 fill-current"
+                      width="40"
+                      height="40"
+                      className=" fill-current"
                       viewBox="0 0 32 32"
                       xmlns="http://www.w3.org/2000/svg"
                     >
@@ -41,10 +47,12 @@ const Footer = () => {
                     target="_blank"
                     rel="noreferrer"
                     aria-label="Twitter"
-                    className="mr-6 text-[#858691] hover:text-black dark:text-gray-700 dark:hover:text-white"
+                    className="mr-5  text-[#858691] duration-500 hover:text-black dark:text-gray-700 dark:hover:text-white"
                   >
                     <svg
-                      className="h-8 w-8 fill-current"
+                      width="40"
+                      height="40"
+                      className=" fill-current"
                       viewBox="0 0 32 32"
                       xmlns="http://www.w3.org/2000/svg"
                     >
@@ -52,15 +60,17 @@ const Footer = () => {
                     </svg>
                   </a>
                   <a
-                    href="/"
+                    href="https://www.youtube.com/channel/UCslSigBnOPXZE2ZFMA6N44g"
+                    target="_blank"
+                    rel="noreferrer"
                     aria-label="social-link"
-                    className="mr-6 text-[#858691] hover:text-red-600 dark:text-gray-700 dark:hover:text-red-600"
+                    className="mr-5  text-[#858691] duration-500 hover:text-red-600 dark:text-gray-700 dark:hover:text-red-600"
                   >
                     <svg
-                      width="18"
-                      height="14"
+                      width="40"
+                      height="40"
                       viewBox="0 0 18 14"
-                      className="fill-current"
+                      className="fill-current p-2"
                     >
                       <path d="M17.5058 2.07119C17.3068 1.2488 16.7099 0.609173 15.9423 0.395963C14.5778 7.26191e-08 9.0627 0 9.0627 0C9.0627 0 3.54766 7.26191e-08 2.18311 0.395963C1.41555 0.609173 0.818561 1.2488 0.619565 2.07119C0.25 3.56366 0.25 6.60953 0.25 6.60953C0.25 6.60953 0.25 9.68585 0.619565 11.1479C0.818561 11.9703 1.41555 12.6099 2.18311 12.8231C3.54766 13.2191 9.0627 13.2191 9.0627 13.2191C9.0627 13.2191 14.5778 13.2191 15.9423 12.8231C16.7099 12.6099 17.3068 11.9703 17.5058 11.1479C17.8754 9.68585 17.8754 6.60953 17.8754 6.60953C17.8754 6.60953 17.8754 3.56366 17.5058 2.07119ZM7.30016 9.44218V3.77687L11.8771 6.60953L7.30016 9.44218Z" />
                     </svg>
@@ -70,13 +80,13 @@ const Footer = () => {
                     target="_blank"
                     rel="noreferrer"
                     aria-label="Linkedin"
-                    className="mr-6 text-[#858691] hover:text-blue-700 dark:text-gray-700 dark:hover:text-blue-700"
+                    className="mr-5  text-[#858691] duration-500 hover:text-blue-700 dark:text-gray-700 dark:hover:text-blue-700"
                   >
                     <svg
-                      width="17"
-                      height="16"
+                      width="40"
+                      height="40"
                       viewBox="0 0 17 16"
-                      className="fill-current"
+                      className="fill-current p-2"
                     >
                       <path d="M15.2196 0H1.99991C1.37516 0 0.875366 0.497491 0.875366 1.11936V14.3029C0.875366 14.8999 1.37516 15.4222 1.99991 15.4222H15.1696C15.7943 15.4222 16.2941 14.9247 16.2941 14.3029V1.09448C16.3441 0.497491 15.8443 0 15.2196 0ZM5.44852 13.1089H3.17444V5.7709H5.44852V13.1089ZM4.29899 4.75104C3.54929 4.75104 2.97452 4.15405 2.97452 3.43269C2.97452 2.71133 3.57428 2.11434 4.29899 2.11434C5.02369 2.11434 5.62345 2.71133 5.62345 3.43269C5.62345 4.15405 5.07367 4.75104 4.29899 4.75104ZM14.07 13.1089H11.796V9.55183C11.796 8.7061 11.771 7.58674 10.5964 7.58674C9.39693 7.58674 9.222 8.53198 9.222 9.47721V13.1089H6.94792V5.7709H9.17202V6.79076H9.19701C9.52188 6.19377 10.2466 5.59678 11.3711 5.59678C13.6952 5.59678 14.12 7.08925 14.12 9.12897V13.1089H14.07Z" />
                     </svg>
@@ -84,112 +94,43 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-
-            <div className="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-2/12 xl:w-2/12">
-              <div className="mb-12 lg:mb-16">
-                <h2 className="mb-10 text-xl font-bold text-black dark:text-white">
-                  Useful Links
-                </h2>
+            <div className="w-full  sm:w-1/2 lg:w-4/12">
+              <div className="lg:mb-16">
+                <div className="mb-8">
+                <a
+                  href={'/contact'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-2xl font-bold text-black underline underline-offset-4 dark:text-white"
+                >
+                  Contact us
+                </a>
+                </div>
                 <ul>
-                  <li>
+                  <li className="mb-3">
                     <a
-                      href="/"
-                      className="mb-4 inline-block text-base font-medium text-body-color hover:text-primary"
+                      href={googleMapsLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-md  text-black duration-500  hover:text-blue-600 dark:text-white dark:hover:text-blue-600  "
                     >
-                      {" "}
-                      Blog{" "}
+                      {address}
                     </a>
                   </li>
-                  <li>
+                  <li className="mb-3">
                     <a
-                      href="/"
-                      className="mb-4 inline-block text-base font-medium text-body-color hover:text-primary"
+                      className="text-md  text-black duration-500  hover:text-blue-600 dark:text-white dark:hover:text-blue-600"
+                      href="tel:+19254007330"
                     >
-                      {" "}
-                      Pricing{" "}
+                      +1 925-400-7330
                     </a>
                   </li>
-                  <li>
+                  <li className="mb-3">
                     <a
-                      href="/"
-                      className="mb-4 inline-block text-base font-medium text-body-color hover:text-primary"
+                      className="text-md  text-black duration-500  hover:text-blue-600 dark:text-white dark:hover:text-blue-600 "
+                      href="mailto:info@whitebox-learning.com"
                     >
-                      {" "}
-                      About{" "}
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-2/12 xl:w-2/12">
-              <div className="mb-12 lg:mb-16">
-                <h2 className="mb-10 text-xl font-bold text-black dark:text-white">
-                  Terms
-                </h2>
-                <ul>
-                  <li>
-                    <a
-                      href="/"
-                      className="mb-4 inline-block text-base font-medium text-body-color hover:text-primary"
-                    >
-                      {" "}
-                      TOS{" "}
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/"
-                      className="mb-4 inline-block text-base font-medium text-body-color hover:text-primary"
-                    >
-                      {" "}
-                      Privacy Policy{" "}
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/"
-                      className="mb-4 inline-block text-base font-medium text-body-color hover:text-primary"
-                    >
-                      {" "}
-                      Refund Policy{" "}
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="w-full px-4 md:w-1/2 lg:w-4/12 xl:w-3/12">
-              <div className="mb-12 lg:mb-16">
-                <h2 className="mb-10 text-xl font-bold text-black dark:text-white">
-                  Support & Help
-                </h2>
-                <ul>
-                  <li>
-                    <a
-                      href="/"
-                      className="mb-4 inline-block text-base font-medium text-body-color hover:text-primary"
-                    >
-                      {" "}
-                      Open Support Ticket{" "}
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/"
-                      className="mb-4 inline-block text-base font-medium text-body-color hover:text-primary"
-                    >
-                      {" "}
-                      Terms of Use{" "}
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/"
-                      className="mb-4 inline-block text-base font-medium text-body-color hover:text-primary"
-                    >
-                      {" "}
-                      About{" "}
+                      info@whitebox-learning.com
                     </a>
                   </li>
                 </ul>
@@ -202,7 +143,13 @@ const Footer = () => {
         <div className="flex h-10 items-center  bg-gray-300  py-10 dark:bg-primary/10 ">
           <div className="container">
             <p className="text-center  font-semibold text-black dark:text-white">
-              &copy; {currentYear} Whitebox Learning. All rights reserved.
+              &copy; {currentYear}{" "}
+              <Link href="/" className="inline-block">
+                <h1 className="  text-blue-600 dark:text-blue-500">
+                  Whitebox Learning,Inc.
+                </h1>
+              </Link>{" "}
+              All rights reserved.
             </p>
           </div>
         </div>

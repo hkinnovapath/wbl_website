@@ -20,19 +20,19 @@ const menuData: Menu[] = [
     submenu: [
       {
         id: 41,
-        title: "Recordings Page",
+        title: "Recordings ",
         path: "/recording",
         newTab: false,
       },
       {
         id: 42,
-        title: "Presentation Page",
+        title: "Presentation ",
         path: "/presentation",
         newTab: false,
       },
       {
         id: 43,
-        title: "Assignments Page",
+        title: "Assignments ",
         path: "/assignment",
         newTab: false,
       },

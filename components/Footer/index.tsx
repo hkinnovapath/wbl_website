@@ -101,7 +101,7 @@ const Footer = () => {
                   href={'/contact'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-2xl font-bold text-black underline underline-offset-4 dark:text-white"
+                  className="text-2xl font-bold text-black  dark:text-white"
                 >
                   Contact us
                 </a>

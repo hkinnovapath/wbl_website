@@ -11,19 +11,18 @@ const Footer = () => {
   return (
     <>
       <footer
-        className="wow   fadeInUp relative z-10 bg-primary bg-opacity-5 pt-8 shadow-2xl shadow-black md:pt-10 lg:pt-12"
+        className="wow  fadeInUp  relative z-10  bg-primary bg-opacity-5 pt-8 shadow-2xl shadow-black md:pt-10 lg:pt-12"
         data-wow-delay=".1s"
       >
-        <div className="container h-48">
-          <div className="-mx-4 flex flex-wrap justify-around   ">
-            <div className="w-full px-4 md:w-1/2 lg:w-4/12  xl:w-5/12">
+        <div className="container  ">
+          <div className="-mx-4 flex  flex-wrap  justify-around  ">
+            <div className="w-full   text-center flex  justify-center  sm:w-1/2 lg:w-4/12">
               <div className="mb-12  max-w-[360px] lg:mb-16">
                 <Link href="/" className="inline-block">
-                  <h1 className="mb-8 text-2xl font-bold text-black dark:text-white">
+                  <h1 className="mb-8  text-2xl font-bold text-black dark:text-white">
                     Whitebox Learning
                   </h1>
                 </Link>
-
                 <div className="flex items-center">
                   <a
                     href="https://github.com/WhiteboxHub"
@@ -94,17 +93,17 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-            <div className="w-full  sm:w-1/2 lg:w-4/12">
-              <div className="lg:mb-16">
-                <div className="mb-8">
-                <a
-                  href={'/contact'}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-2xl font-bold text-black  dark:text-white"
-                >
-                  Contact us
-                </a>
+            <div className="w-full  sm:flex  hidden  md:justify-center  sm:text-left text-center sm:w-1/2 lg:w-4/12">
+              <div className="mb-6 ">
+                <div className="mb-8 ">
+                  <a
+                    href={"/contact"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-2xl font-bold text-black  dark:text-white"
+                  >
+                    Contact us
+                  </a>
                 </div>
                 <ul>
                   <li className="mb-3">

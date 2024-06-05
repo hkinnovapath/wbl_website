@@ -79,7 +79,7 @@ const AboutSectionOne = () => {
                 className="wow fadeInUp group relative mx-auto aspect-[25/24] max-w-[500px] lg:mr-0"
                 data-wow-delay=".2s"
               >
-                <div className="relative h-[300px] w-[300px]">
+                <div className="relative h-[200px] w-[200px] sm:h-[250px] sm:w-[250px] md:h-[300px] md:w-[300px]">
                   {imagessrc.map((img, index) => (
                     <div
                       key={index}
@@ -97,7 +97,7 @@ const AboutSectionOne = () => {
                         alt={`Gallery image ${index}`}
                         layout="fill"
                         objectFit="cover"
-                        className="rounded-md"
+                        className="rounded-md"  
                       />
                     </div>
                   ))}

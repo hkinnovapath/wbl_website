@@ -14,6 +14,11 @@
 //     setNavbarOpen(!navbarOpen);
 //   };
 
+//   // Close navbar when a menu item is clicked
+//   const closeNavbar = () => {
+//     setNavbarOpen(false);
+//   };
+
 //   // Sticky Navbar
 //   const [sticky, setSticky] = useState(false);
 //   const handleStickyNavbar = () => {
@@ -25,7 +30,10 @@
 //   };
 //   useEffect(() => {
 //     window.addEventListener("scroll", handleStickyNavbar);
-//   });
+//     return () => {
+//       window.removeEventListener("scroll", handleStickyNavbar);
+//     };
+//   }, []);
 
 //   // submenu handler
 //   const [openIndex, setOpenIndex] = useState(-1);
@@ -40,18 +48,15 @@
 //   return (
 //     <>
 //       <header
-//         className={` header top-0 left-0 z-40 flex w-full items-center bg-transparent ${
+//         className={`header top-0 left-0 z-40 flex w-full items-center bg-transparent ${
 //           sticky
 //             ? "!fixed !z-[9999] !bg-white !bg-opacity-80 shadow-sticky backdrop-blur-sm !transition dark:!bg-primary dark:!bg-opacity-20"
 //             : "absolute"
 //         }`}
 //       >
-//         <div
-//           className="container  mt-5
-//          "
-//         >
+//         <div className="container mt-5">
 //           <div className="relative -mx-4 flex items-center justify-between">
-//             <div className=" max-w-full px-4 xl:mr-12">
+//             <div className="max-w-full px-4 xl:mr-12">
 //               <Link
 //                 href="/"
 //                 className={`header-logo block w-full ${
@@ -70,9 +75,8 @@
 //                   alt="logo"
 //                   width={50}
 //                   height={50}
-//                   className="hidden  dark:block"
+//                   className="hidden dark:block"
 //                 />
-              
 //               </Link>
 //             </div>
 //             <div className="flex w-full items-center justify-between px-4">
@@ -85,17 +89,17 @@
 //                 >
 //                   <span
 //                     className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
-//                       navbarOpen ? " top-[7px] rotate-45" : " "
+//                       navbarOpen ? " top-[7px] rotate-45" : ""
 //                     }`}
 //                   />
 //                   <span
 //                     className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
-//                       navbarOpen ? "opacity-0 " : " "
+//                       navbarOpen ? "opacity-0" : ""
 //                     }`}
 //                   />
 //                   <span
 //                     className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
-//                       navbarOpen ? " top-[-8px] -rotate-45" : " "
+//                       navbarOpen ? " top-[-8px] -rotate-45" : ""
 //                     }`}
 //                   />
 //                 </button>
@@ -103,7 +107,7 @@
 //                   id="navbarCollapse"
 //                   className={`navbar absolute right-0 z-30 w-[250px] rounded border-[.5px] border-body-color/50 bg-white py-4 px-6 duration-300 dark:border-body-color/20 dark:bg-dark lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${
 //                     navbarOpen
-//                       ? "visibility top-full opacity-100"
+//                       ? "visible top-full opacity-100"
 //                       : "invisible top-[120%] opacity-0"
 //                   }`}
 //                 >
@@ -114,6 +118,7 @@
 //                           <Link
 //                             href={menuItem.path}
 //                             className={`flex py-2 text-base text-dark group- dark:text-white lg:mr-0 lg:inline-flex lg:py-6 lg:px-0`}
+//                             onClick={closeNavbar}
 //                           >
 //                             {menuItem.title}
 //                           </Link>
@@ -143,6 +148,7 @@
 //                                   href={submenuItem.path}
 //                                   key={submenuItem.id}
 //                                   className="block hover:bg-gray-200 duration-500 dark:hover:bg-black/70 rounded py-2.5 text-sm text-dark hover:font-semibold dark:text-white lg:px-5 text-center"
+//                                   onClick={closeNavbar}
 //                                 >
 //                                   {submenuItem.title}
 //                                 </Link>
@@ -158,13 +164,15 @@
 //               <div className="flex items-center justify-end pr-16 lg:pr-0">
 //                 <Link
 //                   href="/signin"
-//                   className="hidden  py-3 px-7 text-base font-bold text-dark  dark:text-white md:block"
+//                   className="hidden py-3 px-7 text-base font-bold text-dark dark:text-white md:block"
+//                   onClick={closeNavbar}
 //                 >
 //                   Login
 //                 </Link>
 //                 <Link
 //                   href="/signup"
-//                   className="hidden rounded-md bg-gradient-to-br from-indigo-900  to-purple-400 py-3 px-8 text-base font-bold text-white hover:bg-opacity-90 hover:bg-gradient-to-tl hover:from-indigo-900  hover:to-purple-400 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
+//                   className="hidden rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white hover:bg-opacity-90 hover:bg-gradient-to-tl hover:from-indigo-900 hover:to-purple-400 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
+//                   onClick={closeNavbar}
 //                 >
 //                   Register
 //                 </Link>
@@ -301,7 +309,7 @@ const Header = () => {
                         {menuItem.path ? (
                           <Link
                             href={menuItem.path}
-                            className={`flex py-2 text-base text-dark group- dark:text-white lg:mr-0 lg:inline-flex lg:py-6 lg:px-0`}
+                            className={`group- flex py-2 text-base text-dark dark:text-white lg:mr-0 lg:inline-flex lg:py-6 lg:px-0`}
                             onClick={closeNavbar}
                           >
                             {menuItem.title}
@@ -310,7 +318,7 @@ const Header = () => {
                           <>
                             <a
                               onClick={() => handleSubmenu(index)}
-                              className="flex cursor-pointer items-center justify-between py-2 text-base text-dark group- dark:text-white lg:mr-0 lg:inline-flex lg:py-6 lg:px-0"
+                              className="group- flex cursor-pointer items-center justify-between py-2 text-base text-dark dark:text-white lg:mr-0 lg:inline-flex lg:py-6 lg:px-0"
                             >
                               {menuItem.title}
                               <span className="pl-3">
@@ -331,7 +339,7 @@ const Header = () => {
                                 <Link
                                   href={submenuItem.path}
                                   key={submenuItem.id}
-                                  className="block hover:bg-gray-200 duration-500 dark:hover:bg-black/70 rounded py-2.5 text-sm text-dark hover:font-semibold dark:text-white lg:px-5 text-center"
+                                  className="block rounded py-2.5 text-center text-sm text-dark duration-500 hover:bg-gray-200 hover:font-semibold dark:text-white dark:hover:bg-black/70 lg:px-5"
                                   onClick={closeNavbar}
                                 >
                                   {submenuItem.title}
@@ -342,21 +350,37 @@ const Header = () => {
                         )}
                       </li>
                     ))}
+                    <li className="lg:hidden">
+                      <Link
+                        href="/signin"
+                        className="block py-3 text-base font-bold text-dark dark:text-white"
+                        onClick={closeNavbar}
+                      >
+                        Login
+                      </Link>
+                    </li>
+                    <li className="lg:hidden">
+                      <Link
+                        href="/signup"
+                        className="block rounded-md py-3 text-base font-bold text-white hover:to-purple-400 hover:shadow-signUp lg:bg-gradient-to-br lg:from-indigo-900 lg:to-purple-400 lg:hover:bg-opacity-90 lg:hover:bg-gradient-to-tl lg:hover:from-indigo-900"
+                        onClick={closeNavbar}
+                      >
+                        Register
+                      </Link>
+                    </li>
                   </ul>
                 </nav>
               </div>
-              <div className="flex items-center justify-end pr-16 lg:pr-0">
+              <div className="hidden items-center justify-end pr-16 lg:flex lg:pr-0">
                 <Link
                   href="/signin"
-                  className="hidden py-3 px-7 text-base font-bold text-dark dark:text-white md:block"
-                  onClick={closeNavbar}
+                  className="py-3 px-7 text-base font-bold text-dark dark:text-white md:block"
                 >
                   Login
                 </Link>
                 <Link
                   href="/signup"
-                  className="hidden rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white hover:bg-opacity-90 hover:bg-gradient-to-tl hover:from-indigo-900 hover:to-purple-400 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
-                  onClick={closeNavbar}
+                  className="rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white hover:bg-opacity-90 hover:bg-gradient-to-tl hover:from-indigo-900 hover:to-purple-400 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
                 >
                   Register
                 </Link>

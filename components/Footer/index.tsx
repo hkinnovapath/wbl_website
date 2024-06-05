@@ -142,7 +142,7 @@ const Footer = () => {
         <div className="flex h-10 items-center  bg-gray-300  py-10 dark:bg-primary/10 ">
           <div className="container">
             <div className="text-center  font-semibold text-black dark:text-white">
-              &codivy; {currentYear}{" "}
+              &copy; {currentYear}{" "}
               <Link href="/" className="inline-block">
                 <h1 className="  text-blue-600 dark:text-blue-500">
                   Whitebox Learning,Inc.

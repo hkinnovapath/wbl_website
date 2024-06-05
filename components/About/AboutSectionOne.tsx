@@ -96,7 +96,7 @@ const AboutSectionOne = () => {
                         src={img}
                         alt={`Gallery image ${index}`}
                         fill
-                        objectit="cover"
+                        object-fit="cover"
                         className="rounded-md"
                       />
                     </div>

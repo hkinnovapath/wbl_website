@@ -51,17 +51,17 @@ import React from "react";
 
 const CourseContentTable = (props: any) => {
   return (
-    <div className="mt-6 overflow-x-auto">
+    <div className="mt-6  overflow-x-auto">
       <table className="w-full table-auto border-collapse border border-gray-500 shadow-2xl shadow-gray-800">
         <thead>
-          <tr>
-            <th className="mb-1 w-1/4 sm:w-1/6 lg:w-1/4 border border-gray-500 bg-primary px-4 py-2 text-xl sm:text-lg lg:text-xl text-blue-300">
+          <tr className="text-md sm:text-lg lg:text-xl">
+            <th className="mb-1 w-1/4 sm:w-1/6 lg:w-1/4 border border-gray-500 bg-primary px-4 py-2  text-blue-300">
               Week
             </th>
-            <th className="mb-1 w-3/4 sm:w-5/6 lg:w-3/4 border border-gray-500 bg-primary px-4 py-2 text-xl sm:text-lg lg:text-xl text-blue-300">
+            <th className="mb-1 w-3/4 sm:w-5/6 lg:w-3/4 border border-gray-500 bg-primary px-4 py-2  text-blue-300">
               Morning
             </th>
-            <th className="mb-1 w-1/4 sm:w-1/6 lg:w-1/4 border border-gray-500 bg-primary px-4 py-2 text-xl sm:text-lg lg:text-xl text-blue-300">
+            <th className="mb-1 w-1/4 sm:w-1/6 lg:w-1/4 border border-gray-500 bg-primary px-4 py-2  text-blue-300">
               Evening
             </th>
           </tr>
@@ -70,7 +70,7 @@ const CourseContentTable = (props: any) => {
           {props.subjects.map((subject: any, index: any) => (
             <tr
               key={subject.id}
-              className={`hover:bg-gray-200 dark:hover:bg-blue-500  ${
+              className={`text-[11px] sm:text-base lg:text-lg hover:bg-gray-200 dark:hover:bg-blue-500  ${
                 index % 2 === 0
                   ? "bg-gray-100 dark:bg-transparent"
                   : "bg-gray-200 dark:bg-transparent"
@@ -80,10 +80,10 @@ const CourseContentTable = (props: any) => {
                 Week {index + 1}
               </td>
               <td className="border border-primary px-4 py-2 text-center text-blue-600 dark:border-blue-900 dark:text-white">
-                <p className="text-sm sm:text-base lg:text-lg">{subject.name}</p>
+                <p >{subject.name}</p>
               </td>
               <td className="border border-primary px-4 py-2 text-center text-blue-600 dark:border-blue-900 dark:text-white">
-                <p className="text-sm sm:text-base lg:text-lg">{subject.name2}</p>
+                <p >{subject.name2}</p>
               </td>
             </tr>
           ))}

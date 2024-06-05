@@ -77,7 +77,7 @@ import CourseContent from "@/components/courseContent/CourseContent";
 
 type ComponentType = "calendar" | "courseContent"; // Define a union type for valid component types
 
-export default function Recordings() {
+export default function Schedule() {
   // State to manage active component
   const [activeComponent, setActiveComponent] =
     useState<ComponentType>("calendar"); // Specify the type of activeComponent
@@ -105,9 +105,14 @@ export default function Recordings() {
       {/* Main content */}
       <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
         {/* Navbar */}
+
         <nav className="mt-16 flex flex-col items-start justify-between sm:flex-row sm:items-center">
-          <h1 className="text-2xl font-bold sm:text-3xl lg:text-4xl">Schedule</h1>
+          <h1 className="pt-10 text-center text-2xl font-bold sm:pt-0 sm:text-3xl lg:text-4xl ">Schedule</h1>
+        {/* <nav className="mt-16 flex-none sm:flex sm:items-center sm:justify-between  "> */}
+          {/* <h1 className="text-2xl font-bold sm:text-3xl lg:text-4xl">Schedule</h1> */}
+          <div className="hidden sm:block">
           <Layout currentPage="schedule" />
+          </div>
         </nav>
 
         {/* Section with buttons and dropdowns */}

@@ -95,9 +95,9 @@ const AboutSectionOne = () => {
                       <Image
                         src={img}
                         alt={`Gallery image ${index}`}
-                        layout="fill"
-                        objectFit="cover"
-                        className="rounded-md"  
+                        fill
+                        object-fit="cover"
+                        className="rounded-md"
                       />
                     </div>
                   ))}

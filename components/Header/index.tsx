@@ -105,7 +105,7 @@
 //                 </button>
 //                 <nav
 //                   id="navbarCollapse"
-//                   className={`navbar absolute right-0 z-30 w-[250px] rounded border-[.5px] border-body-color/50 bg-white py-4 px-6 duration-300 dark:border-body-color/20 dark:bg-dark lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${
+//                   className={`navbar absolute right-0 z-30 w-[250px] rounded -[.5px] -body-color/50 bg-white py-4 px-6 duration-300 dark:-body-color/20 dark:bg-dark lg:visible lg:static lg:w-auto lg:-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${
 //                     navbarOpen
 //                       ? "visible top-full opacity-100"
 //                       : "invisible top-[120%] opacity-0"
@@ -147,7 +147,7 @@
 //                                 <Link
 //                                   href={submenuItem.path}
 //                                   key={submenuItem.id}
-//                                   className="block hover:bg-gray-200 duration-500 dark:hover:bg-black/70 rounded py-2.5 text-sm text-dark hover:font-semibold dark:text-white lg:px-5 text-center"
+//                                   className="block hover:bg-gray-200 duration-500 dark:hover:bg-black/70 hover:bg-gray-200 duration-500 rounded py-2.5 text-sm text-dark hover:font-semibold dark:text-white lg:px-5 text-center"
 //                                   onClick={closeNavbar}
 //                                 >
 //                                   {submenuItem.title}
@@ -271,13 +271,13 @@ const Header = () => {
                 />
               </Link>
             </div>
-            <div className="flex w-full items-center justify-between px-4">
-              <div>
+            <div className="flex w-full items-center justify-between  px-4">
+              <div className="">
                 <button
                   onClick={navbarToggleHandler}
                   id="navbarToggler"
                   aria-label="Mobile Menu"
-                  className="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
+                  className="absolute  right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
                 >
                   <span
                     className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
@@ -297,7 +297,7 @@ const Header = () => {
                 </button>
                 <nav
                   id="navbarCollapse"
-                  className={`navbar absolute right-0 z-30 w-[250px] rounded border-[.5px] border-body-color/50 bg-white py-4 px-6 duration-300 dark:border-body-color/20 dark:bg-dark lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${
+                  className={`navbar absolute right-0 z-30 w-[250px] rounded -[.5px] -body-color/50 bg-white py-4 px-6 duration-300 dark:-body-color/20 dark:bg-dark lg:visible lg:static lg:w-auto lg:-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${
                     navbarOpen
                       ? "visible top-full opacity-100"
                       : "invisible top-[120%] opacity-0"
@@ -309,7 +309,7 @@ const Header = () => {
                         {menuItem.path ? (
                           <Link
                             href={menuItem.path}
-                            className={`group- flex py-2 text-base text-dark dark:text-white lg:mr-0 lg:inline-flex lg:py-6 lg:px-0`}
+                            className={`flex px-3 py-2 text-base text-dark dark:text-white dark:hover:bg-black/70 hover:bg-gray-200 duration-500 lg:mr-0 lg:inline-flex lg:py-6 lg:px-0`}
                             onClick={closeNavbar}
                           >
                             {menuItem.title}
@@ -318,7 +318,7 @@ const Header = () => {
                           <>
                             <a
                               onClick={() => handleSubmenu(index)}
-                              className="group- flex cursor-pointer items-center justify-between py-2 text-base text-dark dark:text-white lg:mr-0 lg:inline-flex lg:py-6 lg:px-0"
+                              className="group- flex cursor-pointer items-center  justify-between px-3 py-2 text-base text-dark dark:text-white dark:hover:bg-black/70 hover:bg-gray-200 duration-500 lg:mr-0 lg:inline-flex lg:py-6 lg:px-0"
                             >
                               {menuItem.title}
                               <span className="pl-3">
@@ -331,7 +331,7 @@ const Header = () => {
                               </span>
                             </a>
                             <div
-                              className={`submenu relative top-full left-0 rounded-md bg-white transition-[top] duration-300 group-hover:opacity-100 dark:bg-dark lg:invisible lg:absolute lg:top-[110%] lg:block lg:w-[250px] lg:p-4 lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full ${
+                              className={`submenu  relative top-full left-0 rounded-md bg-white transition-[top] duration-300 group-hover:opacity-100 dark:bg-dark lg:invisible lg:absolute lg:top-[110%] lg:block lg:w-[250px] lg:p-4 lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full ${
                                 openIndex === index ? "block" : "hidden"
                               }`}
                             >
@@ -339,7 +339,7 @@ const Header = () => {
                                 <Link
                                   href={submenuItem.path}
                                   key={submenuItem.id}
-                                  className="block rounded py-2.5 text-center text-sm text-dark duration-500 hover:bg-gray-200 hover:font-semibold dark:text-white dark:hover:bg-black/70 lg:px-5"
+                                  className="block rounded py-2.5 text-center text-sm text-dark   hover:font-semibold dark:text-white dark:hover:bg-black/70 hover:bg-gray-200 duration-500 lg:px-5"
                                   onClick={closeNavbar}
                                 >
                                   {submenuItem.title}
@@ -353,7 +353,7 @@ const Header = () => {
                     <li className="lg:hidden">
                       <Link
                         href="/signin"
-                        className="block py-3 text-base font-bold text-dark dark:text-white"
+                        className="block py-2 text-base font-bold rounded-3xl my-3 text-center text-white px-3  bg-gradient-to-tl from-indigo-900 to-purple-400   hover:bg-gradient-to-br hover:from-indigo-900  hover:to-purple-400"
                         onClick={closeNavbar}
                       >
                         Login
@@ -362,7 +362,8 @@ const Header = () => {
                     <li className="lg:hidden">
                       <Link
                         href="/signup"
-                        className="block rounded-md py-3 text-base font-bold text-white hover:to-purple-400 hover:shadow-signUp lg:bg-gradient-to-br lg:from-indigo-900 lg:to-purple-400 lg:hover:bg-opacity-90 lg:hover:bg-gradient-to-tl lg:hover:from-indigo-900"
+                        // className="block rounded-md py-3 text-base font-bold text-dark dark:text-white hover:to-purple-400  lg:bg-gradient-to-br lg:from-indigo-900 lg:to-purple-400 lg:hover:bg-opacity-90 lg:hover:bg-gradient-to-tl lg:hover:from-indigo-900"
+                        className="block  py-2 text-base font-bold px-3 text-center rounded-3xl  bg-gradient-to-tl from-indigo-900 to-purple-400   hover:bg-gradient-to-br hover:from-indigo-900  hover:to-purple-400 text-white "
                         onClick={closeNavbar}
                       >
                         Register
@@ -371,7 +372,9 @@ const Header = () => {
                   </ul>
                 </nav>
               </div>
-              <div className="hidden items-center justify-end pr-16 lg:flex lg:pr-0">
+
+              <div className=" hidden items-center justify-end  pr-16 lg:flex lg:pr-0">
+                {/* <div className="ml-[] hidden  items-center justify-end pr-16 lg:flex lg:pr-0"> */}
                 <Link
                   href="/signin"
                   className="py-3 px-7 text-base font-bold text-dark dark:text-white md:block"
@@ -380,13 +383,16 @@ const Header = () => {
                 </Link>
                 <Link
                   href="/signup"
-                  className="rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white hover:bg-opacity-90 hover:bg-gradient-to-tl hover:from-indigo-900 hover:to-purple-400 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
+                  className="hover:shadow-signUp rounded-md bg-gradient-to-br  from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white hover:bg-opacity-90 duration-500 hover:bg-gradient-to-tl hover:from-indigo-900 hover:to-purple-400 md:block md:px-9 lg:px-6 xl:px-9"
                 >
                   Register
                 </Link>
-                <div>
+                <div className=" items-center justify-end pr-16 lg:flex lg:pr-0">
                   <ThemeToggler />
                 </div>
+              </div>
+              <div className="block items-center justify-end pr-16 lg:hidden  lg:pr-0">
+                <ThemeToggler />
               </div>
             </div>
           </div>

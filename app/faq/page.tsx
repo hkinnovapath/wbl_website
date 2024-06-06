@@ -94,7 +94,7 @@ export default function Home() {
         {/* Navbar */}
 
         <nav className="mt-16 flex-none sm:flex sm:items-center sm:justify-between  ">
-          <h1 className="py-10 text-center text-2xl font-bold sm:py-0 sm:text-3xl lg:text-4xl ">
+          <h1 className="py-5 text-center text-2xl font-bold sm:py-0 sm:text-3xl lg:text-4xl ">
             Frequently Asked Questions
           </h1>
           <div className="hidden sm:block">

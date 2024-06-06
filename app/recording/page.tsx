@@ -130,7 +130,9 @@ export default function Recordings() {
             <span className="text-lg sm:text-2xl font-light">(Classes)</span>
           </h1>
 
-          <Layout currentPage="Recordings" />
+         <div className="hidden sm:block">
+         <Layout currentPage="Recordings" />
+         </div>
         </nav>
 
         {/* Section with buttons and dropdowns */}

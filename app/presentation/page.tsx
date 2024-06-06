@@ -182,7 +182,9 @@ export default function Recordings() {
             Course Material
             <span className="text-lg sm:text-2xl font-light"> (PDF)</span>
           </h1>
-          <Layout currentPage="Presentation" />
+          <div className="hidden sm:block">
+         <Layout currentPage="Recordings" />
+         </div>
         </nav>
 
         <section className="mb-8 flex flex-col sm:flex-row justify-between">

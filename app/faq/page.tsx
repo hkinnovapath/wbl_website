@@ -86,7 +86,7 @@
 import Accordion from "@/components/Faq/Accordion";
 import Layout from "../../components/Common/Layout";
 
-export default function Home() {
+export default function Faq() {
   return (
     <div>
       {/* Main content */}

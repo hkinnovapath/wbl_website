@@ -309,7 +309,7 @@ const Header = () => {
                         {menuItem.path ? (
                           <Link
                             href={menuItem.path}
-                            className={`flex px-3 py-2 text-base text-dark dark:text-white dark:hover:bg-black/70 hover:bg-gray-200 duration-500 lg:mr-0 lg:inline-flex lg:py-6 lg:px-0`}
+                            className={`flex px-3 py-2 text-base text-dark dark:text-white sm:dark:hover:bg-transparent sm:hover:bg-transparent dark:hover:bg-black/70 hover:bg-gray-200 duration-500 lg:mr-0 lg:inline-flex lg:py-6 lg:px-0`}
                             onClick={closeNavbar}
                           >
                             {menuItem.title}
@@ -318,7 +318,7 @@ const Header = () => {
                           <>
                             <a
                               onClick={() => handleSubmenu(index)}
-                              className="group- flex cursor-pointer items-center  justify-between px-3 py-2 text-base text-dark dark:text-white dark:hover:bg-black/70 hover:bg-gray-200 duration-500 lg:mr-0 lg:inline-flex lg:py-6 lg:px-0"
+                              className="group- flex cursor-pointer items-center  justify-between px-3 py-2 text-base text-dark dark:text-white sm:dark:hover:bg-transparent sm:hover:bg-transparent   dark:hover:bg-black/70 hover:bg-gray-200 duration-500 lg:mr-0 lg:inline-flex lg:py-6 lg:px-0"
                             >
                               {menuItem.title}
                               <span className="pl-3">

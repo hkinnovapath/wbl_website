@@ -69,7 +69,7 @@
 //         <div className="container">
 //           <div className="-mx-4 flex flex-wrap">
 //             <div className="w-full px-4">
-//               <div className="mx-auto max-w-[500px] rounded-md bg-gradient-to-br from-pink-400 to-sky-200 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500 sm:p-[60px]">
+//               <div className="mx-auto max-w-[500px] rounded-3xl bg-gradient-to-br from-pink-400 to-sky-200 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500 sm:p-[60px]">
 //                 <h3 className="mb-3 text-center text-2xl font-bold text-black dark:text-white sm:text-3xl">
 //                 Welcome. We exist to make learning easier.
 
@@ -78,7 +78,7 @@
 //                   {/* It’s totally free and super easy */}
 //                   Create your account
 //                 </p>
-//                 <button className="mb-6 flex w-full items-center justify-center rounded-md bg-white p-3 text-base font-medium shadow-one text-primary dark:bg-white dark:shadow-signUp dark:text-black">
+//                 <button className="mb-6 flex w-full items-center justify-center rounded-3xl bg-white p-3 text-base font-medium shadow-one text-primary dark:bg-white dark:shadow-signUp dark:text-black">
 //                   <span className="mr-3">
 // <svg
 //   width="20"
@@ -134,7 +134,7 @@
 //                       type="text"
 //                       name="name"
 //                       placeholder="Enter your full name"
-//                       className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white dark:shadow-signUp"
+//                       className="w-full rounded-3xl border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white dark:shadow-signUp"
 //                       value={username}
 //                       onChange={(e) => setUsername(e.target.value)}
 //                       required
@@ -152,7 +152,7 @@
 //                       type="text"
 //                       name="name"
 //                       placeholder="Enter your Phone Number"
-//                       className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white dark:shadow-signUp"
+//                       className="w-full rounded-3xl border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white dark:shadow-signUp"
 //                       value={phone}
 //                       onChange={(e) => setPhone(e.target.value)}
 //                       required
@@ -170,7 +170,7 @@
 //                       type="email"
 //                       name="email"
 //                       placeholder="Enter your Email"
-//                       className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white dark:shadow-signUp"
+//                       className="w-full rounded-3xl border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white dark:shadow-signUp"
 //                       value={email}
 //                       onChange={(e) => setEmail(e.target.value)}
 //                       required
@@ -188,7 +188,7 @@
 //                       type="password"
 //                       name="password"
 //                       placeholder="Enter your Password"
-//                       className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white dark:shadow-signUp"
+//                       className="w-full rounded-3xl border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white dark:shadow-signUp"
 
 //                       value={password}
 //                       onChange={(e) => setPassword(e.target.value)}
@@ -206,7 +206,7 @@
 //                       type="text"
 //                       name="email"
 //                       placeholder="Enter your Email"
-//                       className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white dark:shadow-signUp"
+//                       className="w-full rounded-3xl border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white dark:shadow-signUp"
 //                       value={address}
 //                       onChange={(e) => setAddress(e.target.value)}
 //                       required
@@ -224,7 +224,7 @@
 //                       type="text"
 //                       name="email"
 //                       placeholder="Enter your Email"
-//                       className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white dark:shadow-signUp"
+//                       className="w-full rounded-3xl border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white dark:shadow-signUp"
 //                       value={zip}
 //                       onChange={(e) => setZip(e.target.value)}
 //                       required
@@ -275,7 +275,7 @@
 //                     </label>
 //                   </div>
 //                   <div className="mb-6">
-//                     <button className="flex w-full items-center justify-center rounded-md bg-primary py-4 px-9 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp">
+//                     <button className="flex w-full items-center justify-center rounded-3xl bg-primary py-4 px-9 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp">
 //                       Sign up
 //                     </button>
 //                   </div>
@@ -436,7 +436,7 @@ const SignupPage = () => {
         <div className="container mx-auto px-4">
           <div className=" flex flex-wrap">
             <div className="w-full px-4">
-              <div className="mx-auto max-w-full rounded-md bg-gradient-to-br from-pink-400 to-sky-200 p-6 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500/30 sm:max-w-[500px] sm:p-[60px]">
+              <div className="mx-auto max-w-full rounded-3xl bg-gradient-to-br from-pink-400 to-sky-200 p-6 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500/30 sm:max-w-[500px] sm:p-[60px]">
                 <h3 className="mb-3 text-center text-2xl font-bold text-black dark:text-white sm:text-3xl">
                   Welcome. <br />
                   We exist to make learning easier.
@@ -445,7 +445,7 @@ const SignupPage = () => {
                   {/* It’s totally free and super easy */}
                   Create your account
                 </p>
-                <button className="dark:shadow-signUp mb-6 flex w-full items-center justify-center rounded-md bg-white p-2 text-base font-medium text-primary shadow-one dark:bg-white dark:text-black sm:p-3">
+                <button className="dark:shadow-signUp mb-6 flex w-full items-center justify-center rounded-3xl bg-white p-2 text-base font-medium text-primary shadow-one dark:bg-white dark:text-black sm:p-3">
                   <span className="mr-3">
                     <svg
                       width="20"
@@ -501,7 +501,7 @@ const SignupPage = () => {
                       type="text"
                       name="name"
                       placeholder="Enter your full name"
-                      className="dark:shadow-signUp w-full rounded-md border border-transparent py-2 px-4 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-4 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
                       required
@@ -519,7 +519,7 @@ const SignupPage = () => {
                       type="text"
                       name="name"
                       placeholder="Enter your Phone Number"
-                      className="dark:shadow-signUp w-full rounded-md border border-transparent py-2 px-4 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-4 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       required
@@ -537,7 +537,7 @@ const SignupPage = () => {
                       type="email"
                       name="email"
                       placeholder="Enter your email"
-                      className="dark:shadow-signUp w-full rounded-md border border-transparent py-2 px-4 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-4 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
@@ -554,7 +554,7 @@ const SignupPage = () => {
                       type="password"
                       name="password"
                       placeholder="Enter your password"
-                      className="dark:shadow-signUp w-full rounded-md border border-transparent py-2 px-4 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-4 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
@@ -572,7 +572,7 @@ const SignupPage = () => {
                       type="address"
                       name="address"
                       placeholder="Enter your address"
-                      className="dark:shadow-signUp w-full rounded-md border border-transparent py-2 px-4 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-4 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"
                       value={address}
                       onChange={(e) => setAddress(e.target.value)}
                       required
@@ -590,7 +590,7 @@ const SignupPage = () => {
                       type="zip"
                       name="zip"
                       placeholder="Enter your zip code"
-                      className="dark:shadow-signUp w-full rounded-md border border-transparent py-2 px-4 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-4 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"
                       value={zip}
                       onChange={(e) => setZip(e.target.value)}
                       required
@@ -613,7 +613,7 @@ const SignupPage = () => {
                     </div>
                   </div>
                   <div className="mb-6">
-                    <button className="hover:shadow-signUp flex w-full items-center justify-center rounded-md bg-primary py-3 px-6 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 sm:py-4 sm:px-9">
+                    <button className="hover:shadow-signUp flex w-full items-center justify-center rounded-3xl bg-primary py-3 px-6 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 sm:py-4 sm:px-9">
                       Sign Up
                     </button>
                   </div>

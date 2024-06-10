@@ -76,14 +76,14 @@ const AboutSectionOne = () => {
 
             <div className="w-full px-4 lg:w-1/2">
               <div
-                className="wow fadeInUp group relative mx-auto aspect-[25/24] max-w-[500px] lg:mr-0"
+                className="wow fadeInUp group relative mx-auto aspect-[25/24]  max-w-[500px] lg:mr-0"
                 data-wow-delay=".2s"
               >
                 <div className="relative h-[200px] w-[200px] sm:h-[250px] sm:w-[250px] md:h-[300px] md:w-[300px]">
                   {imagessrc.map((img, index) => (
                     <div
                       key={index}
-                      className="absolute h-full w-full transform rounded-md object-cover p-1 shadow-lg shadow-gray-700 transition-transform duration-300 hover:scale-110"
+                      className="absolute   h-3/4 sm:h-full w-3/4 sm:w-full transform rounded-md object-cover p-1 shadow-lg shadow-gray-700 transition-transform duration-300 hover:scale-110"
                       style={{
                         top: `${imagePositions[index]?.top}px`,
                         left: `${imagePositions[index]?.left}px`,

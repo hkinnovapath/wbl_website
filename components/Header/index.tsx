@@ -318,7 +318,6 @@ const Header = () => {
                           <>
                             <a
                               onClick={() => handleSubmenu(index)}
-                              //className=""
                               className="group- flex cursor-pointer items-center  justify-between px-3  py-2 text-xs text-dark duration-500 hover:bg-gray-200 dark:text-white dark:hover:bg-black/70   sm:text-base sm:hover:bg-transparent sm:dark:hover:bg-transparent lg:mr-0 lg:inline-flex lg:py-6 lg:px-0"
                             >
                               {menuItem.title}
@@ -340,7 +339,7 @@ const Header = () => {
                                 <Link
                                   href={submenuItem.path}
                                   key={submenuItem.id}
-                                  className="block rounded py-2.5 text-center text-sm text-dark   duration-500 hover:bg-gray-200 hover:font-semibold dark:text-white dark:hover:bg-black/70 lg:px-5"
+                                  className="block rounded py-2.5 text-center text-xs  text-dark  duration-500   hover:bg-gray-200 hover:font-semibold dark:text-white dark:hover:bg-black/70 sm:text-base lg:px-5"
                                   onClick={closeNavbar}
                                 >
                                   {submenuItem.title}

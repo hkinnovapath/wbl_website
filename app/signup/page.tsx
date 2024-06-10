@@ -436,7 +436,7 @@ const SignupPage = () => {
         <div className="container mx-auto px-4">
           <div className=" flex flex-wrap">
             <div className="w-full px-4">
-              <div className="mx-auto max-w-full rounded-md bg-gradient-to-br from-pink-400 to-sky-200 p-6 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500 sm:max-w-[500px] sm:p-[60px]">
+              <div className="mx-auto max-w-full rounded-md bg-gradient-to-br from-pink-400 to-sky-200 p-6 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500/30 sm:max-w-[500px] sm:p-[60px]">
                 <h3 className="mb-3 text-center text-2xl font-bold text-black dark:text-white sm:text-3xl">
                   Welcome. <br />
                   We exist to make learning easier.

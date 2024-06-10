@@ -297,7 +297,7 @@ const Header = () => {
                 </button>
                 <nav
                   id="navbarCollapse"
-                  className={`navbar absolute right-0 z-30 w-[250px] rounded -[.5px] -body-color/50 bg-white py-4 px-6 duration-300 dark:-body-color/20 dark:bg-dark lg:visible lg:static lg:w-auto lg:-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${
+                  className={`navbar -[.5px] -body-color/50 dark:-body-color/20 lg:-none absolute right-0 z-30 w-[250px] rounded bg-white py-4 px-6 duration-300 dark:bg-dark lg:visible lg:static lg:w-auto lg:!bg-transparent lg:p-0 lg:opacity-100 ${
                     navbarOpen
                       ? "visible top-full opacity-100"
                       : "invisible top-[120%] opacity-0"
@@ -309,7 +309,7 @@ const Header = () => {
                         {menuItem.path ? (
                           <Link
                             href={menuItem.path}
-                            className={`flex px-3 py-2 text-base text-dark dark:text-white dark:hover:bg-black/70 hover:bg-gray-200 duration-500 lg:mr-0 lg:inline-flex lg:py-6 lg:px-0`}
+                            className={`flex px-3 py-2 text-xs text-dark duration-500 hover:bg-gray-200 dark:text-white dark:hover:bg-black/70 sm:text-base lg:mr-0 lg:inline-flex lg:py-6 lg:px-0`}
                             onClick={closeNavbar}
                           >
                             {menuItem.title}
@@ -318,7 +318,7 @@ const Header = () => {
                           <>
                             <a
                               onClick={() => handleSubmenu(index)}
-                              className="group- flex cursor-pointer items-center  justify-between px-3 py-2 text-base text-dark dark:text-white dark:hover:bg-black/70 hover:bg-gray-200 duration-500 lg:mr-0 lg:inline-flex lg:py-6 lg:px-0"
+                              className="group- flex cursor-pointer items-center  justify-between px-3 py-2 text-xs text-dark duration-500 hover:bg-gray-200 dark:text-white dark:hover:bg-black/70 sm:text-base lg:mr-0 lg:inline-flex lg:py-6 lg:px-0"
                             >
                               {menuItem.title}
                               <span className="pl-3">
@@ -339,7 +339,7 @@ const Header = () => {
                                 <Link
                                   href={submenuItem.path}
                                   key={submenuItem.id}
-                                  className="block rounded py-2.5 text-center text-sm text-dark   hover:font-semibold dark:text-white dark:hover:bg-black/70 hover:bg-gray-200 duration-500 lg:px-5"
+                                  className="block rounded py-2.5 text-center text-sm text-dark   duration-500 hover:bg-gray-200 hover:font-semibold dark:text-white dark:hover:bg-black/70 lg:px-5"
                                   onClick={closeNavbar}
                                 >
                                   {submenuItem.title}
@@ -353,7 +353,7 @@ const Header = () => {
                     <li className="lg:hidden">
                       <Link
                         href="/signin"
-                        className="block py-2 text-base font-bold rounded-3xl my-3 text-center text-white px-3  bg-gradient-to-tl from-indigo-900 to-purple-400   hover:bg-gradient-to-br hover:from-indigo-900  hover:to-purple-400"
+                        className="my-3 block rounded-3xl bg-gradient-to-tl from-indigo-900 to-purple-400 py-2 px-3 text-center text-xs  font-bold text-white hover:bg-gradient-to-br   hover:from-indigo-900 hover:to-purple-400  sm:text-base"
                         onClick={closeNavbar}
                       >
                         Login
@@ -363,7 +363,7 @@ const Header = () => {
                       <Link
                         href="/signup"
                         // className="block rounded-md py-3 text-base font-bold text-dark dark:text-white hover:to-purple-400  lg:bg-gradient-to-br lg:from-indigo-900 lg:to-purple-400 lg:hover:bg-opacity-90 lg:hover:bg-gradient-to-tl lg:hover:from-indigo-900"
-                        className="block  py-2 text-base font-bold px-3 text-center rounded-3xl  bg-gradient-to-tl from-indigo-900 to-purple-400   hover:bg-gradient-to-br hover:from-indigo-900  hover:to-purple-400 text-white "
+                        className="block  rounded-3xl bg-gradient-to-tl from-indigo-900 to-purple-400 py-2 px-3  text-center text-xs font-bold text-white   hover:bg-gradient-to-br hover:from-indigo-900  hover:to-purple-400 sm:text-base "
                         onClick={closeNavbar}
                       >
                         Register
@@ -383,7 +383,7 @@ const Header = () => {
                 </Link>
                 <Link
                   href="/signup"
-                  className="hover:shadow-signUp rounded-md bg-gradient-to-br  from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white hover:bg-opacity-90 duration-500 hover:bg-gradient-to-tl hover:from-indigo-900 hover:to-purple-400 md:block md:px-9 lg:px-6 xl:px-9"
+                  className="hover:shadow-signUp rounded-md bg-gradient-to-br  from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white duration-500 hover:bg-opacity-90 hover:bg-gradient-to-tl hover:from-indigo-900 hover:to-purple-400 md:block md:px-9 lg:px-6 xl:px-9"
                 >
                   Register
                 </Link>

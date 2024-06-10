@@ -312,7 +312,7 @@ const SigninPage = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center">
             <div className="w-full px-4">
-              <div className="mx-auto max-w-[500px] rounded-md bg-gradient-to-br from-pink-400 to-sky-200 p-6 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500 sm:p-12 md:p-[60px]">
+              <div className="mx-auto max-w-[500px] rounded-md bg-gradient-to-br from-pink-400 to-sky-200 p-6 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500/30 sm:p-12 md:p-[60px]">
                 <h3 className="mb-3 text-center text-2xl font-bold text-black dark:text-white sm:text-3xl">
                   Welcome back.
                 </h3>

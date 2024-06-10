@@ -138,8 +138,8 @@ export default function Recordings() {
         {/* Section with buttons and dropdowns */}
         <section className="mb-8 flex flex-col sm:flex-row justify-between">
           {/* Left side */}
-          <div className="mt-10 flex sm:w-1/3">
-            <div className="flex flex-col w-full">
+          <div className="mt-10 flex sm:w-1/3 justify-center">
+            <div className="flex flex-col w-60">
               <button
                 className="mb-1 w-full sm:w-36 rounded-md bg-gradient-to-br from-primary to-blue-300 hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 px-4 py-2 text-black font-bold"
                 onClick={() => handleButtonClick("class")}

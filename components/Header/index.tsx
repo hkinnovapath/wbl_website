@@ -163,7 +163,7 @@
 //               </div>
 //               <div className="flex items-center justify-end pr-16 lg:pr-0">
 //                 <Link
-//                   href="/signin"
+//                   href="/login"
 //                   className="hidden py-3 px-7 text-base font-bold text-dark dark:text-white md:block"
 //                   onClick={closeNavbar}
 //                 >
@@ -352,7 +352,7 @@ const Header = () => {
                     ))}
                     <li className="lg:hidden">
                       <Link
-                        href="/signin"
+                        href="/login"
                         className="my-3 block rounded-3xl bg-gradient-to-tl from-indigo-900 to-purple-400 py-2 px-3 text-center text-sm font-semibold  font-bold text-white hover:bg-gradient-to-br   hover:from-indigo-900 hover:to-purple-400  sm:text-base"
                         onClick={closeNavbar}
                       >
@@ -376,7 +376,7 @@ const Header = () => {
               <div className=" hidden items-center justify-end  pr-16 lg:flex lg:pr-0">
                 {/* <div className="ml-[] hidden  items-center justify-end pr-16 lg:flex lg:pr-0"> */}
                 <Link
-                  href="/signin"
+                  href="/login"
                   className="py-3 px-7 text-base font-bold text-dark dark:text-white md:block"
                 >
                   Login

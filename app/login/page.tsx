@@ -551,13 +551,7 @@ const SigninPage = () => {
       console.log(response)
       console.log(data);
 
-      // if (response.ok) {
-      //   setMessage("Login successful!");
-      //   localStorage.setItem("access_token", data.access_token);
-      //   // Router.push("/");
-      // } else {
-        //   setMessage(data.detail || "Failed to login");
-        // }
+  
         if (response.ok) {
           setMessage(data.message || " Login successful!");
           setResponseStatus("success");

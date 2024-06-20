@@ -40,7 +40,7 @@ export default function Recordings() {
         {/* Navbar */}
         <nav className="mt-16 flex flex-col sm:flex-row items-center justify-between">
           <h1 className="text-2xl sm:text-4xl font-bold">
-            Recordings
+            Recording
             <span className="text-lg sm:text-2xl font-light">(Classes)</span>
           </h1>
 

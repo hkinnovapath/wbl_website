@@ -378,6 +378,9 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../../components/Common/Layout";
 import ResourcesTable from "../../components/Common/resourcesTable";
+import Auth from "../../components/Common/auth";
+
+
 
 type ComponentType =
   | "Presentations"
@@ -436,7 +439,7 @@ export default function Recordings() {
   };
 
   return (
-    <Layout>
+    <Auth>
       <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
         <nav className="mt-16 flex flex-col sm:flex-row items-center justify-between">
           <h1 className="text-2xl sm:text-4xl font-bold">
@@ -444,7 +447,7 @@ export default function Recordings() {
             <span className="text-lg sm:text-2xl font-light"> (PDF)</span>
           </h1>
           <div className="hidden sm:block">
-            <Layout currentPage="Recordings" />
+            <Layout currentPage="Presentations" />
           </div>
         </nav>
 
@@ -484,6 +487,6 @@ export default function Recordings() {
           </div>
         </section>
       </main>
-    </Layout>
+      </Auth>
   );
 }

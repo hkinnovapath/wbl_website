@@ -95,17 +95,20 @@
 import React, { useState, useEffect } from "react";
 
 interface Video {
+  vedioid: any;
   id: number;
-  title: string;
-  thumbnailUrl: string;
-  duration: string;
-  uploadTime: string;
-  views: string;
-  author: string;
-  videoUrl: string;
+  batchname: string;
+  classdate: string;
+  course: string;
   description: string;
-  subscriber: string;
-  isLive: boolean;
+  filename: string;
+  forallcourses: string;
+  link: string;
+  status: string;
+  subject: string | null;
+  subjectid: number | null;
+  type: string;
+  videoid: string;
 }
 
 interface Batch {
@@ -200,6 +203,28 @@ export default function ClassComp() {
     setSelectedVideo(selected || null);
   };
 
+  const renderVideoPlayer = (video: Video) => {
+    if (video.link.includes("youtu.be") || video.link.includes("youtube.com")) {
+      const youtubeId = video.videoid;
+      console.log(youtubeId);
+
+      const youtubeEmbedUrl = `https://www.youtube.com/embed/${youtubeId}`;
+      return (
+        <iframe
+          width="100%"
+          height="250"
+          src={youtubeEmbedUrl}
+          title={video.description}
+          frameBorder="0"
+          allowFullScreen
+          className="rounded-xl border-2 border-gray-500"
+        ></iframe>
+      );
+    } else {
+      return <video src={video.link} controls className="mb-2 w-full" />;
+    }
+  };
+
   return (
     <div className="ml-4 flex-grow space-y-4">
       <div className="flex flex-grow flex-col">
@@ -245,15 +270,7 @@ export default function ClassComp() {
           )}
         </select>
       </div>
-      {selectedVideo && (
-        <div>
-          <h2 className="mt-4 mb-2 text-xl font-bold">{selectedVideo.title}</h2>
-          <video src={selectedVideo.videoUrl} controls className="mb-2" />
-          <p className="text-black dark:text-white">
-            {selectedVideo.description}
-          </p>
-        </div>
-      )}
+      {selectedVideo && <div>{renderVideoPlayer(selectedVideo)}</div>}
     </div>
   );
 }

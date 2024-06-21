@@ -135,7 +135,7 @@ export default function Recordings() {
   }
 
   return (
-    <Auth>
+    // <Auth>
     <div>
       <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
         <nav className="mt-16 flex flex-col items-center justify-between sm:flex-row">

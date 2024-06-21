@@ -304,7 +304,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter,usePathname } from "next/navigation";
 
 const SigninPage = () => {
   const [email, setEmail] = useState("");

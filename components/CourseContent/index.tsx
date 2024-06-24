@@ -1,5 +1,5 @@
 import React from "react";
-import CourseContentTable from "@/components/Common/CourseContent";
+import CourseContentTable from "@/components/Common/CourseContentTable";
 
 const subjects = [
   {

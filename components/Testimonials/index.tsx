@@ -206,7 +206,7 @@ const testimonialData: Testimonial[] = [
     name: "Aryav",
     designation: "Fullstack (MERN)",
     content:
-      "The hands-on approach to learning, coupled with practical projects, has equipped me with the skills and confidence needed  to excel in my field. I highly recommend this institute to anyone seeking quality education and a transformative experience. lorem Ipsum lorem Ipsum ",
+    "I can't thank the institute enough for the incredible learning journey I've had here. The instructors are highly knowledgeable, supportive, and passionate about teaching. Their dedication has truly inspired me to push my limits and achieve more than I thought possible.",
     image: Testimage2,
     star: 5,
   },
@@ -223,7 +223,7 @@ const testimonialData: Testimonial[] = [
 
 const Testimonials = () => {
   return (
-    <section className="relative z-10 bg-primary/[.03] py-16 md:py-16 lg:py-20">
+    <section className=" relative z-10 bg-primary/[.03] py-16 md:py-16 lg:py-20">
       <div className="container">
         <SectionTitle
           title="What Our Users Say"
@@ -231,11 +231,12 @@ const Testimonials = () => {
           center
         />
 
-        <div className="grid grid-cols-1  gap-8  sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid  grid-cols-1   gap-8  sm:grid-cols-2 lg:grid-cols-3">
+          
           {testimonialData.map((testimonial) => (
             <SingleTestimonial key={testimonial.id} testimonial={testimonial} />
           ))}
-        </div>
+             </div>
       </div>
       <div className="absolute  top-0 right-0 hidden lg:block">
         <svg
@@ -361,6 +362,60 @@ const Testimonials = () => {
             >
               <stop stopColor="#4A6CF7" stopOpacity="0" />
               <stop offset="1" stopColor="#4A6CF7" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div className="absolute left-0 bottom-0 z-[-1]">
+        <svg
+          width="239"
+          height="601"
+          viewBox="0 0 239 601"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            opacity="0.3"
+            x="-184.451"
+            y="600.973"
+            width="196"
+            height="541.607"
+            rx="2"
+            transform="rotate(-128.7 -184.451 600.973)"
+            fill="url(#paint0_linear_93:235)"
+          />
+          <rect
+            opacity="0.3"
+            x="-188.201"
+            y="385.272"
+            width="59.7544"
+            height="541.607"
+            rx="2"
+            transform="rotate(-128.7 -188.201 385.272)"
+            fill="url(#paint1_linear_93:235)"
+          />
+          <defs>
+            <linearGradient
+              id="paint0_linear_93:235"
+              x1="-90.1184"
+              y1="420.414"
+              x2="-90.1184"
+              y2="1131.65"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stopColor="#4A6CF7" />
+              <stop offset="1" stopColor="#4A6CF7" stopOpacity="0" />
+            </linearGradient>
+            <linearGradient
+              id="paint1_linear_93:235"
+              x1="-159.441"
+              y1="204.714"
+              x2="-159.441"
+              y2="915.952"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stopColor="#4A6CF7" />
+              <stop offset="1" stopColor="#4A6CF7" stopOpacity="0" />
             </linearGradient>
           </defs>
         </svg>

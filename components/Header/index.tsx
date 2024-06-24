@@ -154,6 +154,11 @@ const Header = () => {
     setIsAuthenticated(false);
     router.push("/login");
   };
+  const display_user_dashboard = () => {
+    // localStorage.removeItem("access_token");
+    // setIsAuthenticated(false);
+    router.push("/user_dashboard");
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", handleStickyNavbar);
@@ -310,6 +315,19 @@ const Header = () => {
                       </li>
                     ))}
                     {isAuthenticated ? (
+                      <div>
+                      <li className="lg:hidden">
+                        <button
+                          className="my-3 w-full block rounded-3xl bg-gradient-to-tl from-indigo-900 to-purple-400 py-2 px-3 text-center text-sm   font-bold text-white hover:bg-gradient-to-br   hover:from-indigo-900 hover:to-purple-400  sm:text-base"
+                          // onClick={closeNavbar}
+                          onClick={(e) => {
+                            closeNavbar();
+                            display_user_dashboard()
+                          }}
+                        >
+                           My Profile
+                        </button>
+                      </li>
                       <li className="lg:hidden">
                         <button
                           className="my-3 w-full block rounded-3xl bg-gradient-to-tl from-indigo-900 to-purple-400 py-2 px-3 text-center text-sm   font-bold text-white hover:bg-gradient-to-br   hover:from-indigo-900 hover:to-purple-400  sm:text-base"
@@ -322,6 +340,7 @@ const Header = () => {
                           Logout
                         </button>
                       </li>
+                      </div>
                     ) : (
                       <>
                         <li className="lg:hidden">
@@ -351,12 +370,20 @@ const Header = () => {
               <div className=" hidden items-center justify-end  pr-16 lg:flex lg:pr-0">
                 {/* <div className="ml-[] hidden  items-center justify-end pr-16 lg:flex lg:pr-0"> */}
                 {isAuthenticated ? (
+                 <div className="flex gap-4">
+                   <button
+                    onClick={display_user_dashboard}
+                    className="rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white transition duration-500 hover:bg-opacity-90"
+                  >
+                    My Profile
+                  </button>
                   <button
                     onClick={handleLogout}
                     className="rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white transition duration-500 hover:bg-opacity-90"
                   >
                     Logout
                   </button>
+                 </div>
                 ) : (
                   <>
                     <Link

@@ -1,4 +1,4 @@
-import Layout from "../../components/Common/Layout";
+import Layout from "@/components/Common/Layout";
 
 export default function Assignment() {
   return (

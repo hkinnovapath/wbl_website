@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Layout from "@/components/Common/Layout";
-import ResourcesTable from "@/components/Common/ResourcesTable";
+import ResourcesTable from "@/components/Common/resourcesTable";
 // import Auth from "@/components/Common/auth";
 
 type ComponentType =

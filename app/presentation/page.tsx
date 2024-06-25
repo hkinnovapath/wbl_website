@@ -1,8 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import Layout from "@/components/Common/Layout";
 import ResourcesTable from "@/components/Common/resourcesTable";
-// import Auth from "@/components/Common/auth";
+import { isAuthenticated } from "@/utils/auth"; // Import the auth check
 
 type ComponentType =
   | "Presentations"
@@ -38,11 +39,24 @@ const fetchPresentationData = async (type: ComponentType) => {
 };
 
 export default function Recordings() {
+  const router = useRouter(); // Initialize router
+  const pathname = usePathname(); // Get the current path
+
   const [activeComponent, setActiveComponent] =
     useState<ComponentType>("Presentations");
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Check if the user is authenticated
+    if (!isAuthenticated()) {
+      // If not authenticated, redirect to login page with redirect path
+      router.push(`/login?redirect=${encodeURIComponent(pathname)}`);
+    } else {
+      setLoading(false); // Mark loading as complete
+    }
+  }, [router, pathname]);
 
   useEffect(() => {
     const getData = async () => {
@@ -63,6 +77,13 @@ export default function Recordings() {
     setActiveComponent(component);
   };
 
+  if (loading) {
+    return (
+      <div className="mt-32 flex h-screen items-center justify-center pb-24 text-xl text-dark dark:text-white sm:text-4xl md:text-5xl lg:text-6xl">
+        Loading...
+      </div>
+    ); // You can customize loading indicator
+  }
   return (
     <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
       <nav className="mt-16 flex flex-col items-center justify-between sm:flex-row">

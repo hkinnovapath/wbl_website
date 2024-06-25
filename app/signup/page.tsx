@@ -344,9 +344,9 @@ const SignupPage = () => {
                     </div>
                   )}
                 </form>
-                <p className="text-center text-base font-medium text-black dark:text-white">
+                <p className="text-center  mt-4 text-base font-medium text-black dark:text-white">
                   Already have Signedup?{" "}
-                  <Link href="/login" className="text-primary hover:underline">
+                  <Link href="/login" className="font-extrabold text-primary hover:underline">
                     Sign In
                   </Link>
                 </p>

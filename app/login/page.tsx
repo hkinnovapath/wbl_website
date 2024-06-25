@@ -322,6 +322,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import UserDashboard from '@/app/user_dashboard/page'
 
 const SigninPage = () => {
   const [email, setEmail] = useState("");
@@ -329,11 +330,12 @@ const SigninPage = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [responseStatus, setResponseStatus] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false); 
 
   const router = useRouter();
   const searchParams = useSearchParams(); // Use searchParams to get query parameters
-  const callbackUrl = searchParams.get("redirect") || "/";
-
+  const callbackUrl = searchParams.get("redirect") || "/user_dashboard";
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (loading) return;
@@ -358,7 +360,9 @@ const SigninPage = () => {
         setMessage(data.message || "Login successful!");
         setResponseStatus("success");
         localStorage.setItem("access_token", data.access_token);
+        setLoggedIn(true); // Set logged-in state to true
         router.push(callbackUrl);
+
       } else {
         setResponseStatus("error");
         setMessage(data.error || "Failed to login");
@@ -385,9 +389,13 @@ const SigninPage = () => {
   useEffect(() => {
     const accessToken = localStorage.getItem("access_token");
     if (accessToken) {
-      router.push(callbackUrl); // Redirect to the stored path
+      router.push(callbackUrl); // Redirect to dashboard if already logged in
     }
   }, [router, callbackUrl]);
+
+  if (loggedIn) {
+    return <UserDashboard />;
+  }
 
   return (
     <>
@@ -402,7 +410,7 @@ const SigninPage = () => {
                 <p className="mb-11 text-center text-base font-medium text-black dark:text-white">
                   Sign in to your account
                 </p>
-                <button className="dark:shadow-signUp mb-6 flex w-full items-center justify-center rounded-3xl bg-white p-3 text-base font-medium text-primary shadow-one dark:bg-white dark:text-black">
+                    <button className="dark:shadow-signUp mb-6 flex w-full items-center justify-center rounded-3xl bg-white p-3 text-base font-medium text-primary shadow-one dark:bg-white dark:text-black">
                   <span className="mr-3">
                     <svg
                       width="20"
@@ -483,17 +491,17 @@ const SigninPage = () => {
                     />
                   </div>
                   <div>
-                    <label className="mb-3 block text-sm font-medium text-dark dark:text-white">
+                    <a className="mb-3 block text-sm font-medium text-dark dark:text-white">
                       Forgot password?
-                    </label>
+                    </a>
                   </div>
                   {loading ? (
-                    <div className="  text-md mb-4  text-center font-medium text-black  dark:text-white sm:text-2xl">
+                    <div className="text-md mb-4 text-center font-medium text-black dark:text-white sm:text-2xl">
                       Loading&nbsp;
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
-                        className=" inline h-[30px] w-[30px] text-black dark:text-white sm:h-[50px]  sm:w-[50px]"
+                        className="inline h-[30px] w-[30px] text-black dark:text-white sm:h-[50px] sm:w-[50px]"
                       >
                         <circle cx="4" cy="12" r="3" fill="currentColor">
                           <animate
@@ -526,7 +534,7 @@ const SigninPage = () => {
                   ) : (
                     <button
                       type="submit"
-                      className="hover:shadow-signUp flex w-full items-center justify-center rounded-3xl bg-primary py-3 px-6 text-base font-medium  text-white transition duration-300 ease-in-out hover:bg-opacity-80 sm:py-4 sm:px-9"
+                      className="hover:shadow-signUp flex w-full items-center justify-center rounded-3xl bg-primary py-3 px-6 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 sm:py-4 sm:px-9"
                     >
                       Sign in
                     </button>
@@ -555,10 +563,10 @@ const SigninPage = () => {
                     </div>
                   )}
                 </form>
-                <p className="text-center text-base font-medium text-black dark:text-white">
+                <p className="mt-4 text-center text-base font-medium text-black dark:text-white">
                   Don’t have an account?{" "}
-                  <Link href="/signup" className="text-primary hover:underline">
-                    Sign Up
+                  <Link href="/signup" className="font-extrabold  text-primary hover:underline">
+                   Register
                   </Link>
                 </p>
               </div>
@@ -591,7 +599,7 @@ const SigninPage = () => {
               d="M1086.96 297.978L632.959 554.978L935.625 535.926L1086.96 297.978Z"
               fill="url(#paint0_linear_95:1005)"
             />
-            <path
+             <path
               opacity="0.1"
               d="M1324.5 755.5L1450 687V886.5L1324.5 967.5L-10 288L1324.5 755.5Z"
               fill="url(#paint1_linear_95:1005)"

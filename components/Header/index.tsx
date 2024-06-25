@@ -1,137 +1,3 @@
-// "use client";
-// import Image from "next/image";
-// import Link from "next/link";
-// import { useEffect, useState } from "react";
-// import { useRouter } from "next/navigation";
-// import ThemeToggler from "./ThemeToggler";
-// import menuData from "./menuData";
-// import WBLlight from "@/public/images/wbl-light.png";
-// import WBLdark from "@/public/images/wbl-dark.png";
-
-// const Header = () => {
-//   const [navbarOpen, setNavbarOpen] = useState(false);
-//   const [sticky, setSticky] = useState(false);
-//   const [openIndex, setOpenIndex] = useState(-1);
-//   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-//   const router = useRouter();
-
-//   useEffect(() => {
-//     const token = localStorage.getItem("access_token");
-//     setIsAuthenticated(!!token);
-//   }, []);
-
-//   const handleLogout = () => {
-//     localStorage.removeItem("access_token");
-//     setIsAuthenticated(false);
-//     router.push("/login");
-//   };
-
-//   const navbarToggleHandler = () => setNavbarOpen(!navbarOpen);
-//   const closeNavbar = () => setNavbarOpen(false);
-//   const handleStickyNavbar = () => setSticky(window.scrollY >= 80);
-
-//   useEffect(() => {
-//     window.addEventListener("scroll", handleStickyNavbar);
-//     return () => window.removeEventListener("scroll", handleStickyNavbar);
-//   }, []);
-
-//   const handleSubmenu = (index) => setOpenIndex(openIndex === index ? -1 : index);
-
-//   return (
-//     <header className={`header top-0 left-0 z-40 w-full items-center bg-transparent ${sticky ? "fixed bg-white bg-opacity-80 shadow-sticky backdrop-blur-sm transition dark:bg-primary dark:bg-opacity-20" : "absolute"}`}>
-//       <div className="container mt-5">
-//         <div className="relative flex items-center justify-between -mx-4">
-//           <div className="px-4 xl:mr-12">
-//             <Link href="/" className={`header-logo block w-full ${sticky ? "py-3 lg:py-1" : "py-0"}`}>
-//               <Image src={WBLdark} alt="logo" width={50} height={50} className="dark:hidden" />
-//               <Image src={WBLlight} alt="logo" width={50} height={50} className="hidden dark:block" />
-//             </Link>
-//           </div>
-//           <div className="flex items-center justify-between w-full px-4">
-//             <button onClick={navbarToggleHandler} aria-label="Mobile Menu" className="block lg:hidden">
-//               <div className="relative block w-8 h-8">
-//                 <span className={`block w-full h-0.5 bg-black dark:bg-white transform transition-all duration-300 ${navbarOpen ? "rotate-45 translate-y-2" : ""}`}></span>
-//                 <span className={`block w-full h-0.5 bg-black dark:bg-white transition-all duration-300 ${navbarOpen ? "opacity-0" : ""}`}></span>
-//                 <span className={`block w-full h-0.5 bg-black dark:bg-white transform transition-all duration-300 ${navbarOpen ? "-rotate-45 -translate-y-2" : ""}`}></span>
-//               </div>
-//             </button>
-//             <nav className={`navbar absolute right-0 z-30 w-64 rounded bg-white py-4 px-6 transition-all duration-300 dark:bg-dark lg:static lg:w-auto lg:bg-transparent lg:p-0 lg:visible ${navbarOpen ? "top-full opacity-100" : "invisible top-24 opacity-0"}`}>
-//               <ul className="flex flex-col space-y-4 lg:flex-row lg:space-x-12 lg:space-y-0">
-//                 {menuData.map((menuItem, index) => (
-//                   <li key={menuItem.id} className="group relative">
-//                     {menuItem.path ? (
-//                       <Link href={menuItem.path} className="block px-3 py-2 text-sm font-semibold text-dark duration-500 hover:bg-gray-200 dark:text-white dark:hover:bg-black/70 sm:text-base lg:py-6 lg:px-0" onClick={closeNavbar}>
-//                         {menuItem.title}
-//                       </Link>
-//                     ) : (
-//                       <>
-//                         <button onClick={() => handleSubmenu(index)} className="flex items-center justify-between w-full px-3 py-2 text-sm font-semibold text-dark duration-500 hover:bg-gray-200 dark:text-white dark:hover:bg-black/70 sm:text-base lg:py-6 lg:px-0">
-//                           {menuItem.title}
-//                           <svg width="15" height="14" viewBox="0 0 15 14" className="ml-3">
-//                             <path d="M7.816 9.975a.747.747 0 01-.35-.132L2.435 4.9a.5.5 0 01.7-.7L7.816 8.772l4.682-4.615a.5.5 0 01.7.7L8.166 9.8a.747.747 0 01-.35.175z" fill="currentColor" />
-//                           </svg>
-//                         </button>
-//                         <div className={`absolute left-0 top-full w-64 bg-white rounded-lg shadow-lg transition-opacity duration-300 ${openIndex === index ? "opacity-100 visible" : "opacity-0 invisible"} lg:group-hover:visible lg:group-hover:opacity-100 lg:group-hover:top-full lg:group-hover:block`}>
-//                           {menuItem.submenu.map((submenuItem) => (
-//                             <Link href={submenuItem.path} key={submenuItem.id} className="block px-5 py-2.5 text-sm font-semibold text-dark duration-500 hover:bg-gray-200 dark:text-white dark:hover:bg-black/70 lg:text-center" onClick={closeNavbar}>
-//                               {submenuItem.title}
-//                             </Link>
-//                           ))}
-//                         </div>
-//                       </>
-//                     )}
-//                   </li>
-//                 ))}
-//                 {isAuthenticated ? (
-//                   <li>
-//                     <button onClick={handleLogout} className="block w-full py-2 px-3 text-sm font-semibold text-white bg-gradient-to-tl from-indigo-900 to-purple-400 text-center rounded-3xl hover:bg-gradient-to-br sm:text-base lg:py-3 lg:px-6">
-//                       Sign Out
-//                     </button>
-//                   </li>
-//                 ) : (
-//                   <>
-//                     <li className="lg:hidden">
-//                       <Link href="/login" className="block w-full py-2 px-3 text-sm font-semibold text-white bg-gradient-to-tl from-indigo-900 to-purple-400 text-center rounded-3xl hover:bg-gradient-to-br sm:text-base" onClick={closeNavbar}>
-//                         Login
-//                       </Link>
-//                     </li>
-//                     <li className="lg:hidden">
-//                       <Link href="/signup" className="block w-full py-2 px-3 text-sm font-semibold text-white bg-gradient-to-tl from-indigo-900 to-purple-400 text-center rounded-3xl hover:bg-gradient-to-br sm:text-base" onClick={closeNavbar}>
-//                         Register
-//                       </Link>
-//                     </li>
-//                   </>
-//                 )}
-//               </ul>
-//             </nav>
-//             <div className="hidden items-center lg:flex">
-//               {isAuthenticated ? (
-//                 <button onClick={handleLogout} className="py-3 px-8 text-base font-bold text-white bg-gradient-to-br from-indigo-900 to-purple-400 rounded-md transition duration-500 hover:bg-opacity-90">
-//                   Sign Out
-//                 </button>
-//               ) : (
-//                 <>
-//                   <Link href="/login" className="py-3 px-7 text-base font-bold text-dark dark:text-white">
-//                     Login
-//                   </Link>
-//                   <Link href="/signup" className="py-3 px-8 text-base font-bold text-white bg-gradient-to-br from-indigo-900 to-purple-400 rounded-md transition duration-500 hover:bg-opacity-90">
-//                     Register
-//                   </Link>
-//                 </>
-//               )}
-//               <ThemeToggler />
-//             </div>
-//             <ThemeToggler className="block lg:hidden" />
-//           </div>
-//         </div>
-//       </div>
-//     </header>
-//   );
-// };
-
-// export default Header;
-
 "use client";
 import Image from "next/image";
 import Link from "next/link";
@@ -153,6 +19,11 @@ const Header = () => {
     localStorage.removeItem("access_token");
     setIsAuthenticated(false);
     router.push("/login");
+  };
+  const display_user_dashboard = () => {
+    // localStorage.removeItem("access_token");
+    // setIsAuthenticated(false);
+    router.push("/user_dashboard");
   };
 
   useEffect(() => {
@@ -310,18 +181,32 @@ const Header = () => {
                       </li>
                     ))}
                     {isAuthenticated ? (
-                      <li className="lg:hidden">
-                        <button
-                          className="my-3 w-full block rounded-3xl bg-gradient-to-tl from-indigo-900 to-purple-400 py-2 px-3 text-center text-sm   font-bold text-white hover:bg-gradient-to-br   hover:from-indigo-900 hover:to-purple-400  sm:text-base"
-                          // onClick={closeNavbar}
-                          onClick={(e) => {
-                            closeNavbar();
-                            handleLogout();
-                          }}
-                        >
-                          Logout
-                        </button>
-                      </li>
+                      <div>
+                        <li className="lg:hidden">
+                          <button
+                            className="my-3 block w-full rounded-3xl bg-gradient-to-tl from-indigo-900 to-purple-400 py-2 px-3 text-center text-sm   font-bold text-white hover:bg-gradient-to-br   hover:from-indigo-900 hover:to-purple-400  sm:text-base"
+                            // onClick={closeNavbar}
+                            onClick={(e) => {
+                              closeNavbar();
+                              display_user_dashboard();
+                            }}
+                          >
+                            My Profile
+                          </button>
+                        </li>
+                        <li className="lg:hidden">
+                          <button
+                            className="my-3 block w-full rounded-3xl bg-gradient-to-tl from-indigo-900 to-purple-400 py-2 px-3 text-center text-sm   font-bold text-white hover:bg-gradient-to-br   hover:from-indigo-900 hover:to-purple-400  sm:text-base"
+                            // onClick={closeNavbar}
+                            onClick={(e) => {
+                              closeNavbar();
+                              handleLogout();
+                            }}
+                          >
+                            Logout
+                          </button>
+                        </li>
+                      </div>
                     ) : (
                       <>
                         <li className="lg:hidden">
@@ -351,17 +236,25 @@ const Header = () => {
               <div className=" hidden items-center justify-end  pr-16 lg:flex lg:pr-0">
                 {/* <div className="ml-[] hidden  items-center justify-end pr-16 lg:flex lg:pr-0"> */}
                 {isAuthenticated ? (
-                  <button
-                    onClick={handleLogout}
-                    className="rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white transition duration-500 hover:bg-opacity-90"
-                  >
-                    Logout
-                  </button>
+                  <div className="flex gap-4">
+                    <button
+                      onClick={display_user_dashboard}
+                      className="rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white transition duration-500 hover:bg-opacity-90"
+                    >
+                      My Profile
+                    </button>
+                    <button
+                      onClick={handleLogout}
+                      className="rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white transition duration-500 hover:bg-opacity-90"
+                    >
+                      Logout
+                    </button>
+                  </div>
                 ) : (
                   <>
                     <Link
                       href="/login"
-                      className="hover:shadow-signUp rounded-md bg-gradient-to-br  from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white duration-500 hover:bg-opacity-90 hover:bg-gradient-to-tl hover:from-indigo-900 hover:to-purple-400 md:block md:px-9 lg:px-6 xl:px-9 mr-3"
+                      className="hover:shadow-signUp mr-3 rounded-md  bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white duration-500 hover:bg-opacity-90 hover:bg-gradient-to-tl hover:from-indigo-900 hover:to-purple-400 md:block md:px-9 lg:px-6 xl:px-9"
                     >
                       Login
                     </Link>

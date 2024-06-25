@@ -1,4 +1,4 @@
-import AboutSectionOne from "@/components/About/AboutSectionOne";
+import AboutSectionOne from "@/components/Gallery";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 
 const AboutPage = () => {

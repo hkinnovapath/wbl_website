@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import SectionTitle from "../Common/SectionTitle";
+import SectionTitle from "@/components/Common/SectionTitle";
 import img1 from "@/public/images/gallery/1.jpg";
 import img2 from "@/public/images/gallery/2.jpg";
 import img3 from "@/public/images/gallery/3.jpg";
@@ -83,7 +83,7 @@ const AboutSectionOne = () => {
                   {imagessrc.map((img, index) => (
                     <div
                       key={index}
-                      className="absolute   h-3/4 sm:h-full w-3/4 sm:w-full transform rounded-md object-cover p-1 shadow-lg shadow-gray-700 transition-transform duration-300 hover:scale-110"
+                      className="absolute   h-3/4 w-3/4 transform rounded-md object-cover p-1 shadow-lg shadow-gray-700 transition-transform duration-300 hover:scale-110 sm:h-full sm:w-full"
                       style={{
                         top: `${imagePositions[index]?.top}px`,
                         left: `${imagePositions[index]?.left}px`,

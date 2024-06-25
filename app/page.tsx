@@ -1,4 +1,4 @@
-import AboutSectionOne from "@/components/About/AboutSectionOne";
+import Gallery from "@/components/Gallery";
 // import AboutSectionTwo from "@/components/About/AboutSectionTwo";
 // import Blog from "@/components/Blog";
 // import Brands from "@/components/Brands";
@@ -22,7 +22,7 @@ export default function Home() {
       <Features />
       {/* <Schedule /> */}
       {/* <Brands /> */}
-      <AboutSectionOne />
+      <Gallery />
       {/* <AboutSectionTwo /> */}
       <Testimonials />
       {/* <Video /> */}

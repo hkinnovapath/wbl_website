@@ -319,7 +319,7 @@
 
 
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect,Suspense  } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import UserDashboard from '@/app/user_dashboard/page'
@@ -398,7 +398,7 @@ const SigninPage = () => {
   }
 
   return (
-    <>
+    <Suspense fallback={<div>LOADING...</div>}>
       <section className="relative z-10 mt-10 overflow-hidden pt-20 pb-16 md:pb-20 lg:pt-[100px] lg:pb-28">
         <div className="container">
           <div className="-mx-4 flex flex-wrap">
@@ -631,7 +631,7 @@ const SigninPage = () => {
           </defs>
         </svg>
       </div>
-    </>
+      </Suspense>
   );
 };
 

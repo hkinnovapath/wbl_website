@@ -398,7 +398,7 @@ const SigninPage = () => {
   }
 
   return (
-    <Suspense fallback={<div>asdasdLoading...</div>}>
+    <Suspense fallback={<div>LOADING...</div>}>
       <section className="relative z-10 mt-10 overflow-hidden pt-20 pb-16 md:pb-20 lg:pt-[100px] lg:pb-28">
         <div className="container">
           <div className="-mx-4 flex flex-wrap">

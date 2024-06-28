@@ -462,7 +462,7 @@ const SigninPage = () => {
                       Email Address <span className="text-[red]">*</span>
                     </label>
                     <input
-                      type="email"
+                      type="text"
                       name="email"
                       placeholder="Enter your email"
                       className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-4 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"

@@ -28,18 +28,14 @@ export default function ClassComp() {
   const [selectedBatch, setSelectedBatch] = useState("");
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const [recordings, setRecordings] = useState<Video[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false); // Optional: Loading state
-
-  useEffect(() => {
-    fetchBatches();
-    fetchRecordings(selectedBatch);
-  }, []);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (selectedBatch) {
       fetchRecordings(selectedBatch);
     }
   }, [selectedBatch]);
+
   const fetchBatches = async () => {
     try {
       const accessToken = localStorage.getItem("access_token");
@@ -47,7 +43,7 @@ export default function ClassComp() {
 
       const response = await fetch(`http://localhost:8000/recording`, {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authtoken: `${accessToken}`,
         },
       });
 
@@ -56,9 +52,11 @@ export default function ClassComp() {
       }
 
       const data = await response.json();
+      sessionStorage.setItem("batches_data", JSON.stringify(data.batches));
+      sessionStorage.setItem("batches_data_timestamp", Date.now().toString());
       setBatches(data.batches);
 
-      // Select the latest batch by default
+      //       // Select the latest batch by default
       if (data.batches.length > 0) {
         setSelectedBatch(data.batches[0].batchname); // Assuming batches are sorted by some criteria
       }
@@ -71,35 +69,86 @@ export default function ClassComp() {
   };
 
   const fetchRecordings = async (batch: string) => {
-    console.log(batch);
-
     try {
+      const recordingsDataFromStorage =
+        sessionStorage.getItem("recordings_data");
+      const currentRecordings = recordingsDataFromStorage
+        ? JSON.parse(recordingsDataFromStorage)
+        : {}; //current recording as empty obj if already not present
+
+      if (currentRecordings[batch]) {
+        setRecordings(currentRecordings[batch]);
+        return;
+      }
+
+      const accessToken = localStorage.getItem("access_token");
       const response = await fetch(
         `http://localhost:8000/recording?batchname=${batch}`,
         {
           headers: {
-            // Authorization: `Bearer ${yourAuthToken}`, // Add your authorization token if required
+            Authorization: `Bearer ${accessToken}`, // Add your authorization token if required
           },
         }
       );
+
       if (!response.ok) {
         throw new Error("Failed to fetch recordings");
       }
+
       const data = await response.json();
       if (!data.batch_recordings) {
         throw new Error("Failed to fetch recordings");
       }
-      console.log(response);
-      console.log(data.batch_recordings);
-      setRecordings(data.batch_recordings); // Ensure this matches the actual response structure
+
+      currentRecordings[batch] = data.batch_recordings;
+      sessionStorage.setItem(
+        "recordings_data",
+        JSON.stringify(currentRecordings)
+      );
+      sessionStorage.setItem(
+        "recordings_data_timestamp",
+        Date.now().toString()
+      );
+      setRecordings(data.batch_recordings);
     } catch (error) {
       console.error("Error fetching recordings:", error);
     }
   };
 
+  useEffect(() => {
+    const batchesDataFromStorage = sessionStorage.getItem("batches_data");
+    const batchesDataTimestamp = sessionStorage.getItem(
+      "batches_data_timestamp"
+    );
+    const dataAge =
+      Date.now() -
+      (batchesDataTimestamp ? parseInt(batchesDataTimestamp, 10) : 0);
+
+    if (batchesDataFromStorage && dataAge < 86400000) {
+      setBatches(JSON.parse(batchesDataFromStorage));
+      setSelectedBatch(JSON.parse(batchesDataFromStorage)[0].batchname);
+    } else {
+      fetchBatches();
+    }
+  }, []);
+
+  useEffect(() => {
+    const recordingsDataFromStorage = sessionStorage.getItem("recordings_data");
+    if (recordingsDataFromStorage) {
+      const storedRecordings = JSON.parse(recordingsDataFromStorage);
+      if (storedRecordings[selectedBatch]) {
+        setRecordings(storedRecordings[selectedBatch]);
+      } else if (selectedBatch) {
+        fetchRecordings(selectedBatch);
+      }
+    } else if (selectedBatch) {
+      fetchRecordings(selectedBatch);
+    }
+  }, [selectedBatch]);
+
   const handleBatchChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedBatch(e.target.value);
-    setSelectedVideo(selectedVideo);
+    setSelectedVideo(null);
   };
 
   const handleVideoSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {

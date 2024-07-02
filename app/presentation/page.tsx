@@ -49,12 +49,10 @@ export default function Recordings() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Check if the user is authenticated
     if (!isAuthenticated()) {
-      // If not authenticated, redirect to login page with redirect path
       router.push(`/login?redirect=${encodeURIComponent(pathname)}`);
     } else {
-      setLoading(false); // Mark loading as complete
+      setLoading(false);
     }
   }, [router, pathname]);
 
@@ -62,12 +60,24 @@ export default function Recordings() {
     const getData = async () => {
       setLoading(true);
       setError(null);
-      const fetchedData = await fetchPresentationData(activeComponent);
-      if (fetchedData) {
-        setData(fetchedData);
+
+      const sessionData = sessionStorage.getItem(`data_${activeComponent}`);
+      const sessionDataTimestamp = sessionStorage.getItem(`data_${activeComponent}_timestamp`);
+      const dataAge = Date.now() - (sessionDataTimestamp ? parseInt(sessionDataTimestamp, 10) : 0);
+
+      if (sessionData && dataAge < 86400000) {
+        setData(JSON.parse(sessionData));
       } else {
-        setError("No data found");
+        const fetchedData = await fetchPresentationData(activeComponent);
+        if (fetchedData) {
+          setData(fetchedData);
+          sessionStorage.setItem(`data_${activeComponent}`, JSON.stringify(fetchedData));
+          sessionStorage.setItem(`data_${activeComponent}_timestamp`, Date.now().toString());
+        } else {
+          setError("No data found");
+        }
       }
+
       setLoading(false);
     };
     getData();
@@ -80,10 +90,45 @@ export default function Recordings() {
   if (loading) {
     return (
       <div className="mt-32 flex h-screen items-center justify-center pb-24 text-xl text-dark dark:text-white sm:text-4xl md:text-5xl lg:text-6xl">
-        Loading...
+        <div className="text-md mb-4 text-center font-medium text-black dark:text-white sm:text-2xl">
+          Loading&nbsp;
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            className="inline h-[30px] w-[30px] text-black dark:text-white sm:h-[50px] sm:w-[50px]"
+          >
+            <circle cx="4" cy="12" r="3" fill="currentColor">
+              <animate
+                id="svgSpinners3DotsScale0"
+                attributeName="r"
+                begin="0;svgSpinners3DotsScale1.end-0.2s"
+                dur="0.6s"
+                values="3;.2;3"
+              />
+            </circle>
+            <circle cx="12" cy="12" r="3" fill="currentColor">
+              <animate
+                attributeName="r"
+                begin="svgSpinners3DotsScale0.end-0.48s"
+                dur="0.6s"
+                values="3;.2;3"
+              />
+            </circle>
+            <circle cx="20" cy="12" r="3" fill="currentColor">
+              <animate
+                id="svgSpinners3DotsScale1"
+                attributeName="r"
+                begin="svgSpinners3DotsScale0.end-0.36s"
+                dur="0.6s"
+                values="3;.2;3"
+              />
+            </circle>
+          </svg>
+        </div>
       </div>
-    ); // You can customize loading indicator
+    );
   }
+
   return (
     <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
       <nav className="mt-16 flex flex-col items-center justify-between sm:flex-row">
@@ -115,7 +160,41 @@ export default function Recordings() {
 
         <div className="mt-10 flex-grow sm:ml-20">
           {loading ? (
-            <p>Loading...</p>
+            <div className="text-md mb-4 text-center font-medium text-black dark:text-white sm:text-2xl">
+              Loading&nbsp;
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                className="inline h-[30px] w-[30px] text-black dark:text-white sm:h-[50px] sm:w-[50px]"
+              >
+                <circle cx="4" cy="12" r="3" fill="currentColor">
+                  <animate
+                    id="svgSpinners3DotsScale0"
+                    attributeName="r"
+                    begin="0;svgSpinners3DotsScale1.end-0.2s"
+                    dur="0.6s"
+                    values="3;.2;3"
+                  />
+                </circle>
+                <circle cx="12" cy="12" r="3" fill="currentColor">
+                  <animate
+                    attributeName="r"
+                    begin="svgSpinners3DotsScale0.end-0.48s"
+                    dur="0.6s"
+                    values="3;.2;3"
+                  />
+                </circle>
+                <circle cx="20" cy="12" r="3" fill="currentColor">
+                  <animate
+                    id="svgSpinners3DotsScale1"
+                    attributeName="r"
+                    begin="svgSpinners3DotsScale0.end-0.36s"
+                    dur="0.6s"
+                    values="3;.2;3"
+                  />
+                </circle>
+              </svg>
+            </div>
           ) : error ? (
             <p>{error}</p>
           ) : data ? (

@@ -25,19 +25,19 @@ export default function Course() {
             <div className="flex flex-col w-60">
               <button
                 className="mb-1 w-full sm:w-44 rounded-md bg-gradient-to-br from-primary to-blue-300 hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 px-4 py-2 text-black font-bold"
-                onClick={() => handleNavigation("UI Fullstack")}
+                onClick={() => handleNavigation("UI")}
               >
-                UI Fullstack
+               UI Fullstack
               </button>
               <button
                 className="mb-1 w-full sm:w-44 rounded-md bg-gradient-to-br from-primary to-blue-300 hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 px-4 py-2 text-black font-bold"
-                onClick={() => handleNavigation("Machine Learning")}
+                onClick={() => handleNavigation("ML")}
               >
                 Machine Learning
               </button>
               <button
                 className="mb-1 w-full sm:w-44 rounded-md bg-gradient-to-br from-primary to-blue-300 hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 px-4 py-2 text-black font-bold"
-                onClick={() => handleNavigation("Quality Engineer")}
+                onClick={() => handleNavigation("QA")}
               >
                 Quality Engineer
               </button>

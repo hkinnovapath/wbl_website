@@ -1,120 +1,93 @@
-"use client";
-import React, { useState, useEffect } from "react";
+import {useSearchParams } from 'next/navigation';
+import React, { useState, useEffect } from 'react';
 
 interface Video {
-  vedioid: any;
   id: number;
-  batchname: string;
-  classdate: string;
-  course: string;
   description: string;
-  filename: string;
-  forallcourses: string;
   link: string;
-  status: string;
-  subject: string | null;
-  subjectid: number | null;
-  type: string;
   videoid: string;
 }
 
 interface Batch {
   batchname: string;
-  name: string;
 }
 
-export default function ClassComp() {
+const RecordingComp: React.FC = () => {
+  const searchParams = useSearchParams();
+
+  const course = searchParams.get('course') as string; // Get 'course' parameter from URL
+
   const [batches, setBatches] = useState<Batch[]>([]);
-  const [selectedBatch, setSelectedBatch] = useState("");
+  const [selectedBatch, setSelectedBatch] = useState<string>('');
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const [recordings, setRecordings] = useState<Video[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false); // Optional: Loading state
+  const [isLoadingBatches, setIsLoadingBatches] = useState<boolean>(false);
+  const [isLoadingRecordings, setIsLoadingRecordings] = useState<boolean>(false);
 
   useEffect(() => {
-    fetchBatches();
-    fetchRecordings(selectedBatch);
-  }, []);
+     if (course) {
+      fetchBatches(course);
+    }
+  }, [course]);
 
   useEffect(() => {
     if (selectedBatch) {
       fetchRecordings(selectedBatch);
     }
   }, [selectedBatch]);
-  const fetchBatches = async () => {
+
+  const fetchBatches = async (course: string) => {
     try {
-      const accessToken = localStorage.getItem("access_token");
-      setIsLoading(true); // Set loading state
-
-      const response = await fetch(`http://localhost:8000/recording`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-
+      setIsLoadingBatches(true);
+      const response = await fetch(`http://127.0.0.1:8000/batches?course=${course}`);
+      // http://localhost:3000/recording/recordingComp?course=UI
+      
       if (!response.ok) {
-        throw new Error("Failed to fetch batches");
+        throw new Error('Failed to fetch batches');
       }
-
       const data = await response.json();
       setBatches(data.batches);
-
-      // Select the latest batch by default
       if (data.batches.length > 0) {
-        setSelectedBatch(data.batches[0].batchname); // Assuming batches are sorted by some criteria
+        setSelectedBatch(data.batches[0].batchname);
       }
-
-      setIsLoading(false); // Clear loading state
+      setIsLoadingBatches(false);
     } catch (error) {
-      console.error("Error fetching batches:", error);
-      setIsLoading(false); // Clear loading state on error
+      console.error('Error fetching batches:', error);
+      setIsLoadingBatches(false);
     }
   };
 
-  const fetchRecordings = async (batch: string) => {
-    console.log(batch);
-
+  const fetchRecordings = async (batchname: string) => {
     try {
-      const response = await fetch(
-        `http://localhost:8000/recording?batchname=${batch}`,
-        {
-          headers: {
-            // Authorization: `Bearer ${yourAuthToken}`, // Add your authorization token if required
-          },
-        }
-      );
+      setIsLoadingRecordings(true);
+      const subject = course; // Assuming 'course' is the same as 'subject' in the API
+      const response = await fetch(`http://127.0.0.1:8000/recording?subject=${subject}&batchname=${batchname}`);
       if (!response.ok) {
-        throw new Error("Failed to fetch recordings");
+        throw new Error('Failed to fetch recordings');
       }
       const data = await response.json();
-      if (!data.batch_recordings) {
-        throw new Error("Failed to fetch recordings");
-      }
-      console.log(response);
-      console.log(data.batch_recordings);
-      setRecordings(data.batch_recordings); // Ensure this matches the actual response structure
+      setRecordings(data.batch_recordings || []);
+      setSelectedVideo(null); // Clear selected video when fetching new recordings
+      setIsLoadingRecordings(false);
     } catch (error) {
-      console.error("Error fetching recordings:", error);
+      console.error('Error fetching recordings:', error);
+      setIsLoadingRecordings(false);
     }
   };
 
   const handleBatchChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedBatch(e.target.value);
-    setSelectedVideo(selectedVideo);
   };
 
   const handleVideoSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedId = parseInt(e.target.value);
-    const selected = recordings.find(
-      (recording) => recording.id === selectedId
-    );
+    const selected = recordings.find((recording) => recording.id === selectedId);
     setSelectedVideo(selected || null);
   };
 
   const renderVideoPlayer = (video: Video) => {
-    if (video.link.includes("youtu.be") || video.link.includes("youtube.com")) {
+    if (video.link.includes('youtu.be') || video.link.includes('youtube.com')) {
       const youtubeId = video.videoid;
-      console.log(youtubeId);
-
       const youtubeEmbedUrl = `https://www.youtube.com/embed/${youtubeId}`;
       return (
         <iframe
@@ -142,12 +115,13 @@ export default function ClassComp() {
           value={selectedBatch}
           onChange={handleBatchChange}
         >
-          {isLoading ? (
+          {isLoadingBatches ? (
             <option disabled>Loading batches...</option>
           ) : (
             <>
-              {batches.map((batch) => (
-                <option key={batch.name} value={batch.batchname}>
+            <option value='' disabled>Please Select  batches...</option>
+              {batches.map((batch, index) => (
+                <option key={index} value={batch.batchname}>
                   {batch.batchname}
                 </option>
               ))}
@@ -161,13 +135,13 @@ export default function ClassComp() {
           id="dropdown2"
           className="rounded-md border border-gray-300 px-2 py-1 text-black dark:bg-white"
           onChange={handleVideoSelect}
-          // disabled={!selectedBatch}
+          disabled={!selectedBatch || isLoadingRecordings}
         >
-          {/* <option value="">Please Select the Topic...</option> */}
-          {isLoading ? (
+          {isLoadingRecordings ? (
             <option disabled>Loading recordings...</option>
           ) : (
             <>
+              <option value="">Please select a recording...</option>
               {recordings.map((recording) => (
                 <option key={recording.id} value={String(recording.id)}>
                   {recording.description}
@@ -180,4 +154,6 @@ export default function ClassComp() {
       {selectedVideo && <div>{renderVideoPlayer(selectedVideo)}</div>}
     </div>
   );
-}
+};
+
+export default RecordingComp;

@@ -46,6 +46,8 @@ const RecordingComp: React.FC = () => {
         throw new Error('Failed to fetch batches');
       }
       const data = await response.json();
+      sessionStorage.setItem("batches_data", JSON.stringify(data.batches));
+      sessionStorage.setItem("batches_data_timestamp", Date.now().toString());
       setBatches(data.batches);
       if (data.batches.length > 0) {
         setSelectedBatch(data.batches[0].batchname);
@@ -65,6 +67,7 @@ const RecordingComp: React.FC = () => {
       if (!response.ok) {
         throw new Error('Failed to fetch recordings');
       }
+
       const data = await response.json();
       setRecordings(data.batch_recordings || []);
       setSelectedVideo(null); // Clear selected video when fetching new recordings

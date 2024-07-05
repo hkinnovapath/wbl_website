@@ -17,17 +17,17 @@ export default function Recordings() {
   const [activeComponent, setActiveComponent] =
     useState<ComponentType>("class"); // Specify the type of activeComponent
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+
   // Function to set active component
   useEffect(() => {
     // Check if the user is authenticated
     if (!isAuthenticated()) {
       // If not authenticated, redirect to login page with redirect path
-      router.push(`/login?redirect=${encodeURIComponent(pathname)}`);
+         router.push(`/login?redirect=${encodeURIComponent(window.location.href)}`);
     } else {
       setLoading(false); // Mark loading as complete
     }
-  }, [router, pathname]);
+  }, [router]);
 
   const handleButtonClick = (component: ComponentType) => {
     // Specify the type of the component parameter

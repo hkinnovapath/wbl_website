@@ -62,8 +62,8 @@ const RecordingComp: React.FC = () => {
   const fetchRecordings = async (batchname: string) => {
     try {
       setIsLoadingRecordings(true);
-      const subject = course; // Assuming 'course' is the same as 'subject' in the API
-      const response = await fetch(`http://127.0.0.1:8000/recording?subject=${subject}&batchname=${batchname}`);
+      // const subject = course; // Assuming 'course' is the same as 'subject' in the API
+      const response = await fetch(`http://127.0.0.1:8000/recording?course=${course}&batchname=${batchname}`);
       if (!response.ok) {
         throw new Error('Failed to fetch recordings');
       }

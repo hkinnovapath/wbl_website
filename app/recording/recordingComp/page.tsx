@@ -5,7 +5,7 @@ import Layout from "@/components/Common/Layout";
 import ClassComp from "@/components/Recording/ClassComp";
 import SearchComp from "@/components/Recording/SearchComp";
 import SessionComp from "@/components/Recording/SessionComp";
-import { isAuthenticated } from "@/utils/auth"; // Import the auth check
+// import { isAuthenticated } from "@/utils/auth"; // Import the auth check
 
 type ComponentType = "class" | "search" | "session"; // Define a union type for valid component types
 
@@ -16,18 +16,18 @@ export default function Recordings() {
   // State to manage active component
   const [activeComponent, setActiveComponent] =
     useState<ComponentType>("class"); // Specify the type of activeComponent
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(false);
 
   // Function to set active component
-  useEffect(() => {
-    // Check if the user is authenticated
-    if (!isAuthenticated()) {
-      // If not authenticated, redirect to login page with redirect path
-         router.push(`/login?redirect=${encodeURIComponent(window.location.href)}`);
-    } else {
-      setLoading(false); // Mark loading as complete
-    }
-  }, [router]);
+  // useEffect(() => {
+  //   // Check if the user is authenticated
+  //   if (!isAuthenticated()) {
+  //     // If not authenticated, redirect to login page with redirect path
+  //        router.push(`/login?redirect=${encodeURIComponent(window.location.href)}`);
+  //   } else {
+  //     setLoading(false); // Mark loading as complete
+  //   }
+  // }, [router]);
 
   const handleButtonClick = (component: ComponentType) => {
     // Specify the type of the component parameter
@@ -48,13 +48,13 @@ export default function Recordings() {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="mt-32 flex h-screen items-center justify-center pb-24 text-xl text-dark dark:text-white sm:text-4xl md:text-5xl lg:text-6xl">
-        Loading...
-      </div>
-    ); // You can customize loading indicator
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="mt-32 flex h-screen items-center justify-center pb-24 text-xl text-dark dark:text-white sm:text-4xl md:text-5xl lg:text-6xl">
+  //       Loading...
+  //     </div>
+  //   ); // You can customize loading indicator
+  // }
 
   return (
     <div>

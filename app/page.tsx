@@ -22,9 +22,9 @@ export default function Home() {
       <Features />
       {/* <Schedule /> */}
       {/* <Brands /> */}
-      <Gallery />
+      {/* <Gallery /> */}
       {/* <AboutSectionTwo /> */}
-      <Testimonials />
+      {/* <Testimonials /> */}
       {/* <Video /> */}
       {/* <Pricing /> */}
       {/* <Blog /> */}

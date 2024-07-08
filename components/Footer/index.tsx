@@ -115,7 +115,13 @@ const Footer = () => {
                       {address}
                     </a>
                   </li>
-                  <li className="mb-3">
+                  <li className="flex gap-5 mb-3">
+                    <a
+                      className="text-md  text-black duration-500  hover:text-blue-600 dark:text-white dark:hover:text-blue-600"
+                      href="tel:+19255571053"
+                    >
+                      +1 925-557-1053
+                    </a>
                     <a
                       className="text-md  text-black duration-500  hover:text-blue-600 dark:text-white dark:hover:text-blue-600"
                       href="tel:+19254007330"

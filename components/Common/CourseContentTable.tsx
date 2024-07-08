@@ -18,7 +18,12 @@ const CourseContentTable = (props: any) => {
           </tr>
         </thead>
         <tbody>
-          {props.subjects.map((subject: any, index: any) => (
+          {props.subjects.map((subject: any, index: any) =>
+          {
+            // console.log(subject);
+            
+          return (
+            
             <tr
               key={subject.id}
               className={`text-[11px] sm:text-base lg:text-lg hover:bg-gray-200 dark:hover:bg-blue-500  ${
@@ -31,13 +36,15 @@ const CourseContentTable = (props: any) => {
                 Week {index + 1}
               </td>
               <td className="border border-primary px-4 py-2 text-center text-blue-600 dark:border-blue-900 dark:text-white">
-                <p >{subject.name}</p>
+                <p >{subject.morning}</p>
               </td>
               <td className="border border-primary px-4 py-2 text-center text-blue-600 dark:border-blue-900 dark:text-white">
-                <p >{subject.name2}</p>
+                <p >{subject.evening}</p>
               </td>
             </tr>
-          ))}
+
+          )}
+          )}
         </tbody>
       </table>
     </div>

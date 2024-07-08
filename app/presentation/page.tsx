@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Layout from "@/components/Common/Layout";
 import ResourcesTable from "@/components/Common/resourcesTable";
-import { isAuthenticated } from "@/utils/auth"; // Import the auth check
+// import { isAuthenticated } from "@/utils/auth"; // Import the auth check
 
 type ComponentType =
   | "Presentations"
@@ -48,13 +48,13 @@ export default function Recordings() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (!isAuthenticated()) {
-      router.push(`/login?redirect=${encodeURIComponent(pathname)}`);
-    } else {
-      setLoading(false);
-    }
-  }, [router, pathname]);
+  // useEffect(() => {
+  //   if (!isAuthenticated()) {
+  //     router.push(`/login?redirect=${encodeURIComponent(pathname)}`);
+  //   } else {
+  //     setLoading(false);
+  //   }
+  // }, [router, pathname]);
 
   useEffect(() => {
     const getData = async () => {

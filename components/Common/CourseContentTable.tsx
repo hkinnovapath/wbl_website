@@ -19,9 +19,7 @@ const CourseContentTable = (props: any) => {
         </thead>
         <tbody>
           {props.subjects.map((subject: any, index: any) =>
-          {
-            // console.log(subject);
-            
+          {            
           return (
             
             <tr

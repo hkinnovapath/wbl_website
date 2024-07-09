@@ -1,96 +1,68 @@
-// import React from "react";
-// import CourseContentTable from "@/components/Common/CourseContentTable";
-
-// const subjects = [
-//   {
-//     id: 1,
-//     name: "SOFTWARE ARCHITECTURES, SDLC, Agile—Scrum, XP, TDD ,SOA, SaaS",
-//     pdfUrl: "https://code.visualstudio.com/download",
-//     name2:
-//       "HTTP ,Front End Fundamentals,HTML, XHTML DOM XML, XPATH, XSD, XSLT, CSS",
-//     pdfUrl2: "https://code.visualstudio.com/download",
-//   },
-//   {
-//     id: 2,
-//     name: "CSS3,Pre-Processors,Grid System Firebug, Fiddler, Web Works, HTML5",
-//     pdfUrl: "https://git-scm.com/downloads",
-//     name2: "JavaScript, OOP,Asynchronous Programming",
-//     pdfUrl2: "https://code.visualstudio.com/download",
-//   },
-//   {
-//     id: 3,
-//     name: "Server Side Programming,JSP, Servlets, JSTL Java— JSF",
-//     pdfUrl: "https://www.mongodb.com/",
-//     name2: "Web Services,REST API JSON, Frisby.JS",
-//     pdfUrl2: "https://code.visualstudio.com/download",
-//   },
-//   {
-//     id: 4,
-//     name: "NodeJS ,Events Streams Modules, Express.JS Socket.IO , Data Persistence",
-//     pdfUrl: "https://nodejs.org/en/download",
-//     name2: "AJAX, XHR, DOJO, ,Bootstrap",
-//     pdfUrl2: "https://code.visualstudio.com/download",
-//   },
-//   {
-//     id: 5,
-//     name: "AngularJS, Controllers, Markup Services, Routing, Directives Testing",
-//     pdfUrl: "https://nodejs.org/en/download",
-//     name2: "BackBone.JS, Models, Views, Templates ,Routing, Collections",
-//     pdfUrl2: "https://code.visualstudio.com/download",
-//   },
-//   {
-//     id: 6,
-//     name: "MongoDB, NoSQL Mongo Shell, Data Saving, Indexing, Documents, Collections",
-//     pdfUrl: "https://nodejs.org/en/download",
-//     name2:
-//       "JQuery,Selectors, DOM, Events,AJAX, JQuery UI, Widgets , Interactions and Effects",
-//     pdfUrl2: "https://code.visualstudio.com/download",
-//   },
-//   {
-//     id: 7,
-//     name: "Tools Grunt, Jasmine",
-//     pdfUrl: "https://nodejs.org/en/download",
-//     name2: "Design Patterns",
-//     pdfUrl2: "https://code.visualstudio.com/download",
-//   },
-//   // Add more subjects as needed
-// ];
-// const CourseContent = () => {
-//   return (
-//     <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-//       <CourseContentTable subjects={subjects} />
-//     </div>
-//   );
-// };
-
-// export default CourseContent;
-
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CourseContentTable from "@/components/Common/CourseContentTable";
 
 const CourseContent = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   const [subjects, setSubjects] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const response = await axios.get("http://127.0.0.1:8000/coursecontent");
-        console.log(response);
-        
         setSubjects(response.data.coursecontent);
       } catch (error) {
         console.error("Error fetching course content:", error);
       }
+      setLoading(false);
     };
 
     fetchData();
   }, []);
 
+  if (loading) {
+    return (
+      <div className="text-md mt-32 mb-4 flex justify-center text-center font-medium text-black dark:text-white sm:text-2xl">
+        Loading&nbsp;
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          className="inline h-[30px] w-[30px] text-black dark:text-white sm:h-[50px] sm:w-[50px]"
+        >
+          <circle cx="4" cy="12" r="3" fill="currentColor">
+            <animate
+              id="svgSpinners3DotsScale0"
+              attributeName="r"
+              begin="0;svgSpinners3DotsScale1.end-0.2s"
+              dur="0.6s"
+              values="3;.2;3"
+            />
+          </circle>
+          <circle cx="12" cy="12" r="3" fill="currentColor">
+            <animate
+              attributeName="r"
+              begin="svgSpinners3DotsScale0.end-0.48s"
+              dur="0.6s"
+              values="3;.2;3"
+            />
+          </circle>
+          <circle cx="20" cy="12" r="3" fill="currentColor">
+            <animate
+              id="svgSpinners3DotsScale1"
+              attributeName="r"
+              begin="svgSpinners3DotsScale0.end-0.36s"
+              dur="0.6s"
+              values="3;.2;3"
+            />
+          </circle>
+        </svg>
+      </div>
+    );
+  }
+
   return (
     <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-      {/* <>{console.log(subjects)}</> */}
       <CourseContentTable subjects={subjects} />
     </div>
   );

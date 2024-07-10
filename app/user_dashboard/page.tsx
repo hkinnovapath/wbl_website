@@ -141,7 +141,7 @@ const UserDashboard = () => {
         }
 
         const userData = await response.json();
-        console.log(userData);
+        // console.log(userData);
         sessionStorage.setItem("user_data", JSON.stringify(userData));
         sessionStorage.setItem("user_data_timestamp", Date.now().toString());
         setUser(userData);
@@ -164,10 +164,10 @@ const UserDashboard = () => {
     }
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("access_token");
-    router.push("/login"); // Redirect to signin page after logout
-  };
+  // const handleLogout = () => {
+  //   localStorage.removeItem("access_token");
+  //   router.push("/login"); // Redirect to signin page after logout
+  // };
 
   if (!user) {
     return (
@@ -259,14 +259,14 @@ const UserDashboard = () => {
               </table>
             </div>
           </div>
-          <div className="mt-8 text-center">
+          {/* <div className="mt-8 text-center">
             <button
               onClick={handleLogout}
               className="w-1/5 rounded-xl bg-red-500 px-4 py-3 text-white transition duration-300 hover:bg-red-600"
             >
               Logout
             </button>
-          </div>
+          </div> */}
         </div>
       </section>
     </main>

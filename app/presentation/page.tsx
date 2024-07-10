@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Layout from "@/components/Common/Layout";
 import ResourcesTable from "@/components/Common/resourcesTable";
+import CourseNavigation from "@/components/Common/CourseNavigation";
 // import { isAuthenticated } from "@/utils/auth"; // Import the auth check
 
 type ComponentType =
@@ -62,8 +63,12 @@ export default function Recordings() {
       setError(null);
 
       const sessionData = sessionStorage.getItem(`data_${activeComponent}`);
-      const sessionDataTimestamp = sessionStorage.getItem(`data_${activeComponent}_timestamp`);
-      const dataAge = Date.now() - (sessionDataTimestamp ? parseInt(sessionDataTimestamp, 10) : 0);
+      const sessionDataTimestamp = sessionStorage.getItem(
+        `data_${activeComponent}_timestamp`
+      );
+      const dataAge =
+        Date.now() -
+        (sessionDataTimestamp ? parseInt(sessionDataTimestamp, 10) : 0);
 
       if (sessionData && dataAge < 86400000) {
         setData(JSON.parse(sessionData));
@@ -71,8 +76,14 @@ export default function Recordings() {
         const fetchedData = await fetchPresentationData(activeComponent);
         if (fetchedData) {
           setData(fetchedData);
-          sessionStorage.setItem(`data_${activeComponent}`, JSON.stringify(fetchedData));
-          sessionStorage.setItem(`data_${activeComponent}_timestamp`, Date.now().toString());
+          sessionStorage.setItem(
+            `data_${activeComponent}`,
+            JSON.stringify(fetchedData)
+          );
+          sessionStorage.setItem(
+            `data_${activeComponent}_timestamp`,
+            Date.now().toString()
+          );
         } else {
           setError("No data found");
         }
@@ -140,7 +151,7 @@ export default function Recordings() {
           <Layout currentPage="Presentations" />
         </div>
       </nav>
-
+      <CourseNavigation />
       <section className="mb-8 flex flex-col justify-between sm:flex-row">
         <div className="mt-10 flex justify-center sm:w-1/3">
           <div className="flex w-60 flex-col">

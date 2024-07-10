@@ -14,7 +14,6 @@ interface Batch {
 
 const RecordingComp: React.FC = () => {
   const searchParams = useSearchParams();
-
   const course = searchParams.get('course') as string; // Get 'course' parameter from URL
 
   const [batches, setBatches] = useState<Batch[]>([]);
@@ -25,7 +24,11 @@ const RecordingComp: React.FC = () => {
   const [isLoadingRecordings, setIsLoadingRecordings] = useState<boolean>(false);
 
   useEffect(() => {
-     if (course) {
+    if (course) {
+      // Clear previous selections when course changes
+      setSelectedBatch('');
+      setRecordings([]);
+      setSelectedVideo(null);
       fetchBatches(course);
     }
   }, [course]);
@@ -40,7 +43,6 @@ const RecordingComp: React.FC = () => {
     try {
       setIsLoadingBatches(true);
       const response = await fetch(`http://127.0.0.1:8000/batches?course=${course}`);
-      // http://localhost:3000/recording/recordingComp?course=UI
       
       if (!response.ok) {
         throw new Error('Failed to fetch batches');
@@ -62,7 +64,6 @@ const RecordingComp: React.FC = () => {
   const fetchRecordings = async (batchname: string) => {
     try {
       setIsLoadingRecordings(true);
-      // const subject = course; // Assuming 'course' is the same as 'subject' in the API
       const response = await fetch(`http://127.0.0.1:8000/recording?course=${course}&batchname=${batchname}`);
       if (!response.ok) {
         throw new Error('Failed to fetch recordings');
@@ -122,7 +123,7 @@ const RecordingComp: React.FC = () => {
             <option disabled>Loading batches...</option>
           ) : (
             <>
-            <option value='' disabled>Please Select  batches...</option>
+              <option value='' disabled>Please Select batches...</option>
               {batches.map((batch, index) => (
                 <option key={index} value={batch.batchname}>
                   {batch.batchname}

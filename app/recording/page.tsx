@@ -1,160 +1,52 @@
-// "use client";
-// import React from "react";
-// import { useRouter } from "next/navigation";
-// import Layout from "@/components/Common/Layout";
-
-// export default function Course() {
-//   const router = useRouter();
-
-//   const handleNavigation = (course: string) => {
-//     router.push(`/recording/recordingComp?course=${course}`);
-//   };
-
-//   return (
-//     <div>
-//       <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
-//         <nav className="mt-16 flex flex-col sm:flex-row items-center justify-between">
-//           <h1 className="text-2xl sm:text-4xl font-bold">Select Course</h1>
-//           <div className="hidden sm:block">
-//             <Layout currentPage="Course" />
-//           </div>
-//         </nav>
-
-//         <section className="mb-8 flex flex-col sm:flex-row justify-between">
-//           <div className="mt-10 flex sm:w-1/3 justify-center">
-//             <div className="flex flex-col w-60">
-//               <button
-//                 className="mb-1 w-full sm:w-44 rounded-md bg-gradient-to-br from-primary to-blue-300 hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 px-4 py-2 text-black font-bold"
-//                 onClick={() => handleNavigation("UI")}
-//               >
-//                UI Fullstack
-//               </button>
-//               <button
-//                 className="mb-1 w-full sm:w-44 rounded-md bg-gradient-to-br from-primary to-blue-300 hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 px-4 py-2 text-black font-bold"
-//                 onClick={() => handleNavigation("ML")}
-//               >
-//                 Machine Learning
-//               </button>
-//               <button
-//                 className="mb-1 w-full sm:w-44 rounded-md bg-gradient-to-br from-primary to-blue-300 hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 px-4 py-2 text-black font-bold"
-//                 onClick={() => handleNavigation("QA")}
-//               >
-//                 Quality Engineer
-//               </button>
-//             </div>
-//           </div>
-
-//           <div className="mt-10 capitalize text-4xl font-semibold items-center flex flex-grow space-y-4">
-//             please select your course...
-//           </div>
-//         </section>
-//       </main>
-//     </div>
-//   );
-// }
-
-
-// "use client";
-// import React, { useState, useEffect } from "react";
-// import { useRouter } from "next/navigation";
-// import Layout from "@/components/Common/Layout";
-// import { isAuthenticated } from "@/utils/auth";
-
-// export default function Course() {
-//   const router = useRouter();
-//   const [loading, setLoading] = useState(true);
-//   const [errorMessage, setErrorMessage] = useState("");
-
-//   useEffect(() => {
-//     const checkAuthentication = async () => {
-//       try {
-//         const { valid, message } = await isAuthenticated();
-//         if (!valid) {
-//           setErrorMessage(message);
-//           setTimeout(() => {
-//             router.push(`/login?redirect=${encodeURIComponent(window.location.href)}`);
-//           }, 3000);
-//         } else {
-//           setLoading(false);
-//         }
-//       } catch (error) {
-//         console.error('Error while checking authentication:', error);
-//         setErrorMessage("An error occurred while checking authentication");
-//         setLoading(false);
-//       }
-//     };
-
-//     checkAuthentication();
-//   }, []); // Empty dependency array to run effect only once on mount
-
-//   const handleNavigation = (course) => {
-//     router.push(`/recording/recordingComp?course=${course}`);
-//   };
-
-//   if (loading) {
-//     return (
-//       <div className="mt-32 flex h-screen items-center justify-center pb-24 text-xl text-dark dark:text-white sm:text-4xl md:text-5xl lg:text-6xl">
-//         {errorMessage || "Loading..."}
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <div>
-//       <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
-//         <nav className="mt-16 flex flex-col sm:flex-row items-center justify-between">
-//           <h1 className="text-2xl sm:text-4xl font-bold">Select Course</h1>
-//           <div className="hidden sm:block">
-//             <Layout currentPage="Course" />
-//           </div>
-//         </nav>
-//         <section className="mb-8 flex flex-col sm:flex-row justify-between">
-//           <div className="mt-10 flex sm:w-1/3 justify-center">
-//             <div className="flex flex-col w-60">
-//               <button
-//                 className="mb-1 w-full sm:w-44 rounded-md bg-gradient-to-br from-primary to-blue-300 hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 px-4 py-2 text-black font-bold"
-//                 onClick={() => handleNavigation("UI")}
-//               >
-//                 UI Fullstack
-//               </button>
-//               <button
-//                 className="mb-1 w-full sm:w-44 rounded-md bg-gradient-to-br from-primary to-blue-300 hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 px-4 py-2 text-black font-bold"
-//                 onClick={() => handleNavigation("ML")}
-//               >
-//                 Machine Learning
-//               </button>
-//               <button
-//                 className="mb-1 w-full sm:w-44 rounded-md bg-gradient-to-br from-primary to-blue-300 hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 px-4 py-2 text-black font-bold"
-//                 onClick={() => handleNavigation("QA")}
-//               >
-//                 Quality Engineer
-//               </button>
-//             </div>
-//           </div>
-//           <div className="mt-10 capitalize text-4xl font-semibold items-center flex flex-grow space-y-4">
-//             Please select your course...
-//           </div>
-//         </section>
-//       </main>
-//     </div>
-//   );
-// }
-
-
-
 "use client";
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Layout from "@/components/Common/Layout";
 import { isAuthenticated } from "@/utils/auth";
 import Modal from "@/components/Common/Modal"; // Import the Modal component
+import ClassComp from "@/components/Recording/ClassComp";
+import SearchComp from "@/components/Recording/SearchComp";
+import SessionComp from "@/components/Recording/SessionComp";
+import CourseNavigation from "@/components/Common/CourseNavigation";
 
-export default function Course() {
-  const router = useRouter();
+type ComponentType = "class" | "search" | "session"; // Define a union type for valid component types
+
+export default function Recordings() {
+  const router = useRouter(); // Initialize router
+  const pathname = usePathname(); // Get the current path
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const [showModal, setShowModal] = useState(false); // State to control modal visibility
 
+  
+  // State to manage active component
+  const [activeComponent, setActiveComponent] =
+    useState<ComponentType>("class"); // Specify the type of activeComponent
+    const handleButtonClick = (component: ComponentType) => {
+      // Specify the type of the component parameter
+      setActiveComponent(component);
+    };
+  
+    // Render component based on activeComponent state
+    const renderComponent = () => {
+      switch (activeComponent) {
+        case "class":
+          return <ClassComp />;
+        case "search":
+          return <SearchComp />;
+        case "session":
+          return <SessionComp />;
+        default:
+          return null;
+      }
+    };
+  
+   
+  
+    useEffect(() => {
+      router.push(`/recording?course=ML`);
+    }, [router]);
+  
   useEffect(() => {
     console.log('UE called');
     
@@ -185,10 +77,6 @@ export default function Course() {
     checkAuthentication();
   }, []); // Empty dependency array to run effect only once on mount
 
-  const handleNavigation = (course) => {
-    router.push(`/recording/recordingComp?course=${course}`);
-  };
-
   if (loading) {
     return (
       <div className="mt-32 flex h-screen items-center justify-center pb-24 text-xl text-dark dark:text-white sm:text-4xl md:text-5xl lg:text-6xl">
@@ -196,41 +84,52 @@ export default function Course() {
       </div>
     );
   }
-
+ 
   return (
     <div>
+      {/* Main content */}
       <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
-        <nav className="mt-16 flex flex-col sm:flex-row items-center justify-between">
-          <h1 className="text-2xl sm:text-4xl font-bold">Select Course</h1>
+        {/* Navbar */}
+        <nav className="mt-16 flex flex-col items-center justify-between sm:flex-row">
+          <h1 className="text-2xl font-bold sm:text-4xl">
+            Recording
+            <span className="text-lg font-light sm:text-2xl">(Classes)</span>
+          </h1>
+
           <div className="hidden sm:block">
-            <Layout currentPage="Course" />
+            <Layout currentPage="Recordings" />
           </div>
         </nav>
-        <section className="mb-8 flex flex-col sm:flex-row justify-between">
-          <div className="mt-10 flex sm:w-1/3 justify-center">
-            <div className="flex flex-col w-60">
+        <CourseNavigation />
+        {/* Section with buttons and dropdowns */}
+        <section className="mb-8 flex flex-col justify-between sm:flex-row">
+          {/* Left side */}
+          <div className="mt-10 flex justify-center sm:w-1/3">
+            <div className="flex w-60 flex-col">
               <button
-                className="mb-1 w-full sm:w-44 rounded-md bg-gradient-to-br from-primary to-blue-300 hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 px-4 py-2 text-black font-bold"
-                onClick={() => handleNavigation("UI")}
+                className="mb-1 w-full rounded-md bg-gradient-to-br from-primary to-blue-300 px-4 py-2 font-bold text-black hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 sm:w-36"
+                onClick={() => handleButtonClick("class")}
               >
-                UI Fullstack
+                Class
               </button>
               <button
-                className="mb-1 w-full sm:w-44 rounded-md bg-gradient-to-br from-primary to-blue-300 hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 px-4 py-2 text-black font-bold"
-                onClick={() => handleNavigation("ML")}
+                className="mb-1 w-full rounded-md bg-gradient-to-br from-primary to-blue-300 px-4 py-2 font-bold text-black hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 sm:w-36"
+                onClick={() => handleButtonClick("search")}
               >
-                Machine Learning
+                Search
               </button>
               <button
-                className="mb-1 w-full sm:w-44 rounded-md bg-gradient-to-br from-primary to-blue-300 hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 px-4 py-2 text-black font-bold"
-                onClick={() => handleNavigation("QA")}
+                className="mb-1 w-full rounded-md bg-gradient-to-br from-primary to-blue-300 px-4 py-2 font-bold text-black hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 sm:w-36"
+                onClick={() => handleButtonClick("session")}
               >
-                Quality Engineer
+                Session
               </button>
             </div>
           </div>
-          <div className="mt-10 capitalize text-4xl font-semibold items-center flex flex-grow space-y-4">
-            Please select your course...
+
+          {/* Right side */}
+          <div className="mt-10 flex-grow space-y-4 sm:ml-20">
+            {renderComponent()}
           </div>
         </section>
       </main>

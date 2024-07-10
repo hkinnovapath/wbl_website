@@ -3,23 +3,23 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
-import genAI from "public/images/Carousel/Gen-AI.jpg";
+import ml1 from "public/images/NewData/ML 1.jpeg";
 import html_css_js from "public/images/Carousel/html-css-JS.webp";
-import langChain from "public/images/Carousel/LangChain.webp";
+import de3 from "public/images/NewData/DE 3.jpeg";
 import ntt from "public/images/Carousel/next-tailwind-TS.avif";
-import nem from "public/images/Carousel/node-express-mongo.jpg";
+import de1 from "public/images/NewData/DE 1.jpeg";
 import tlJ from "public/images/Carousel/testing-libs-JS.png";
-import fapi from "public/images/Carousel/fastapi-jwt.jpg";
+import ml3 from "public/images/NewData/ML 3.jpeg";
 
 function Carousel() {
   const slides = [
-    { url: genAI },
+    { url: ml1 },
+    { url: de3 },
+    { url: ml3 },
+    { url: de1 },
     { url: ntt },
     { url: html_css_js },
-    { url: langChain },
-    { url: nem },
     { url: tlJ },
-    { url: fapi },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);

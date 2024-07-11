@@ -1,6 +1,6 @@
 import Image from "next/image";
-import TestimonialImage01 from "@/public/images/courses/fullstack development.jpeg"; // Replace with the actual path
-import TestimonialImage02 from "@/public/images/courses/datascience.jpg"; // Replace with the actual path
+import fsd from "@/public/images/courses/fullstack development.jpeg"; // Replace with the actual path
+import ml from "@/public/images/NewData/features-03-image-02.jpeg"; // Replace with the actual path
 import TestimonialImage03 from "@/public/images/test3.jpg"; // Replace with the actual path
 
 export default function Cards() {
@@ -16,7 +16,7 @@ export default function Cards() {
           <div className="flex justify-center">
             <Image
               className="rounded-xl border dark:border-gray-700"
-              src={TestimonialImage01}
+              src={fsd}
               width={300}
               height={250}
               alt="Testimonial 01"
@@ -45,7 +45,7 @@ export default function Cards() {
           <div className="flex justify-center">
             <Image
               className="rounded-xl border dark:border-gray-700"
-              src={TestimonialImage02}
+              src={ml}
               width={300}
               height={250}
               alt="Testimonial 02"

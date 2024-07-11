@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Layout from "@/components/Common/Layout";
 import { isAuthenticated } from "@/utils/auth";
 import Modal from "@/components/Common/Modal"; // Import the Modal component
@@ -13,7 +13,6 @@ type ComponentType = "class" | "search" | "session"; // Define a union type for 
 
 export default function Recordings() {
   const router = useRouter(); // Initialize router
-  // const pathname = usePathname(); // Get the current path
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const [showModal, setShowModal] = useState(false); // State to control modal visibility
@@ -45,43 +44,31 @@ export default function Recordings() {
   }, [router]);
 
   useEffect(() => {
-    // console.log("UE called");
-
     const checkAuthentication = async () => {
       try {
         const { valid, message } = await isAuthenticated();
-        console.log(valid);
-
         if (!valid) {
-          console.log(!valid);
           setErrorMessage(message);
-          // setShowModal(true); // Show modal if not valid
-          // setTimeout(() => {
-          //   // console.log((`/login?redirect=${encodeURIComponent(window.location.href)}`));
-
-            // router.push(`/login?redirect=${encodeURIComponent(window.location.href)}`);
-            router.push('/login');
-          // }, 3000);
+          setShowModal(true); // Show modal if not valid
         } else {
           setLoading(false);
         }
       } catch (error) {
         console.error("Error while checking authentication:", error);
         setErrorMessage("An error occurred while checking authentication");
-        setLoading(false);
+        setShowModal(true);
       }
     };
 
     checkAuthentication();
   }, []); // Empty dependency array to run effect only once on mount
 
-  if (loading) {
-    return (
-      <div className="mt-32 flex h-screen items-center justify-center pb-24 text-xl text-dark dark:text-white sm:text-4xl md:text-5xl lg:text-6xl">
-        {errorMessage || "Loading..."}
-      </div>
-    );
-  }
+  const handleClose = () => {
+    localStorage.removeItem("access_token");
+    sessionStorage.clear();
+    router.push("/login");
+    return setShowModal(false);
+  };
 
   return (
     <div>
@@ -135,7 +122,7 @@ export default function Recordings() {
         <Modal
           title="Authentication Error"
           message={errorMessage}
-          onClose={() => setShowModal(false)}
+          onClose={handleClose}
         />
       )}
     </div>

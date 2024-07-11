@@ -1,5 +1,6 @@
 import Accordion from "@/components/Faq";
 import Layout from "@/components/Common/Layout";
+import Link from "next/link";
 
 export default function Faq() {
   return (
@@ -20,7 +21,7 @@ export default function Faq() {
           <div className="rounded-lg bg-white dark:bg-transparent">
             <Accordion
               title="What are the courses Whitebox-Learning Offers?"
-              content="QA (Manual, Automation with SoapUI, JMeter, QTP & Selenium), JavaStack, UI and .NET. For more information visit www.whiteboxqa.com, www.msnetframework.com, www.uiprogrammer.com and www.javastackdeveloper.com"
+              content="UI Fullstack Development, DSML(Data Science and Machine Learning)"
             />
             <Accordion
               title="Do you provide corporate training?"
@@ -36,7 +37,7 @@ export default function Faq() {
             />
             <Accordion
               title="Where are your offices located?"
-              content="We are located at Paseo Padre Parkway, Fremont, CA 94538"
+              content="We are located at  6500 Dublin Blvd #214, Dublin, CA 94568"
             />
             <Accordion
               title="What if I miss any of your classes?"
@@ -56,11 +57,11 @@ export default function Faq() {
             />
             <Accordion
               title="Do you charge any fee for the training?"
-              content="Initial enrollment fee would be $675"
+              content="Enrollment fee: $725"
             />
             <Accordion
               title="What are the other formalities that I need to complete to enroll in your courses?"
-              content="You need to sign our training agreement and submit few documents. Please call our Recruiting Team at 925-400-7330 for more information."
+              content="You need to sign our training agreement and submit few documents. Please call our Recruiting Team at  +1 925-557-1053  for more information."
             />
             <Accordion
               title="Will you help in resume preparation?"
@@ -70,10 +71,22 @@ export default function Faq() {
               title="Will you help in interview preparation?"
               content="Yes, our training team will do mock interviews and interview preparation sessions for you."
             />
+            {/* <Accordion
+              title="Where can I find your class schedules and syllabus for training?"
+              content="Please follow the links to go through : Class Schedule and Syllabus"            
+            /> */}
             <Accordion
               title="Where can I find your class schedules and syllabus for training?"
-              content="Please follow the links to go through our Schedules: QA Schedule: Schedule UI Schedule: Schedule .Net Schedule: Schedule Java Schedule: Schedule"
+              content={
+                <>
+                  Please follow the links to go through : 
+                  <Link href="/schedule" className="inline-block">
+                    <h1 className="text-blue-600 dark:text-blue-500">Class Schedule and Syllabus(Course Content)</h1>
+                  </Link>
+                </>
+              }          
             />
+
           </div>
         </div>
       </main>

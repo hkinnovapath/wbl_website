@@ -54,7 +54,7 @@ const SignupPage = () => {
         setMessagee(data.message);
       } else {
         setResponseStatus("error");
-        setMessagee(data.error || "Registration failed");
+        setMessagee(data.detail || "Registration failed");
       }
     } catch (error) {
       setResponseStatus("error");

@@ -240,13 +240,13 @@ const Header = () => {
                   <div className="flex gap-4">
                     <button
                       onClick={display_user_dashboard}
-                      className="rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white transition duration-500 hover:bg-opacity-90"
+                      className="rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-1 px-4  lg:text-base text-sm font-bold text-white transition duration-500 hover:bg-opacity-90"
                     >
-                      My Profile
+                      My Profile  
                     </button>
                     <button
                       onClick={handleLogout}
-                      className="rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white transition duration-500 hover:bg-opacity-90"
+                      className="rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3  px-6 lg:text-base text-sm font-bold text-white transition duration-500 hover:bg-opacity-90"
                     >
                       Logout
                     </button>

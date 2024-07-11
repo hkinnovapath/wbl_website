@@ -13,62 +13,60 @@ type ComponentType = "class" | "search" | "session"; // Define a union type for 
 
 export default function Recordings() {
   const router = useRouter(); // Initialize router
-  const pathname = usePathname(); // Get the current path
+  // const pathname = usePathname(); // Get the current path
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const [showModal, setShowModal] = useState(false); // State to control modal visibility
 
-  
   // State to manage active component
   const [activeComponent, setActiveComponent] =
     useState<ComponentType>("class"); // Specify the type of activeComponent
-    const handleButtonClick = (component: ComponentType) => {
-      // Specify the type of the component parameter
-      setActiveComponent(component);
-    };
-  
-    // Render component based on activeComponent state
-    const renderComponent = () => {
-      switch (activeComponent) {
-        case "class":
-          return <ClassComp />;
-        case "search":
-          return <SearchComp />;
-        case "session":
-          return <SessionComp />;
-        default:
-          return null;
-      }
-    };
-  
-   
-  
-    useEffect(() => {
-      router.push(`/recording?course=ML`);
-    }, [router]);
-  
+  const handleButtonClick = (component: ComponentType) => {
+    // Specify the type of the component parameter
+    setActiveComponent(component);
+  };
+
+  // Render component based on activeComponent state
+  const renderComponent = () => {
+    switch (activeComponent) {
+      case "class":
+        return <ClassComp />;
+      case "search":
+        return <SearchComp />;
+      case "session":
+        return <SessionComp />;
+      default:
+        return null;
+    }
+  };
+
   useEffect(() => {
-    console.log('UE called');
-    
+    router.push(`/recording?course=ML`);
+  }, [router]);
+
+  useEffect(() => {
+    // console.log("UE called");
+
     const checkAuthentication = async () => {
       try {
         const { valid, message } = await isAuthenticated();
         console.log(valid);
-        
+
         if (!valid) {
           console.log(!valid);
           setErrorMessage(message);
           // setShowModal(true); // Show modal if not valid
           // setTimeout(() => {
           //   // console.log((`/login?redirect=${encodeURIComponent(window.location.href)}`));
-              
-          //   router.push(`/login?redirect=${encodeURIComponent(window.location.href)}`);
+
+            // router.push(`/login?redirect=${encodeURIComponent(window.location.href)}`);
+            router.push('/login');
           // }, 3000);
         } else {
           setLoading(false);
         }
       } catch (error) {
-        console.error('Error while checking authentication:', error);
+        console.error("Error while checking authentication:", error);
         setErrorMessage("An error occurred while checking authentication");
         setLoading(false);
       }
@@ -84,7 +82,7 @@ export default function Recordings() {
       </div>
     );
   }
- 
+
   return (
     <div>
       {/* Main content */}
@@ -134,7 +132,11 @@ export default function Recordings() {
         </section>
       </main>
       {showModal && (
-        <Modal title="Authentication Error" message={errorMessage} onClose={() => setShowModal(false)} />
+        <Modal
+          title="Authentication Error"
+          message={errorMessage}
+          onClose={() => setShowModal(false)}
+        />
       )}
     </div>
   );

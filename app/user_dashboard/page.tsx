@@ -148,6 +148,9 @@ const UserDashboard = () => {
       } catch (error) {
         console.error("Error fetching user details:", error);
         // Optionally handle error scenarios (e.g., redirect to login)
+        localStorage.removeItem("access_token");
+        sessionStorage.clear();
+        router.push("/login");
       }
     };
 

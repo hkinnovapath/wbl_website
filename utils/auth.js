@@ -74,7 +74,7 @@ export const isAuthenticated = async () => {
   const token = localStorage.getItem("access_token");
 
   if (!token) {
-    return { valid: false, message: "No token found" };
+    return { valid: false, message: "Please Login!" };
   }
 
   try {

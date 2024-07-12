@@ -10,31 +10,35 @@ const ContactDetails = () => {
       className="  wow fadeInUp relative z-10 flex flex-col justify-center rounded-2xl bg-primary/[3%] bg-gradient-to-br from-pink-400 to-sky-200 p-8 text-black shadow-lg dark:bg-primary/10 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500 dark:text-white sm:p-11 lg:p-8 xl:p-11"
       data-wow-delay=".2s"
     >
-      <h3 className="mb-8 text-lg font-bold sm:text-2xl md:text-3xl leading-tight text-black dark:text-white">
+      <h3 className="mb-8 text-lg font-bold leading-tight text-black dark:text-white sm:text-2xl md:text-3xl">
         Contact Details
       </h3>
-      <p className="mb-2 font-bold  text-xs sm:text-sm md:text-md">Fremont Office:</p>
+      <p className="md:text-md mb-2  text-xs font-bold sm:text-sm">
+        Fremont Office:
+      </p>
 
       <a
         href={googleMapsLink}
         target="_blank"
         rel="noopener noreferrer"
-        className=" text-xs sm:text-sm md:text-md font-bold text-blue-400 dark:text-black"
+        className=" md:text-md text-xs font-bold text-blue-400 dark:text-black sm:text-sm"
       >
         {address}
       </a>
-      <h2 className="mb-2 mt-8 text-base font-bold sm:text-sm md:text-md">All Enquiries</h2>
+      <h2 className="md:text-md mb-2 mt-8 text-base font-bold sm:text-sm">
+        All Enquiries
+      </h2>
 
-      <p className="mb-2 text-xs sm:text-sm md:text-md">
+      <p className="md:text-md mb-2 text-xs sm:text-sm">
         Tel:{" "}
         <a
           className="font-bold text-blue-400 dark:text-black"
-          href="tel:+19254007330"
+          href="tel:+19255571053"
         >
-          +1 925-400-7330
+          +1 925-557-1053
         </a>
       </p>
-      <p className="text-xs  sm:text-sm md:text-md">
+      <p className="md:text-md  text-xs sm:text-sm">
         Email:{" "}
         <a
           className="font-bold text-blue-400 dark:text-black"
@@ -45,7 +49,7 @@ const ContactDetails = () => {
       </p>
 
       <div className="absolute top-0 left-0 z-[-1]">
-         <svg
+        <svg
           width="370"
           height="596"
           viewBox="0 0 370 596"

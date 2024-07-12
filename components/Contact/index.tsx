@@ -88,7 +88,7 @@ const ContactForm = () => {
                         Get in touch!
                       </h1>
                       <p className="md:text-md text-xs text-gray-700 dark:text-gray-300 sm:text-sm">
-                        We'd love to hear from you.
+                        We&apos;d love to hear from you.
                       </p>
                       <p className="md:text-md text-xs text-gray-700 dark:text-gray-300 sm:text-sm">
                         Fill up the form below to send us a message.

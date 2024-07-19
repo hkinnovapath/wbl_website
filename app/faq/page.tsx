@@ -70,11 +70,7 @@ export default function Faq() {
             <Accordion
               title="Will you help in interview preparation?"
               content="Yes, our training team will do mock interviews and interview preparation sessions for you."
-            />
-            {/* <Accordion
-              title="Where can I find your class schedules and syllabus for training?"
-              content="Please follow the links to go through : Class Schedule and Syllabus"            
-            /> */}
+            />           
             <Accordion
               title="Where can I find your class schedules and syllabus for training?"
               content={

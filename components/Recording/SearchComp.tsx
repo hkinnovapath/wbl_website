@@ -54,7 +54,7 @@
           cancelTokenRef.current = axios.CancelToken.source();
   
           try {
-            const response = await axios.get('http://127.0.0.1:8000/recording', {
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/recording`, {
               params: {course, search: query },
               cancelToken: cancelTokenRef.current.token,
             });

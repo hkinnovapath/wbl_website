@@ -26,7 +26,7 @@ const SigninPage = () => {
     formData.append("password", password); // Replace 'password' with the actual input field name
 
     try {
-      const response = await fetch("http://localhost:8000/login", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -67,6 +67,8 @@ const SigninPage = () => {
 
   // Check if access token exists on load and redirect if present
   useEffect(() => {
+    console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
+
     const accessToken = localStorage.getItem("access_token");
     if (accessToken) {
       router.push(callbackUrl); // Redirect to dashboard if already logged in

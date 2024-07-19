@@ -8,10 +8,10 @@ import googleCalendarPlugin from "@fullcalendar/google-calendar";
 const Calendar = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
+  
   // Google Calendar API configuration
-  const googleCalendarApiKey = "AIzaSyDOp2lKANdmMhBRNZWBXA97pQOgF_yoQ3Q";
-  const googleCalendarId =
-    "q84dbo0ucqc7evjifhajadmo80@group.calendar.google.com";
+  const googleCalendarApiKey = process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_API_KEY;
+  const googleCalendarId = process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID;
 
   // Function to add custom classes to FullCalendar toolbar elements
   const addCustomClasses = () => {

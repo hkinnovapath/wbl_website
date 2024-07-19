@@ -50,7 +50,7 @@ type ComponentType =
 const fetchPresentationData = async (course: string, type: ComponentType) => {
   try {
     const response = await fetch(
-      `http://127.0.0.1:8000/materials?course=${course}&search=${type}`
+      `${process.env.NEXT_PUBLIC_API_URL}/materials?course=${course}&search=${type}`
     );
 
     if (!response.ok) {

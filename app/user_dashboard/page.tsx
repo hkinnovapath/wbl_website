@@ -11,7 +11,7 @@ const UserDashboard = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await fetch("http://localhost:8000/user_dashboard", {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user_dashboard`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`,

@@ -45,7 +45,7 @@ export default function SessionComp() {
   const fetchSessions = async () => {
     try {
       const accessToken = localStorage.getItem("access_token");
-      const response = await fetch(`http://localhost:8000/sessions`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/sessions`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

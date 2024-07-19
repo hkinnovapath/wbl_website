@@ -42,7 +42,7 @@ const RecordingComp: React.FC = () => {
   const fetchBatches = async (course: string) => {
     try {
       setIsLoadingBatches(true);
-      const response = await fetch(`http://127.0.0.1:8000/batches?course=${course}`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/batches?course=${course}`);
       
       if (!response.ok) {
         throw new Error('Failed to fetch batches');
@@ -64,7 +64,7 @@ const RecordingComp: React.FC = () => {
   const fetchRecordings = async (batchname: string) => {
     try {
       setIsLoadingRecordings(true);
-      const response = await fetch(`http://127.0.0.1:8000/recording?course=${course}&batchname=${batchname}`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recording?course=${course}&batchname=${batchname}`);
       if (!response.ok) {
         throw new Error('Failed to fetch recordings');
       }

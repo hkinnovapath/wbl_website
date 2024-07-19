@@ -7,10 +7,10 @@ export default function Assignment() {
       <main className=" mx-auto max-w-6xl px-4 py-6 sm:px-6">
         {/* Navbar */}
         <nav className="mt-16 flex flex-col items-center justify-between sm:flex-row">
-          <h1 className="text-2xl font-bold sm:text-4xl">Assignment </h1>
+          <h1 className="text-2xl font-bold sm:text-4xl">Resume </h1>
           {/* <Breadcrumb /> */}
           <div className="hidden sm:block">
-            <Layout currentPage="Assignment" />
+            <Layout currentPage="Resume"/>
           </div>
         </nav>
         <div className="mt-32 pb-24 text-center text-xl text-red-600 sm:text-4xl md:text-5xl lg:text-6xl">

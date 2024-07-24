@@ -118,13 +118,13 @@ const UserDashboard = () => {
       </nav>
       <section className="flex justify-center">
         <div className="w-5/6 rounded-3xl bg-gradient-to-br from-pink-300 to-sky-200 p-8 px-10 py-10 text-white shadow-lg dark:bg-gradient-to-br dark:from-pink-600 dark:to-sky-500">
-          <h2 className="mb-8 text-center text-2xl font-bold text-gray-800 dark:text-white">
+          <h2 className="mb-8  text-center sm:text-2xl text-xl font-bold text-gray-800 dark:text-white">
             My Details
           </h2>
           <div className="flex w-full justify-center overflow-x-auto">
             <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-pink-400 to-sky-300 p-8 px-10 py-10 text-white shadow-2xl dark:bg-gradient-to-br dark:from-pink-800 dark:to-sky-600">
               <table className="w-1/2 divide-y divide-gray-200 dark:divide-gray-700">
-                <tbody>
+                <tbody className="font-semibold text-4xl text-red-500 ">
                   {data.map((item, index) => (
                     <TableRow
                       key={index}

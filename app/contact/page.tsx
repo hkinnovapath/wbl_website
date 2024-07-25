@@ -10,7 +10,7 @@ const ContactPage = () => {
           </h1>
           <div className="hidden md:block">
             <Layout currentPage="Contact" />
-          </div>
+          </div>  
         </nav>
         <div className="flex flex-wrap md:flex-nowrap">
           <div className="w-full ">

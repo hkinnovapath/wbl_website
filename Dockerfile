@@ -26,7 +26,7 @@ RUN echo "NODE_ENV is set to: $NODE_ENV"
 RUN npm run build || { echo 'Build failed'; exit 1; }
 
 # Copy the appropriate environment file based on the build argument
-# COPY .env.$NODE_ENV .env
+COPY .env.$NODE_ENV .env
 
 # Expose the port Next.js app runs on (usually 3000)
 EXPOSE 3000

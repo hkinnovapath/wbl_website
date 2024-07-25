@@ -173,7 +173,6 @@ const ResourcesTable = ({
         </thead>
         <tbody>
           {data.map((subject: any, index: any) => {
-            console.log(subject);
             return (
               <tr
                 key={subject.id}

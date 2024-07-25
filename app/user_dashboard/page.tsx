@@ -99,10 +99,10 @@ const UserDashboard = () => {
 
   const TableRow = ({ label, value, isEven }) => (
     <tr>
-      <td className="whitespace-nowrap  px-6 py-4 text-sm font-medium text-black dark:text-white">
-        {label}
+      <td className="font-bold sm:px-6 px-3 sm:py-4 py-2 text-xs sm:text-base  text-black dark:text-white">
+        {label}{':-'}
       </td>
-      <td className="rounded-4xl whitespace-nowrap  px-6 py-4 text-sm text-black dark:text-white">
+      <td className="rounded-4xl font-bold  sm:px-6 px-3 sm:py-4 py-2 text-xs sm:text-base text-black dark:text-white">
         {value}
       </td>
     </tr>
@@ -111,22 +111,22 @@ const UserDashboard = () => {
   return (
     <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
       <nav className="mt-16 flex flex-col items-center justify-between sm:flex-row">
-        <h1 className="text-2xl font-bold sm:text-4xl">User Dashboard</h1>
+        <h1 className="text-xl sm:mb-0 mb-5 font-bold sm:text-4xl">User Dashboard</h1>
         <div className="hidden sm:block">
           <Layout currentPage="Dashboard" />
         </div>
       </nav>
       <section className="flex justify-center">
-        <div className="w-5/6 rounded-3xl bg-gradient-to-br from-pink-300 to-sky-200 p-8 px-10 py-10 text-white shadow-lg dark:bg-gradient-to-br dark:from-pink-600 dark:to-sky-500">
-          <h2 className="mb-8  text-center sm:text-2xl text-xl font-bold text-gray-800 dark:text-white">
+        <div className="sm:w-5/6 w-72  rounded-3xl bg-gradient-to-br from-pink-300 to-sky-200 p-8 px-10 py-10 text-white shadow-lg dark:bg-gradient-to-br dark:from-pink-600 dark:to-sky-500">
+          <h2 className="mb-8  text-center sm:text-2xl text-lg font-bold text-gray-800 dark:text-white">
             My Details
           </h2>
-          <div className="flex w-full justify-center overflow-x-auto">
-            <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-pink-400 to-sky-300 p-8 px-10 py-10 text-white shadow-2xl dark:bg-gradient-to-br dark:from-pink-800 dark:to-sky-600">
-              <table className="w-1/2 divide-y divide-gray-200 dark:divide-gray-700">
-                <tbody className="font-semibold text-4xl text-red-500 ">
+          <div className="flex w-full  justify-center overflow-x-auto">
+            <div className="rounded-2xl bg-gradient-to-br from-pink-400 to-sky-300  px-2 sm:px-16 py-7 sm:py-10 text-white shadow-2xl dark:bg-gradient-to-br dark:from-pink-800 dark:to-sky-600">
+              <table className="w-1/2 divide-y  divide-gray-200 dark:divide-gray-700">
+                <tbody className=" ">
                   {data.map((item, index) => (
-                    <TableRow
+                    <TableRow 
                       key={index}
                       label={item.label}
                       value={item.value}

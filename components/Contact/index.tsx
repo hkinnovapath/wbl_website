@@ -103,7 +103,7 @@ const ContactForm = () => {
                         Name:
                       </label>{" "}
                       <input
-                        className="focus:shadow-outline mb-4 w-full appearance-none rounded bg-white py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+                        className="focus:shadow-outline mb-4 w-full appearance-none rounded-3xl bg-white py-3 px-5 leading-tight text-gray-700 shadow focus:outline-none"
                         type="text"
                         placeholder="Enter Your Name"
                         name="name"
@@ -114,7 +114,7 @@ const ContactForm = () => {
                         Email:
                       </label>
                       <input
-                        className="focus:shadow-outline mb-4 w-full appearance-none rounded bg-white py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+                        className="focus:shadow-outline  mb-4 w-full appearance-none rounded-3xl bg-white py-3 px-5 leading-tight text-gray-700 shadow focus:outline-none"
                         type="email"
                         placeholder="Enter Your Email"
                         name="email"
@@ -125,7 +125,7 @@ const ContactForm = () => {
                         Phone:
                       </label>
                       <input
-                        className="focus:shadow-outline mb-4 w-full appearance-none rounded bg-white py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+                        className="focus:shadow-outline mb-4 w-full appearance-none rounded-3xl bg-white py-3 px-5 leading-tight text-gray-700 shadow focus:outline-none"
                         type="tel"
                         placeholder="Enter Your Phone"
                         name="phone"
@@ -136,16 +136,16 @@ const ContactForm = () => {
                         Message:
                       </label>
                       <textarea
-                        className="focus:shadow-outline mb-4 h-64 min-h-0 w-full appearance-none rounded bg-white py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+                        className="focus:shadow-outline mb-4 h-64 min-h-0 w-full appearance-none rounded-3xl bg-white py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
                         placeholder="Type your message here..."
                         name="message"
                         style={{ height: "121px" }}
                         value={formData.message}
                         onChange={handleChange}
                       ></textarea>
-                      <div className="flex justify-between gap-3 sm:gap-5">
+                      <div className="flex justify-between  gap-3 md:gap-5">
                         <input
-                          className="md:text-md focus:shadow-outline w-36 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-200 p-1 px-1 text-[11px] font-bold text-black hover:bg-indigo-700 hover:from-indigo-500 hover:to-indigo-200 focus:outline-none dark:text-white sm:py-2 sm:px-4 sm:text-sm"
+                          className="md:text-md focus:shadow-outline w-36 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-200 p-1 py-2  px-1 text-[11px] font-bold text-black hover:bg-indigo-700 hover:from-indigo-500 hover:to-indigo-200 focus:outline-none dark:text-white sm:py-2 sm:px-4 sm:text-sm"
                           type="submit"
                           value={submitting ? "Sending..." : "Send ➤"}
                           disabled={submitting}

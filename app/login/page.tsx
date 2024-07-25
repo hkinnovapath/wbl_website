@@ -85,14 +85,14 @@ const SigninPage = () => {
         <div className="container ">
           <div className="-mx-2  flex flex-wrap">
             <div className="w-full px-4">
-              <div className="mx-auto max-w-[500px] rounded-3xl bg-gradient-to-br from-pink-400 to-sky-200 p-6 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500/30 sm:p-[60px]">
-                <h3 className="mb-3 text-center text-2xl font-bold text-black dark:text-white sm:text-3xl">
+              <div className="mx-auto px-10 max-w-[500px] rounded-3xl bg-gradient-to-br from-pink-400 to-sky-200 p-6 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500/30 sm:p-[60px]">
+                <h3 className="mb-3 text-center text-xl font-bold text-black dark:text-white sm:text-3xl">
                   Welcome back!
                 </h3>
-                <p className="mb-11 text-center text-base font-medium text-black dark:text-white">
+                <p className="mb-11 text-center text-md sm:text-lg font-medium text-black dark:text-white">
                   Sign in to your account
                 </p>
-                    <button className="dark:shadow-signUp mb-6 flex w-full items-center justify-center rounded-3xl bg-white p-3 text-base font-medium text-primary shadow-one dark:bg-white dark:text-black">
+                    <button className="dark:shadow-signUp mb-6 flex w-full items-center justify-center rounded-3xl bg-white p-3 text-base  font-medium text-primary shadow-one dark:bg-white dark:text-black">
                   <span className="mr-3">
                     <svg
                       width="20"
@@ -130,8 +130,8 @@ const SigninPage = () => {
                 </button>
                 <div className="mb-8 flex items-center justify-center">
                   <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
-                  <p className="w-full px-5 text-center text-base font-medium text-black dark:text-white">
-                    Or, sign in with your email
+                  <p className="w-full px-5 text-center text-md sm:text-lg font-medium text-black dark:text-white">
+                    Or, sign in with email
                   </p>
                   <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
                 </div>
@@ -139,7 +139,7 @@ const SigninPage = () => {
                   <div className="mb-8">
                     <label
                       htmlFor="email"
-                      className="mb-3 block text-sm font-medium text-dark dark:text-white"
+                      className="mb-3 block text-sm sm:text-base font-medium text-dark dark:text-white"
                     >
                       Email Address <span className="text-[red]">*</span>
                     </label>
@@ -157,7 +157,7 @@ const SigninPage = () => {
                   <div className="mb-8">
                     <label
                       htmlFor="password"
-                      className="mb-3 block text-sm font-medium text-dark dark:text-white"
+                      className="mb-3 block text-sm sm:text-base font-medium text-dark dark:text-white"
                     >
                       Password <span className="text-[red]">*</span>
                     </label>
@@ -173,7 +173,7 @@ const SigninPage = () => {
                     />
                   </div>
                   <div>
-                    <a className="mb-3 block text-sm font-medium text-dark dark:text-white">
+                    <a className="mb-3 block text-sm sm:text-base font-medium text-dark dark:text-white">
                       Forgot password?
                     </a>
                   </div>
@@ -216,7 +216,7 @@ const SigninPage = () => {
                   ) : (
                     <button
                       type="submit"
-                      className="hover:shadow-signUp flex w-full items-center justify-center rounded-3xl bg-primary py-3 px-6 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 sm:py-4 sm:px-9"
+                      className="hover:shadow-signUp flex w-full items-center justify-center rounded-3xl bg-primary py-3 px-6 text-sm sm:text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 sm:py-4 sm:px-9"
                     >
                       Sign in
                     </button>
@@ -245,9 +245,9 @@ const SigninPage = () => {
                     </div>
                   )}
                 </form>
-                <p className="mt-4 text-center text-base font-medium text-black dark:text-white">
+                <p className="mt-4 text-center text-sm sm:text-base font-medium text-black dark:text-white">
                   Don’t have an account?{" "}
-                  <Link href="/signup" className="font-extrabold  text-primary hover:underline">
+                  <Link href="/signup" className="font-extrabold text-sm sm:text-base  text-primary hover:underline">
                    Register
                   </Link>
                 </p>

@@ -82,17 +82,17 @@ const SigninPage = () => {
   return (
     <Suspense fallback={<div>LOADING...</div>}>
       <section className="relative z-10 mt-10 overflow-hidden pt-20 pb-16 md:pb-20 lg:pt-[100px] lg:pb-28">
-        <div className="container ">
-          <div className="-mx-3  flex flex-wrap">
+        <div className="container">
+          <div className="  flex flex-wrap">
             <div className="w-full ">
               <div className="mx-auto px-10 max-w-[500px] rounded-3xl bg-gradient-to-br from-pink-400 to-sky-200 p-6 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500/30 sm:p-[60px]">
-                <h3 className="mb-3 text-center text-xl font-bold text-black dark:text-white sm:text-3xl">
+                <h3 className="mb-3 text-center  font-bold text-black dark:text-white text-lg sm:text-2xl md:text-3xl ">
                   Welcome back!
                 </h3>
-                <p className="mb-11 text-center text-md sm:text-lg font-medium text-black dark:text-white">
-                  Sign in to your account
+                <p className="mb-7 sm:mb-11 text-center md:text-md text-xs sm:text-sm font-semibold text-gray-700 dark:text-white">
+                  Sign In to your account
                 </p>
-                    <button className="dark:shadow-signUp mb-6 flex w-full items-center justify-center rounded-3xl bg-white p-3 text-base  font-medium text-primary shadow-one dark:bg-white dark:text-black">
+                    <button className="dark:shadow-signUp mb-4 sm:mb-6 flex w-full items-center justify-center rounded-3xl bg-white py-2 sm:py-3 px-5 text-sm sm:text-base  font-medium text-primary shadow-one dark:bg-white dark:text-black">
                   <span className="mr-3">
                     <svg
                       width="20"
@@ -126,20 +126,21 @@ const SigninPage = () => {
                       </defs>
                     </svg>
                   </span>
-                  Sign in with Google
+                  Sign In with Google
                 </button>
                 <div className="mb-8 flex items-center justify-center">
                   <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
-                  <p className="w-full px-5 text-center text-md sm:text-lg font-medium text-black dark:text-white">
-                    Or, sign in with email
+                  <p className=" md:text-md text-xs sm:text-sm w-full px-5 text-center  font-semibold text-gray-700 dark:text-white">
+                    Or, Sign In with email
                   </p>
                   <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
                 </div>
-                <form onSubmit={handleSubmit}>
-                  <div className="mb-8">
+                <form onSubmit={handleSubmit}
+                className="md:text-md text-xs text-black dark:text-white sm:text-sm ">
+                  <div className="mb-6 sm:mb-8">
                     <label
                       htmlFor="email"
-                      className="mb-3 block text-sm sm:text-base font-medium text-dark dark:text-white"
+                      className="mb-3 block  font-bold text-dark dark:text-white"
                     >
                       Email Address <span className="text-[red]">*</span>
                     </label>
@@ -147,7 +148,7 @@ const SigninPage = () => {
                       type="text"
                       name="email"
                       placeholder="Enter your email"
-                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-4 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 sm:py-3 px-5   text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white "
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       onFocus={handleInputFocus}
@@ -157,7 +158,7 @@ const SigninPage = () => {
                   <div className="mb-8">
                     <label
                       htmlFor="password"
-                      className="mb-3 block text-sm sm:text-base font-medium text-dark dark:text-white"
+                      className="mb-3 block  font-bold text-dark dark:text-white"
                     >
                       Password <span className="text-[red]">*</span>
                     </label>
@@ -165,7 +166,7 @@ const SigninPage = () => {
                       type="password"
                       name="password"
                       placeholder="Enter your password"
-                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-4 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 sm:py-3 px-5   text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white "
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       onFocus={handleInputFocus}
@@ -173,12 +174,12 @@ const SigninPage = () => {
                     />
                   </div>
                   <div>
-                    <a className="mb-3 block text-sm sm:text-base font-medium text-dark dark:text-white">
+                    <a className="mb-3 block  font-bold text-dark dark:text-white">
                       Forgot password?
                     </a>
                   </div>
                   {loading ? (
-                    <div className="text-md mb-4 text-center font-medium text-black dark:text-white sm:text-2xl">
+                    <div className="text-md mb-4 text-center font-bold text-black dark:text-white sm:text-2xl">
                       Loading&nbsp;
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -216,9 +217,9 @@ const SigninPage = () => {
                   ) : (
                     <button
                       type="submit"
-                      className="hover:shadow-signUp flex w-full items-center justify-center rounded-3xl bg-primary py-3 px-6 text-sm sm:text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 sm:py-4 sm:px-9"
+                      className="hover:shadow-signUp flex w-full items-center justify-center rounded-3xl bg-primary py-2 sm:py-3 px-6  font-bold text-white transition duration-300 ease-in-out hover:bg-opacity-80 "
                     >
-                      Sign in
+                     Login In
                     </button>
                   )}
                   {message && (
@@ -245,9 +246,9 @@ const SigninPage = () => {
                     </div>
                   )}
                 </form>
-                <p className="mt-4 text-center text-sm sm:text-base font-medium text-black dark:text-white">
+                <p className="mt-4 text-center md:text-md text-xs sm:text-sm font-semibold text-black dark:text-white">
                   Don’t have an account?{" "}
-                  <Link href="/signup" className="font-extrabold text-sm sm:text-base  text-primary hover:underline">
+                  <Link href="/signup" className="font-extrabold md:text-md text-xs sm:text-sm  text-primary hover:underline">
                    Register
                   </Link>
                 </p>

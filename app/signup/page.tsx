@@ -84,8 +84,8 @@ const SignupPage = () => {
     <>
       <section className="relative z-10 mt-10 overflow-hidden pt-20 pb-16 md:pb-20 lg:pt-[100px] lg:pb-28">
         <div className="container mx-auto px-4">
-          <div className="-mx-2 flex flex-wrap">
-            <div className="w-full px-4">
+          <div className="-mx-3 flex flex-wrap">
+            <div className="w-full ">
               <div className="px-10 mx-auto max-w-full rounded-3xl bg-gradient-to-br from-pink-400 to-sky-200 p-6 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500/30 sm:max-w-[500px] sm:p-[60px]">
                 <h3 className="mb-3 text-center text-xl font-bold text-black dark:text-white sm:text-3xl">
                   Welcome. <br />

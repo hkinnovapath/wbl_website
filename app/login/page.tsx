@@ -219,7 +219,7 @@ const SigninPage = () => {
                       type="submit"
                       className="hover:shadow-signUp flex w-full items-center justify-center rounded-3xl bg-primary py-2 sm:py-3 px-6  font-bold text-white transition duration-300 ease-in-out hover:bg-opacity-80 "
                     >
-                     Login In
+                     Login 
                     </button>
                   )}
                   {message && (

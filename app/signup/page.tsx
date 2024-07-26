@@ -348,9 +348,9 @@ const SignupPage = () => {
                   )}
                 </form>
                 <p className="text-center  mt-4  md:text-md text-xs sm:text-sm font-semibold text-black dark:text-white">
-                  Already have Signedup?{" "}
+                  Already have An Account?{" "}
                   <Link href="/login" className="font-extrabold md:text-md text-xs sm:text-sm text-primary  hover:underline">
-                    Sign In
+                    Login
                   </Link>
                 </p>
               </div>

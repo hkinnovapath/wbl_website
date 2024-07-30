@@ -6,11 +6,12 @@ export default function Faq() {
   return (
     <div>
       {/* Main content */}
-      <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
+      {/* <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6"> */}
+      <main className="container">
         {/* Navbar */}
 
-        <nav className="mt-16 flex-none sm:flex sm:items-center sm:justify-between  ">
-          <h1 className="py-5 text-center text-2xl font-bold sm:py-0 sm:text-3xl lg:text-4xl ">
+        <nav className="sm:mt-28 mt-20 justify-center sm:mb-10 flex h-28 flex-col items-start sm:justify-between sm:flex-row sm:items-center">
+          <h1 className=" text-center  text-2xl font-bold sm:pt-0 sm:text-start sm:text-3xl lg:text-4xl ">
             Frequently Asked Questions
           </h1>
           <div className="hidden sm:block">

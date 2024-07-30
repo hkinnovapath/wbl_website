@@ -50,7 +50,8 @@ const Calendar = () => {
   }, []);
 
   return (
-    <div className="container mx-auto max-w-4xl p-4 sm:p-6 lg:p-8">
+    // <div className="container mx-auto max-w-4xl p-4 sm:p-6 lg:p-8">
+    <div className="container mx-auto max-w-6xl">
       <div className="rounded-lg border bg-white p-4 text-black shadow-md dark:border-gray-800 dark:bg-gray-500 sm:p-6 lg:p-8">
         <div className="overflow-x-auto">
           <div className="min-w-[600px]">
@@ -70,7 +71,7 @@ const Calendar = () => {
                 borderColor: "black",
                 textColor: "white",
               }}
-              slotMinTime="08:00:00" // Start time at 8 AM
+              slotMinTime="09:00:00" // Start time at 8 AM
               height="auto" // Adjust the height to make it responsive
             />
           </div>

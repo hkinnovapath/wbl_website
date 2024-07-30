@@ -74,9 +74,9 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="w-full overflow-hidden pb-16">
+    <section id="contact" className=" w-full overflow-hidden pb-16">
       <div className="container">
-        <div className="-mx-5 flex flex-wrap">
+        <div className="-mx-4 flex flex-wrap">
           <div className="w-full lg:w-7/12  xl:w-8/12">
             <div className="wow fadeInUp rounded-2xl " data-wow-delay=".15s">
               <div className="flex min-h-screen flex-col justify-start py-6 sm:justify-center sm:py-4">
@@ -192,7 +192,7 @@ const ContactForm = () => {
             </div>
           </div>
           {/* ContactDetails component */}
-          <div className="mx-auto flex items-center justify-center py-3 sm:mx-auto sm:max-w-xl lg:w-5/12 xl:w-4/12">
+          <div className="mx-auto  flex items-center justify-center py-3 sm:mx-auto sm:max-w-2xl lg:w-5/12 xl:w-4/12">
             {/* Assuming ContactDetails component shows contact information */}
             <ContactDetails />
           </div>

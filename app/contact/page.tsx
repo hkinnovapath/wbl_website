@@ -3,7 +3,7 @@ import ContactForm from "@/components/Contact";
 const ContactPage = () => {
   return (
     <>
-      <div className=" mx-auto w-full max-w-6xl px-4 pt-4 text-white sm:px-6 ">
+      <div className=" mx-auto   w-full max-w-6xl px-4 pt-4 text-white sm:px-6 ">
         <nav className="mt-16 flex-none pt-6 sm:items-center sm:justify-between md:flex ">
           <h1 className="text-center text-2xl font-bold text-black dark:text-white sm:py-0  sm:text-3xl lg:text-4xl">
             Contact Us
@@ -12,7 +12,7 @@ const ContactPage = () => {
             <Layout currentPage="Contact" />
           </div>  
         </nav>
-        <div className="flex flex-wrap md:flex-nowrap">
+        <div className="flex   flex-wrap md:flex-nowrap">
           <div className="w-full ">
             <ContactForm />
           </div>

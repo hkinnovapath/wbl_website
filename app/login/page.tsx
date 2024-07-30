@@ -174,9 +174,9 @@ const SigninPage = () => {
                     />
                   </div>
                   <div>
-                    <a className="mb-3 block  font-bold text-dark dark:text-white">
-                      Forgot password?
-                    </a>
+                    <a href="/forgot_password" className="mb-3 block  font-bold text-dark dark:text-white">
+                      Forgot Password?
+                    </a>                    
                   </div>
                   {loading ? (
                     <div className="text-md mb-4 text-center font-bold text-black dark:text-white sm:text-2xl">

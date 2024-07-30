@@ -7,13 +7,13 @@ const CourseContentTable = (props: any) => {
         <thead>
           <tr className="text-md sm:text-lg lg:text-xl">
           <th className="mb-1 w-1/3 border border-gray-500 bg-primary px-4 py-2 text-white">
-              Fundamentals
+              Fundamentals  
             </th>
             <th className="mb-1 w-1/3 border border-gray-500 bg-primary px-4 py-2 text-white">
-              DSML(Python)
+            Fullstack Development
             </th>
             <th className="mb-1 w-1/3 border border-gray-500 bg-primary px-4 py-2 text-white">
-              UI Fullstack
+            DSML (Machine Learning)
             </th>
             <th className="mb-1 w-1/3 border border-gray-500 bg-primary px-4 py-2 text-white">
             Quality Engineering 

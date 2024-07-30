@@ -2,28 +2,28 @@ import Link from "next/link";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const address = "6500 Dublin Blvd., Ste. 214 Dublin, CA, 94568";
+  const address = "6500 Dublin Blvd., Ste.214(B), Dublin, CA, 94568";
   const googleMapsLink = `https://www.google.com/maps?q=${encodeURIComponent(
     address
   )}`;
 
   return (
     <>
-      <footer
-        className="wow  fadeInUp  relative z-10  bg-primary bg-opacity-5 pt-8 shadow-2xl shadow-black md:pt-10 lg:pt-12"
+  <footer
+        className="wow   fadeInUp  relative z-10  bg-primary bg-opacity-5  shadow-2xl shadow-black pt-6 md:pt-8"
         data-wow-delay=".1s"
       >
         <div className="container  ">
           <div className="-mx-4 flex  flex-wrap  justify-around  ">
-            <div className="w-full   text-center flex  justify-center  sm:w-1/2 lg:w-4/12">
-              <div className="mb-12  max-w-[360px] lg:mb-16">
+            <div className="flex items-center   w-full justify-center  text-center  sm:w-1/2 lg:w-4/12">
+              <div className=" mb-12  max-w-[360px] ">
                 <Link href="/" className="inline-block">
-                  <h1 className="mb-8  text-2xl font-bold text-black dark:text-white">
+                  <h1 className="mb-4 sm:mb-8  text-2xl font-bold text-black dark:text-white">
                     Whitebox Learning
                   </h1>
                 </Link>
-                <div className="flex items-center">
-                  <a
+                <div className="flex justify-around items-center">
+                  {/* <a
                     href="https://github.com/WhiteboxHub"
                     target="_blank"
                     rel="noreferrer"
@@ -39,22 +39,22 @@ const Footer = () => {
                     >
                       <path d="M16 8.2c-4.4 0-8 3.6-8 8 0 3.5 2.3 6.5 5.5 7.6.4.1.5-.2.5-.4V22c-2.2.5-2.7-1-2.7-1-.4-.9-.9-1.2-.9-1.2-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.3 1.9.9 2.3.7.1-.5.3-.9.5-1.1-1.8-.2-3.6-.9-3.6-4 0-.9.3-1.6.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8.6-.2 1.3-.3 2-.3s1.4.1 2 .3c1.5-1 2.2-.8 2.2-.8.4 1.1.2 1.9.1 2.1.5.6.8 1.3.8 2.1 0 3.1-1.9 3.7-3.7 3.9.3.4.6.9.6 1.6v2.2c0 .2.1.5.6.4 3.2-1.1 5.5-4.1 5.5-7.6-.1-4.4-3.7-8-8.1-8z" />
                     </svg>
-                  </a>
+                  </a> */}
                   <a
-                    href="https://twitter.com/whiteboxQALearn"
+                    href="https://www.facebook.com/profile.php?id=100076790355187"
                     target="_blank"
                     rel="noreferrer"
                     aria-label="Twitter"
-                    className="mr-5  text-[#858691] duration-500 hover:text-black dark:text-gray-700 dark:hover:text-white"
+                    className="mr-5  text-[#858691] duration-500 hover:text-[#316ff6] dark:text-gray-700 dark:hover:text-[#316ff6]"
                   >
                     <svg
                       width="40"
                       height="40"
-                      className=" fill-current"
-                      viewBox="0 0 32 32"
+                      className="fill-current p-2"
+                      viewBox="0 0 30 30"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <path d="m13.063 9 3.495 4.475L20.601 9h2.454l-5.359 5.931L24 23h-4.938l-3.866-4.893L10.771 23H8.316l5.735-6.342L8 9h5.063Zm-.74 1.347h-1.457l8.875 11.232h1.36l-8.778-11.232Z" />
+                      <path d="M19 6h3V0h-3c-3.3 0-6 2.7-6 6v4h-4v6h4v16h6V16h4l1-6h-5V6c0-0.6 0.4-1 1-1z" />
                     </svg>
                   </a>
                   <a
@@ -92,12 +92,12 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-            <div className="w-full  sm:flex  hidden  md:justify-center  sm:text-left text-center sm:w-1/2 lg:w-4/12">
+            <div className="hidden  w-full  text-center  sm:w-1/2  sm:text-left md:flex md:justify-center lg:w-4/12">
               <div className="mb-6 ">
                 <div className="mb-8 ">
                   <a
                     href={"/contact"}
-                    target="_blank"
+                    target="_self"
                     rel="noopener noreferrer"
                     className="text-2xl font-bold text-black  dark:text-white"
                   >
@@ -115,26 +115,26 @@ const Footer = () => {
                       {address}
                     </a>
                   </li>
-                  <li className="flex gap-5 mb-3">
+                  <li className=" mb-3">
                     <a
                       className="text-md  text-black duration-500  hover:text-blue-600 dark:text-white dark:hover:text-blue-600"
                       href="tel:+19255571053"
                     >
                       +1 925-557-1053
                     </a>
-                    <a
-                      className="text-md  text-black duration-500  hover:text-blue-600 dark:text-white dark:hover:text-blue-600"
-                      href="tel:+19254007330"
-                    >
-                      +1 925-400-7330
-                    </a>
                   </li>
                   <li className="mb-3">
                     <a
-                      className="text-md  text-black duration-500  hover:text-blue-600 dark:text-white dark:hover:text-blue-600 "
+                      className="text-md mb-1 block  text-black duration-500  hover:text-blue-600 dark:text-white dark:hover:text-blue-600 "
                       href="mailto:info@whitebox-learning.com"
                     >
                       info@whitebox-learning.com
+                    </a>
+                    <a
+                      className="text-md  text-black duration-500  hover:text-blue-600 dark:text-white dark:hover:text-blue-600 "
+                      href="mailto:recruiting@whitebox-learning.com"
+                    >
+                      recruiting@whitebox-learning.com
                     </a>
                   </li>
                 </ul>

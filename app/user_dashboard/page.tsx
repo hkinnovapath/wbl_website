@@ -93,8 +93,8 @@ const UserDashboard = () => {
     { label: "Name", value: user.fullname },
     { label: "Phone", value: user.phone },
     { label: "Email", value: user.uname },
-    { label: "Logincount", value: user.logincount },
-    { label: "Lastlogin", value: user.lastlogin || "Not available" },
+    // { label: "Logincount", value: user.logincount },
+    // { label: "Lastlogin", value: user.lastlogin || "Not available" },
   ];
 
   const TableRow = ({ label, value, isEven }) => (
@@ -117,12 +117,12 @@ const UserDashboard = () => {
         </div>
       </nav>
       <section className="flex justify-center">
-        <div className="sm:w-5/6 w-72  rounded-3xl bg-gradient-to-br from-pink-300 to-sky-200 p-8 px-10 py-10 text-white shadow-lg dark:bg-gradient-to-br dark:from-pink-600 dark:to-sky-500">
+        <div className="sm:w-5/6 w-72  rounded-3xl  bg-gradient-to-br from-pink-500 to-sky-500 p-8 px-10 py-10 text-white shadow-lg  dark:bg-gradient-to-br dark:from-pink-600 dark:to-sky-500">
           <h2 className="mb-8  text-center sm:text-2xl text-lg font-bold text-gray-800 dark:text-white">
             My Details
           </h2>
           <div className="flex w-full  justify-center overflow-x-auto">
-            <div className="rounded-2xl bg-gradient-to-br from-pink-400 to-sky-300  px-2 sm:px-16 py-7 sm:py-10 text-white shadow-2xl dark:bg-gradient-to-br dark:from-pink-800 dark:to-sky-600">
+            <div className="rounded-2xl  bg-gradient-to-tl from-pink-400 to-sky-400  px-2 sm:px-16 py-7 sm:py-10 text-white shadow-2xl dark:bg-gradient-to-tl dark:from-pink-500 dark:to-sky-400">
               <table className="w-1/2 divide-y  divide-gray-200 dark:divide-gray-700">
                 <tbody className=" ">
                   {data.map((item, index) => (

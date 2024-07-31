@@ -4,7 +4,7 @@ const ContactPage = () => {
   return (
     <>
       {/* <div className=" mx-auto   w-full max-w-6xl px-4 pt-4 text-white sm:px-6 "> */}
-      <div className="container">
+      <div className="container px-4 pb-6 sm:px-6">
       <nav className="sm:mt-28 mt-20 justify-center sm:mb-10 flex h-28 flex-col items-start sm:justify-between sm:flex-row sm:items-center">
           <h1 className=" text-center  text-2xl font-bold sm:pt-0 sm:text-start sm:text-3xl lg:text-4xl ">
             Contact Us
@@ -13,8 +13,8 @@ const ContactPage = () => {
             <Layout currentPage="Contact" />
           </div>
         </nav>
-        <div className="flex   flex-wrap md:flex-nowrap">
-          <div className="w-full ">
+        <div className="flex border flex-wrap md:flex-nowrap">
+          <div className="w-full  ">
             <ContactForm />
           </div>
         </div>

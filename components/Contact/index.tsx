@@ -74,14 +74,14 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className=" w-full overflow-hidden pb-16">
-      <div className="container">
-        <div className="-mx-4 flex flex-wrap">
+    <section id="contact" className="w-full overflow-hidden pb-16">
+      <div className="container border">
+        <div className="-mx-4 border flex flex-wrap">
           <div className="w-full lg:w-7/12  xl:w-8/12">
-            <div className="wow fadeInUp rounded-2xl " data-wow-delay=".15s">
-              <div className="flex min-h-screen flex-col justify-start py-6 sm:justify-center sm:py-4">
-                <div className="relative py-3 sm:mx-auto sm:max-w-xl">
-                  <div className="absolute inset-0 hidden -skew-y-6 transform bg-gradient-to-r from-indigo-300 to-purple-400 shadow-lg dark:bg-gradient-to-r dark:from-indigo-700 dark:to-purple-500 sm:-rotate-6 sm:skew-y-0 sm:rounded-3xl md:block"></div>
+            <div className="wow border fadeInUp rounded-2xl " data-wow-delay=".15s">
+              <div className="flex min-h-screen  flex-col justify-start py-6 sm:justify-center sm:py-4">
+                <div className="relative py-3 sm:mx-auto border sm:max-w-3xl">
+                  <div className="absolute inset-0  hidden -skew-y-6 transform bg-gradient-to-r from-indigo-300 to-purple-400 shadow-lg dark:bg-gradient-to-r dark:from-indigo-700 dark:to-purple-500 sm:-rotate-6 sm:skew-y-0 sm:rounded-3xl md:block"></div>
                   <div className="relative rounded-3xl bg-gradient-to-br from-pink-400 to-sky-200 px-10 py-10 text-white shadow-lg dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500 sm:p-16">
                     <div className="pb-10 text-center">
                       <h1 className=" font-bold text-black dark:text-white text-lg sm:text-2xl md:text-3xl">

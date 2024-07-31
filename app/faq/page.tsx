@@ -7,11 +7,11 @@ export default function Faq() {
     <div>
       {/* Main content */}
       {/* <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6"> */}
-      <main className="container">
+      <main className="container px-4 pb-6 sm:px-6">
         {/* Navbar */}
 
-        <nav className="sm:mt-28 mt-20 justify-center sm:mb-10 flex h-28 flex-col items-start sm:justify-between sm:flex-row sm:items-center">
-          <h1 className=" text-center  text-2xl font-bold sm:pt-0 sm:text-start sm:text-3xl lg:text-4xl ">
+        <nav className="sm:mt-28 mt-16 text-center  justify-center sm:mb-3 flex h-24 sm:h-28 flex-col  sm:justify-between sm:flex-row sm:items-center">
+          <h1 className=" text-center text-2xl font-bold sm:pt-0 sm:text-start sm:text-3xl lg:text-4xl ">
             Frequently Asked Questions
           </h1>
           <div className="hidden sm:block">

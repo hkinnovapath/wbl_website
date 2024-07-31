@@ -110,17 +110,17 @@ const UserDashboard = () => {
 
   return (<>
     {/* <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6"> */}
-    <main className="container">
-              <nav className="sm:mt-28 mt-20 justify-center sm:mb-10 flex h-28 flex-col items-start sm:justify-between sm:flex-row sm:items-center">
-          <h1 className=" text-center  text-2xl font-bold sm:pt-0 sm:text-start sm:text-3xl lg:text-4xl ">
+    <main className="container px-4 py-6 sm:px-6">
+              <nav className="sm:mt-28  mt-20 justify-center sm:mb-10  flex h-28 flex-col items-start sm:justify-between sm:flex-row sm:items-center">
+          <h1 className=" text-center  text-2xl font-bold sm:pt-0 sm:text-start sm:text-3xl lg:text-4xl">
             User Dashboard
           </h1>
           <div className="hidden sm:block">
             <Layout currentPage="Dashboard" />
           </div>
         </nav>
-      <section className="flex justify-center">
-        <div className="sm:w-5/6 w-72  rounded-3xl  bg-gradient-to-br from-pink-500 to-sky-500 p-8 px-10 py-10 text-white shadow-lg  dark:bg-gradient-to-br dark:from-pink-600 dark:to-sky-500">
+      <section className="flex justify-center   h-full lg:h-[475px] ">
+        <div className="sm:w-4/6 w-72  flex flex-col  justify-center  rounded-3xl  bg-gradient-to-br from-pink-400 to-sky-400 p-8 px-10 py-10 text-white shadow-lg  dark:bg-gradient-to-br dark:from-pink-500 dark:to-sky-400">
           <h2 className="mb-8  text-center sm:text-2xl text-lg font-bold text-gray-800 dark:text-white">
             My Details
           </h2>

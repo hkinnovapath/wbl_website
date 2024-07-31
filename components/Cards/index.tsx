@@ -1,7 +1,7 @@
 import Image from "next/image";
-import fsd from "@/public/images/courses/fullstack development.jpeg"; // Replace with the actual path
-import ml from "@/public/images/NewData/features-03-image-02.jpeg"; // Replace with the actual path
-import TestimonialImage03 from "@/public/images/test3.jpg"; // Replace with the actual path
+import fsd from "@/public/images/courses/fullstack_development.jpeg"; // Replace with the actual path
+import machine_learning from "@/public/images/courses/machine_learning.jpeg"; // Replace with the actual path
+import data_engineer from "@/public/images/courses/data_engineer.jpg"; // Replace with the actual path
 
 export default function Cards() {
   return (
@@ -23,7 +23,7 @@ export default function Cards() {
             />
           </div>
           <h1 className="mt-3 text-center text-2xl font-bold">
-            Fullstack Developer <a href=""></a>
+            Fullstack Development <a href=""></a>
           </h1>
           <div className="mt-6 border-t border-gray-400 pt-5 text-center font-medium text-gray-700">
             <cite className="not-italic text-gray-200"></cite>{" "}
@@ -45,7 +45,7 @@ export default function Cards() {
           <div className="flex justify-center">
             <Image
               className="rounded-xl border dark:border-gray-700"
-              src={ml}
+              src={machine_learning}
               width={300}
               height={250}
               alt="Testimonial 02"
@@ -74,7 +74,7 @@ export default function Cards() {
           <div className="flex justify-center">
             <Image
               className="rounded-xl border dark:border-gray-700"
-              src={TestimonialImage03}
+              src={data_engineer}
               width={300}
               height={250}
               alt="Testimonial 03"

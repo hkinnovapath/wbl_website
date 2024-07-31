@@ -110,20 +110,21 @@ export default function Presentation() {
 
   return (
     <div>
-      <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
-        <nav className="mt-16 flex flex-col items-center justify-between sm:flex-row">
-          <h1 className="text-2xl font-bold sm:text-4xl">
+      <main className="container">
+        {/* <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6"> */}
+        <nav className="mt-20 flex h-28 flex-col items-start justify-center sm:mt-28 sm:mb-10 sm:flex-row sm:items-center sm:justify-between">
+          <h1 className=" text-center  text-2xl font-bold sm:pt-0 sm:text-start sm:text-3xl lg:text-4xl ">
             Course Material
             <span className="text-lg font-light sm:text-2xl"> (PDF)</span>
           </h1>
-          <div className="hidden sm:block">
-            <Layout currentPage="Presentations" />
+          <div className="hidden  sm:block">
+            <Layout currentPage="Schedule" />
           </div>
         </nav>
         <CourseNavigation />
-        <section className="mb-8 flex flex-col justify-between sm:flex-row">
-          <div className="mt-10 flex justify-center sm:w-1/3">
-            <div className="flex w-60 flex-col">
+        <section className="mb-8 flex flex-col justify-start sm:flex-row">
+          <div className="mt-10 flex justify-center sm:w-1/4">
+            <div className="flex flex-col">
               {buttons.map((button) => (
                 <button
                   key={button.type}
@@ -139,7 +140,7 @@ export default function Presentation() {
               ))}
             </div>
           </div>
-          <div className="mt-10 flex-grow ">
+          <div className="sm:-mt-10 mt-10 sm:w-4/5 flex justify-center">
             <ResourcesTable course={course} type={activeComponent} />
           </div>
         </section>

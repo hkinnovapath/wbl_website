@@ -13,7 +13,7 @@ const ContactPage = () => {
             <Layout currentPage="Contact" />
           </div>
         </nav>
-        <div className="flex border flex-wrap md:flex-nowrap">
+        <div className="flex flex-wrap md:flex-nowrap">
           <div className="w-full  ">
             <ContactForm />
           </div>

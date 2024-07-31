@@ -3,20 +3,24 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
-import ml1 from "public/images/NewData/ML 1.jpeg";
+import ml1 from "public/images/Carousel/ML 1.jpeg";
 import html_css_js from "public/images/Carousel/html-css-JS.webp";
-import de3 from "public/images/NewData/DE 3.jpeg";
+import js_libs from "public/images/Carousel/js-libs.png";
+import ml from "public/images/Carousel/mll.png";
 import ntt from "public/images/Carousel/next-tailwind-TS.avif";
-import de1 from "public/images/NewData/DE 1.jpeg";
+import de1 from "public/images/Carousel/DE 1.jpeg";
 import tlJ from "public/images/Carousel/testing-libs-JS.png";
-import ml3 from "public/images/NewData/ML 3.jpeg";
+import ml3 from "public/images/Carousel/ML 3.jpeg";
+import ml2 from "public/images/Carousel/ml2.jpeg";
 
 function Carousel() {
   const slides = [
     { url: ml1 },
-    { url: de3 },
-    { url: ml3 },
+    { url: ml },
     { url: de1 },
+    { url: ml3 },
+    { url: ml2 },
+    { url: js_libs },
     { url: ntt },
     { url: html_css_js },
     { url: tlJ },

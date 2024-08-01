@@ -159,7 +159,7 @@ const ResourcesTable = ({
   }
 
   return (
-    <div className="overflow-x-auto ">
+    <div className="overflow-x-auto sm:w-4/5">
       <table className="w-full table-auto border-collapse border border-gray-500 shadow-2xl shadow-gray-800">
         <thead>
           <tr>

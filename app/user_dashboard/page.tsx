@@ -93,8 +93,8 @@ const UserDashboard = () => {
     { label: "Name", value: user.fullname },
     { label: "Phone", value: user.phone },
     { label: "Email", value: user.uname },
-    { label: "Logincount", value: user.logincount },
-    { label: "Lastlogin", value: user.lastlogin || "Not available" },
+    // { label: "Logincount", value: user.logincount },
+    // { label: "Lastlogin", value: user.lastlogin || "Not available" },
   ];
 
   const TableRow = ({ label, value, isEven }) => (
@@ -108,21 +108,24 @@ const UserDashboard = () => {
     </tr>
   );
 
-  return (
-    <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
-      <nav className="mt-16 flex flex-col items-center justify-between sm:flex-row">
-        <h1 className="text-xl sm:mb-0 mb-5 font-bold sm:text-4xl">User Dashboard</h1>
-        <div className="hidden sm:block">
-          <Layout currentPage="Dashboard" />
-        </div>
-      </nav>
-      <section className="flex justify-center">
-        <div className="sm:w-5/6 w-72  rounded-3xl bg-gradient-to-br from-pink-300 to-sky-200 p-8 px-10 py-10 text-white shadow-lg dark:bg-gradient-to-br dark:from-pink-600 dark:to-sky-500">
+  return (<>
+    {/* <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6"> */}
+    <main className="container px-4 py-6 sm:px-6">
+              <nav className="sm:mt-28  mt-20 justify-center sm:mb-10  flex h-28 flex-col items-start sm:justify-between sm:flex-row sm:items-center">
+          <h1 className=" text-center  text-2xl font-bold sm:pt-0 sm:text-start sm:text-3xl lg:text-4xl">
+            User Dashboard
+          </h1>
+          <div className="hidden sm:block">
+            <Layout currentPage="Dashboard" />
+          </div>
+        </nav>
+      <section className="flex justify-center   h-full lg:h-[475px] ">
+        <div className="sm:w-4/6 w-72  flex flex-col  justify-center  rounded-3xl  bg-gradient-to-br from-pink-400 to-sky-400 p-8 px-10 py-10 text-white shadow-lg  dark:bg-gradient-to-br dark:from-pink-500 dark:to-sky-400">
           <h2 className="mb-8  text-center sm:text-2xl text-lg font-bold text-gray-800 dark:text-white">
             My Details
           </h2>
           <div className="flex w-full  justify-center overflow-x-auto">
-            <div className="rounded-2xl bg-gradient-to-br from-pink-400 to-sky-300  px-2 sm:px-16 py-7 sm:py-10 text-white shadow-2xl dark:bg-gradient-to-br dark:from-pink-800 dark:to-sky-600">
+            <div className="rounded-2xl  bg-gradient-to-tl from-pink-400 to-sky-400  px-2 sm:px-16 py-7 sm:py-10 text-white shadow-2xl dark:bg-gradient-to-tl dark:from-pink-500 dark:to-sky-400">
               <table className="w-1/2 divide-y  divide-gray-200 dark:divide-gray-700">
                 <tbody className=" ">
                   {data.map((item, index) => (
@@ -140,6 +143,7 @@ const UserDashboard = () => {
         </div>
       </section>
     </main>
+    </>
   );
 };
 export default UserDashboard;

@@ -5,22 +5,23 @@ const Hero = () => {
   return (
     <>
       <section id="home" className="relative z-10 overflow-hidden pt-24 pb-16">
-        <div className="container my-5">
+        <div className="container sm:my-5">
           <div className="-mx-4 flex flex-wrap">
-            <div className="w-full px-4">
+            <div className="w-full sm:px-0 px-4">
               <div
-                className="wow fadeInUp mx-auto max-w-[800px] text-center"
+                className="wow  fadeInUp text-center"
                 data-wow-delay=".2s"
               >
                 <h1 className="mb-8 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
                   Whitebox Learning
                 </h1>
                 <Carousel />
-                <p className="my-12 text-base font-medium !leading-relaxed text-body-color dark:text-white dark:opacity-90 sm:text-lg md:text-xl">
+                <p className="mt-16   text-base font-medium !leading-relaxed text-body-color dark:text-white dark:opacity-90 sm:text-lg md:text-xl">
                   A comprehensive learning ecosystem tailored for developers,
                   machine learning enthusiasts, and data engineers.
                 </p>
               </div>
+              
             </div>
           </div>
           <Cards />
@@ -163,7 +164,7 @@ const Hero = () => {
             </defs>
           </svg>
         </div>
-        <div className="absolute bottom-0 left-0 z-[-1] opacity-30 lg:opacity-100">
+        <div className="absolute   bottom-0 left-0 z-[-1] opacity-30 lg:opacity-100">
           <svg
             width="364"
             height="201"

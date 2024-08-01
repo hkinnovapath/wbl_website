@@ -110,7 +110,7 @@ const RecordingComp: React.FC = () => {
   };
 
   return (
-    <div className="ml-4 flex-grow space-y-4">
+    <div className="sm:mt-0 mt-6 flex-grow space-y-4">
       <div className="flex flex-grow flex-col">
         <label htmlFor="dropdown1">Batch:</label>
         <select
@@ -133,11 +133,11 @@ const RecordingComp: React.FC = () => {
           )}
         </select>
       </div>
-      <div className="flex flex-grow flex-col">
+      <div className="flex flex-grow flex-col justify-between ">
         <label htmlFor="dropdown2">Recordings:</label>
         <select
           id="dropdown2"
-          className="rounded-md border border-gray-300 px-2 py-1 text-black dark:bg-white"
+          className="rounded-md border border-gray-300 px-2 py-1 mb-5 text-black dark:bg-white"
           onChange={handleVideoSelect}
           disabled={!selectedBatch || isLoadingRecordings}
         >

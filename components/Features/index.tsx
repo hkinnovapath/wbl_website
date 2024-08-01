@@ -13,9 +13,7 @@ const Features = () => {
           <SectionTitle
             title="What is Whitebox Learning?"
             paragraph="Whitebox Learning (WBL) is a classroom and online based training
-              for developers and quality engineers. The following courses are
-              offered currently, please click on the links below to see complete
-              details of the course."
+              for developers and ML & data engineers."
             center
           />
 

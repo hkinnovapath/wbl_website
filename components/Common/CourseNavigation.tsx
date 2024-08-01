@@ -86,7 +86,7 @@ const CourseNavigation = () => {
   };
 
   return (
-    <div className="mt-10 flex justify-center sm:w-1/3">
+    <div className="flex justify-center sm:w-1/4">
       <div className="flex w-60  flex-col">
         <div className="relative ">
           <button

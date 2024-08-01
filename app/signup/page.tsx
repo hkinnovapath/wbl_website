@@ -84,18 +84,19 @@ const SignupPage = () => {
     <>
       <section className="relative z-10 mt-10 overflow-hidden pt-20 pb-16 md:pb-20 lg:pt-[100px] lg:pb-28">
         <div className="container mx-auto px-4">
-          <div className="-mx-2 flex flex-wrap">
-            <div className="w-full px-4">
+          <div className=" flex flex-wrap">
+            <div className="w-full ">
               <div className="px-10 mx-auto max-w-full rounded-3xl bg-gradient-to-br from-pink-400 to-sky-200 p-6 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500/30 sm:max-w-[500px] sm:p-[60px]">
-                <h3 className="mb-3 text-center text-xl font-bold text-black dark:text-white sm:text-3xl">
+                <h3 className="mb-3 text-center font-bold text-black dark:text-white text-lg sm:text-2xl md:text-3xl">
                   Welcome. <br />
-                  We exist to make learning easier.
+                  
+                  <span className="text-base sm:text-xl">We exist to make learning easier.</span>
                 </h3>
-                <p className="mb-11 text-center text-md sm:text-lg font-medium text-black dark:text-white">
+                <p className="mb-7 sm:mb-11 text-center md:text-md text-xs sm:text-sm font-semibold  text-gray-700 dark:text-white">
                   {/* It’s totally free and super easy */}
                   Create your account
                 </p>
-                <button className="dark:shadow-signUp mb-6 flex w-full items-center justify-center rounded-3xl bg-white p-2 text-base font-medium text-primary shadow-one dark:bg-white dark:text-black sm:p-3">
+                <button className="dark:shadow-signUp mb-4 sm:mb-6 flex w-full items-center justify-center rounded-3xl bg-white py-2 sm:py-3 px-5   text-sm sm:text-base  font-medium text-primary shadow-one dark:bg-white dark:text-black">
                   <span className="mr-3">
                     <svg
                       width="20"
@@ -129,20 +130,21 @@ const SignupPage = () => {
                       </defs>
                     </svg>
                   </span>
-                  Sign up with Google
+                  Sign Up with Google
                 </button>
                 <div className="mb-8 flex items-center justify-center">
-                  <span className="hidden h-[1px] w-full max-w-[60px] bg-body-color sm:block"></span>
-                  <p className="w-full px-5 text-center text-md sm:text-lg font-medium text-black dark:text-white">
-                    Or, register with  email
+                  <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
+                  <p className=" md:text-md text-xs sm:text-sm w-full px-5 text-center  font-semibold text-gray-700 dark:text-white">
+                    Or, Sign Up with email
                   </p>
-                  <span className="hidden h-[1px] w-full max-w-[60px] bg-body-color sm:block"></span>
-                </div>
-                <form onSubmit={handleSubmit}>
-                  <div className="mb-8">
+                  <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
+                </div>                
+                <form onSubmit={handleSubmit}
+                className="md:text-md text-xs text-black dark:text-white sm:text-sm ">
+                  <div className="mb-6 sm:mb-8">
                     <label
                       htmlFor="name"
-                      className="mb-3 block text-sm sm:text-base font-medium text-dark dark:text-white"
+                      className="mb-3 block  font-bold text-dark dark:text-white"
                     >
                       {" "}
                       Full Name <span className="text-[red]">*</span>
@@ -151,17 +153,17 @@ const SignupPage = () => {
                       type="text"
                       name="name"
                       placeholder="Enter your full name"
-                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-4 text-sm sm:text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"
+                       className="dark:shadow-signUp w-full rounded-3xl border sm:border-transparent py-2 sm:py-3 px-5   text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white "
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
                       onFocus={handleInputFocus}
                       required
                     />
                   </div>
-                  <div className="mb-8">
+                  <div className="mb-6 sm:mb-8">
                     <label
                       htmlFor="name"
-                      className="mb-3 block text-sm sm:text-base font-medium text-dark dark:text-white"
+                      className="mb-3 block  font-bold text-dark dark:text-white"
                     >
                       {" "}
                       Phone <span className="text-[red]">*</span>
@@ -170,17 +172,17 @@ const SignupPage = () => {
                       type="text"
                       name="name"
                       placeholder="Enter your Phone Number"
-                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-4 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent  py-2 sm:py-3 px-5   text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white "
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       onFocus={handleInputFocus}
                       required
                     />
                   </div>
-                  <div className="mb-8">
+                  <div className="mb-6 sm:mb-8">
                     <label
                       htmlFor="email"
-                      className="mb-3 block text-sm sm:text-base font-medium text-dark dark:text-white"
+                      className="mb-3 block  font-bold text-dark dark:text-white"
                     >
                       {" "}
                       Email Address <span className="text-[red]">*</span>
@@ -189,17 +191,17 @@ const SignupPage = () => {
                       type="email"
                       name="email"
                       placeholder="Enter your email"
-                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-4 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent  py-2 sm:py-3 px-5   text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white "
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       onFocus={handleInputFocus}
                       required
                     />
                   </div>
-                  <div className="mb-8">
+                  <div className="mb-6 sm:mb-8">
                     <label
                       htmlFor="password"
-                      className="mb-3 block text-sm sm:text-base font-medium text-dark dark:text-white"
+                      className="mb-3 block  font-bold text-dark dark:text-white"
                     >
                       Password <span className="text-[red]">*</span>
                     </label>
@@ -207,7 +209,7 @@ const SignupPage = () => {
                       type="password"
                       name="password"
                       placeholder="Enter your password"
-                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-4 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent  py-2 sm:py-3 px-5   text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white "
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       onFocus={handleInputFocus}
@@ -215,10 +217,10 @@ const SignupPage = () => {
                     />
                   </div>
 
-                  <div className="mb-8">
+                  <div className="mb-6 sm:mb-8">
                     <label
                       htmlFor="password"
-                      className="mb-3 block text-sm sm:text-base font-medium text-dark dark:text-white"
+                      className="mb-3 block  font-bold text-dark dark:text-white"
                     >
                       Address <span className="text-[red]">*</span>
                     </label>
@@ -226,7 +228,7 @@ const SignupPage = () => {
                       type="address"
                       name="address"
                       placeholder="Enter your address"
-                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-4 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent  py-2 sm:py-3 px-5   text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white "
                       value={address}
                       onChange={(e) => setAddress(e.target.value)}
                       onFocus={handleInputFocus}
@@ -234,10 +236,10 @@ const SignupPage = () => {
                     />
                   </div>
 
-                  <div className="mb-8">
+                  <div className="mb-6 sm:mb-8">
                     <label
                       htmlFor="password"
-                      className="mb-3 block text-sm sm:text-base font-medium text-dark dark:text-white"
+                      className="mb-3 block  font-bold text-dark dark:text-white"
                     >
                       Zip <span className="text-[red]">*</span>
                     </label>
@@ -245,7 +247,7 @@ const SignupPage = () => {
                       type="zip"
                       name="zip"
                       placeholder="Enter your zip code"
-                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-4 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent  py-2 sm:py-3 px-5   text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white "
                       value={zip}
                       onChange={(e) => setZip(e.target.value)}
                       onFocus={handleInputFocus}
@@ -259,13 +261,14 @@ const SignupPage = () => {
                         id="checkboxLabelOne"
                         className="mr-1"
                         onFocus={handleInputFocus}
+                        required
                       />
                       <label
                         htmlFor="checkboxLabelOne"
-                        className="text-sm sm:text-base font-medium text-black dark:text-white"
+                        className=" font-bold text-black dark:text-white"
                       >
                         {" "}
-                        You accept our Terms and Conditions and Privacy Policy{" "}
+                        I accept the  <a href="#" className="hover:underline">Privacy Policy</a> .{" "}
                       </label>
                     </div>
                   </div>
@@ -314,7 +317,7 @@ const SignupPage = () => {
                   ) : (
                     <button
                       type="submit"
-                      className="hover:shadow-signUp flex w-full items-center justify-center rounded-3xl bg-primary py-3 px-6 ext-sm sm:text-base font-medium  text-white transition duration-300 ease-in-out hover:bg-opacity-80 sm:py-4 sm:px-9"
+                      className="hover:shadow-signUp flex w-full items-center justify-center rounded-3xl bg-primary py-2 sm:py-3 px-6 ext-sm sm:text-base font-medium  text-white transition duration-300 ease-in-out hover:bg-opacity-80 "
                     >
                       Register
                     </button>
@@ -344,10 +347,10 @@ const SignupPage = () => {
                     </div>
                   )}
                 </form>
-                <p className="text-center  mt-4 text-sm sm:text-base font-medium text-black dark:text-white">
-                  Already have Signedup?{" "}
-                  <Link href="/login" className="font-extrabold text-primary text-sm sm:text-base hover:underline">
-                    Sign In
+                <p className="text-center  mt-4  md:text-md text-xs sm:text-sm font-semibold text-black dark:text-white">
+                  Already have An Account?{" "}
+                  <Link href="/login" className="font-extrabold md:text-md text-xs sm:text-sm text-primary  hover:underline">
+                    Login
                   </Link>
                 </p>
               </div>

@@ -73,48 +73,50 @@ export default function Recordings() {
   return (
     <div>
       {/* Main content */}
-      <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
+      {/* <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6"> */}
+      <main className="container ">
         {/* Navbar */}
-        <nav className="mt-16 flex flex-col items-center justify-between sm:flex-row">
-          <h1 className="text-2xl font-bold sm:text-4xl">
+        <nav className="mt-20 flex h-28  flex-col items-start justify-center sm:mt-28 sm:mb-10 sm:flex-row sm:items-center sm:justify-between">
+          <h1 className=" text-center  text-2xl font-bold sm:pt-0 sm:text-start sm:text-3xl lg:text-4xl ">
             Recording
             <span className="text-lg font-light sm:text-2xl">(Classes)</span>
           </h1>
-
-          <div className="hidden sm:block">
+          <div className="hidden  sm:block">
             <Layout currentPage="Recordings" />
           </div>
         </nav>
-        <CourseNavigation />
         {/* Section with buttons and dropdowns */}
-        <section className="mb-8 flex flex-col justify-between sm:flex-row">
+        <section className="mb-8 min-h-[500px]">
+          <CourseNavigation />
           {/* Left side */}
-          <div className="mt-10 flex justify-center sm:w-1/3">
-            <div className="flex w-60 flex-col">
-              <button
-                className="mb-1 w-full rounded-md bg-gradient-to-br from-primary to-blue-300 px-4 py-2 font-bold text-black hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 sm:w-36"
-                onClick={() => handleButtonClick("class")}
-              >
-                Class
-              </button>
-              <button
-                className="mb-1 w-full rounded-md bg-gradient-to-br from-primary to-blue-300 px-4 py-2 font-bold text-black hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 sm:w-36"
-                onClick={() => handleButtonClick("search")}
-              >
-                Search
-              </button>
-              <button
-                className="mb-1 w-full rounded-md bg-gradient-to-br from-primary to-blue-300 px-4 py-2 font-bold text-black hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 sm:w-36"
-                onClick={() => handleButtonClick("session")}
-              >
-                Session
-              </button>
+          <div className="flex flex-col justify-start sm:flex-row ">
+            <div className="mt-10 flex justify-center sm:w-1/4">
+              <div className="flex flex-col">
+                <button
+                  className="mb-1 w-full rounded-md bg-gradient-to-br from-primary to-blue-300 px-4 py-2 font-bold text-black hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 sm:w-36"
+                  onClick={() => handleButtonClick("class")}
+                >
+                  Class
+                </button>
+                <button
+                  className="mb-1 w-full rounded-md bg-gradient-to-br from-primary to-blue-300 px-4 py-2 font-bold text-black hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 sm:w-36"
+                  onClick={() => handleButtonClick("search")}
+                >
+                  Search
+                </button>
+                <button
+                  className="mb-1 w-full rounded-md bg-gradient-to-br from-primary to-blue-300 px-4 py-2 font-bold text-black hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 sm:w-36"
+                  onClick={() => handleButtonClick("session")}
+                >
+                  Session
+                </button>
+              </div>
             </div>
-          </div>
 
-          {/* Right side */}
-          <div className="mt-10 flex-grow space-y-4 sm:ml-20">
-            {renderComponent()}
+            {/* Right side */}
+            <div className="mt:5 sm:w-1/2 space-y-4 sm:-mt-16 sm:ml-20 ">
+              {renderComponent()}
+            </div>
           </div>
         </section>
       </main>

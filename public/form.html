@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Whiteboxlearning-forms</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet"> -->
+    <style>
+      .section {
+        display: none;
+      }
+      .section.active {
+        display: block;
+      }
+      .section-link.active {
+        background-color: #4a90e2;
+      }
+      /* Hide horizontal scrollbar and show a transparent vertical scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1); /* Track background */
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.3); /* Scrollbar handle */
+        border-radius: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 0, 0, 0.5); /* Scrollbar handle on hover */
+      }
+
+      /* Optional: Adjust form controls to match the theme */
+      .form-control {
+        background-color: rgba(255, 255, 255, 0.9);
+      }
+    </style>
+  </head>
+  <body class="font-inter flex min-h-screen flex-col bg-gray-800 text-white">
+    <div class="max-w-10xl container mx-auto px-2 py-6">
+      <div class="grid grid-cols-1 justify-items-stretch gap-12 lg:grid-cols-6">
+        <!-- <div
+          class="lg:col-span-1 p-5 rounded-xl"
+        
+        >
+          <ul class="flex flex-wrap gap-4 mb-6 gap-10" >
+            <li>
+              <a
+                href="#"
+                data-section="basics-section"
+                class="section-link active block px-8 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-400 transition"
+                >Basics</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                data-section="work-section"
+                class="section-link block px-8 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-400 transition"
+                >Work</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                data-section="education-section"
+                class="section-link block px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-400 transition"
+                >Education</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                data-section="skills-section"
+                class="section-link block px-8 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-400 transition"
+                >Skills</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                data-section="languages-section"
+                class="section-link block px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-400 transition"
+                >Languages</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                data-section="certificates-section"
+                class="section-link block px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-400 transition"
+                >Certificates</a
+              >
+            </li>
+          </ul> 
+        </div> -->
+        <div class="rounded-xl p-5 lg:col-span-1">
+          <ul class="mb-6 flex flex-wrap gap-2">
+            <li>
+              <a
+                href="#"
+                data-section="basics-section"
+                class="section-link active block rounded-lg bg-gradient-to-r from-purple-600 to-red-400 px-8 py-2 text-white shadow-lg transition hover:from-purple-400 hover:to-indigo-500"
+                >Basics</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                data-section="work-section"
+                class="section-link block rounded-lg bg-gradient-to-r from-purple-600 to-red-400 px-8 py-2 text-white shadow-lg transition hover:from-purple-400 hover:to-indigo-500"
+                >Work</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                data-section="education-section"
+                class="section-link block rounded-lg bg-gradient-to-r from-purple-600 to-red-400 px-4 py-2 text-white shadow-lg transition hover:from-purple-400 hover:to-indigo-500"
+                >Education</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                data-section="skills-section"
+                class="section-link block rounded-lg bg-gradient-to-r from-purple-600 to-red-400 px-8 py-2 text-white shadow-lg transition hover:from-purple-400 hover:to-indigo-500"
+                >Skills</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                data-section="languages-section"
+                class="section-link block rounded-lg bg-gradient-to-r from-purple-600 to-red-400 px-4 py-2 text-white shadow-lg transition hover:from-purple-400 hover:to-indigo-500"
+                >Languages</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                data-section="certificates-section"
+                class="section-link block rounded-lg bg-gradient-to-r from-purple-600 to-red-400 px-4 py-2 text-white shadow-lg transition hover:from-purple-400 hover:to-indigo-500"
+                >Certificates</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Form Content -->
+        <div
+          class="rounded-xl bg-gradient-to-r from-purple-500 to-red-400 p-5 lg:col-span-2"
+          style="max-height: 87vh; overflow: auto"
+        >
+          <form id="submit-form" class="space-y-8" style="max-height: 100%">
+            <!-- Basics Section -->
+            <div class="section active" id="basics-section">
+              <h2 class="mb-4 text-xl font-bold">Basics</h2>
+              <div class="form-group mb-4">
+                <label for="basics_name" class="mb-2 block">Name:</label>
+                <input
+                  type="text"
+                  id="basics_name"
+                  name="basics_name"
+                  class="form-control w-full rounded-xl border border-gray-100 bg-gray-100 p-2 text-black"
+                />
+              </div>
+              <div class="form-group mb-4">
+                <label for="basics_label" class="mb-2 block"
+                  >Designation:</label
+                >
+                <input
+                  type="text"
+                  id="basics_label"
+                  name="basics_label"
+                  class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
+                />
+              </div>
+              <div class="form-group mb-4">
+                <label for="basics_email" class="mb-2 block">Email:</label>
+                <input
+                  type="email"
+                  id="basics_email"
+                  name="basics_email"
+                  class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
+                />
+              </div>
+              <div class="form-group mb-4">
+                <label for="basics_phone" class="mb-2 block">Phone:</label>
+                <input
+                  type="tel"
+                  id="basics_phone"
+                  name="basics_phone"
+                  class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
+                />
+              </div>
+              <div class="form-group mb-4">
+                <label for="basics_summary" class="mb-2 block">Summary:</label>
+                <textarea
+                  id="basics_summary"
+                  name="basics_summary"
+                  class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
+                ></textarea>
+              </div>
+              <!-- Location Subsection -->
+              <h3 class="mb-4 text-xl font-bold">Location</h3>
+              <div class="form-group mb-4">
+                <label for="basics_location_address" class="mb-2 block"
+                  >Address:</label
+                >
+                <input
+                  type="text"
+                  id="basics_location_address"
+                  name="basics_location_address"
+                  class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
+                />
+              </div>
+              <div class="form-group mb-4">
+                <label for="basics_location_postalCode" class="mb-2 block"
+                  >Postal Code:</label
+                >
+                <input
+                  type="text"
+                  id="basics_location_postalCode"
+                  name="basics_location_postalCode"
+                  class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
+                />
+              </div>
+              <div class="form-group mb-4">
+                <label for="basics_location_city" class="mb-2 block"
+                  >City:</label
+                >
+                <input
+                  type="text"
+                  id="basics_location_city"
+                  name="basics_location_city"
+                  class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
+                />
+              </div>
+              <div class="form-group mb-4">
+                <label for="basics_location_countryCode" class="mb-2 block"
+                  >Country:</label
+                >
+                <input
+                  type="text"
+                  id="basics_location_countryCode"
+                  name="basics_location_countryCode"
+                  class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
+                />
+              </div>
+              <!-- Profiles Subsection -->
+              <h3 class="mb-4 text-xl font-bold">Profiles</h3>
+              <div id="profiles-container" class="space-y-4">
+                <div class="profile">
+                  <div class="form-group mb-4">
+                    <label for="basics_profiles_network[]" class="mb-2 block"
+                      >Social Network:</label
+                    >
+                    <input
+                      type="text"
+                      id="basics_profiles_network"
+                      name="basics_profiles_network[]"
+                      class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
+                    />
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="basics_profiles_url" class="mb-2 block"
+                      >Username:</label
+                    >
+                    <input
+                      type="text"
+                      id="basics_profiles_username"
+                      name="basics_profiles_username[]"
+                      class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
+                    />
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="basics_profiles_url" class="mb-2 block"
+                      >URL:</label
+                    >
+                    <input
+                      type="url"
+                      id="basics_profiles_url"
+                      name="basics_profiles_url[]"
+                      class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Work Experience Section -->
+            <div class="section" id="work-section">
+              <h2 class="mb-4 text-xl font-bold">Work Experience</h2>
+              <div id="work-entries" class="space-y-4">
+                <div class="work-entry">
+                  <div class="form-group mb-4">
+                    <label for="work_company" class="mb-2 block"
+                      >Company:</label
+                    >
+                    <input
+                      type="text"
+                      id="work_company"
+                      name="work_name[]"
+                      class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
+                    />
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="work_position" class="mb-2 block"
+                      >Position:</label
+                    >
+                    <input
+                      type="text"
+                      id="work_position"
+                      name="work_position[]"
+                      class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
+                    />
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="work_startDate" class="mb-2 block"
+                      >Start Date:</label
+                    >
+                    <input
+                      type="date"
+                      id="work_startDate"
+                      name="work_startDate[]"
+                      class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
+                    />
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="work_endDate" class="mb-2 block"
+                      >End Date:</label
+                    >
+                    <input
+                      type="date"
+                      id="work_endDate"
+                      name="work_endDate[]"
+                      class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
+                    />
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="work_summary" class="mb-2 block"
+                      >Summary:</label
+                    >
+                    <textarea
+                      id="work_summary"
+                      name="work_summary[]"
+                      class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
+                    ></textarea>
+                  </div>
+                  <!-- Highlights Subsection -->
+                  <h3 class="mb-2 text-lg font-semibold">Highlights</h3>
+                  <div class="form-group mb-4">
+                    <ul class="highlights-list space-y-2">
+                      <li>
+                        <input
+                          type="text"
+                          name="work_highlights[]"
+                          class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
+                        />
+                      </li>
+                    </ul>
+                    <button
+                      type="button"
+                      class="mt-2 rounded bg-blue-500 p-2 text-white"
+                      onclick="addHighlight(this)"
+                    >
+                      Add Highlight
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <button
+                type="button"
+                class="mt-4 rounded bg-green-500 p-2 text-white"
+                onclick="addWorkEntry()"
+              >
+                Add Work Experience
+              </button>
+            </div>
+
+            <!-- </div> -->
+            <!-- Education Section -->
+            <div class="section" id="education-section">
+              <h2 class="mb-4 text-xl font-bold">Education</h2>
+              <div id="education-entry-container" class="space-y-4">
+                <div class="education-entry">
+                  <div class="form-group mb-4">
+                    <label for="education_institution" class="mb-2 block"
+                      >Institution:</label
+                    >
+                    <input
+                      type="text"
+                      id="education_institution"
+                      name="education_institution[]"
+                      class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
+                    />
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="education_area" class="mb-2 block"
+                      >Field of Study:</label
+                    >
+                    <input
+                      type="text"
+                      id="education_area"
+                      name="education_area[]"
+                      class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
+                    />
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="education_startDate" class="mb-2 block"
+                      >Start Date:</label
+                    >
+                    <input
+                      type="date"
+                      id="education_startDate"
+                      name="education_startDate[]"
+                      class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
+                    />
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="education_endDate" class="mb-2 block"
+                      >End Date:</label
+                    >
+                    <input
+                      type="date"
+                      id="education_endDate"
+                      name="education_endDate[]"
+                      class="form-control w-full rounded border border-gray-500 bg-gray-100 p-2 text-black"
+                    />
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="education_score" class="mb-2 block"
+                      >Score:</label
+                    >
+                    <input
+                      type="text"
+                      id="education_score"
+                      name="education_score[]"
+                      class="form-control w-full rounded border border-gray-500 bg-gray-100 p-2 text-black"
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    class="mt-4 rounded bg-green-500 p-2 text-white"
+                    onclick="addEducationEntry()"
+                  >
+                    Add Education Entry
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Certificates Section -->
+            <div class="section" id="certificates-section">
+              <h2 class="mb-4 text-xl font-bold">Certificates</h2>
+              <div id="certificates-container" class="space-y-4">
+                <div class="certificate-entry">
+                  <div class="form-group mb-4">
+                    <label for="certificates_name" class="mb-2 block"
+                      >Certificate Name:</label
+                    >
+                    <input
+                      type="text"
+                      id="certificates_name"
+                      name="certificates_name[]"
+                      class="form-control w-full rounded border border-gray-500 bg-gray-100 p-2 text-black"
+                    />
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="certificates_issuer" class="mb-2 block"
+                      >Issuer:</label
+                    >
+                    <input
+                      type="text"
+                      id="certificates_issuer"
+                      name="certificates_issuer[]"
+                      class="form-control w-full rounded border border-gray-500 bg-gray-100 p-2 text-black"
+                    />
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="certificates_date" class="mb-2 block"
+                      >Date Issued:</label
+                    >
+                    <input
+                      type="date"
+                      id="certificates_date"
+                      name="certificates_date[]"
+                      class="form-control w-full rounded border border-gray-500 bg-gray-100 p-2 text-black"
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    class="mt-4 rounded bg-green-500 p-2 text-white"
+                    onclick="addCertificateEntry()"
+                  >
+                    Add Certificate
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Skills Section -->
+            <div class="section" id="skills-section">
+              <h2 class="mb-4 text-xl font-bold">Skills</h2>
+              <div id="skills-container" class="space-y-4">
+                <div class="skill-entry">
+                  <div class="form-group mb-4">
+                    <label for="skills_name" class="mb-2 block">Skill:</label>
+                    <input
+                      type="text"
+                      id="skills_name"
+                      name="skills_name[]"
+                      class="form-control w-full rounded border border-gray-500 bg-gray-100 p-2 text-black"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="skills_level" class="mb-2 block">Level:</label>
+                    <select
+                      id="skills_level"
+                      name="skills_level[]"
+                      class="form-control w-full rounded border border-gray-500 bg-gray-100 p-2 text-black"
+                    >
+                      <option value="Beginner">Beginner</option>
+                      <option value="Intermediate">Intermediate</option>
+                      <option value="Advanced">Advanced</option>
+                    </select>
+                  </div>
+                  <button
+                    type="button"
+                    class="mt-4 rounded bg-green-500 p-2 text-white"
+                    onclick="addSkillEntry()"
+                  >
+                    Add Skill
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Languages Section -->
+            <div class="section" id="languages-section">
+              <h2 class="mb-4 text-xl font-bold">Languages</h2>
+              <div id="languages-container" class="space-y-4">
+                <div class="language-entry">
+                  <div class="form-group mb-4">
+                    <label for="languages_language" class="mb-2 block"
+                      >Language:</label
+                    >
+                    <input
+                      type="text"
+                      id="languages_language"
+                      name="languages_language[]"
+                      class="form-control w-full rounded border border-gray-500 bg-gray-100 p-2 text-black"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="languages_fluency" class="mb-2 block"
+                      >Fluency:</label
+                    >
+                    <select
+                      id="languages_fluency"
+                      name="languages_fluency[]"
+                      class="form-control w-full rounded border border-gray-500 bg-gray-100 p-2 text-black"
+                    >
+                      <option value="Beginner">Beginner</option>
+                      <option value="Intermediate">Intermediate</option>
+                      <option value="Advanced">Advanced</option>
+                      <option value="Native">Native</option>
+                    </select>
+                  </div>
+                  <button
+                    type="button"
+                    class="mt-4 rounded p-2 text-white"
+                    onclick="addLanguageEntry()"
+                  >
+                    Add Language
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Button
+            <button
+              type="submit"
+              class="bg-green-400 text-white p-2 rounded w-60 mb-8"
+            >
+              Submit
+            </button> -->
+            <button
+              type="submit"
+              class="mx-auto mb-8 block w-40 rounded-lg bg-red-500 p-2 text-white"
+            >
+            Submit ➤
+            </button>
+          </form>
+        </div>
+
+        <div
+          class="w-full rounded-xl p-5 shadow-lg lg:col-span-3 lg:w-auto"
+          style="
+            width: auto;
+            height: 87vh;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            overflow-y: auto; /* Adds vertical scrolling */
+            overflow-x: hidden; /* Hides horizontal scrolling */
+            background-color: rgba(255, 255, 255, 0.341);
+          "
+        >
+          <!-- <h2 class="text-lg font-bold mb-2 text-black">Resume Preview</h2> -->
+          <div class="mb-4 flex items-center justify-between space-x-4">
+            <div
+              class="hover:bg-white-300 text-bold flex items-center space-x-2 rounded-lg border-2 p-1"
+            >
+              <i class="fas fa-download text-bold"></i>
+              <button
+                class="json text rounded p-1"
+                id="jsonPre"
+                onclick="submitJson()"
+              >
+                GetJson
+              </button>
+            </div>
+            <div
+              class="text-bold flex items-center space-x-2 rounded-lg border-2 p-1 hover:bg-gray-300"
+            >
+              <i class="fas fa-download text-bold"></i>
+              <button
+                class="pdf text-gray rounded p-1"
+                id="generate-pdf"
+                onclick="showPdf()"
+              >
+                GetPdf
+              </button>
+            </div>
+          </div>
+          <div id="loading-bar" style="display: none">
+            <div class="bar"></div>
+          </div>
+          <pre id="json-preview"></pre>
+          <iframe
+            id="pdf-frame"
+            style="width: 100%; height: 80%; display: none"
+            class="rounded border border-gray-500"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

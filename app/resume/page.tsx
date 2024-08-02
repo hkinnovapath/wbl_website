@@ -11,7 +11,7 @@ export default function Assignment() {
   useEffect(() => {
     const fetchResumeContent = async () => {
       try {
-        const response = await fetch("./form.html");
+        const response = await fetch("/resume/form.html");
         const data = await response.text();
         setResumeContent(data);
       } catch (error) {
@@ -93,7 +93,7 @@ export default function Assignment() {
         {/* Render the HTML content */}
         <div ref={contentRef} />
         <Script
-          src="/form.js"
+          src="/resume/form.js"
           strategy="lazyOnload"
         />
       </main>

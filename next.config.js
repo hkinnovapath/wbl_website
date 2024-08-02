@@ -19,6 +19,10 @@ const nextConfig = {
    // images: {
    //   unoptimized: true,
    // },
+   images: {
+    // Enable image optimization and set allowed domains for images
+    domains: ['whitebox-learning.com'],
+  },
   experimental: {
     missingSuspenseWithCSRBailout: false,
   },

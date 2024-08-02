@@ -15,7 +15,7 @@ function addWorkEntry(button) {
                       type="text"
                       id="work_company"
                       name="work_name[]"
-                      class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded"
+                      class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
                     />
                   </div>
                   <div class="form-group mb-4">
@@ -26,7 +26,7 @@ function addWorkEntry(button) {
                       type="text"
                       id="work_position"
                       name="work_position[]"
-                      class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded"
+                      class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
                     />
                   </div>
                   <div class="form-group mb-4">
@@ -37,7 +37,7 @@ function addWorkEntry(button) {
                       type="date"
                       id="work_startDate"
                       name="work_startDate[]"
-                      class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded"
+                      class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
                     />
                   </div>
                   <div class="form-group mb-4">
@@ -48,7 +48,7 @@ function addWorkEntry(button) {
                       type="date"
                       id="work_endDate"
                       name="work_endDate[]"
-                      class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded"
+                      class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
                     />
                   </div>
                   <div class="form-group mb-4">
@@ -58,7 +58,7 @@ function addWorkEntry(button) {
                     <textarea
                       id="work_summary"
                       name="work_summary[]"
-                      class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded"
+                      class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
                     ></textarea>
                   </div>
                   <!-- Highlights Subsection -->
@@ -69,13 +69,13 @@ function addWorkEntry(button) {
                         <input
                           type="text"
                           name="work_highlights[]"
-                          class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded"
+                          class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
                         />
                       </li>
                     </ul>
                     <button
                       type="button"
-                      class="bg-blue-500 text-white p-2 rounded mt-2"
+                      class=mt-2 rounded bg-blue-500 p-2 text-white"
                       onclick="addHighlight(this)"
                     >
                       Add Highlight
@@ -85,10 +85,10 @@ function addWorkEntry(button) {
               </div>
               <button
                 type="button"
-                class="bg-green-500 text-white p-2 rounded mt-4"
+                class="md:text-md w-36 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-200 p-1 py-2  px-1 text-[11px] font-bold text-black hover:bg-indigo-700 hover:from-indigo-500 hover:to-indigo-200 dark:text-white sm:py-2 sm:px-4 sm:text-sm"
                 onclick="addWorkEntry()"
               >
-                Add Work Experience
+                Add Work
               </button>
   `;
   container.appendChild(entryDiv);
@@ -119,25 +119,27 @@ function addEducationEntry() {
   entryDiv.innerHTML = `
     <div class="form-group">
       <label for="education_institution">Institution:</label>
-      <input type="text" name="education_institution[]" class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded" />
+      <input type="text" name="education_institution[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
     </div>
     <div class="form-group">
       <label for="education_area">Area of Study:</label>
-      <input type="text" name="education_area[]" class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded" />
+      <input type="text" name="education_area[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
     </div>
     <div class="form-group">
       <label for="education_startDate">Start Date:</label>
-      <input type="date" name="education_startDate[]" class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded" />
+      <input type="date" name="education_startDate[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
     </div>
     <div class="form-group">
       <label for="education_endDate">End Date:</label>
-      <input type="date" name="education_endDate[]" class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded" />
+      <input type="date" name="education_endDate[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
     </div>
     <div class="form-group">
       <label for="education_score">Score:</label>
-      <input type="text" name="education_score[]" class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded" />
+      <input type="text" name="education_score[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
     </div>
-    <button type="button" onclick="removeEntry(this)" class="bg-red-500 text-white p-2 rounded mt-4">Remove</button>
+    <button type="button" onclick="removeEntry(this)" 
+    class="md:text-md w-36 rounded-lg bg-gradient-to-br from-red-500 to-red-200 p-1 px-1 text-[11px] font-bold text-black shadow-xl hover:bg-red-700 hover:bg-gradient-to-tl hover:from-red-500 hover:to-red-200 dark:text-white sm:py-2 sm:px-4 sm:text-sm"
+    >Remove</button>
   `;
 
   // Get the "Add Education" button
@@ -165,7 +167,7 @@ function addCertificateEntry() {
   entryDiv.innerHTML = `
     <div class="form-group">
       <label for="certificates_name">Name:</label>
-      <input type="text" name="certificates_name[]" class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded" />
+      <input type="text" name="certificates_name[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
     </div>
     <div class="form-group">
       <label for="certificates_date">Date:</label>
@@ -198,11 +200,11 @@ function addSkillEntry() {
   entryDiv.innerHTML = `
    <div class="form-group mb-4">
       <label for="skills_name" class="block mb-2">Skill:</label>
-      <input type="text" name="skills_name[]" class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded"/>
+      <input type="text" name="skills_name[]" class="form-control w-full rounded border border-gray-500 bg-gray-100 p-2 text-black"/>
     </div>
     <div class="form-group">
       <label for="skills_level" class="block mb-2">Level:</label>
-      <select name="skills_level[]" class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded">
+      <select name="skills_level[]" class="form-control w-full rounded border border-gray-500 bg-gray-100 p-2 text-black"">
         <option value="Beginner">Beginner</option>
         <option value="Intermediate">Intermediate</option>
         <option value="Advanced">Advanced</option>
@@ -234,11 +236,11 @@ function addLanguageEntry() {
   entryDiv.innerHTML = `
     <div class="form-group mb-4">
       <label for="languages_language" class="block mb-2">Language:</label>
-      <input type="text" name="languages_language[]" class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded"/>
+      <input type="text" name="languages_language[]" class="form-control w-full rounded border border-gray-500 bg-gray-100 p-2 text-black""/>
     </div>
     <div class="form-group">
       <label for="languages_fluency" class="block mb-2">Fluency:</label>
-      <select name="languages_fluency[]" class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded">
+      <select name="languages_fluency[]" class="form-control w-full rounded border border-gray-500 bg-gray-100 p-2 text-black"">
         <option value="Beginner">Beginner</option>
         <option value="Intermediate">Intermediate</option>
         <option value="Advanced">Advanced</option>
@@ -284,7 +286,8 @@ function addHighlight(button) {
                           name="work_highlights[]"
                           class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded"
                         />
-    <button type="button" onclick="deleteHighlight(this)">Delete</button>
+    <button type="button" onclick="deleteHighlight(this)"
+    >Delete</button>
   `;
   highlightsList.appendChild(newHighlight);
 }

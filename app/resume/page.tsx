@@ -12,7 +12,7 @@ export default function Assignment() {
     const fetchResumeContent = async () => {
       try {
         // Fetch the HTML content from the public folder
-        const response = await fetch("/form.html");
+        const response = await fetch("./form.html");
         const data = await response.text();
         setResumeContent(data);
       } catch (error) {
@@ -69,7 +69,7 @@ export default function Assignment() {
             Create Resume
           </h1>
           <div className="hidden sm:block">
-            <Layout currentPage="FAQ" />
+            <Layout currentPage="Resume"/>
           </div>
         </nav>
         {/* Render the HTML content */}

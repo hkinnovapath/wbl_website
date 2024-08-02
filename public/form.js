@@ -306,6 +306,7 @@ function deleteHighlight(button) {
 }
 
 let htmlContent = "";
+let jsonFile;
 function submitJson() {
   const form = document.getElementById("submit-form");
   const formData = new FormData(form);
@@ -400,11 +401,8 @@ function submitJson() {
     });
   });
 
-  const jsonString = JSON.stringify(jsonObject, null, 2);
-  // Display the JSON string in the PDF previewer
-  const jsonPreviewDiv = document.getElementById("json-preview");
-  jsonPreviewDiv.textContent = jsonString;
-  //  console.log(jsonString);
+  let jsonString = JSON.stringify(jsonObject, null, 2);
+  jsonFile = jsonString;
   fetch("http://localhost:8001/submit-form", {
     method: "POST",
     headers: {
@@ -421,11 +419,25 @@ function submitJson() {
       console.error("Error:", error);
     });
 
-  // Hide the PDF iframe
+}
+
+function clearFormData() {
+  const form = document.getElementById("submit-form"); // Replace with your form's ID
+  form.reset();
+}
+
+function getJsonFile()
+{
+
+   // Display the JSON string in the PDF previewer
+  const jsonPreviewDiv = document.getElementById("json-preview");
+  jsonPreviewDiv.textContent = jsonFile;
+   // Hide the PDF iframe
   document.getElementById("pdf-frame").style.display = "none";
 
   // Show the JSON preview
   document.getElementById("json-preview").style.display = "block";
+  clearFormData();
 }
 
 function showPdf() {

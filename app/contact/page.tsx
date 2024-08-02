@@ -1,5 +1,6 @@
-import Layout from "@/components/Common/Layout";
 import ContactForm from "@/components/Contact";
+import Layout from "@/components/Common/Layout";
+
 const ContactPage = () => {
   return (
     <>

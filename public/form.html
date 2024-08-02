@@ -8,7 +8,6 @@
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
-    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet"> -->
     <style>
       .section {
         display: none;
@@ -595,8 +594,9 @@
               Submit
             </button> -->
             <button
-              type="submit"
+              type="button"
               class="mx-auto mb-8 block w-40 rounded-lg bg-red-500 p-2 text-white"
+              onclick="submitJson() "
             >
             Submit ➤
             </button>
@@ -623,7 +623,7 @@
               <button
                 class="json text rounded p-1"
                 id="jsonPre"
-                onclick="submitJson()"
+                onclick="getJsonFile()"
               >
                 GetJson
               </button>
@@ -636,6 +636,7 @@
                 class="pdf text-gray rounded p-1"
                 id="generate-pdf"
                 onclick="showPdf()"
+                type="submit"
               >
                 GetPdf
               </button>

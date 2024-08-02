@@ -286,8 +286,18 @@ function addHighlight(button) {
                           name="work_highlights[]"
                           class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded"
                         />
-    <button type="button" onclick="deleteHighlight(this)"
-    >Delete</button>
+   <button
+  type="button"
+  class="p-2 text-red-600 flex items-center space-x-2"
+  onclick="deleteHighlight(this)"
+>
+Delete
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368">
+    <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+  </svg>
+</button>
+
+
   `;
   highlightsList.appendChild(newHighlight);
 }

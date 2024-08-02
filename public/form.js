@@ -85,10 +85,10 @@ function addWorkEntry(button) {
               </div>
               <button
                 type="button"
-                class="mt-4 rounded bg-green-500 p-2 text-white"
+                class="md:text-md w-36 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-200 p-1 py-2  px-1 text-[11px] font-bold text-black hover:bg-indigo-700 hover:from-indigo-500 hover:to-indigo-200 dark:text-white sm:py-2 sm:px-4 sm:text-sm"
                 onclick="addWorkEntry()"
               >
-                Add Work Experience
+                Add Work
               </button>
   `;
   container.appendChild(entryDiv);
@@ -137,7 +137,9 @@ function addEducationEntry() {
       <label for="education_score">Score:</label>
       <input type="text" name="education_score[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
     </div>
-    <button type="button" onclick="removeEntry(this)" class="bg-red-500 text-white p-2 rounded mt-4">Remove</button>
+    <button type="button" onclick="removeEntry(this)" 
+    class="md:text-md w-36 rounded-lg bg-gradient-to-br from-red-500 to-red-200 p-1 px-1 text-[11px] font-bold text-black shadow-xl hover:bg-red-700 hover:bg-gradient-to-tl hover:from-red-500 hover:to-red-200 dark:text-white sm:py-2 sm:px-4 sm:text-sm"
+    >Remove</button>
   `;
 
   // Get the "Add Education" button
@@ -284,7 +286,8 @@ function addHighlight(button) {
                           name="work_highlights[]"
                           class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded"
                         />
-    <button type="button" onclick="deleteHighlight(this)">Delete</button>
+    <button type="button" onclick="deleteHighlight(this)"
+    >Delete</button>
   `;
   highlightsList.appendChild(newHighlight);
 }

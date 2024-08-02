@@ -120,12 +120,12 @@ const UserDashboard = () => {
           </div>
         </nav>
       <section className="flex justify-center   h-full lg:h-[475px] ">
-        <div className="sm:w-4/6 w-72  flex flex-col  justify-center  rounded-3xl  bg-gradient-to-br from-pink-400 to-sky-400 p-8 px-10 py-10 text-white shadow-lg  dark:bg-gradient-to-br dark:from-pink-500 dark:to-sky-400">
+        <div className="sm:w-4/6 w-72  flex flex-col  justify-center  rounded-3xl  bg-gradient-to-tl from-sky-300  via-purple-300 to-indigo-400 p-8 px-10 py-10 text-white shadow-lg  dark:bg-gradient-to-br dark:from-dark/50  dark:via-indigo-500 dark:to-primarylight">
           <h2 className="mb-8  text-center sm:text-2xl text-lg font-bold text-gray-800 dark:text-white">
             My Details
           </h2>
           <div className="flex w-full  justify-center overflow-x-auto">
-            <div className="rounded-2xl  bg-gradient-to-tl from-pink-400 to-sky-400  px-2 sm:px-16 py-7 sm:py-10 text-white shadow-2xl dark:bg-gradient-to-tl dark:from-pink-500 dark:to-sky-400">
+            <div className="rounded-2xl  bg-gradient-to-br from-sky-300  via-purple-300 to-indigo-400  px-2 sm:px-16 py-7 sm:py-10 text-white shadow-2xl dark:bg-gradient-to-tl dark:from-dark/50 dark:via-indigo-500 dark:to-primarylight">
               <table className="w-1/2 divide-y  divide-gray-200 dark:divide-gray-700">
                 <tbody className=" ">
                   {data.map((item, index) => (

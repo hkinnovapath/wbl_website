@@ -1,11 +1,24 @@
+import { useEffect } from "react";
 import Link from "next/link";
-
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const address = "6500 Dublin Blvd., Ste.214(B), Dublin, CA, 94568";
   const googleMapsLink = `https://www.google.com/maps?q=${encodeURIComponent(
     address
   )}`;
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src =
+      "https://seal.godaddy.com/getSeal?sealID=v3KT7oJ1lPBg9VtkckOTfJJAwgbvIXY1mAuP0Qzb9OBFhXLj5FvNJFdMjtjF";
+    script.async = true;
+    // script.onload = () => console.log('GoDaddy script loaded');
+    document.getElementById("siteseal").appendChild(script);
+
+    return () => {
+      document.getElementById("siteseal").removeChild(script);
+    };
+  }, []);
 
   return (
     <>
@@ -144,9 +157,10 @@ const Footer = () => {
         </div>
 
         {/* Copyrights note */}
+
         <div className="flex h-10 items-center  bg-gray-300  py-10 dark:bg-primary/10 ">
-          <div className="container  flex ">
-            <div className="  text-right  w-3/4 font-semibold text-black dark:text-white">
+          <div className="container  flex">
+            <div className="  sm:text-md text-center font-semibold text-blackdark:text-white sm:w-3/4 lg:text-xl">
               &copy; {currentYear}{" "}
               <Link href="/" className="inline-block">
                 <h1 className="  text-blue-600 dark:text-blue-500">
@@ -155,17 +169,12 @@ const Footer = () => {
               </Link>{" "}
               All rights reserved.
             </div>
-            <div className="flex justify-end w-1/2 ">
-              <span id="siteseal">
-                <script
-                  async
-                  type="text/javascript"
-                  src="https://seal.godaddy.com/getSeal?sealID=v3KT7oJ1lPBg9VtkckOTfJJAwgbvIXY1mAuP0Qzb9OBFhXLj5FvNJFdMjtjF"
-                ></script>
-              </span>
+            <div className="hidden sm:flex  sm:w-1/2 sm:justify-end">
+              <div className="" id="siteseal"></div>
             </div>
           </div>
         </div>
+
         <div className="absolute right-0 top-14 z-[-1]">
           <svg
             width="55"

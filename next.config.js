@@ -13,19 +13,14 @@
 
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-   // output: "export",
-   // basePath: "/whiteboxLearning-wbl",
-   // images: {
-   //   unoptimized: true,
-   // },
+const nextConfig = { 
    images: {
-    // Enable image optimization and set allowed domains for images
     domains: ['whitebox-learning.com'],
   },
   experimental: {
     missingSuspenseWithCSRBailout: false,
   },
+  reactStrictMode: false,
   env: {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL ,
   },

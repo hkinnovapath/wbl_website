@@ -431,7 +431,6 @@ function submitJson() {
     .catch((error) => {
       console.error("Error:", error);
     });
-
 }
 
 function clearFormData() {
@@ -439,13 +438,11 @@ function clearFormData() {
   form.reset();
 }
 
-function getJsonFile()
-{
-
-   // Display the JSON string in the PDF previewer
+function getJsonFile() {
+  // Display the JSON string in the PDF previewer
   const jsonPreviewDiv = document.getElementById("json-preview");
   jsonPreviewDiv.textContent = jsonFile;
-   // Hide the PDF iframe
+  // Hide the PDF iframe
   document.getElementById("pdf-frame").style.display = "none";
 
   // Show the JSON preview
@@ -506,11 +503,3 @@ function showPdf() {
   document.getElementById("json-preview").innerText = "";
   document.getElementById("json-preview").style.display = "none";
 }
-
-
-
-
-
-
-
-

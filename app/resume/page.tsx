@@ -11,7 +11,7 @@ export default function Assignment() {
   useEffect(() => {
     const fetchResumeContent = async () => {
       try {
-        const response = await fetch("/form.html");
+        const response = await fetch("./form.html");
         const data = await response.text();
         setResumeContent(data);
       } catch (error) {
@@ -53,30 +53,6 @@ export default function Assignment() {
       };
     }
   }, [resumeContent]);
-  // useEffect(() => {
-  //   if (resumeContent && scriptLoaded && contentRef.current) {
-  //     // Set the HTML content
-  //     contentRef.current.innerHTML = resumeContent;
-
-  //     // Now that the content is rendered, perform DOM manipulation
-  //     const sectionLinks = contentRef.current.querySelectorAll(".section-link");
-  //     const sections = contentRef.current.querySelectorAll(".section");
-
-  //     sectionLinks.forEach((link) => {
-  //       link.addEventListener("click", function (event) {
-  //         event.preventDefault();
-  //         // Remove active class from all section links and sections
-  //         sectionLinks.forEach((link) => link.classList.remove("active"));
-  //         sections.forEach((section) => section.classList.remove("active"));
-
-  //         // Add active class to the clicked link and the corresponding section
-  //         this.classList.add("active");
-  //         const targetSection = contentRef.current.querySelector(`#${this.dataset.section}`);
-  //         if (targetSection) targetSection.classList.add("active");
-  //       });
-  //     });
-  //   }
-  // }, [resumeContent, scriptLoaded]);
 
   return (
     <div key={resumeContent}> {/* The key property forces the component to re-mount */}

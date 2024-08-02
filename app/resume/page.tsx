@@ -5,13 +5,11 @@ import Script from "next/script";
 
 export default function Assignment() {
   const [resumeContent, setResumeContent] = useState(null);
-  const [scriptLoaded, setScriptLoaded] = useState(false);
   const contentRef = useRef(null);
 
   useEffect(() => {
     const fetchResumeContent = async () => {
       try {
-        // Fetch the HTML content from the public folder
         const response = await fetch("./form.html");
         const data = await response.text();
         setResumeContent(data);
@@ -21,10 +19,10 @@ export default function Assignment() {
     };
 
     fetchResumeContent();
-  }, []); // Empty dependency array ensures this runs once when the component mounts
+  }, [resumeContent]); // Dependency array includes resumeContent
 
   useEffect(() => {
-    if (resumeContent && scriptLoaded && contentRef.current) {
+    if (resumeContent && contentRef.current) {
       // Set the HTML content
       contentRef.current.innerHTML = resumeContent;
 
@@ -53,12 +51,7 @@ export default function Assignment() {
         sectionLinks.forEach((link) => link.removeEventListener("click", handleLinkClick));
       };
     }
-  }, [resumeContent, scriptLoaded]);
-
-  const handleScriptLoad = () => {
-    console.log("External script loaded successfully");
-    setScriptLoaded(true);
-  };
+  }, [resumeContent]);
 
   return (
     <div key={resumeContent}> {/* The key property forces the component to re-mount */}
@@ -77,7 +70,6 @@ export default function Assignment() {
         <Script
           src="/form.js"
           strategy="lazyOnload"
-          onLoad={handleScriptLoad}
         />
       </main>
     </div>

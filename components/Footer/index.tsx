@@ -9,20 +9,20 @@ const Footer = () => {
 
   return (
     <>
-  <footer
-        className="wow   fadeInUp  relative z-10  bg-primary bg-opacity-5  shadow-2xl shadow-black pt-6 md:pt-8"
+      <footer
+        className="wow   fadeInUp  relative z-10  bg-primary bg-opacity-5  pt-6 shadow-2xl shadow-black md:pt-8"
         data-wow-delay=".1s"
       >
         <div className="container  ">
           <div className="-mx-4 flex  flex-wrap  justify-around  ">
-            <div className="flex items-center   w-full justify-center  text-center  sm:w-1/2 lg:w-4/12">
+            <div className="flex w-full   items-center justify-center  text-center  sm:w-1/2 lg:w-4/12">
               <div className=" mb-12  max-w-[360px] ">
                 <Link href="/" className="inline-block">
-                  <h1 className="mb-4 sm:mb-8  text-2xl font-bold text-black dark:text-white">
+                  <h1 className="mb-4 text-2xl  font-bold text-black dark:text-white sm:mb-8">
                     Whitebox Learning
                   </h1>
                 </Link>
-                <div className="flex justify-around items-center">
+                <div className="flex items-center justify-around">
                   {/* <a
                     href="https://github.com/WhiteboxHub"
                     target="_blank"
@@ -145,8 +145,8 @@ const Footer = () => {
 
         {/* Copyrights note */}
         <div className="flex h-10 items-center  bg-gray-300  py-10 dark:bg-primary/10 ">
-          <div className="container">
-            <div className="text-center  font-semibold text-black dark:text-white">
+          <div className="container  flex ">
+            <div className="  text-right  w-3/4 font-semibold text-black dark:text-white">
               &copy; {currentYear}{" "}
               <Link href="/" className="inline-block">
                 <h1 className="  text-blue-600 dark:text-blue-500">
@@ -154,6 +154,15 @@ const Footer = () => {
                 </h1>
               </Link>{" "}
               All rights reserved.
+            </div>
+            <div className="flex justify-end w-1/2 ">
+              <span id="siteseal">
+                <script
+                  async
+                  type="text/javascript"
+                  src="https://seal.godaddy.com/getSeal?sealID=v3KT7oJ1lPBg9VtkckOTfJJAwgbvIXY1mAuP0Qzb9OBFhXLj5FvNJFdMjtjF"
+                ></script>
+              </span>
             </div>
           </div>
         </div>

@@ -21,7 +21,7 @@ export default function Unsubscribe() {
           <div className="bg-gray-800 p-8 rounded shadow-md w-full max-w-md">
             <h1 className="text-2xl font-bold mb-4 text-center">Unsubscribe</h1>
             <p className="mb-6 text-center">
-              We're sorry to see you go. Please enter your email to unsubscribe from our mailing list.
+              We &apos; re sorry to see you go. Please enter your email to unsubscribe from our mailing list.
             </p>
             <form className="flex flex-col space-y-4">
               <input

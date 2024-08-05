@@ -60,7 +60,7 @@ const SignupPage = () => {
       setResponseStatus("error");
       setMessagee("An error occurred during registration");
     } finally {
-      console.log(loading);
+      // console.log(loading);
       setLoading(false);
     }
 

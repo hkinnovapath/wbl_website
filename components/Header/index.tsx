@@ -495,7 +495,7 @@ const Header = () => {
                         <li className="lg:hidden">
                           <Link
                             href="/login"
-                            className="relative block rounded-3xl bg-gradient-to-tl from-indigo-900 to-purple-400 py-2 px-3 text-center text-sm font-bold text-white hover:bg-gradient-to-br hover:from-indigo-900 hover:to-purple-400 sm:text-base "
+                            className="relative my-2 block rounded-3xl bg-gradient-to-tl from-indigo-900 to-purple-400 py-2 px-3 text-center text-sm font-bold text-white hover:bg-gradient-to-br hover:from-indigo-900 hover:to-purple-400 sm:text-base "
                             onClick={closeNavbar}
                           >
                             Login
@@ -535,7 +535,7 @@ const Header = () => {
                   <>
                     <Link
                       href="/login"
-                      className="hover:shadow-signUp mr-3 rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white duration-500 hover:bg-opacity-90 hover:bg-gradient-to-tl hover:from-indigo-900 hover:to-purple-400 md:block md:px-9 lg:px-6 xl:px-9"
+                      className="hover:shadow-signUp  mr-3 rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white duration-500 hover:bg-opacity-90 hover:bg-gradient-to-tl hover:from-indigo-900 hover:to-purple-400 md:block md:px-9 lg:px-6 xl:px-9"
                     >
                       Login
                     </Link>

@@ -67,7 +67,7 @@ const SigninPage = () => {
 
   // Check if access token exists on load and redirect if present
   useEffect(() => {
-    console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
+    // console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
 
     const accessToken = localStorage.getItem("access_token");
     if (accessToken) {

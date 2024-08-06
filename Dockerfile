@@ -1,4 +1,4 @@
-# Use the official Node.js 16 image as the base image
+# Use the official Node.js 18 Alpine image as the base image
 FROM node:18-alpine
 
 # Set the working directory inside the container
@@ -13,8 +13,12 @@ RUN npm install
 # Copy the rest of the application code to the working directory
 COPY . .
 
-# Build the Next.js application
-RUN npm run build
+# Always build the Next.js app to ensure the .next directory exists
+RUN npm run build || { echo 'Build failed'; exit 1; }
+
+# Set environment variable to control which .env file to use
+ARG ENVIRONMENT=development
+COPY .env.${ENVIRONMENT} .env
 
 # Expose port 3000 to the outside world
 EXPOSE 3000

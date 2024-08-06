@@ -98,11 +98,12 @@
           </ul>
           <button
           type="button"
-          class="w-30 duration-250 mx-auto mb-8 block cursor-pointer rounded-full bg-gradient-to-r from-green-500 to-blue-600 py-2 px-5 font-sans text-green-100 shadow-inner shadow-green-300 transition-all hover:rotate-[-1deg] hover:scale-105 hover:shadow-lg"
-          onclick="submitJson() "
+          class="mb-1 w-full sm:w-50 mx-auto rounded-md bg-gradient-to-br from-primary to-blue-300 px-8 py-2 font-bold text-black hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300"
+          onclick="submitJson()"
         >
           Submit ➤
         </button>
+        
         </div>
 
         <!-- Form Content -->
@@ -437,17 +438,6 @@
                     />
                   </div>
                   <div class="form-group mb-4">
-                    <label for="certificates_issuer" class="mb-2 block"
-                      >Issuer:</label
-                    >
-                    <input
-                      type="text"
-                      id="certificates_issuer"
-                      name="certificates_issuer[]"
-                      class="form-control w-full rounded border border-gray-500 bg-gray-100 p-2 text-black"
-                    />
-                  </div>
-                  <div class="form-group mb-4">
                     <label for="certificates_date" class="mb-2 block"
                       >Date Issued:</label
                     >
@@ -618,9 +608,16 @@
               </button>
             </div>
           </div>
-          <div id="loading-bar" style="display: none">
+          <!-- <div id="loading-bar" style="display: none">
             <div class="bar"></div>
+          </div> -->
+          <!-- <div id="loading-bar" class="hidden relative h-2 bg-gray-200">
+            <div class="bar h-full bg-green-500 transition-all duration-1000 ease-in-out"></div>
+          </div> -->
+          <div id="loading-bar" class="hidden relative h-2 bg-gray-200">
+            <div class="bar h-full bg-green-500 transition-all duration-1000 ease-in-out"></div>
           </div>
+          
           <pre id="json-preview"></pre>
           <iframe
             id="pdf-frame"

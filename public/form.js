@@ -427,7 +427,8 @@ function submitJson() {
 
   let jsonString = JSON.stringify(jsonObject, null, 2);
   jsonFile = jsonString;
-  fetch("http://localhost:8001/submit-form", {
+
+  fetch(`http://localhost:8001/submit-form`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -463,6 +464,7 @@ function getJsonFile() {
 
 function showPdf() {
   //Show the loading bar
+  // const apiUrl = process.env.NODE_PUBLIC_API_URL;
   const loadingBar = document.getElementById("loading-bar");
   const bar = document.querySelector("#loading-bar .bar");
   loadingBar.style.display = "block";
@@ -514,7 +516,3 @@ function showPdf() {
   document.getElementById("json-preview").innerText = "";
   document.getElementById("json-preview").style.display = "none";
 }
-
- localStorage.setItem("token",'12345')
-
-

@@ -75,7 +75,7 @@ function addWorkEntry(button) {
                     </ul>
                     <button
                       type="button"
-                      class=mt-2 rounded bg-blue-500 p-2 text-white"
+                      class=mt-2 rounded bg-green-500 p-2 text-white"
                       onclick="addHighlight(this)"
                     >
                       Add Highlight
@@ -83,13 +83,24 @@ function addWorkEntry(button) {
                   </div>
                 </div>
               </div>
-              <button
-                type="button"
-                class="md:text-md w-36 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-200 p-1 py-2  px-1 text-[11px] font-bold text-black hover:bg-indigo-700 hover:from-indigo-500 hover:to-indigo-200 dark:text-white sm:py-2 sm:px-4 sm:text-sm"
-                onclick="addWorkEntry()"
-              >
-                Add Work
-              </button>
+              
+  <div class="flex justify-evenly space-x-2 w-full">
+  <button
+    type="button"
+    class="md:text-md w-36 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-200 p-1 py-2 px-1 text-[11px] font-bold text-black hover:bg-indigo-700 hover:from-indigo-500 hover:to-indigo-200 dark:text-white sm:py-2 sm:px-4 sm:text-sm"
+    onclick="addWorkEntry()"
+  >
+    Add Work
+  </button>
+  <button
+    type="button"
+    class="md:text-md w-36 rounded-lg bg-gradient-to-br from-red-500 to-red-600 p-1 py-2 px-1 text-[11px] font-bold text-white hover:bg-red-700 hover:from-red-500 hover:to-red-600 mt-2 dark:text-white sm:py-2 sm:px-4 sm:text-sm"
+    onclick="removeEntry(this)"
+  >
+    Remove Entry
+  </button>
+</div>
+
   `;
   container.appendChild(entryDiv);
   workEntryCount++;
@@ -503,3 +514,7 @@ function showPdf() {
   document.getElementById("json-preview").innerText = "";
   document.getElementById("json-preview").style.display = "none";
 }
+
+ localStorage.setItem("token",'12345')
+
+

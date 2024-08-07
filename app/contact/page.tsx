@@ -6,7 +6,7 @@ const ContactPage = () => {
     <>
       {/* <div className=" mx-auto   w-full max-w-6xl px-4 pt-4 text-white sm:px-6 "> */}
       <div className="container px-4 pb-6 sm:px-6">
-      <nav className="sm:mt-28 mt-20 justify-center sm:mb-10 flex h-28 flex-col items-start sm:justify-between sm:flex-row sm:items-center">
+        <nav className="mt-20 flex h-28 flex-col items-start justify-center sm:mt-28 sm:mb-10 sm:flex-row sm:items-center sm:justify-between">
           <h1 className=" text-center  text-2xl font-bold sm:pt-0 sm:text-start sm:text-3xl lg:text-4xl ">
             Contact Us
           </h1>

@@ -17,8 +17,7 @@ COPY . .
 RUN npm run build || { echo 'Build failed'; exit 1; }
 
 # Set environment variable to control which .env file to use
-ARG ENVIRONMENT=development
-COPY .env.${ENVIRONMENT} .env
+COPY .env .env
 
 # Expose port 3000 to the outside world
 EXPOSE 3000

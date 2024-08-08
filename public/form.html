@@ -575,9 +575,10 @@
             width: auto;
             height: 87vh;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            overflow-y: auto; /* Adds vertical scrolling */
-            overflow-x: hidden; /* Hides horizontal scrolling */
+            /* overflow-y: auto; /* Adds vertical scrolling */
+           /* overflow-x: hidden; Hides horizontal scrolling */
             background-color: rgba(255, 255, 255, 0.341);
+            position: relative;
           "
         >
           <!-- <h2 class="text-lg font-bold mb-2 text-black">Resume Preview</h2> -->
@@ -588,8 +589,8 @@
               <i class="fas fa-download text-bold"></i>
               <button
                 class="json text rounded p-1"
-                id="jsonPre"
-                onclick="getJsonFile()"
+                id="download-json-btn"
+                onclick="getJson()"
               >
                 GetJson
               </button>
@@ -608,22 +609,42 @@
               </button>
             </div>
           </div>
-          <!-- <div id="loading-bar" style="display: none">
+          <!-- loader -->
+          <div id="loading-bar">
             <div class="bar"></div>
-          </div> -->
-          <!-- <div id="loading-bar" class="hidden relative h-2 bg-gray-200">
-            <div class="bar h-full bg-green-500 transition-all duration-1000 ease-in-out"></div>
-          </div> -->
-          <div id="loading-bar" class="hidden relative h-2 bg-gray-200">
-            <div class="bar h-full bg-green-500 transition-all duration-1000 ease-in-out"></div>
           </div>
+
           
-          <pre id="json-preview"></pre>
-          <iframe
-            id="pdf-frame"
+          <!-- <iframe
+            id="html-preview-frame"
             style="width: 100%; height: 80%; display: none"
             class="rounded border border-gray-500"
-          ></iframe>
+          ></iframe> -->
+          <!-- Centering container for iframe -->
+          <div
+            style="
+              display: flex;
+              top: 10px;
+              justify-content: center;
+              align-items: center;
+              height: 70vh; /* Set to the same height as iframe */
+              position: relative;
+            "
+          >
+            <!-- Iframe HTML live -->
+            <iframe
+              id="html-preview-frame"
+              style="
+                width: 100%;
+                height: 70vh; /* Adjust to fill the parent div */
+                /* overflow-y: auto; Adds vertical scrolling */
+                overflow-x: hidden; /* Hides horizontal scrolling */
+                background-color: #ffff;
+                border-radius: 10px;
+                border: none; /* Remove border if desired */
+              "
+            ></iframe>
+          </div>
         </div>
       </div>
     </div>

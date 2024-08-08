@@ -330,7 +330,7 @@ function deleteHighlight(button) {
 }
 
 let htmlContent = "";
-let jsonFile;
+let jsonFileContent;
 function submitJson() {
   const form = document.getElementById("submit-form");
   const formData = new FormData(form);
@@ -426,7 +426,7 @@ function submitJson() {
   });
 
   let jsonString = JSON.stringify(jsonObject, null, 2);
-  jsonFile = jsonString;
+  jsonFileContent = jsonString;
 
   fetch(`http://localhost:8001/submit-form`, {
     method: "POST",
@@ -438,6 +438,11 @@ function submitJson() {
     .then((response) => response.json())
     .then((data) => {
       htmlContent = data.html; // Save the HTML content
+      const iframe = document.getElementById('html-preview-frame');
+      const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+      iframeDoc.open();
+      iframeDoc.write(htmlContent);
+      iframeDoc.close();
       console.log("HTML Preview Updated");
     })
     .catch((error) => {
@@ -445,74 +450,88 @@ function submitJson() {
     });
 }
 
-function clearFormData() {
-  const form = document.getElementById("submit-form"); // Replace with your form's ID
-  form.reset();
-}
 
-function getJsonFile() {
-  // Display the JSON string in the PDF previewer
-  const jsonPreviewDiv = document.getElementById("json-preview");
-  jsonPreviewDiv.textContent = jsonFile;
-  // Hide the PDF iframe
-  document.getElementById("pdf-frame").style.display = "none";
-
-  // Show the JSON preview
-  document.getElementById("json-preview").style.display = "block";
-  clearFormData();
-}
-
-function showPdf() {
-  //Show the loading bar
-  // const apiUrl = process.env.NODE_PUBLIC_API_URL;
-  const loadingBar = document.getElementById("loading-bar");
-  const bar = document.querySelector("#loading-bar .bar");
-  loadingBar.style.display = "block";
-
-  // Start the loading bar animation
-  bar.style.width = "0";
-  let startTime = Date.now();
-
-  fetch("http://localhost:8001/generate-pdf", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ html: htmlContent }), // Send the saved HTML content
-  })
-    .then((response) => response.blob())
-    .then((blob) => {
+function getJson() {
+  fetch(`http://localhost:8001/download-json`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: jsonFileContent, // Assuming jsonString contains the form data in JSON format
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Failed to download JSON file");
+      }
+      return response.blob(); // Get the response as a Blob
+    })
+    .then(blob => {
+      // Create a link element to download the file
       const url = URL.createObjectURL(blob);
-      const pdfFrame = document.getElementById("pdf-frame");
-      pdfFrame.src = url;
-      pdfFrame.style.display = "block";
-      console.log("PDF Preview Updated");
-
-      // Calculate the response time
-      let endTime = Date.now();
-      let responseTime = endTime - startTime;
-
-      // Set the loading bar to 100% based on the response time
-      bar.style.transition = `width ${responseTime / 1000}s ease`;
-      bar.style.width = "100%";
-
-      // Hide the loading bar after the transition is complete
-      setTimeout(() => {
-        loadingBar.style.display = "none";
-      }, responseTime);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "resume-data.json"; // Set the desired file name
+      document.body.appendChild(a);
+      a.click(); // Programmatically click the link to trigger the download
+      a.remove(); // Clean up by removing the link
+      URL.revokeObjectURL(url); // Revoke the object URL
     })
-    .catch((error) => {
+    .catch(error => {
       console.error("Error:", error);
-      // Hide the loading bar in case of an error
-      loadingBar.style.display = "none";
-    })
-    // Hide the loading bar in case of an error
-    .finally(() => {
-      // Hide the loading bar
-      loadingBar.style.display = "none";
     });
+};
 
-  // Clear the JSON preview and hide it
-  document.getElementById("json-preview").innerText = "";
-  document.getElementById("json-preview").style.display = "none";
-}
+// function showPdf() {
+//   //Show the loading bar
+//   // const apiUrl = process.env.NODE_PUBLIC_API_URL;
+//   const loadingBar = document.getElementById("loading-bar");
+//   const bar = document.querySelector("#loading-bar .bar");
+//   loadingBar.style.display = "block";
+
+//   // Start the loading bar animation
+//   bar.style.width = "0";
+//   let startTime = Date.now();
+
+//   fetch("http://localhost:8001/generate-pdf", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({ html: htmlContent }), // Send the saved HTML content
+//   })
+//     .then((response) => response.blob())
+//     .then((blob) => {
+//       const url = URL.createObjectURL(blob);
+//       const pdfFrame = document.getElementById("pdf-frame");
+//       pdfFrame.src = url;
+//       pdfFrame.style.display = "block";
+//       console.log("PDF Preview Updated");
+
+//       // Calculate the response time
+//       let endTime = Date.now();
+//       let responseTime = endTime - startTime;
+
+//       // Set the loading bar to 100% based on the response time
+//       bar.style.transition = `width ${responseTime / 1000}s ease`;
+//       bar.style.width = "100%";
+
+//       // Hide the loading bar after the transition is complete
+//       setTimeout(() => {
+//         loadingBar.style.display = "none";
+//       }, responseTime);
+//     })
+//     .catch((error) => {
+//       console.error("Error:", error);
+//       // Hide the loading bar in case of an error
+//       loadingBar.style.display = "none";
+//     })
+//     // Hide the loading bar in case of an error
+//     .finally(() => {
+//       // Hide the loading bar
+//       loadingBar.style.display = "none";
+//     });
+
+//   // Clear the JSON preview and hide it
+//   document.getElementById("json-preview").innerText = "";
+//   document.getElementById("json-preview").style.display = "none";
+// }

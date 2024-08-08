@@ -8,6 +8,7 @@ export default function Head() {
         content="A comprehensive learning ecosystem tailored for developers, machine learning enthusiasts, and data engineers."
       />
       <link rel="icon" href="/images/favicon.ico" />
+      <link rel="canonical" href="https://www.whitebox-learning.com/" />
     </>
   );
 }

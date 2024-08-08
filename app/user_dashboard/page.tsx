@@ -11,12 +11,15 @@ const UserDashboard = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user_dashboard`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-          },
-        });
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/user_dashboard`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+          }
+        );
 
         if (!response.ok) {
           throw new Error("Failed to fetch user details");
@@ -99,19 +102,21 @@ const UserDashboard = () => {
 
   const TableRow = ({ label, value, isEven }) => (
     <tr>
-      <td className="font-bold sm:px-6 px-3 sm:py-4 py-2 text-xs sm:text-base  text-black dark:text-white">
-        {label}{':-'}
+      <td className="px-3 py-2 text-xs font-bold text-black dark:text-white sm:px-6  sm:py-4 sm:text-base">
+        {label}
+        {":-"}
       </td>
-      <td className="rounded-4xl font-bold  sm:px-6 px-3 sm:py-4 py-2 text-xs sm:text-base text-black dark:text-white">
+      <td className="rounded-4xl px-3  py-2 text-xs font-bold text-black dark:text-white sm:px-6 sm:py-4 sm:text-base">
         {value}
       </td>
     </tr>
   );
 
-  return (<>
-    {/* <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6"> */}
-    <main className="container px-4 py-6 sm:px-6">
-              <nav className="sm:mt-28  mt-20 justify-center sm:mb-10  flex h-28 flex-col items-start sm:justify-between sm:flex-row sm:items-center">
+  return (
+    <>
+      {/* <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6"> */}
+      <main className="container px-4 py-6 sm:px-6">
+        <nav className="mt-20  flex h-28 flex-col  items-start justify-center sm:mt-28 sm:mb-10 sm:flex-row sm:items-center sm:justify-between">
           <h1 className=" text-center  text-2xl font-bold sm:pt-0 sm:text-start sm:text-3xl lg:text-4xl">
             User Dashboard
           </h1>
@@ -119,30 +124,30 @@ const UserDashboard = () => {
             <Layout currentPage="Dashboard" />
           </div>
         </nav>
-      <section className="flex justify-center   h-full lg:h-[475px] ">
-        <div className="sm:w-4/6 w-72  flex flex-col  justify-center  rounded-3xl  bg-gradient-to-tl from-sky-300  via-purple-300 to-indigo-400 p-8 px-10 py-10 text-white shadow-lg  dark:bg-gradient-to-br dark:from-dark/50  dark:via-indigo-500 dark:to-primarylight">
-          <h2 className="mb-8  text-center sm:text-2xl text-lg font-bold text-gray-800 dark:text-white">
-            My Details
-          </h2>
-          <div className="flex w-full  justify-center overflow-x-auto">
-            <div className="rounded-2xl  bg-gradient-to-br from-sky-300  via-purple-300 to-indigo-400  px-2 sm:px-16 py-7 sm:py-10 text-white shadow-2xl dark:bg-gradient-to-tl dark:from-dark/50 dark:via-indigo-500 dark:to-primarylight">
-              <table className="w-1/2 divide-y  divide-gray-200 dark:divide-gray-700">
-                <tbody className=" ">
-                  {data.map((item, index) => (
-                    <TableRow 
-                      key={index}
-                      label={item.label}
-                      value={item.value}
-                      isEven={index % 2 === 0}
-                    />
-                  ))}
-                </tbody>
-              </table>
+        <section className="flex h-full   justify-center lg:h-[475px] ">
+          <div className="flex w-72  flex-col justify-center  rounded-3xl  bg-gradient-to-tl  from-sky-300 via-purple-300  to-indigo-400 p-8 px-10 py-10 text-white shadow-lg dark:bg-gradient-to-br  dark:from-dark/50 dark:via-indigo-500  dark:to-primarylight sm:w-4/6">
+            <h2 className="mb-8  text-center text-lg font-bold text-gray-800 dark:text-white sm:text-2xl">
+              My Details
+            </h2>
+            <div className="flex w-full  justify-center overflow-x-auto">
+              <div className="rounded-2xl  bg-gradient-to-br from-sky-300  via-purple-300 to-indigo-400  px-2 py-7 text-white shadow-2xl dark:bg-gradient-to-tl dark:from-dark/50 dark:via-indigo-500 dark:to-primarylight sm:px-16 sm:py-10">
+                <table className="w-1/2 divide-y  divide-gray-200 dark:divide-gray-700">
+                  <tbody className=" ">
+                    {data.map((item, index) => (
+                      <TableRow
+                        key={index}
+                        label={item.label}
+                        value={item.value}
+                        isEven={index % 2 === 0}
+                      />
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    </main>
+        </section>
+      </main>
     </>
   );
 };

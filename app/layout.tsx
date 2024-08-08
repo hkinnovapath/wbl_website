@@ -4,6 +4,8 @@ import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
 import "node_modules/react-modal-video/css/modal-video.css";
 import "../styles/index.css";
+import { Providers } from "./providers";
+
 export default function RootLayout({
   children,
 }: {
@@ -11,8 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      
-        {/* <head /> will contain the components returned by the nearest parent
+      {/* <head /> will contain the components returned by the nearest parent
         head.js. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
      
       <head /> */}
@@ -28,7 +29,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-import { Providers } from "./providers";
-import { ErrorBoundary } from "next/dist/client/components/error-boundary";
-

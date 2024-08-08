@@ -49,20 +49,27 @@ export default function Unsubscribe() {
 
         {/* Main content */}
         <div className="flex h-96 flex-col items-center justify-center ">
-          <div className="w-full max-w-md rounded-3xl dark:bg-gray-800 bg-gray-400 p-8  shadow-md">
+          <div className="w-full max-w-md rounded-3xl bg-gray-400 p-8 shadow-md  dark:bg-gray-800">
             {/* <h1 className="mb-4 text-center text-2xl font-bold">Unsubscribe</h1> */}
-            <div className="mb-6   text-sm sm:text-lg  text-center">
-              <div className=" font-extrabold pb-4 text-lg sm:text-xl lg:text-2xl my-5">We're sorry to see you go 😞</div> Please click the button below to
-              unsubscribe from our mailing list.
+            <div className="mb-6   text-center text-sm  sm:text-lg">
+              <div className=" my-5 pb-4 text-lg font-extrabold sm:text-xl lg:text-2xl">
+                We&apos;re sorry to see you go 😞
+              </div>{" "}
+              Please click the button below to unsubscribe from our mailing
+              list.
             </div>
             <div className="flex flex-col items-center space-y-4">
-              <div className="mb-4  text-center  font-bold text-xs sm:text-sm lg:text-base ">Email: <span className="dark:text-blue-400 text-blue-700">{email}
-                </span> </div>
+              <div className="mb-4  text-center  text-xs font-bold sm:text-sm lg:text-base ">
+                Email:{" "}
+                <span className="text-blue-700 dark:text-blue-400">
+                  {email}
+                </span>{" "}
+              </div>
               <button
                 type="submit"
                 className="flex   justify-center rounded-md bg-gradient-to-br from-indigo-900  to-purple-400 p-3 px-5
-                 text-center   font-bold text-white transition duration-500 hover:bg-opacity-90 
-          hover:bg-gradient-to-tl hover:from-indigo-900  hover:to-purple-400 hover:shadow-xl text-sm sm:text-base   lg:text-lg"
+                 text-center   text-sm font-bold text-white transition duration-500 
+          hover:bg-opacity-90 hover:bg-gradient-to-tl  hover:from-indigo-900 hover:to-purple-400 hover:shadow-xl sm:text-base   lg:text-lg"
                 onClick={handleUnsubscribe}
                 disabled={loading} // Disable button while loading
               >

@@ -19,33 +19,36 @@ const SignupPage = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/signup`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          uname: email,
-          passwd: password,
-          dailypwd: "",
-          team: "",
-          level: "",
-          instructor: "",
-          override: "",
-          status: "",
-          lastlogin: "",
-          logincount: "",
-          fullname: username,
-          phone: phone,
-          address: address,
-          city: "",
-          Zip: zip,
-          country: "",
-          message: "",
-          registereddate: new Date().toISOString(),
-          level3date: new Date().toISOString(),
-        }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/signup`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            uname: email,
+            passwd: password,
+            dailypwd: "",
+            team: "",
+            level: "",
+            instructor: "",
+            override: "",
+            status: "",
+            lastlogin: "",
+            logincount: "",
+            fullname: username,
+            phone: phone,
+            address: address,
+            city: "",
+            Zip: zip,
+            country: "",
+            message: "",
+            registereddate: new Date().toISOString(),
+            level3date: new Date().toISOString(),
+          }),
+        }
+      );
 
       const data = await response.json();
 
@@ -86,17 +89,18 @@ const SignupPage = () => {
         <div className="container mx-auto px-4">
           <div className=" flex flex-wrap">
             <div className="w-full ">
-              <div className="px-10 mx-auto max-w-full rounded-3xl bg-gradient-to-br from-pink-400 to-sky-200 p-6 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500/30 sm:max-w-[500px] sm:p-[60px]">
-                <h3 className="mb-3 text-center font-bold text-black dark:text-white text-lg sm:text-2xl md:text-3xl">
+              <div className="mx-auto max-w-full rounded-3xl bg-gradient-to-br from-pink-400 to-sky-200 p-6 px-10 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500/30 sm:max-w-[500px] sm:p-[60px]">
+                <h3 className="mb-3 text-center text-lg font-bold text-black dark:text-white sm:text-2xl md:text-3xl">
                   Welcome. <br />
-                  
-                  <span className="text-base sm:text-xl">We exist to make learning easier.</span>
+                  <span className="text-base sm:text-xl">
+                    We exist to make learning easier.
+                  </span>
                 </h3>
-                <p className="mb-7 sm:mb-11 text-center md:text-md text-xs sm:text-sm font-semibold  text-gray-700 dark:text-white">
+                <p className="md:text-md mb-7 text-center text-xs font-semibold text-gray-700 dark:text-white  sm:mb-11 sm:text-sm">
                   {/* It’s totally free and super easy */}
                   Create your account
                 </p>
-                <button className="dark:shadow-signUp mb-4 sm:mb-6 flex w-full items-center justify-center rounded-3xl bg-white py-2 sm:py-3 px-5   text-sm sm:text-base  font-medium text-primary shadow-one dark:bg-white dark:text-black">
+                <button className="dark:shadow-signUp mb-4 flex w-full items-center justify-center rounded-3xl bg-white py-2 px-5 text-sm font-medium   text-primary shadow-one  dark:bg-white dark:text-black sm:mb-6 sm:py-3 sm:text-base">
                   <span className="mr-3">
                     <svg
                       width="20"
@@ -134,13 +138,15 @@ const SignupPage = () => {
                 </button>
                 <div className="mb-8 flex items-center justify-center">
                   <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
-                  <p className=" md:text-md text-xs sm:text-sm w-full px-5 text-center  font-semibold text-gray-700 dark:text-white">
+                  <p className=" md:text-md w-full px-5 text-center text-xs font-semibold  text-gray-700 dark:text-white sm:text-sm">
                     Or, Sign Up with email
                   </p>
                   <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
-                </div>                
-                <form onSubmit={handleSubmit}
-                className="md:text-md text-xs text-black dark:text-white sm:text-sm ">
+                </div>
+                <form
+                  onSubmit={handleSubmit}
+                  className="md:text-md text-xs text-black dark:text-white sm:text-sm "
+                >
                   <div className="mb-6 sm:mb-8">
                     <label
                       htmlFor="name"
@@ -153,7 +159,7 @@ const SignupPage = () => {
                       type="text"
                       name="name"
                       placeholder="Enter your full name"
-                       className="dark:shadow-signUp w-full rounded-3xl border sm:border-transparent py-2 sm:py-3 px-5   text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white "
+                      className="dark:shadow-signUp w-full rounded-3xl border py-2 px-5 text-body-color placeholder-body-color   shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:border-transparent sm:py-3 "
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
                       onFocus={handleInputFocus}
@@ -172,7 +178,7 @@ const SignupPage = () => {
                       type="text"
                       name="name"
                       placeholder="Enter your Phone Number"
-                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent  py-2 sm:py-3 px-5   text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white "
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent  py-2 px-5 text-body-color   placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 "
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       onFocus={handleInputFocus}
@@ -191,7 +197,7 @@ const SignupPage = () => {
                       type="email"
                       name="email"
                       placeholder="Enter your email"
-                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent  py-2 sm:py-3 px-5   text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white "
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent  py-2 px-5 text-body-color   placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 "
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       onFocus={handleInputFocus}
@@ -209,7 +215,7 @@ const SignupPage = () => {
                       type="password"
                       name="password"
                       placeholder="Enter your password"
-                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent  py-2 sm:py-3 px-5   text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white "
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent  py-2 px-5 text-body-color   placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 "
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       onFocus={handleInputFocus}
@@ -228,7 +234,7 @@ const SignupPage = () => {
                       type="address"
                       name="address"
                       placeholder="Enter your address"
-                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent  py-2 sm:py-3 px-5   text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white "
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent  py-2 px-5 text-body-color   placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 "
                       value={address}
                       onChange={(e) => setAddress(e.target.value)}
                       onFocus={handleInputFocus}
@@ -247,7 +253,7 @@ const SignupPage = () => {
                       type="zip"
                       name="zip"
                       placeholder="Enter your zip code"
-                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent  py-2 sm:py-3 px-5   text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white "
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent  py-2 px-5 text-body-color   placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 "
                       value={zip}
                       onChange={(e) => setZip(e.target.value)}
                       onFocus={handleInputFocus}
@@ -268,7 +274,11 @@ const SignupPage = () => {
                         className=" font-bold text-black dark:text-white"
                       >
                         {" "}
-                        I accept the  <a href="#" className="hover:underline">Privacy Policy</a> .{" "}
+                        I accept the{" "}
+                        <a href="#" className="hover:underline">
+                          Privacy Policy
+                        </a>{" "}
+                        .{" "}
                       </label>
                     </div>
                   </div>
@@ -317,7 +327,7 @@ const SignupPage = () => {
                   ) : (
                     <button
                       type="submit"
-                      className="hover:shadow-signUp flex w-full items-center justify-center rounded-3xl bg-primary py-2 sm:py-3 px-6 ext-sm sm:text-base font-medium  text-white transition duration-300 ease-in-out hover:bg-opacity-80 "
+                      className="hover:shadow-signUp ext-sm flex w-full items-center justify-center rounded-3xl bg-primary py-2 px-6 font-medium text-white transition  duration-300 ease-in-out hover:bg-opacity-80 sm:py-3 sm:text-base "
                     >
                       Register
                     </button>
@@ -347,9 +357,12 @@ const SignupPage = () => {
                     </div>
                   )}
                 </form>
-                <p className="text-center  mt-4  md:text-md text-xs sm:text-sm font-semibold text-black dark:text-white">
+                <p className="md:text-md  mt-4  text-center text-xs font-semibold text-black dark:text-white sm:text-sm">
                   Already have An Account?{" "}
-                  <Link href="/login" className="font-extrabold md:text-md text-xs sm:text-sm text-primary  hover:underline">
+                  <Link
+                    href="/login"
+                    className="md:text-md text-xs font-extrabold text-primary hover:underline  sm:text-sm"
+                  >
                     Login
                   </Link>
                 </p>

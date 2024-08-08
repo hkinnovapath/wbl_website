@@ -6,13 +6,16 @@ export const isAuthenticated = async () => {
   }
 
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/verify_token`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ access_token: token, token_type: "Bearer" }),
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/verify_token`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ access_token: token, token_type: "Bearer" }),
+      }
+    );
 
     if (!response.ok) {
       const errorData = await response.json();

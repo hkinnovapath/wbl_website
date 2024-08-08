@@ -10,7 +10,7 @@ export default function Faq() {
       <main className="container px-4 pb-6 sm:px-6">
         {/* Navbar */}
 
-        <nav className="sm:mt-28 mt-16 text-center  justify-center sm:mb-3 flex h-24 sm:h-28 flex-col  sm:justify-between sm:flex-row sm:items-center">
+        <nav className="mt-16 flex h-24  flex-col justify-center text-center sm:mt-28 sm:mb-3 sm:h-28  sm:flex-row sm:items-center sm:justify-between">
           <h1 className=" text-center text-2xl font-bold sm:pt-0 sm:text-start sm:text-3xl lg:text-4xl ">
             Frequently Asked Questions
           </h1>
@@ -20,7 +20,7 @@ export default function Faq() {
         </nav>
         <div className="border dark:border-gray-800 ">
           <div className="rounded-lg bg-white dark:bg-transparent">
-            <Accordion  
+            <Accordion
               title="What are the courses Whitebox-Learning Offers?"
               content="Fullstack Development, DSML(Data Science and Machine Learning)"
             />
@@ -71,17 +71,19 @@ export default function Faq() {
             <Accordion
               title="Will you help in interview preparation?"
               content="Yes, our training team will do mock interviews and interview preparation sessions for you."
-            />           
+            />
             <Accordion
               title="Where can I find your class schedules and syllabus for training?"
               content={
                 <>
-                  Please follow the links to go through : 
+                  Please follow the links to go through :
                   <Link href="/schedule" className="inline-block">
-                    <h1 className="text-blue-600 dark:text-blue-500">Class Schedule and Syllabus(Course Content)</h1>
+                    <h1 className="text-blue-600 dark:text-blue-500">
+                      Class Schedule and Syllabus(Course Content)
+                    </h1>
                   </Link>
                 </>
-              }          
+              }
             />
           </div>
         </div>

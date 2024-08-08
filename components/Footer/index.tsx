@@ -7,18 +7,38 @@ const Footer = () => {
     address
   )}`;
 
+  // useEffect(() => {
+  //   const script = document.createElement("script");
+  //   script.src =
+  //     "https://seal.godaddy.com/getSeal?sealID=v3KT7oJ1lPBg9VtkckOTfJJAwgbvIXY1mAuP0Qzb9OBFhXLj5FvNJFdMjtjF";
+  //   script.async = true;
+  //   // script.onload = () => console.log('GoDaddy script loaded');
+  //   document.getElementById("siteseal").appendChild(script);
+
+  //   return () => {
+  //     document.getElementById("siteseal").removeChild(script);
+  //   };
+  // }, []);
+
+
   useEffect(() => {
+    const sitesealElement = document.getElementById("siteseal");
     const script = document.createElement("script");
     script.src =
       "https://seal.godaddy.com/getSeal?sealID=v3KT7oJ1lPBg9VtkckOTfJJAwgbvIXY1mAuP0Qzb9OBFhXLj5FvNJFdMjtjF";
     script.async = true;
-    // script.onload = () => console.log('GoDaddy script loaded');
-    document.getElementById("siteseal").appendChild(script);
-
+    
+    if (sitesealElement) {
+      sitesealElement.appendChild(script);
+    }
+  
     return () => {
-      document.getElementById("siteseal").removeChild(script);
+      if (sitesealElement && script.parentNode === sitesealElement) {
+        sitesealElement.removeChild(script);
+      }
     };
   }, []);
+  
 
   return (
     <>
@@ -35,24 +55,7 @@ const Footer = () => {
                     Whitebox Learning
                   </h1>
                 </Link>
-                <div className="flex items-center justify-around">
-                  {/* <a
-                    href="https://github.com/WhiteboxHub"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="Github"
-                    className="mr-5  text-[#858691]   duration-500 hover:text-black dark:text-gray-700 dark:hover:text-white "
-                  >
-                    <svg
-                      width="40"
-                      height="40"
-                      className=" fill-current"
-                      viewBox="0 0 32 32"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M16 8.2c-4.4 0-8 3.6-8 8 0 3.5 2.3 6.5 5.5 7.6.4.1.5-.2.5-.4V22c-2.2.5-2.7-1-2.7-1-.4-.9-.9-1.2-.9-1.2-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.3 1.9.9 2.3.7.1-.5.3-.9.5-1.1-1.8-.2-3.6-.9-3.6-4 0-.9.3-1.6.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8.6-.2 1.3-.3 2-.3s1.4.1 2 .3c1.5-1 2.2-.8 2.2-.8.4 1.1.2 1.9.1 2.1.5.6.8 1.3.8 2.1 0 3.1-1.9 3.7-3.7 3.9.3.4.6.9.6 1.6v2.2c0 .2.1.5.6.4 3.2-1.1 5.5-4.1 5.5-7.6-.1-4.4-3.7-8-8.1-8z" />
-                    </svg>
-                  </a> */}
+                <div className="flex items-center justify-around">                 
                   <a
                     href="https://www.facebook.com/profile.php?id=100076790355187"
                     target="_blank"

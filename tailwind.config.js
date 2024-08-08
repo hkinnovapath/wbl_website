@@ -52,6 +52,9 @@ module.exports = {
       animation: {
         "spin-slow": "spin 0.5s linear 1",
       },
+      fontFamily: {
+        comic: ['"Comic Sans MS"', 'cursive']
+      },
     },
   },
   plugins: [],

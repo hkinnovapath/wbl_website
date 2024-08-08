@@ -14,8 +14,8 @@ const SigninPage = () => {
 
   const router = useRouter();
   const searchParams = useSearchParams(); // Use searchParams to get query parameters
-  const callbackUrl = searchParams.get("redirect") || "/user_dashboard";
-
+  const callbackUrl = searchParams.get("redirect") || "/";
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (loading) return;

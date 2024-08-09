@@ -20,25 +20,23 @@ const Footer = () => {
   //   };
   // }, []);
 
-
   useEffect(() => {
     const sitesealElement = document.getElementById("siteseal");
     const script = document.createElement("script");
     script.src =
       "https://seal.godaddy.com/getSeal?sealID=v3KT7oJ1lPBg9VtkckOTfJJAwgbvIXY1mAuP0Qzb9OBFhXLj5FvNJFdMjtjF";
     script.async = true;
-    
+
     if (sitesealElement) {
       sitesealElement.appendChild(script);
     }
-  
+
     return () => {
       if (sitesealElement && script.parentNode === sitesealElement) {
         sitesealElement.removeChild(script);
       }
     };
   }, []);
-  
 
   return (
     <>
@@ -55,7 +53,7 @@ const Footer = () => {
                     Whitebox Learning
                   </h1>
                 </Link>
-                <div className="flex items-center justify-around">                 
+                <div className="flex items-center justify-around">
                   <a
                     href="https://www.facebook.com/profile.php?id=100076790355187"
                     target="_blank"
@@ -163,7 +161,7 @@ const Footer = () => {
 
         <div className="flex h-10 items-center  bg-gray-300  py-10 dark:bg-primary/10 ">
           <div className="container  flex">
-            <div className=" text-sm sm:text-md  text-center sm:text-right font-semibold text-blackdark:text-white sm:w-11/12 lg:text-xl">
+            <div className=" sm:text-md text-blackdark:text-white  text-center text-sm font-semibold sm:w-11/12 sm:text-right lg:text-xl">
               &copy; {currentYear}{" "}
               <Link href="/" className="inline-block">
                 <h1 className="  text-blue-600 dark:text-blue-500">

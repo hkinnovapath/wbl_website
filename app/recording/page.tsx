@@ -114,7 +114,7 @@ export default function Recordings() {
             </div>
 
             {/* Right side */}
-            <div className="mt:5 sm:w-1/2 space-y-4 sm:-mt-16 sm:ml-20 ">
+            <div className="mt:5 space-y-4 sm:-mt-16 sm:ml-20 sm:w-1/2 ">
               {renderComponent()}
             </div>
           </div>

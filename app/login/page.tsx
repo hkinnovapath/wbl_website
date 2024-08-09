@@ -1,8 +1,8 @@
 "use client";
-import { useState, useEffect,Suspense  } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import UserDashboard from '@/app/user_dashboard/page'
+import UserDashboard from "@/app/user_dashboard/page";
 
 const SigninPage = () => {
   const [email, setEmail] = useState("");
@@ -10,7 +10,7 @@ const SigninPage = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [responseStatus, setResponseStatus] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false); 
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const router = useRouter();
   const searchParams = useSearchParams(); // Use searchParams to get query parameters
@@ -35,14 +35,13 @@ const SigninPage = () => {
       });
 
       const data = await response.json();
-      
+
       if (response.ok) {
         setMessage(data.message || "Login successful!");
         setResponseStatus("success");
         localStorage.setItem("access_token", data.access_token);
-        setLoggedIn(true); // Set logged-in state to true 
+        setLoggedIn(true); // Set logged-in state to true
         router.push(callbackUrl);
-
       } else {
         setResponseStatus("error");
         setMessage(data.detail || "Failed to login");
@@ -85,14 +84,14 @@ const SigninPage = () => {
         <div className="container">
           <div className="  flex flex-wrap">
             <div className="w-full ">
-              <div className="mx-auto px-10 max-w-[500px] rounded-3xl bg-gradient-to-br from-pink-400 to-sky-200 p-6 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500/30 sm:p-[60px]">
-                <h3 className="mb-3 text-center  font-bold text-black dark:text-white text-lg sm:text-2xl md:text-3xl ">
+              <div className="mx-auto max-w-[500px] rounded-3xl bg-gradient-to-br from-pink-400 to-sky-200 p-6 px-10 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500/30 sm:p-[60px]">
+                <h3 className="mb-3 text-center  text-lg font-bold text-black dark:text-white sm:text-2xl md:text-3xl ">
                   Welcome back!
                 </h3>
-                <p className="mb-7 sm:mb-11 text-center md:text-md text-xs sm:text-sm font-semibold text-gray-700 dark:text-white">
+                <p className="md:text-md mb-7 text-center text-xs font-semibold text-gray-700 dark:text-white sm:mb-11 sm:text-sm">
                   Sign In to your account
                 </p>
-                    <button className="dark:shadow-signUp mb-4 sm:mb-6 flex w-full items-center justify-center rounded-3xl bg-white py-2 sm:py-3 px-5 text-sm sm:text-base  font-medium text-primary shadow-one dark:bg-white dark:text-black">
+                <button className="dark:shadow-signUp mb-4 flex w-full items-center justify-center rounded-3xl bg-white py-2 px-5 text-sm font-medium text-primary shadow-one  dark:bg-white dark:text-black sm:mb-6 sm:py-3 sm:text-base">
                   <span className="mr-3">
                     <svg
                       width="20"
@@ -130,13 +129,15 @@ const SigninPage = () => {
                 </button>
                 <div className="mb-8 flex items-center justify-center">
                   <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
-                  <p className=" md:text-md text-xs sm:text-sm w-full px-5 text-center  font-semibold text-gray-700 dark:text-white">
+                  <p className=" md:text-md w-full px-5 text-center text-xs font-semibold  text-gray-700 dark:text-white sm:text-sm">
                     Or, Sign In with email
                   </p>
                   <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
                 </div>
-                <form onSubmit={handleSubmit}
-                className="md:text-md text-xs text-black dark:text-white sm:text-sm ">
+                <form
+                  onSubmit={handleSubmit}
+                  className="md:text-md text-xs text-black dark:text-white sm:text-sm "
+                >
                   <div className="mb-6 sm:mb-8">
                     <label
                       htmlFor="email"
@@ -148,7 +149,7 @@ const SigninPage = () => {
                       type="text"
                       name="email"
                       placeholder="Enter your email"
-                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 sm:py-3 px-5   text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white "
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-5 text-body-color   placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 "
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       onFocus={handleInputFocus}
@@ -166,7 +167,7 @@ const SigninPage = () => {
                       type="password"
                       name="password"
                       placeholder="Enter your password"
-                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 sm:py-3 px-5   text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white "
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-5 text-body-color   placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 "
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       onFocus={handleInputFocus}
@@ -174,9 +175,12 @@ const SigninPage = () => {
                     />
                   </div>
                   <div>
-                    <a href="/forgot_password" className="mb-3 block  font-bold text-dark dark:text-white">
+                    <a
+                      href="/forgot_password"
+                      className="mb-3 block  font-bold text-dark dark:text-white"
+                    >
                       Forgot Password?
-                    </a>                    
+                    </a>
                   </div>
                   {loading ? (
                     <div className="text-md mb-4 text-center font-bold text-black dark:text-white sm:text-2xl">
@@ -217,9 +221,9 @@ const SigninPage = () => {
                   ) : (
                     <button
                       type="submit"
-                      className="hover:shadow-signUp flex w-full items-center justify-center rounded-3xl bg-primary py-2 sm:py-3 px-6  font-bold text-white transition duration-300 ease-in-out hover:bg-opacity-80 "
+                      className="hover:shadow-signUp flex w-full items-center justify-center rounded-3xl bg-primary py-2 px-6 font-bold  text-white transition duration-300 ease-in-out hover:bg-opacity-80 sm:py-3 "
                     >
-                     Login 
+                      Login
                     </button>
                   )}
                   {message && (
@@ -246,75 +250,78 @@ const SigninPage = () => {
                     </div>
                   )}
                 </form>
-                <p className="mt-4 text-center md:text-md text-xs sm:text-sm font-semibold text-black dark:text-white">
+                <p className="md:text-md mt-4 text-center text-xs font-semibold text-black dark:text-white sm:text-sm">
                   Don’t have an account?{" "}
-                  <Link href="/signup" className="font-extrabold md:text-md text-xs sm:text-sm  text-primary hover:underline">
-                   Register
+                  <Link
+                    href="/signup"
+                    className="md:text-md text-xs font-extrabold text-primary  hover:underline sm:text-sm"
+                  >
+                    Register
                   </Link>
                 </p>
               </div>
             </div>
           </div>
         </div>
-      <div className="absolute top-0 left-0 z-[-1]">
-        <svg
-          width="1440"
-          height="969"
-          viewBox="0 0 1440 969"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <mask
-            id="mask0_95:1005"
-            style={{ maskType: "alpha" }}
-            maskUnits="userSpaceOnUse"
-            x="0"
-            y="0"
+        <div className="absolute top-0 left-0 z-[-1]">
+          <svg
             width="1440"
             height="969"
+            viewBox="0 0 1440 969"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <rect width="1440" height="969" fill="#090E34" />
-          </mask>
-          <g mask="url(#mask0_95:1005)">
-            <path
-              opacity="0.1"
-              d="M1086.96 297.978L632.959 554.978L935.625 535.926L1086.96 297.978Z"
-              fill="url(#paint0_linear_95:1005)"
-            />
-             <path
-              opacity="0.1"
-              d="M1324.5 755.5L1450 687V886.5L1324.5 967.5L-10 288L1324.5 755.5Z"
-              fill="url(#paint1_linear_95:1005)"
-            />
-          </g>
-          <defs>
-            <linearGradient
-              id="paint0_linear_95:1005"
-              x1="1178.4"
-              y1="151.853"
-              x2="780.959"
-              y2="453.581"
-              gradientUnits="userSpaceOnUse"
+            <mask
+              id="mask0_95:1005"
+              style={{ maskType: "alpha" }}
+              maskUnits="userSpaceOnUse"
+              x="0"
+              y="0"
+              width="1440"
+              height="969"
             >
-              <stop stopColor="#4A6CF7" />
-              <stop offset="1" stopColor="#4A6CF7" stopOpacity="0" />
-            </linearGradient>
-            <linearGradient
-              id="paint1_linear_95:1005"
-              x1="160.5"
-              y1="220"
-              x2="1099.45"
-              y2="1192.04"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#4A6CF7" />
-              <stop offset="1" stopColor="#4A6CF7" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
+              <rect width="1440" height="969" fill="#090E34" />
+            </mask>
+            <g mask="url(#mask0_95:1005)">
+              <path
+                opacity="0.1"
+                d="M1086.96 297.978L632.959 554.978L935.625 535.926L1086.96 297.978Z"
+                fill="url(#paint0_linear_95:1005)"
+              />
+              <path
+                opacity="0.1"
+                d="M1324.5 755.5L1450 687V886.5L1324.5 967.5L-10 288L1324.5 755.5Z"
+                fill="url(#paint1_linear_95:1005)"
+              />
+            </g>
+            <defs>
+              <linearGradient
+                id="paint0_linear_95:1005"
+                x1="1178.4"
+                y1="151.853"
+                x2="780.959"
+                y2="453.581"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stopColor="#4A6CF7" />
+                <stop offset="1" stopColor="#4A6CF7" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient
+                id="paint1_linear_95:1005"
+                x1="160.5"
+                y1="220"
+                x2="1099.45"
+                y2="1192.04"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stopColor="#4A6CF7" />
+                <stop offset="1" stopColor="#4A6CF7" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
       </section>
-      </Suspense>
+    </Suspense>
   );
 };
 

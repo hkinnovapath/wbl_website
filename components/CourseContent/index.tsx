@@ -10,7 +10,9 @@ const CourseContent = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/coursecontent`);
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/coursecontent`
+        );
         setSubjects(response.data.coursecontent);
       } catch (error) {
         console.error("Error fetching course content:", error);
@@ -63,10 +65,10 @@ const CourseContent = () => {
 
   return (
     <>
-    {/* <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8"> */}
-     <div className="container mx-auto"> 
-      <CourseContentTable subjects={subjects} />
-    </div>
+      {/* <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8"> */}
+      <div className="container mx-auto">
+        <CourseContentTable subjects={subjects} />
+      </div>
     </>
   );
 };

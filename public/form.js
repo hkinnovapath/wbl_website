@@ -131,23 +131,23 @@ function addEducationEntry() {
     <div class="form-group">
       <label for="education_institution">Institution:</label>
       <input type="text" name="education_institution[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
-    </div>
+    </div><br>
     <div class="form-group">
       <label for="education_area">Area of Study:</label>
       <input type="text" name="education_area[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
-    </div>
+    </div><br>
     <div class="form-group">
       <label for="education_startDate">Start Date:</label>
       <input type="date" name="education_startDate[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
-    </div>
+    </div><br>
     <div class="form-group">
       <label for="education_endDate">End Date:</label>
       <input type="date" name="education_endDate[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
-    </div>
+    </div><br>
     <div class="form-group">
       <label for="education_score">Score:</label>
       <input type="text" name="education_score[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
-    </div>
+    </div><br>
     <button type="button" onclick="removeEntry(this)" 
     class="md:text-md w-36 rounded-lg bg-gradient-to-br from-red-500 to-red-200 p-1 px-1 text-[11px] font-bold text-black shadow-xl hover:bg-red-700 hover:bg-gradient-to-tl hover:from-red-500 hover:to-red-200 dark:text-white sm:py-2 sm:px-4 sm:text-sm"
     >Remove</button>
@@ -449,8 +449,6 @@ function submitJson() {
       console.error("Error:", error);
     });
 }
-
-
 function getJson() {
   fetch(`http://localhost:8001/download-json`, {
       method: "POST",
@@ -481,7 +479,37 @@ function getJson() {
     });
 };
 
-// function showPdf() {
+async function getPdf() {
+  try {
+    const response = await fetch(`http://localhost:8001/generate-pdf`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ html: htmlContent }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok.');
+    }
+
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'resume.pdf';
+
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error('Error downloading PDF:', error);
+  }
+}
+
+
+// function getPdf() {
 //   //Show the loading bar
 //   // const apiUrl = process.env.NODE_PUBLIC_API_URL;
 //   const loadingBar = document.getElementById("loading-bar");

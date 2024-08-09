@@ -263,12 +263,12 @@ const RecordingComp: React.FC = () => {
       return (
         <iframe
           width="100%"
-          height="250"
+          height="350"
           src={youtubeEmbedUrl}
           title={video.description}
           frameBorder="0"
           allowFullScreen
-          className="rounded-xl border-2 border-gray-500"
+          className="rounded-xl border-2 h-[350px] border-gray-500"
         ></iframe>
       );
     } else {

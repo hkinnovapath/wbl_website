@@ -140,7 +140,7 @@ export default function Presentation() {
               ))}
             </div>
           </div>
-          <div className="sm:-mt-10 mt-10 sm:w-4/5 flex justify-center">
+          <div className="mt-10 flex justify-center sm:-mt-10 sm:w-4/5">
             <ResourcesTable course={course} type={activeComponent} />
           </div>
         </section>

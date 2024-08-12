@@ -20,10 +20,15 @@ export default function SessionComp() {
 
   useEffect(() => {
     const sessionsDataFromStorage = sessionStorage.getItem("sessions_data");
-    const sessionsDataTimestamp = sessionStorage.getItem("sessions_data_timestamp");
-    const dataAge = Date.now() - (sessionsDataTimestamp ? parseInt(sessionsDataTimestamp, 10) : 0);
+    const sessionsDataTimestamp = sessionStorage.getItem(
+      "sessions_data_timestamp"
+    );
+    const dataAge =
+      Date.now() -
+      (sessionsDataTimestamp ? parseInt(sessionsDataTimestamp, 10) : 0);
 
-    if (sessionsDataFromStorage && dataAge < 86400000) { // Data is valid for 24 hours
+    if (sessionsDataFromStorage && dataAge < 86400000) {
+      // Data is valid for 24 hours
       const parsedSessions = JSON.parse(sessionsDataFromStorage);
       setSessions(parsedSessions);
       setIsLoading(false);
@@ -45,11 +50,14 @@ export default function SessionComp() {
   const fetchSessions = async () => {
     try {
       const accessToken = localStorage.getItem("access_token");
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/sessions`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/sessions`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to fetch sessions");
@@ -152,13 +160,16 @@ export default function SessionComp() {
           value={selectedType}
           onChange={handleTypeChange}
         >
-          <option value="" disabled>Please select</option>
+          <option value="" disabled>
+            Please select
+          </option>
           {Array.from(new Set(sessions.map((session) => session.type))).map(
-            (type) => type && (
-              <option key={type} value={type}>
-                {type}
-              </option>
-            )
+            (type) =>
+              type && (
+                <option key={type} value={type}>
+                  {type}
+                </option>
+              )
           )}
         </select>
       </div>
@@ -170,12 +181,11 @@ export default function SessionComp() {
           value={selectedSession ? selectedSession.sessionid.toString() : ""}
           onChange={handleSessionSelect}
         >
-          <option value="" disabled>Please select a session</option>
+          <option value="" disabled>
+            Please select a session
+          </option>
           {filteredSessions.map((session) => (
-            <option
-              key={session.sessionid}
-              value={String(session.sessionid)}
-            >
+            <option key={session.sessionid} value={String(session.sessionid)}>
               {session.title}
             </option>
           ))}

@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import axios from "axios";
 import Layout from "@/components/Common/Layout";
 
@@ -8,31 +7,34 @@ export default function Unsubscribe() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     // Extract email from the query parameter
     const queryEmail = new URLSearchParams(window.location.search).get("email");
     if (queryEmail) {
+      console.log(queryEmail);
       setEmail(decodeURIComponent(queryEmail));
+
+      // Trigger the unsubscribe action immediately
+      const unsubscribe = async () => {
+        setLoading(true);
+        setMessage("");
+        try {
+          const response = await axios.put(
+            `${process.env.NEXT_PUBLIC_API_URL}/unsubscribe`,
+            { email: decodeURIComponent(queryEmail) }
+          );
+          setMessage(response.data.message);
+        } catch (error) {
+          setMessage(error.response?.data?.detail || "An error occurred");
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      unsubscribe();
     }
   }, []);
-
-  const handleUnsubscribe = async () => {
-    setLoading(true);
-    setMessage("");
-    try {
-      const response = await axios.put(
-        `${process.env.NEXT_PUBLIC_API_URL}/unsubscribe`,
-        { email }
-      );
-      setMessage(response.data.message);
-    } catch (error) {
-      setMessage(error.response?.data?.detail || "An error occurred");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <div>
@@ -48,36 +50,53 @@ export default function Unsubscribe() {
         </nav>
 
         {/* Main content */}
-        <div className="flex h-96 flex-col items-center justify-center ">
-          <div className="w-full max-w-md rounded-3xl bg-gray-400 p-8 shadow-md  dark:bg-gray-800">
-            {/* <h1 className="mb-4 text-center text-2xl font-bold">Unsubscribe</h1> */}
-            <div className="mb-6   text-center text-sm  sm:text-lg">
-              <div className=" my-5 pb-4 text-lg font-extrabold sm:text-xl lg:text-2xl">
+        <div className="flex h-96 flex-col items-center justify-center">
+          <div className="w-full max-w-md rounded-3xl bg-gray-400 p-8 shadow-md dark:bg-gray-800">
+            <div className="mb-6 text-center text-sm sm:text-lg">
+              <div className="my-5 pb-4 text-lg font-extrabold sm:text-xl lg:text-2xl">
                 We&apos;re sorry to see you go 😞
               </div>{" "}
-              Please click the button below to unsubscribe from our mailing
-              list.
+              Please wait while we process your request to unsubscribe from our mailing list.
             </div>
-            <div className="flex flex-col items-center space-y-4">
-              <div className="mb-4  text-center  text-xs font-bold sm:text-sm lg:text-base ">
-                Email:{" "}
-                <span className="text-blue-700 dark:text-blue-400">
-                  {email}
-                </span>{" "}
-              </div>
-              <button
-                type="submit"
-                className="flex   justify-center rounded-md bg-gradient-to-br from-indigo-900  to-purple-400 p-3 px-5
-                 text-center   text-sm font-bold text-white transition duration-500 
-          hover:bg-opacity-90 hover:bg-gradient-to-tl  hover:from-indigo-900 hover:to-purple-400 hover:shadow-xl sm:text-base   lg:text-lg"
-                onClick={handleUnsubscribe}
-                disabled={loading} // Disable button while loading
-              >
-                Unsubscribe
-              </button>
+            <div className="mb-4 text-center text-xs font-bold sm:text-sm lg:text-base">
+              Email:{" "}
+              <span className="text-blue-700 dark:text-blue-400">
+                {email}
+              </span>
             </div>
             {loading ? (
-              <p className="mt-4 text-center text-white">Loading...</p>
+              <p className="mt-4 text-center text-white"><svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              className="inline h-[30px] w-[30px] text-black dark:text-white sm:h-[50px] sm:w-[50px]"
+            >
+              <circle cx="4" cy="12" r="3" fill="currentColor">
+                <animate
+                  id="svgSpinners3DotsScale0"
+                  attributeName="r"
+                  begin="0;svgSpinners3DotsScale1.end-0.2s"
+                  dur="0.6s"
+                  values="3;.2;3"
+                />
+              </circle>
+              <circle cx="12" cy="12" r="3" fill="currentColor">
+                <animate
+                  attributeName="r"
+                  begin="svgSpinners3DotsScale0.end-0.48s"
+                  dur="0.6s"
+                  values="3;.2;3"
+                />
+              </circle>
+              <circle cx="20" cy="12" r="3" fill="currentColor">
+                <animate
+                  id="svgSpinners3DotsScale1"
+                  attributeName="r"
+                  begin="svgSpinners3DotsScale0.end-0.36s"
+                  dur="0.6s"
+                  values="3;.2;3"
+                />
+              </circle>
+            </svg></p>
             ) : (
               message && (
                 <p className="mt-4 text-center text-white">{message}</p>

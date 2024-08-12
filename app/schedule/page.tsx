@@ -17,7 +17,7 @@ export default function Schedule() {
     // Specify the type of the component parameter
     setActiveComponent(component);
   };
-  
+
   // Render component based on activeComponent state
   const renderComponent = () => {
     switch (activeComponent) {
@@ -36,7 +36,7 @@ export default function Schedule() {
       {/* <main className=" mx-auto max-w-6xl px-4  sm:px-6 lg:px-8"> */}
       <main className="container px-4 pb-6 sm:px-6">
         {/* Navbar */}
-        <nav className="sm:mt-28 mt-20 justify-center sm:mb-10 flex h-28 flex-col items-start sm:justify-between sm:flex-row sm:items-center">
+        <nav className="mt-20 flex h-28 flex-col items-start justify-center sm:mt-28 sm:mb-10 sm:flex-row sm:items-center sm:justify-between">
           <h1 className=" text-center  text-2xl font-bold sm:pt-0 sm:text-start sm:text-3xl lg:text-4xl ">
             Schedule
           </h1>

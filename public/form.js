@@ -331,6 +331,7 @@ function deleteHighlight(button) {
 
 let htmlContent = "";
 let jsonFileContent;
+
 function submitJson() {
   const form = document.getElementById("submit-form");
   const formData = new FormData(form);
@@ -477,9 +478,39 @@ function getJson() {
       URL.revokeObjectURL(url); // Revoke the object URL
     })
     .catch(error => {
+      
       console.error("Error:", error);
     });
 };
+
+
+//sahas
+function showPdf() {
+  const iframe = document.getElementById('html-preview-frame');
+  const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+  const htmlContent = iframeDoc.documentElement.outerHTML;
+  
+  fetch('/generate-pdf', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'text/html'
+      },
+      body: JSON.stringify({ html: htmlContent })
+  })
+  .then(response => response.blob())
+  .then(blob => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = url;
+      a.download = 'resume.pdf'; // Name of the downloaded PDF
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+  })
+  .catch(error => console.error('Error generating PDF:', error));
+}
+
 
 // function showPdf() {
 //   //Show the loading bar
@@ -507,13 +538,7 @@ function getJson() {
 //       pdfFrame.style.display = "block";
 //       console.log("PDF Preview Updated");
 
-//       // Calculate the response time
-//       let endTime = Date.now();
-//       let responseTime = endTime - startTime;
-
-//       // Set the loading bar to 100% based on the response time
-//       bar.style.transition = `width ${responseTime / 1000}s ease`;
-//       bar.style.width = "100%";
+//  
 
 //       // Hide the loading bar after the transition is complete
 //       setTimeout(() => {
@@ -530,7 +555,6 @@ function getJson() {
 //       // Hide the loading bar
 //       loadingBar.style.display = "none";
 //     });
-
 //   // Clear the JSON preview and hide it
 //   document.getElementById("json-preview").innerText = "";
 //   document.getElementById("json-preview").style.display = "none";

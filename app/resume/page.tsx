@@ -16,11 +16,46 @@ export default function Assignment() {
   // const [scriptLoaded, setScriptLoaded] = useState(false);
   const contentRef = useRef(null);
 
-
+  const [canEdit, setCanEdit] = useState(false);
   const router = useRouter(); // Initialize router
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const [showModal, setShowModal] = useState(false); // State to control modal visibility
+
+
+
+
+
+  // useEffect(() => {
+  //   const validateResume = async () => {
+  //     try {
+  //       const response = await fetch('/validate-resume', {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //           // Add any necessary headers here, e.g., authorization token
+  //         }
+  //       });
+
+  //       const data = await response.json();
+
+  //       if (data.valid) {
+  //         setCanEdit(!data.resumeExists);  // If resume doesn't exist, allow editing
+  //         setLoading(false);
+  //       } else {
+  //         setErrorMessage(data.message || 'You are not authorized to view this page.');
+  //         setShowModal(true);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error validating resume:", error);
+  //       setErrorMessage("An error occurred while validating your access.");
+  //       setShowModal(true);
+  //     }
+  //   };
+
+  //   validateResume();
+  // }, []);
+
 
 
   useEffect(() => {
@@ -37,13 +72,14 @@ export default function Assignment() {
     fetchResumeContent();
   }, [resumeContent]); // Dependency array includes resumeContent
 
+
   useEffect(() => {
     if (resumeContent && contentRef.current) {
       // Set the HTML content
       contentRef.current.innerHTML = resumeContent;
 
       // Function to handle section link clicks
-      const handleLinkClick = (event) => {
+        const handleLinkClick = (event) => {
         event.preventDefault();
         const sectionLinks = contentRef.current.querySelectorAll(".section-link");
         const sections = contentRef.current.querySelectorAll(".section");

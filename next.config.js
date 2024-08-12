@@ -14,6 +14,19 @@
 
 /** @type {import('next').NextConfig} */
 const nextConfig = { 
+
+
+  //resume viewer
+  async rewrites(){
+    return [
+      {
+        source: `/resume/:id`,
+        destination: `http://localhost:8001/resume/:id`,
+      },
+    ];
+   },
+
+
    images: {
     domains: ['whitebox-learning.com'],
   },

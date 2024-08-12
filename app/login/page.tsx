@@ -2,7 +2,7 @@
 import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import UserDashboard from '@/app/user_dashboard/page';
+import UserDashboard from "@/app/user_dashboard/page";
 import { useAuth } from "@/utils/AuthContext";
 
 const SigninPage = () => {
@@ -86,14 +86,14 @@ const SigninPage = () => {
         <div className="container">
           <div className="flex flex-wrap">
             <div className="w-full">
-              <div className="mx-auto px-10 max-w-[500px] rounded-3xl bg-gradient-to-br from-pink-400 to-sky-200 p-6 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500/30 sm:p-[60px]">
-                <h3 className="mb-3 text-center font-bold text-black dark:text-white text-lg sm:text-2xl md:text-3xl">
+              <div className="mx-auto max-w-[500px] rounded-3xl bg-gradient-to-br from-pink-400 to-sky-200 p-6 px-10 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500/30 sm:p-[60px]">
+                <h3 className="mb-3 text-center text-lg font-bold text-black dark:text-white sm:text-2xl md:text-3xl">
                   Welcome back!
                 </h3>
-                <p className="mb-7 sm:mb-11 text-center md:text-md text-xs sm:text-sm font-semibold text-gray-700 dark:text-white">
+                <p className="md:text-md mb-7 text-center text-xs font-semibold text-gray-700 dark:text-white sm:mb-11 sm:text-sm">
                   Sign In to your account
                 </p>
-                <button className="dark:shadow-signUp mb-4 sm:mb-6 flex w-full items-center justify-center rounded-3xl bg-white py-2 sm:py-3 px-5 text-sm sm:text-base font-medium text-primary shadow-one dark:bg-white dark:text-black">
+                <button className="dark:shadow-signUp mb-4 flex w-full items-center justify-center rounded-3xl bg-white py-2 px-5 text-sm font-medium text-primary shadow-one dark:bg-white dark:text-black sm:mb-6 sm:py-3 sm:text-base">
                   <span className="mr-3">
                     <svg
                       width="20"
@@ -131,21 +131,27 @@ const SigninPage = () => {
                 </button>
                 <div className="mb-8 flex items-center justify-center">
                   <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
-                  <p className="md:text-md text-xs sm:text-sm w-full px-5 text-center font-semibold text-gray-700 dark:text-white">
+                  <p className="md:text-md w-full px-5 text-center text-xs font-semibold text-gray-700 dark:text-white sm:text-sm">
                     Or, Sign In with email
                   </p>
                   <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
                 </div>
-                <form onSubmit={handleSubmit} className="md:text-md text-xs text-black dark:text-white sm:text-sm">
+                <form
+                  onSubmit={handleSubmit}
+                  className="md:text-md text-xs text-black dark:text-white sm:text-sm"
+                >
                   <div className="mb-6 sm:mb-8">
-                    <label htmlFor="email" className="mb-3 block font-bold text-dark dark:text-white">
+                    <label
+                      htmlFor="email"
+                      className="mb-3 block font-bold text-dark dark:text-white"
+                    >
                       Email Address <span className="text-[red]">*</span>
                     </label>
                     <input
                       type="text"
                       name="email"
                       placeholder="Enter your email"
-                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 sm:py-3 px-5 text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white"
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-5 text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       onFocus={handleInputFocus}
@@ -153,14 +159,17 @@ const SigninPage = () => {
                     />
                   </div>
                   <div className="mb-8">
-                    <label htmlFor="password" className="mb-3 block font-bold text-dark dark:text-white">
+                    <label
+                      htmlFor="password"
+                      className="mb-3 block font-bold text-dark dark:text-white"
+                    >
                       Password <span className="text-[red]">*</span>
                     </label>
                     <input
                       type="password"
                       name="password"
                       placeholder="Enter your password"
-                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 sm:py-3 px-5 text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white"
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-5 text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       onFocus={handleInputFocus}
@@ -168,7 +177,10 @@ const SigninPage = () => {
                     />
                   </div>
                   <div>
-                    <a href="/forgot_password" className="mb-3 block font-bold text-dark dark:text-white">
+                    <a
+                      href="/forgot_password"
+                      className="mb-3 block font-bold text-dark dark:text-white"
+                    >
                       Forgot Password?
                     </a>
                   </div>
@@ -211,7 +223,7 @@ const SigninPage = () => {
                   ) : (
                     <button
                       type="submit"
-                      className="hover:shadow-signUp flex w-full items-center justify-center rounded-3xl bg-primary py-2 sm:py-3 px-6 font-bold text-white transition duration-300 ease-in-out hover:bg-opacity-80"
+                      className="hover:shadow-signUp flex w-full items-center justify-center rounded-3xl bg-primary py-2 px-6 font-bold text-white transition duration-300 ease-in-out hover:bg-opacity-80 sm:py-3"
                     >
                       Login
                     </button>
@@ -240,9 +252,12 @@ const SigninPage = () => {
                     </div>
                   )}
                 </form>
-                <p className="mt-4 text-center md:text-md text-xs sm:text-sm font-semibold text-black dark:text-white">
+                <p className="md:text-md mt-4 text-center text-xs font-semibold text-black dark:text-white sm:text-sm">
                   Don’t have an account?{" "}
-                  <Link href="/signup" className="font-extrabold md:text-md text-xs sm:text-sm text-primary hover:underline">
+                  <Link
+                    href="/signup"
+                    className="md:text-md text-xs font-extrabold text-primary hover:underline sm:text-sm"
+                  >
                     Register
                   </Link>
                 </p>
@@ -250,7 +265,7 @@ const SigninPage = () => {
             </div>
           </div>
         </div>
-        <div className="absolute top-0 left-0 z-[-1]">
+        <div className="absolute right-0 top-0 z-[-1]">
           <svg
             width="1440"
             height="969"

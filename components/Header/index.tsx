@@ -224,13 +224,13 @@ const Header = () => {
                   <div className="flex gap-4">
                     <button
                       onClick={display_user_dashboard}
-                      className="rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-1 px-4 lg:text-base text-sm font-bold text-white transition duration-500 hover:bg-opacity-90"
+                      className="rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-1 px-4 text-sm font-bold text-white transition duration-500 hover:bg-opacity-90 lg:text-base"
                     >
                       My Profile
                     </button>
                     <button
                       onClick={handleLogout}
-                      className="rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-6 lg:text-base text-sm font-bold text-white transition duration-500 hover:bg-opacity-90"
+                      className="rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-6 text-sm font-bold text-white transition duration-500 hover:bg-opacity-90 lg:text-base"
                     >
                       Logout
                     </button>
@@ -239,13 +239,13 @@ const Header = () => {
                   <>
                     <Link
                       href="/login"
-                      className="hover:shadow-signUp mr-3 rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white duration-500 hover:bg-opacity-90 hover:bg-gradient-to-tl hover:from-indigo-900 hover:to-purple-400 md:block md:px-9 lg:px-6 xl:px-9"
+                      className="hover:shadow-signUp mr-3 rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white duration-500 hover:bg-opacity-90 hover:bg-gradient-to-tl hover:from-indigo-900 hover:to-purple-400 md:block md:px-9 lg:px-6 xl:px-7"
                     >
                       Login
                     </Link>
                     <Link
                       href="/signup"
-                      className="hover:shadow-signUp rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white duration-500 hover:bg-opacity-90 hover:bg-gradient-to-tl hover:from-indigo-900 hover:to-purple-400 md:block md:px-9 lg:px-6 xl:px-9"
+                      className="hover:shadow-signUp rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white duration-500 hover:bg-opacity-90 hover:bg-gradient-to-tl hover:from-indigo-900 hover:to-purple-400 md:block md:px-9 lg:px-6 xl:px-7"
                     >
                       Register
                     </Link>

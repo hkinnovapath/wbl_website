@@ -331,6 +331,7 @@ function deleteHighlight(button) {
 
 let htmlContent = "";
 let jsonFileContent;
+
 function submitJson() {
   const form = document.getElementById("submit-form");
   const formData = new FormData(form);
@@ -475,37 +476,84 @@ function getJson() {
       URL.revokeObjectURL(url); // Revoke the object URL
     })
     .catch(error => {
+      
       console.error("Error:", error);
     });
 };
 
-async function getPdf() {
-  try {
-    const response = await fetch(`http://localhost:8001/generate-pdf`, {
+
+//sahas
+function showPdf() {
+  const iframe = document.getElementById('html-preview-frame');
+  const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+  const htmlContent = iframeDoc.documentElement.outerHTML;
+  
+  fetch('/generate-pdf', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+          'Content-Type': 'text/html'
       },
-      body: JSON.stringify({ html: htmlContent }),
-    });
-
-    if (!response.ok) {
-      throw new Error('Network response was not ok.');
-    }
-
-    const blob = await response.blob();
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'resume.pdf';
-
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  } catch (error) {
-    console.error('Error downloading PDF:', error);
-  }
+      body: JSON.stringify({ html: htmlContent })
+  })
+  .then(response => response.blob())
+  .then(blob => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = url;
+      a.download = 'resume.pdf'; // Name of the downloaded PDF
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+  })
+  .catch(error => console.error('Error generating PDF:', error));
 }
 
 
+// function showPdf() {
+//   //Show the loading bar
+//   // const apiUrl = process.env.NODE_PUBLIC_API_URL;
+//   const loadingBar = document.getElementById("loading-bar");
+//   const bar = document.querySelector("#loading-bar .bar");
+//   loadingBar.style.display = "block";
+
+//   // Start the loading bar animation
+//   bar.style.width = "0";
+//   let startTime = Date.now();
+
+//   fetch("http://localhost:8001/generate-pdf", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({ html: htmlContent }), // Send the saved HTML content
+//   })
+//     .then((response) => response.blob())
+//     .then((blob) => {
+//       const url = URL.createObjectURL(blob);
+//       const pdfFrame = document.getElementById("pdf-frame");
+//       pdfFrame.src = url;
+//       pdfFrame.style.display = "block";
+//       console.log("PDF Preview Updated");
+
+//  
+
+//       // Hide the loading bar after the transition is complete
+//       setTimeout(() => {
+//         loadingBar.style.display = "none";
+//       }, responseTime);
+//     })
+//     .catch((error) => {
+//       console.error("Error:", error);
+//       // Hide the loading bar in case of an error
+//       loadingBar.style.display = "none";
+//     })
+//     // Hide the loading bar in case of an error
+//     .finally(() => {
+//       // Hide the loading bar
+//       loadingBar.style.display = "none";
+//     });
+//   // Clear the JSON preview and hide it
+//   document.getElementById("json-preview").innerText = "";
+//   document.getElementById("json-preview").style.display = "none";
+// }

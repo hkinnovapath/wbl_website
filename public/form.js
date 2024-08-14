@@ -479,30 +479,29 @@ function getJson() {
     });
 };
 
+
 async function getPdf() {
   try {
-    const response = await fetch(`http://localhost:8001/generate-pdf`, {
+    const response = await fetch('http://localhost:8001/generate-pdf', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ html: htmlContent }),
+      body: JSON.stringify({ html: htmlContent })
     });
 
     if (!response.ok) {
-      throw new Error('Network response was not ok.');
+      throw new Error(`Network response was not ok. Status: ${response.status}`);
     }
 
     const blob = await response.blob();
-    const url = URL.createObjectURL(blob);
+    const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
     a.download = 'resume.pdf';
-
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    document.body.appendChild(a); // Append anchor to the body
+    a.click(); // Trigger download
+    a.remove(); // Remove anchor from the body
   } catch (error) {
     console.error('Error downloading PDF:', error);
   }

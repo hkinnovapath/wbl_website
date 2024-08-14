@@ -128,7 +128,7 @@ const Header = () => {
                         {menuItem.path ? (
                           <Link
                             href={menuItem.path}
-                            className={`flex px-3 py-2 text-sm font-semibold text-dark duration-500 hover:bg-gray-200 dark:text-white dark:hover:bg-black/70 sm:text-base sm:hover:bg-transparent sm:dark:hover:bg-transparent lg:mr-0 lg:inline-flex lg:py-6 lg:px-0`}
+                            className=" relative flex px-3 py-2 text-sm font-semibold text-dark duration-1000 before:absolute before:left-1/2 before:bottom-0 before:h-1 before:w-0 before:-translate-x-1/2 before:transform before:bg-primary before:transition-all before:duration-300 before:ease-out hover:before:w-full dark:text-white dark:hover:bg-black/70 sm:text-base sm:hover:bg-transparent sm:dark:hover:bg-transparent lg:mr-0 lg:inline-flex lg:py-6 lg:px-0"
                             onClick={closeNavbar}
                           >
                             {menuItem.title}

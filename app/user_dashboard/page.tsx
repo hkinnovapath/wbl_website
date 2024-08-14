@@ -96,8 +96,8 @@ const UserDashboard = () => {
     { label: "Name", value: user.fullname },
     { label: "Phone", value: user.phone },
     { label: "Email", value: user.uname },
-    // { label: "Logincount", value: user.logincount },
-    // { label: "Lastlogin", value: user.lastlogin || "Not available" },
+    { label: "Logincount", value: user.logincount },
+    { label: "Lastlogin", value: user.lastlogin || "Not available" },
   ];
 
   const TableRow = ({ label, value, isEven }) => (
@@ -130,7 +130,7 @@ const UserDashboard = () => {
               My Details
             </h2>
             <div className="flex w-full  justify-center overflow-x-auto">
-              <div className="rounded-2xl  bg-gradient-to-br from-sky-300  via-purple-300 to-indigo-400  px-2 py-7 text-white shadow-2xl dark:bg-gradient-to-tl dark:from-dark/50 dark:via-indigo-500 dark:to-primarylight sm:px-16 sm:py-10">
+              <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-sky-300  via-purple-300 to-indigo-400  px-2 py-7 text-white shadow-2xl dark:bg-gradient-to-tl dark:from-dark/50 dark:via-indigo-500 dark:to-primarylight sm:px-16 sm:py-8">
                 <table className="w-1/2 divide-y  divide-gray-200 dark:divide-gray-700">
                   <tbody className=" ">
                     {data.map((item, index) => (

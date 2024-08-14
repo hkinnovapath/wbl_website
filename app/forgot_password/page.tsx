@@ -15,7 +15,7 @@ const ForgotPasswordPage = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/forgot_password`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/forget-password`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

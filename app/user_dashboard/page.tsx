@@ -114,7 +114,6 @@ const UserDashboard = () => {
 
   return (
     <>
-      {/* <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6"> */}
       <main className="container px-4 py-6 sm:px-6">
         <nav className="mt-20  flex h-28 flex-col  items-start justify-center sm:mt-28 sm:mb-10 sm:flex-row sm:items-center sm:justify-between">
           <h1 className=" text-center  text-2xl font-bold sm:pt-0 sm:text-start sm:text-3xl lg:text-4xl">
@@ -124,15 +123,15 @@ const UserDashboard = () => {
             <Layout currentPage="Dashboard" />
           </div>
         </nav>
-        <section className="flex h-full   justify-center lg:h-[475px] ">
-          <div className="flex w-72  flex-col justify-center  rounded-3xl  bg-gradient-to-tl  from-sky-300 via-purple-300  to-indigo-400 p-8 px-10 py-10 text-white shadow-lg dark:bg-gradient-to-br  dark:from-dark/50 dark:via-indigo-500  dark:to-primarylight sm:w-4/6">
-            <h2 className="mb-8  text-center text-lg font-bold text-gray-800 dark:text-white sm:text-2xl">
+        <section className="relative flex h-full justify-center lg:h-[475px]">
+          <div className="flex w-72 flex-col justify-center rounded-3xl bg-gradient-to-tl from-sky-300 via-purple-300 to-indigo-400 p-8 px-10 py-10 text-white shadow-lg dark:bg-gradient-to-br dark:from-dark/50 dark:via-indigo-500 dark:to-primarylight sm:w-4/6">
+            <h2 className="mb-8 text-center text-lg font-bold text-gray-800 dark:text-white sm:text-2xl">
               My Details
             </h2>
-            <div className="flex w-full  justify-center overflow-x-auto">
-              <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-sky-300  via-purple-300 to-indigo-400  px-2 py-7 text-white shadow-2xl dark:bg-gradient-to-tl dark:from-dark/50 dark:via-indigo-500 dark:to-primarylight sm:px-16 sm:py-8">
-                <table className="w-1/2 divide-y  divide-gray-200 dark:divide-gray-700">
-                  <tbody className=" ">
+            <div className="flex w-full justify-center overflow-x-auto">
+              <div className="overflow-x-scroll rounded-2xl bg-gradient-to-br from-sky-300 via-purple-300 to-indigo-400 px-2 py-7 text-white shadow-2xl dark:bg-gradient-to-tl dark:from-dark/50 dark:via-indigo-500 dark:to-primarylight sm:overflow-hidden sm:px-16 sm:py-8">
+                <table className="w-1/2 divide-y divide-gray-200 dark:divide-gray-700">
+                  <tbody>
                     {data.map((item, index) => (
                       <TableRow
                         key={index}
@@ -146,9 +145,66 @@ const UserDashboard = () => {
               </div>
             </div>
           </div>
+          <div className="absolute top-1/2 left-1/2 -z-10 hidden w-full -translate-x-1/2 -translate-y-1/2 transform md:block">
+            <svg
+              className="h-full w-full"
+              viewBox="0 0 1440 969"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <mask
+                id="mask0_95:1005"
+                style={{ maskType: "alpha" }}
+                maskUnits="userSpaceOnUse"
+                x="0"
+                y="0"
+                width="1440"
+                height="969"
+              >
+                <rect width="1440" height="969" fill="#090E34" />
+              </mask>
+              <g mask="url(#mask0_95:1005)">
+                <path
+                  opacity="0.1"
+                  d="M1086.96 297.978L632.959 554.978L935.625 535.926L1086.96 297.978Z"
+                  fill="url(#paint0_linear_95:1005)"
+                />
+                <path
+                  opacity="0.1"
+                  d="M1324.5 755.5L1450 687V886.5L1324.5 967.5L-10 288L1324.5 755.5Z"
+                  fill="url(#paint1_linear_95:1005)"
+                />
+              </g>
+              <defs>
+                <linearGradient
+                  id="paint0_linear_95:1005"
+                  x1="1178.4"
+                  y1="151.853"
+                  x2="780.959"
+                  y2="453.581"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stopColor="#4A6CF7" />
+                  <stop offset="1" stopColor="#4A6CF7" stopOpacity="0" />
+                </linearGradient>
+                <linearGradient
+                  id="paint1_linear_95:1005"
+                  x1="160.5"
+                  y1="220"
+                  x2="1099.45"
+                  y2="1192.04"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stopColor="#4A6CF7" />
+                  <stop offset="1" stopColor="#4A6CF7" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
         </section>
       </main>
     </>
   );
 };
+
 export default UserDashboard;

@@ -3,6 +3,7 @@ import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import UserDashboard from "@/app/user_dashboard/page";
+import { useAuth } from "@/utils/AuthContext";
 
 const SigninPage = () => {
   const [email, setEmail] = useState("");
@@ -12,10 +13,11 @@ const SigninPage = () => {
   const [responseStatus, setResponseStatus] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
 
+  const { login } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams(); // Use searchParams to get query parameters
   const callbackUrl = searchParams.get("redirect") || "/";
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (loading) return;
@@ -39,7 +41,7 @@ const SigninPage = () => {
       if (response.ok) {
         setMessage(data.message || "Login successful!");
         setResponseStatus("success");
-        localStorage.setItem("access_token", data.access_token);
+        login(data.access_token);
         setLoggedIn(true); // Set logged-in state to true
         router.push(callbackUrl);
       } else {
@@ -66,11 +68,11 @@ const SigninPage = () => {
 
   // Check if access token exists on load and redirect if present
   useEffect(() => {
-    // console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
+    console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
 
     const accessToken = localStorage.getItem("access_token");
     if (accessToken) {
-      router.push(callbackUrl); // Redirect to dashboard if already logged in
+      router.push(callbackUrl);
     }
   }, [router, callbackUrl]);
 
@@ -82,16 +84,16 @@ const SigninPage = () => {
     <Suspense fallback={<div>LOADING...</div>}>
       <section className="relative z-10 mt-10 overflow-hidden pt-20 pb-16 md:pb-20 lg:pt-[100px] lg:pb-28">
         <div className="container">
-          <div className="  flex flex-wrap">
-            <div className="w-full ">
+          <div className="flex flex-wrap">
+            <div className="w-full">
               <div className="mx-auto max-w-[500px] rounded-3xl bg-gradient-to-br from-pink-400 to-sky-200 p-6 px-10 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500/30 sm:p-[60px]">
-                <h3 className="mb-3 text-center  text-lg font-bold text-black dark:text-white sm:text-2xl md:text-3xl ">
+                <h3 className="mb-3 text-center text-lg font-bold text-black dark:text-white sm:text-2xl md:text-3xl">
                   Welcome back!
                 </h3>
                 <p className="md:text-md mb-7 text-center text-xs font-semibold text-gray-700 dark:text-white sm:mb-11 sm:text-sm">
                   Sign In to your account
                 </p>
-                <button className="dark:shadow-signUp mb-4 flex w-full items-center justify-center rounded-3xl bg-white py-2 px-5 text-sm font-medium text-primary shadow-one  dark:bg-white dark:text-black sm:mb-6 sm:py-3 sm:text-base">
+                <button className="dark:shadow-signUp mb-4 flex w-full items-center justify-center rounded-3xl bg-white py-2 px-5 text-sm font-medium text-primary shadow-one dark:bg-white dark:text-black sm:mb-6 sm:py-3 sm:text-base">
                   <span className="mr-3">
                     <svg
                       width="20"
@@ -129,19 +131,19 @@ const SigninPage = () => {
                 </button>
                 <div className="mb-8 flex items-center justify-center">
                   <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
-                  <p className=" md:text-md w-full px-5 text-center text-xs font-semibold  text-gray-700 dark:text-white sm:text-sm">
+                  <p className="md:text-md w-full px-5 text-center text-xs font-semibold text-gray-700 dark:text-white sm:text-sm">
                     Or, Sign In with email
                   </p>
                   <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
                 </div>
                 <form
                   onSubmit={handleSubmit}
-                  className="md:text-md text-xs text-black dark:text-white sm:text-sm "
+                  className="md:text-md text-xs text-black dark:text-white sm:text-sm"
                 >
                   <div className="mb-6 sm:mb-8">
                     <label
                       htmlFor="email"
-                      className="mb-3 block  font-bold text-dark dark:text-white"
+                      className="mb-3 block font-bold text-dark dark:text-white"
                     >
                       Email Address <span className="text-[red]">*</span>
                     </label>
@@ -149,7 +151,7 @@ const SigninPage = () => {
                       type="text"
                       name="email"
                       placeholder="Enter your email"
-                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-5 text-body-color   placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 "
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-5 text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       onFocus={handleInputFocus}
@@ -159,7 +161,7 @@ const SigninPage = () => {
                   <div className="mb-8">
                     <label
                       htmlFor="password"
-                      className="mb-3 block  font-bold text-dark dark:text-white"
+                      className="mb-3 block font-bold text-dark dark:text-white"
                     >
                       Password <span className="text-[red]">*</span>
                     </label>
@@ -167,7 +169,7 @@ const SigninPage = () => {
                       type="password"
                       name="password"
                       placeholder="Enter your password"
-                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-5 text-body-color   placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 "
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-5 text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       onFocus={handleInputFocus}
@@ -177,7 +179,7 @@ const SigninPage = () => {
                   <div>
                     <a
                       href="/forgot_password"
-                      className="mb-3 block  font-bold text-dark dark:text-white"
+                      className="mb-3 block font-bold text-dark dark:text-white"
                     >
                       Forgot Password?
                     </a>
@@ -221,7 +223,7 @@ const SigninPage = () => {
                   ) : (
                     <button
                       type="submit"
-                      className="hover:shadow-signUp flex w-full items-center justify-center rounded-3xl bg-primary py-2 px-6 font-bold  text-white transition duration-300 ease-in-out hover:bg-opacity-80 sm:py-3 "
+                      className="hover:shadow-signUp flex w-full items-center justify-center rounded-3xl bg-primary py-2 px-6 font-bold text-white transition duration-300 ease-in-out hover:bg-opacity-80 sm:py-3"
                     >
                       Login
                     </button>
@@ -254,7 +256,7 @@ const SigninPage = () => {
                   Don’t have an account?{" "}
                   <Link
                     href="/signup"
-                    className="md:text-md text-xs font-extrabold text-primary  hover:underline sm:text-sm"
+                    className="md:text-md text-xs font-extrabold text-primary hover:underline sm:text-sm"
                   >
                     Register
                   </Link>
@@ -263,7 +265,7 @@ const SigninPage = () => {
             </div>
           </div>
         </div>
-        <div className="absolute top-0 left-0 z-[-1]">
+        <div className="absolute right-0 top-0 z-[-1]">
           <svg
             width="1440"
             height="969"
@@ -324,5 +326,4 @@ const SigninPage = () => {
     </Suspense>
   );
 };
-
 export default SigninPage;

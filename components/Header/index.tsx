@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -7,41 +6,25 @@ import menuData from "./menuData";
 import WBLlight from "@/public/images/wbl-light.png"; // Replace with the actual path
 import WBLdark from "@/public/images/wbl-dark.png"; // Replace with the actual path
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/utils/AuthContext";
 
 const Header = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { isAuthenticated, logout } = useAuth();
   const router = useRouter();
-  useEffect(() => {
-    const token = localStorage.getItem("access_token");
-    setIsAuthenticated(!!token);
-  }, []);
+
   const handleLogout = () => {
-    localStorage.removeItem("access_token");
-    sessionStorage.clear();
-    setIsAuthenticated(false);
+    logout();
     router.push("/login");
   };
+
   const display_user_dashboard = () => {
     router.push("/user_dashboard");
   };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleStickyNavbar);
-    return () => window.removeEventListener("scroll", handleStickyNavbar);
-  }, []);
-
-  // Navbar toggle
-  const [navbarOpen, setNavbarOpen] = useState(false);
-  const navbarToggleHandler = () => {
-    setNavbarOpen(!navbarOpen);
-  };
-  // Close navbar when a menu item is clicked
-  const closeNavbar = () => {
-    setNavbarOpen(false);
-  };
-
-  // Sticky Navbar
   const [sticky, setSticky] = useState(false);
+  const [navbarOpen, setNavbarOpen] = useState(false);
+  const [openIndex, setOpenIndex] = useState(-1);
+
   const handleStickyNavbar = () => {
     if (window.scrollY >= 80) {
       setSticky(true);
@@ -49,6 +32,7 @@ const Header = () => {
       setSticky(false);
     }
   };
+
   useEffect(() => {
     window.addEventListener("scroll", handleStickyNavbar);
     return () => {
@@ -56,8 +40,14 @@ const Header = () => {
     };
   }, []);
 
-  // submenu handler
-  const [openIndex, setOpenIndex] = useState(-1);
+  const navbarToggleHandler = () => {
+    setNavbarOpen(!navbarOpen);
+  };
+
+  const closeNavbar = () => {
+    setNavbarOpen(false);
+  };
+
   const handleSubmenu = (index) => {
     if (openIndex === index) {
       setOpenIndex(-1);
@@ -82,7 +72,7 @@ const Header = () => {
                 href="/"
                 className={`header-logo block w-full ${
                   sticky ? "py-3 lg:py-1" : "py-0"
-                } `}
+                }`}
               >
                 <Image
                   src={WBLdark}
@@ -101,7 +91,7 @@ const Header = () => {
               </Link>
             </div>
             <div className="flex w-full items-center justify-between px-4">
-              <div>
+              <div className="">
                 <button
                   onClick={navbarToggleHandler}
                   id="navbarToggler"
@@ -110,7 +100,7 @@ const Header = () => {
                 >
                   <span
                     className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
-                      navbarOpen ? " top-[7px] rotate-45" : ""
+                      navbarOpen ? "top-[7px] rotate-45" : ""
                     }`}
                   />
                   <span
@@ -120,7 +110,7 @@ const Header = () => {
                   />
                   <span
                     className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
-                      navbarOpen ? " top-[-8px] -rotate-45" : ""
+                      navbarOpen ? "top-[-8px] -rotate-45" : ""
                     }`}
                   />
                 </button>
@@ -147,10 +137,10 @@ const Header = () => {
                           <>
                             <a
                               onClick={() => handleSubmenu(index)}
-                              className=" group flex cursor-pointer items-center justify-between px-3 py-2 text-sm font-semibold text-dark duration-300 hover:bg-gray-200 dark:text-white dark:hover:bg-black/70 sm:text-base sm:hover:bg-transparent sm:dark:hover:bg-transparent lg:mr-0 lg:inline-flex lg:py-6 lg:px-0"
+                              className="group- flex cursor-pointer items-center justify-between px-3 py-2 text-sm font-semibold text-dark duration-500 hover:bg-gray-200 dark:text-white dark:hover:bg-black/70 sm:text-base sm:hover:bg-transparent sm:dark:hover:bg-transparent lg:mr-0 lg:inline-flex lg:py-6 lg:px-0"
                             >
                               {menuItem.title}
-                              <span className="pl-2">
+                              <span className="pl-3">
                                 <svg width="15" height="14" viewBox="0 0 15 14">
                                   <path
                                     d="M7.81602 9.97495C7.68477 9.97495 7.57539 9.9312 7.46602 9.8437L2.43477 4.89995C2.23789 4.70308 2.23789 4.39683 2.43477 4.19995C2.63164 4.00308 2.93789 4.00308 3.13477 4.19995L7.81602 8.77183L12.4973 4.1562C12.6941 3.95933 13.0004 3.95933 13.1973 4.1562C13.3941 4.35308 13.3941 4.65933 13.1973 4.8562L8.16601 9.79995C8.05664 9.90933 7.94727 9.97495 7.81602 9.97495Z"
@@ -180,10 +170,10 @@ const Header = () => {
                       </li>
                     ))}
                     {isAuthenticated ? (
-                      <div className="lg:hidden">
-                        <li className="my-3 ">
+                      <div>
+                        <li className="lg:hidden">
                           <button
-                            className="relative block w-full rounded-3xl bg-gradient-to-tl from-indigo-900 to-purple-400 py-2 px-3 text-center text-sm font-bold text-white hover:bg-gradient-to-br hover:from-indigo-900 hover:to-purple-400 sm:text-base "
+                            className="my-3 block w-full rounded-3xl bg-gradient-to-tl from-indigo-900 to-purple-400 py-2 px-3 text-center text-sm font-bold text-white hover:bg-gradient-to-br hover:from-indigo-900 hover:to-purple-400 sm:text-base"
                             onClick={(e) => {
                               closeNavbar();
                               display_user_dashboard();
@@ -192,9 +182,9 @@ const Header = () => {
                             My Profile
                           </button>
                         </li>
-                        <li className="my-3">
+                        <li className="lg:hidden">
                           <button
-                            className="relative block w-full rounded-3xl bg-gradient-to-tl from-indigo-900 to-purple-400 py-2 px-3 text-center text-sm font-bold text-white hover:bg-gradient-to-br hover:from-indigo-900 hover:to-purple-400 sm:text-base "
+                            className="my-3 block w-full rounded-3xl bg-gradient-to-tl from-indigo-900 to-purple-400 py-2 px-3 text-center text-sm font-bold text-white hover:bg-gradient-to-br hover:from-indigo-900 hover:to-purple-400 sm:text-base"
                             onClick={(e) => {
                               closeNavbar();
                               handleLogout();
@@ -209,7 +199,7 @@ const Header = () => {
                         <li className="lg:hidden">
                           <Link
                             href="/login"
-                            className="relative my-2 block rounded-3xl bg-gradient-to-tl from-indigo-900 to-purple-400 py-2 px-3 text-center text-sm font-bold text-white hover:bg-gradient-to-br hover:from-indigo-900 hover:to-purple-400 sm:text-base "
+                            className="my-3 block rounded-3xl bg-gradient-to-tl from-indigo-900 to-purple-400 py-2 px-3 text-center text-sm font-bold text-white hover:bg-gradient-to-br hover:from-indigo-900 hover:to-purple-400 sm:text-base"
                             onClick={closeNavbar}
                           >
                             Login
@@ -218,7 +208,7 @@ const Header = () => {
                         <li className="lg:hidden">
                           <Link
                             href="/signup"
-                            className="relative block rounded-3xl bg-gradient-to-tl from-indigo-900 to-purple-400 py-2 px-3 text-center text-sm font-bold text-white hover:bg-gradient-to-br hover:from-indigo-900 hover:to-purple-400 sm:text-base "
+                            className="block rounded-3xl bg-gradient-to-tl from-indigo-900 to-purple-400 py-2 px-3 text-center text-sm font-bold text-white hover:bg-gradient-to-br hover:from-indigo-900 hover:to-purple-400 sm:text-base"
                             onClick={closeNavbar}
                           >
                             Register
@@ -249,13 +239,13 @@ const Header = () => {
                   <>
                     <Link
                       href="/login"
-                      className="hover:shadow-signUp  mr-3 rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white duration-500 hover:bg-opacity-90 hover:bg-gradient-to-tl hover:from-indigo-900 hover:to-purple-400 md:block md:px-9 lg:px-6 xl:px-9"
+                      className="hover:shadow-signUp mr-3 rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white duration-500 hover:bg-opacity-90 hover:bg-gradient-to-tl hover:from-indigo-900 hover:to-purple-400 md:block md:px-9 lg:px-6 xl:px-7"
                     >
                       Login
                     </Link>
                     <Link
                       href="/signup"
-                      className="hover:shadow-signUp rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white duration-500 hover:bg-opacity-90 hover:bg-gradient-to-tl hover:from-indigo-900 hover:to-purple-400 md:block md:px-9 lg:px-6 xl:px-9"
+                      className="hover:shadow-signUp rounded-md bg-gradient-to-br from-indigo-900 to-purple-400 py-3 px-8 text-base font-bold text-white duration-500 hover:bg-opacity-90 hover:bg-gradient-to-tl hover:from-indigo-900 hover:to-purple-400 md:block md:px-9 lg:px-6 xl:px-7"
                     >
                       Register
                     </Link>

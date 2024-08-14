@@ -482,16 +482,43 @@ function getJson() {
 };
 
 
+<<<<<<< HEAD
+async function getPdf() {
+  try {
+    const response = await fetch('http://localhost:8001/generate-pdf', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ html: htmlContent })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Network response was not ok. Status: ${response.status}`);
+    }
+
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'resume.pdf';
+    document.body.appendChild(a); // Append anchor to the body
+    a.click(); // Trigger download
+    a.remove(); // Remove anchor from the body
+  } catch (error) {
+    console.error('Error downloading PDF:', error);
+  }
+=======
 //sahas
 function showPdf() {
   const iframe = document.getElementById('html-preview-frame');
   const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
   const htmlContent = iframeDoc.documentElement.outerHTML;
-  
-  fetch('/generate-pdf', {
+
+  fetch("http://localhost:8001/generate-pdf", {
       method: 'POST',
       headers: {
-          'Content-Type': 'text/html'
+          'Content-Type': 'application/json'
       },
       body: JSON.stringify({ html: htmlContent })
   })
@@ -507,6 +534,7 @@ function showPdf() {
       window.URL.revokeObjectURL(url);
   })
   .catch(error => console.error('Error generating PDF:', error));
+>>>>>>> c4dc3e87a187c3a42f3e5d3613f53c2de81cf081
 }
 
 
@@ -557,3 +585,34 @@ function showPdf() {
 //   document.getElementById("json-preview").innerText = "";
 //   document.getElementById("json-preview").style.display = "none";
 // }
+
+
+
+
+async function getPdf() {
+  try {
+    const response = await fetch('http://localhost:8001/generate-pdf', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ html: htmlContent })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Network response was not ok. Status: ${response.status}`);
+    }
+
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'resume.pdf';
+    document.body.appendChild(a); // Append anchor to the body
+    a.click(); // Trigger download
+    a.remove(); // Remove anchor from the body
+    window.URL.revokeObjectURL(url); // Clean up
+  } catch (error) {
+    console.error('Error downloading PDF:', error);
+  }
+}

@@ -146,6 +146,7 @@ export default function Assignment() {
             <Layout currentPage="Resume"/>
           </div>
         </nav>
+
         {/* Render the HTML content */}
         <div ref={contentRef} />
         <Script
@@ -153,6 +154,7 @@ export default function Assignment() {
           strategy="lazyOnload"
         />
       </main>
+
       {showModal && (
         <Modal
           title="Authentication Error"

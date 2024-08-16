@@ -484,33 +484,6 @@ function getJson() {
 };
 
 
-//sahas
-// function showPdf() {
-//   const iframe = document.getElementById('html-preview-frame');
-//   const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-//   const htmlContent = iframeDoc.documentElement.outerHTML;
-
-//   fetch("http://localhost:8001/generate-pdf", {
-//       method: 'POST',
-//       headers: {
-//           'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({ html: htmlContent })
-//   })
-//   .then(response => response.blob()) 
-//   .then(blob => {
-//       const url = window.URL.createObjectURL(blob);
-//       const a = document.createElement('a');
-//       a.style.display = 'none';
-//       a.href = url;
-//       a.download = 'resume.pdf'; // Name of the downloaded PDF
-//       document.body.appendChild(a);
-//       a.click();
-//       window.URL.revokeObjectURL(url);
-//   })
-//   .catch(error => console.error('Error generating PDF:', error));
-// }
-
 
 // Button click for downloading the generated pdf
 async function getPdf() {

@@ -5,10 +5,6 @@ import Script from "next/script";
 import { isAuthenticated } from "@/utils/auth";
 import { useRouter } from "next/navigation";
 import Modal from "@/components/Common/Modal"; // Import the Modal component
-// import ClassComp from "@/components/Recording/ClassComp";
-// import SearchComp from "@/components/Recording/SearchComp";
-// import SessionComp from "@/components/Recording/SessionComp";
-// import CourseNavigation from "@/components/Common/CourseNavigation";
 
 
 export default function Assignment() {
@@ -21,42 +17,6 @@ export default function Assignment() {
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const [showModal, setShowModal] = useState(false); // State to control modal visibility
-
-
-
-
-
-  // useEffect(() => {
-  //   const validateResume = async () => {
-  //     try {
-  //       const response = await fetch('/validate-resume', {
-  //         method: 'POST',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //           // Add any necessary headers here, e.g., authorization token
-  //         }
-  //       });
-
-  //       const data = await response.json();
-
-  //       if (data.valid) {
-  //         setCanEdit(!data.resumeExists);  // If resume doesn't exist, allow editing
-  //         setLoading(false);
-  //       } else {
-  //         setErrorMessage(data.message || 'You are not authorized to view this page.');
-  //         setShowModal(true);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error validating resume:", error);
-  //       setErrorMessage("An error occurred while validating your access.");
-  //       setShowModal(true);
-  //     }
-  //   };
-
-  //   validateResume();
-  // }, []);
-
-
 
   useEffect(() => {
     const fetchResumeContent = async () => {

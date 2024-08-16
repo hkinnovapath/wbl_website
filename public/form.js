@@ -293,14 +293,14 @@ function addHighlight(button) {
   const index = highlightsList.querySelectorAll("li").length;
   newHighlight.innerHTML = `
     <input
-                          type="text"
-                          name="work_highlights[]"
-                          class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded"
-                        />
+     type="text"
+     name="work_highlights[]"
+     class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded"
+   />
    <button
-  type="button"
-  class="p-2 text-red-600 flex items-center space-x-2"
-  onclick="deleteHighlight(this)"
+    type="button"
+    class="p-2 text-red-600 flex items-center space-x-2"
+    onclick="deleteHighlight(this)"
 >
 Delete
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368">
@@ -450,6 +450,8 @@ function submitJson() {
       console.error("Error:", error);
     });
 }
+
+// Button for downloading the json file
 function getJson() {
   fetch(`http://localhost:8001/download-json`, {
       method: "POST",
@@ -482,113 +484,35 @@ function getJson() {
 };
 
 
-<<<<<<< HEAD
-async function getPdf() {
-  try {
-    const response = await fetch('http://localhost:8001/generate-pdf', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ html: htmlContent })
-    });
-
-    if (!response.ok) {
-      throw new Error(`Network response was not ok. Status: ${response.status}`);
-    }
-
-    const blob = await response.blob();
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'resume.pdf';
-    document.body.appendChild(a); // Append anchor to the body
-    a.click(); // Trigger download
-    a.remove(); // Remove anchor from the body
-  } catch (error) {
-    console.error('Error downloading PDF:', error);
-  }
-=======
 //sahas
-function showPdf() {
-  const iframe = document.getElementById('html-preview-frame');
-  const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-  const htmlContent = iframeDoc.documentElement.outerHTML;
-
-  fetch("http://localhost:8001/generate-pdf", {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ html: htmlContent })
-  })
-  .then(response => response.blob())
-  .then(blob => {
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.style.display = 'none';
-      a.href = url;
-      a.download = 'resume.pdf'; // Name of the downloaded PDF
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-  })
-  .catch(error => console.error('Error generating PDF:', error));
->>>>>>> c4dc3e87a187c3a42f3e5d3613f53c2de81cf081
-}
-
-
 // function showPdf() {
-//   //Show the loading bar
-//   // const apiUrl = process.env.NODE_PUBLIC_API_URL;
-//   const loadingBar = document.getElementById("loading-bar");
-//   const bar = document.querySelector("#loading-bar .bar");
-//   loadingBar.style.display = "block";
-
-//   // Start the loading bar animation
-//   bar.style.width = "0";
-//   let startTime = Date.now();
+//   const iframe = document.getElementById('html-preview-frame');
+//   const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+//   const htmlContent = iframeDoc.documentElement.outerHTML;
 
 //   fetch("http://localhost:8001/generate-pdf", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({ html: htmlContent }), // Send the saved HTML content
+//       method: 'POST',
+//       headers: {
+//           'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({ html: htmlContent })
 //   })
-//     .then((response) => response.blob())
-//     .then((blob) => {
-//       const url = URL.createObjectURL(blob);
-//       const pdfFrame = document.getElementById("pdf-frame");
-//       pdfFrame.src = url;
-//       pdfFrame.style.display = "block";
-//       console.log("PDF Preview Updated");
-
-//  
-
-//       // Hide the loading bar after the transition is complete
-//       setTimeout(() => {
-//         loadingBar.style.display = "none";
-//       }, responseTime);
-//     })
-//     .catch((error) => {
-//       console.error("Error:", error);
-//       // Hide the loading bar in case of an error
-//       loadingBar.style.display = "none";
-//     })
-//     // Hide the loading bar in case of an error
-//     .finally(() => {
-//       // Hide the loading bar
-//       loadingBar.style.display = "none";
-//     });
-//   // Clear the JSON preview and hide it
-//   document.getElementById("json-preview").innerText = "";
-//   document.getElementById("json-preview").style.display = "none";
+//   .then(response => response.blob()) 
+//   .then(blob => {
+//       const url = window.URL.createObjectURL(blob);
+//       const a = document.createElement('a');
+//       a.style.display = 'none';
+//       a.href = url;
+//       a.download = 'resume.pdf'; // Name of the downloaded PDF
+//       document.body.appendChild(a);
+//       a.click();
+//       window.URL.revokeObjectURL(url);
+//   })
+//   .catch(error => console.error('Error generating PDF:', error));
 // }
 
 
-
-
+// Button click for downloading the generated pdf
 async function getPdf() {
   try {
     const response = await fetch('http://localhost:8001/generate-pdf', {

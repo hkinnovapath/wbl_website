@@ -15,18 +15,23 @@ const ForgotPasswordPage = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/forget-password`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/forget-password`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        }
+      );
 
       const data = await response.json();
-      
+
       if (response.ok) {
-        setMessage("A reset link has been sent to your registered email. Please use it to reset your password.");
+        setMessage(
+          "A reset link has been sent to your registered email. Please use it to reset your password."
+        );
         setResponseStatus("success");
       } else {
         setResponseStatus("error");
@@ -55,7 +60,7 @@ const ForgotPasswordPage = () => {
         <div className="container">
           <div className="-mx-3 flex flex-wrap">
             <div className="w-full">
-              <div className="mx-auto px-10 max-w-[500px] rounded-3xl bg-gradient-to-br from-pink-400 to-sky-200 p-6 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500/30 sm:p-[60px]">
+              <div className="mx-auto max-w-[500px] rounded-3xl bg-gradient-to-br from-pink-400 to-sky-200 p-6 px-10 dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500/30 sm:p-[60px]">
                 <h3 className="mb-12 text-center text-xl font-bold text-black dark:text-white sm:text-3xl">
                   Reset Password
                 </h3>
@@ -63,9 +68,10 @@ const ForgotPasswordPage = () => {
                   <div className="mb-8">
                     <label
                       htmlFor="email"
-                      className="mb-5 block text-sm sm:text-base font-medium text-dark dark:text-white"
+                      className="mb-5 block text-sm font-medium text-dark dark:text-white sm:text-base"
                     >
-                      Enter your Registered Email Address <span className="text-[red]">*</span>
+                      Enter your Registered Email Address{" "}
+                      <span className="text-[red]">*</span>
                     </label>
                     <input
                       type="email"
@@ -117,7 +123,7 @@ const ForgotPasswordPage = () => {
                   ) : (
                     <button
                       type="submit"
-                      className="hover:shadow-signUp flex w-full items-center justify-center rounded-3xl bg-primary py-3 px-6 text-sm sm:text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 sm:py-4 sm:px-9"
+                      className="hover:shadow-signUp flex w-full items-center justify-center rounded-3xl bg-primary py-3 px-6 text-sm font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 sm:py-4 sm:px-9 sm:text-base"
                     >
                       Reset Password
                     </button>
@@ -150,7 +156,7 @@ const ForgotPasswordPage = () => {
             </div>
           </div>
         </div>
-        <div className="absolute top-0 left-0 z-[-1]">
+        <div className="absolute top-1/2 left-[60%] -z-10 hidden -translate-x-1/2 -translate-y-1/2 transform md:block">
           <svg
             width="1440"
             height="969"

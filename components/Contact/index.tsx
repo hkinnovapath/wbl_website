@@ -73,6 +73,10 @@ const ContactForm = () => {
     });
   };
   const handleCloseMessage = () => {
+    setMessageFromServer("");   
+  };
+
+  const handleInputFocus = () => {
     setMessageFromServer("");
   };
 
@@ -112,6 +116,7 @@ const ContactForm = () => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
+                        onFocus={handleInputFocus}
                       />
                       <label htmlFor="email" className="mb-2 block font-bold">
                         Email:
@@ -123,6 +128,7 @@ const ContactForm = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
+                        onFocus={handleInputFocus}
                       />
                       <label htmlFor="phone" className="mb-2 block font-bold">
                         Phone:
@@ -134,6 +140,7 @@ const ContactForm = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
+                        onFocus={handleInputFocus}
                       />
                       <label htmlFor="message" className="mb-2 block font-bold">
                         Message:
@@ -145,6 +152,7 @@ const ContactForm = () => {
                         style={{ height: "121px" }}
                         value={formData.message}
                         onChange={handleChange}
+                        onFocus={handleInputFocus}
                       ></textarea>
                       <div className="mt-5 flex justify-between  gap-3 md:gap-5">
                         <input

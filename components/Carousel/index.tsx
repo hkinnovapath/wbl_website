@@ -16,12 +16,12 @@ import ml2 from "public/images/Carousel/ml2.jpeg";
 function Carousel() {
   const slides = [
     { url: ml1 },
-    { url: ml },
-    { url: de1 },
+    // { url: ml },
+    // { url: de1 },
     { url: ml3 },
-    { url: ml2 },
+    // { url: ml2 },
     { url: js_libs },
-    { url: ntt },
+    // { url: ntt },
     { url: html_css_js },
     { url: tlJ },
   ];

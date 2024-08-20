@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Script from "next/script";
 import { isAuthenticated } from "@/utils/auth";
 import { useRouter } from "next/navigation";
-import Modal from "@/components/Common/Modal"; // Import the Modal component
+// import Modal from "@/components/Common/Modal"; // Import the Modal component
 // import ClassComp from "@/components/Recording/ClassComp";
 // import SearchComp from "@/components/Recording/SearchComp";
 // import SessionComp from "@/components/Recording/SessionComp";
@@ -16,11 +16,11 @@ export default function Assignment() {
   // const [scriptLoaded, setScriptLoaded] = useState(false);
   const contentRef = useRef(null);
 
-  const [canEdit, setCanEdit] = useState(false);
+  // const [canEdit, setCanEdit] = useState(false);
   const router = useRouter(); // Initialize router
   const [loading, setLoading] = useState(true);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [showModal, setShowModal] = useState(false); // State to control modal visibility
+  // const [errorMessage, setErrorMessage] = useState("");
+  // const [showModal, setShowModal] = useState(false); // State to control modal visibility
 
 
 
@@ -111,28 +111,30 @@ export default function Assignment() {
       try {
         const { valid, message } = await isAuthenticated();
         if (!valid) {
-          setErrorMessage(message);
-          setShowModal(true); // Show modal if not valid
+          router.push("/login");
+          // setErrorMessage(message);
+          // setShowModal(true); // Show modal if not valid
         } else {
           setLoading(false);
         }
       } catch (error) {
         console.error("Error while checking authentication:", error);
-        setErrorMessage("An error occurred while checking authentication");
-        setShowModal(true);
+        // setErrorMessage("An error occurred while checking authentication");
+        // setShowModal(true);
+        router.push("/login");
       }
     };
 
     checkAuthentication();
-  }, []); // Empty dependency array to run effect only once on mount
+  }, [router]); // Empty dependency array to run effect only once on mount
 
 
-  const handleClose = () => {
-    localStorage.removeItem("access_token");
-    sessionStorage.clear();
-    router.push("/login");
-    return setShowModal(false);
-  };
+  // const handleClose = () => {
+  //   localStorage.removeItem("access_token");
+  //   sessionStorage.clear();
+  //   router.push("/login");
+  //   return setShowModal(false);
+  // };
 
   return (
     <div key={resumeContent}> {/* The key property forces the component to re-mount */}
@@ -155,13 +157,13 @@ export default function Assignment() {
         />
       </main>
 
-      {showModal && (
+      {/* {showModal && (
         <Modal
           title="Authentication Error"
           message={errorMessage}
           onClose={handleClose}
         />
-      )}
+      )} */}
     </div>
   );
 }

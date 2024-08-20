@@ -482,7 +482,6 @@ function getJson() {
 };
 
 
-<<<<<<< HEAD
 async function getPdf() {
   try {
     const response = await fetch('http://localhost:8001/generate-pdf', {
@@ -508,7 +507,7 @@ async function getPdf() {
   } catch (error) {
     console.error('Error downloading PDF:', error);
   }
-=======
+
 //sahas
 function showPdf() {
   const iframe = document.getElementById('html-preview-frame');
@@ -534,7 +533,6 @@ function showPdf() {
       window.URL.revokeObjectURL(url);
   })
   .catch(error => console.error('Error generating PDF:', error));
->>>>>>> c4dc3e87a187c3a42f3e5d3613f53c2de81cf081
 }
 
 
@@ -615,4 +613,4 @@ async function getPdf() {
   } catch (error) {
     console.error('Error downloading PDF:', error);
   }
-}
+}}

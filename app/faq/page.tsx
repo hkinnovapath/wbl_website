@@ -5,11 +5,8 @@ import Link from "next/link";
 export default function Faq() {
   return (
     <div>
-      {/* Main content */}
-      {/* <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6"> */}
       <main className="container px-4 pb-6 sm:px-6">
         {/* Navbar */}
-
         <nav className="mt-16 flex h-24  flex-col justify-center text-center sm:mt-28 sm:mb-3 sm:h-28  sm:flex-row sm:items-center sm:justify-between">
           <h1 className=" text-center text-2xl font-bold sm:pt-0 sm:text-start sm:text-3xl lg:text-4xl ">
             Frequently Asked Questions
@@ -78,9 +75,9 @@ export default function Faq() {
                 <>
                   Please follow the links to go through :
                   <Link href="/schedule" className="inline-block">
-                    <h1 className="text-blue-600 dark:text-blue-500">
+                    <div className="text-blue-600 dark:text-blue-500">
                       Class Schedule and Syllabus(Course Content)
-                    </h1>
+                    </div>
                   </Link>
                 </>
               }

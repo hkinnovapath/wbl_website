@@ -7,19 +7,6 @@ const Footer = () => {
     address
   )}`;
 
-  // useEffect(() => {
-  //   const script = document.createElement("script");
-  //   script.src =
-  //     "https://seal.godaddy.com/getSeal?sealID=v3KT7oJ1lPBg9VtkckOTfJJAwgbvIXY1mAuP0Qzb9OBFhXLj5FvNJFdMjtjF";
-  //   script.async = true;
-  //   // script.onload = () => console.log('GoDaddy script loaded');
-  //   document.getElementById("siteseal").appendChild(script);
-
-  //   return () => {
-  //     document.getElementById("siteseal").removeChild(script);
-  //   };
-  // }, []);
-
   useEffect(() => {
     const sitesealElement = document.getElementById("siteseal");
     const script = document.createElement("script");
@@ -49,9 +36,9 @@ const Footer = () => {
             <div className="flex w-full   items-center justify-center  text-center  sm:w-1/2 lg:w-4/12">
               <div className=" mb-12  max-w-[360px] ">
                 <Link href="/" className="inline-block">
-                  <h1 className="mb-4 text-2xl  font-bold text-black dark:text-white sm:mb-8">
+                  <div className="mb-4 text-2xl  font-bold text-black dark:text-white sm:mb-8">
                     Whitebox Learning
-                  </h1>
+                  </div>
                 </Link>
                 <div className="flex items-center justify-around">
                   <a
@@ -164,9 +151,9 @@ const Footer = () => {
             <div className=" sm:text-md text-blackdark:text-white  text-center text-sm font-semibold sm:w-11/12 sm:text-right lg:text-xl">
               &copy; {currentYear}{" "}
               <Link href="/" className="inline-block">
-                <h1 className="  text-blue-600 dark:text-blue-500">
+                <div className="  text-blue-600 dark:text-blue-500">
                   Whitebox Learning,Inc.
-                </h1>
+                </div>
               </Link>{" "}
               All rights reserved.
             </div>

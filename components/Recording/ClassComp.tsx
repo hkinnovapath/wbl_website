@@ -24,19 +24,23 @@ const RecordingComp: React.FC = () => {
   const [isLoadingBatches, setIsLoadingBatches] = useState<boolean>(false);
   const [isLoadingRecordings, setIsLoadingRecordings] =
     useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (course) {
-      // Clear previous selections when course changes
       setSelectedBatch(null);
       setRecordings([]);
       setSelectedVideo(null);
+      setError(null);
       fetchBatches(course);
     }
   }, [course]);
 
   useEffect(() => {
     if (selectedBatch) {
+      setSelectedVideo(null); // Clear the selected video
+      setError(null); // Clear any existing errors
+      setRecordings([]); // Clear previous recordings
       fetchRecordings(selectedBatch.batchid);
     }
   }, [selectedBatch]);
@@ -57,9 +61,10 @@ const RecordingComp: React.FC = () => {
       if (data.batches.length > 0) {
         setSelectedBatch(data.batches[0]);
       }
-      setIsLoadingBatches(false);
     } catch (error) {
       console.error("Error fetching batches:", error);
+      setError("Failed to load batches. Please try again.");
+    } finally {
       setIsLoadingBatches(false);
     }
   };
@@ -73,13 +78,15 @@ const RecordingComp: React.FC = () => {
       if (!response.ok) {
         throw new Error("Failed to fetch recordings");
       }
-
       const data = await response.json();
       setRecordings(data.batch_recordings || []);
-      setSelectedVideo(null); // Clear selected video when fetching new recordings
-      setIsLoadingRecordings(false);
+      if (data.batch_recordings.length === 0) {
+        setError("No recordings found for this batch.");
+      }
     } catch (error) {
       console.error("Error fetching recordings:", error);
+      setError("No recordings found for this batch. Please try again.");
+    } finally {
       setIsLoadingRecordings(false);
     }
   };
@@ -87,7 +94,13 @@ const RecordingComp: React.FC = () => {
   const handleBatchChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedId = parseInt(e.target.value);
     const selected = batches.find((batch) => batch.batchid === selectedId);
-    setSelectedBatch(selected || null);
+    if (!selected) {
+      setError("Selected batch not found.");
+    } else {
+      setSelectedBatch(selected);
+      setError(null); // Clear any error when a batch is selected
+      setSelectedVideo(null); // Clear selected video
+    }
   };
 
   const handleVideoSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -95,7 +108,13 @@ const RecordingComp: React.FC = () => {
     const selected = recordings.find(
       (recording) => recording.id === selectedId
     );
-    setSelectedVideo(selected || null);
+    if (!selected) {
+      setError("Selected recording not found.");
+      // setSelectedVideo(null); // Ensure video is cleared if not found
+    } else {
+      setSelectedVideo(selected);
+      setError(null); // Clear any error when a video is selected
+    }
   };
 
   const renderVideoPlayer = (video: Video) => {
@@ -110,7 +129,7 @@ const RecordingComp: React.FC = () => {
           title={video.description}
           frameBorder="0"
           allowFullScreen
-          className="rounded-xl border-2 h-[350px] border-gray-500"
+          className="h-[350px] rounded-xl border-2 border-gray-500"
         ></iframe>
       );
     } else {
@@ -119,7 +138,7 @@ const RecordingComp: React.FC = () => {
   };
 
   return (
-    <div className="mt-6 flex-grow space-y-4 sm:mt-0">
+    <div className="mx-auto mt-6 max-w-full flex-grow space-y-4 sm:mt-0 sm:max-w-3xl">
       <div className="flex flex-grow flex-col">
         <label htmlFor="dropdown1">Batch:</label>
         <select
@@ -127,13 +146,14 @@ const RecordingComp: React.FC = () => {
           className="rounded-md border border-gray-300 px-2 py-1 text-black dark:bg-white"
           value={selectedBatch ? selectedBatch.batchid : ""}
           onChange={handleBatchChange}
+          disabled={isLoadingBatches}
         >
           {isLoadingBatches ? (
             <option disabled>Loading batches...</option>
           ) : (
             <>
               <option value="" disabled>
-                Please Select batches...
+                Please Select a batch...
               </option>
               {batches.map((batch, index) => (
                 <option key={index} value={batch.batchid}>
@@ -144,7 +164,7 @@ const RecordingComp: React.FC = () => {
           )}
         </select>
       </div>
-      <div className="flex flex-grow flex-col justify-between ">
+      <div className="flex flex-grow flex-col justify-between">
         <label htmlFor="dropdown2">Recordings:</label>
         <select
           id="dropdown2"
@@ -166,6 +186,7 @@ const RecordingComp: React.FC = () => {
           )}
         </select>
       </div>
+      {error && <p className="text-red-500">{error}</p>}
       {selectedVideo && <div>{renderVideoPlayer(selectedVideo)}</div>}
     </div>
   );

@@ -22,10 +22,14 @@ const CourseNavigation = () => {
 
   return (
     <div className="flex justify-center sm:w-1/4">
-      <div className="flex w-60  flex-col">
+      <div className="flex flex-col items-center">
+        {/* "Select Course" Text */}
+        <div className="mb-3 text-center text-lg font-semibold lg:text-xl xl:sm:text-[28px] ">
+          Please select a Course
+        </div>
         <div className="relative ">
           <button
-            className="flex w-full items-center justify-between rounded-md bg-gradient-to-br from-primary to-blue-300 px-4 py-2 font-bold text-black hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 sm:w-52 "
+            className="flex items-center justify-between rounded-md bg-gradient-to-br from-primary to-blue-300 px-4 py-2 font-bold text-black hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 sm:w-52 "
             onClick={() => setIsOpen(!isOpen)}
           >
             {selectedOption}
@@ -39,7 +43,7 @@ const CourseNavigation = () => {
             </span>
           </button>
           {isOpen && (
-            <div className="absolute z-10 mt-2 w-full rounded-md bg-white shadow-lg sm:w-44">
+            <div className="absolute z-10 mt-2 rounded-md bg-white shadow-lg sm:w-44">
               {courseOptions.map((option) => (
                 <button
                   key={option.short}

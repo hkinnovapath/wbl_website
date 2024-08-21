@@ -123,46 +123,87 @@ function removeEntry(button) {
   button.parentElement.remove();
 }
 
+// function addEducationEntry() {
+//   const container = document.getElementById("education-section");
+//   const entryDiv = document.createElement("div");
+//   entryDiv.classList.add("education-entry");
+//   entryDiv.innerHTML = `
+//     <div class="form-group">
+//       <label for="education_institution">Institution:</label>
+//       <input type="text" name="education_institution[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
+//     </div><br>
+//     <div class="form-group">
+//       <label for="education_area">Area of Study:</label>
+//       <input type="text" name="education_area[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
+//     </div><br>
+//     <div class="form-group">
+//       <label for="education_startDate">Start Date:</label>
+//       <input type="date" name="education_startDate[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
+//     </div><br>
+//     <div class="form-group">
+//       <label for="education_endDate">End Date:</label>
+//       <input type="date" name="education_endDate[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
+//     </div><br>
+//     <div class="form-group">
+//       <label for="education_score">Score:</label>
+//       <input type="text" name="education_score[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
+//     </div><br>
+//     <button type="button" onclick="removeEntry(this)" 
+//     class="md:text-md w-36 rounded-lg bg-gradient-to-br from-red-500 to-red-200 p-1 px-1 text-[11px] font-bold text-black shadow-xl hover:bg-red-700 hover:bg-gradient-to-tl hover:from-red-500 hover:to-red-200 dark:text-white sm:py-2 sm:px-4 sm:text-sm"
+//     >Remove</button>
+//   `;
+
+//   // Get the "Add Education" button
+//   const addButton = document.querySelector(
+//     'button[onclick= "addEducationEntry()"]'
+//   );
+
+//   // Get the parent element of the button
+//   const parentElement = addButton.parentNode;
+
+//   // Insert the new entry before the button
+//   parentElement.insertBefore(entryDiv, addButton);
+// }
 function addEducationEntry() {
-  const container = document.getElementById("education-section");
+  const container = document.getElementById("education-entry-container");
   const entryDiv = document.createElement("div");
   entryDiv.classList.add("education-entry");
   entryDiv.innerHTML = `
-    <div class="form-group">
+    <div class="form-group mb-4">
       <label for="education_institution">Institution:</label>
       <input type="text" name="education_institution[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
-    </div><br>
-    <div class="form-group">
-      <label for="education_area">Area of Study:</label>
+    </div>
+    <div class="form-group mb-4">
+      <label for="education_area">Field of Study:</label>
       <input type="text" name="education_area[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
-    </div><br>
-    <div class="form-group">
+    </div>
+    <div class="form-group mb-4">
       <label for="education_startDate">Start Date:</label>
       <input type="date" name="education_startDate[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
-    </div><br>
-    <div class="form-group">
+    </div>
+    <div class="form-group mb-4">
       <label for="education_endDate">End Date:</label>
       <input type="date" name="education_endDate[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
-    </div><br>
-    <div class="form-group">
+    </div>
+    <div class="form-group mb-4">
       <label for="education_score">Score:</label>
       <input type="text" name="education_score[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
-    </div><br>
-    <button type="button" onclick="removeEntry(this)" 
-    class="md:text-md w-36 rounded-lg bg-gradient-to-br from-red-500 to-red-200 p-1 px-1 text-[11px] font-bold text-black shadow-xl hover:bg-red-700 hover:bg-gradient-to-tl hover:from-red-500 hover:to-red-200 dark:text-white sm:py-2 sm:px-4 sm:text-sm"
-    >Remove</button>
+    </div>
+    <div class="flex justify-between">
+      <button type="button" onclick="addEducationEntry()" 
+      class="md:text-md w-36 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-200 p-1 py-2 px-1 text-[11px] font-bold text-black hover:bg-indigo-700 hover:from-indigo-500 hover:to-indigo-200 dark:text-white sm:py-2 sm:px-4 sm:text-sm"
+      >Add Education</button>
+      <button type="button" onclick="removeEntry(this)" 
+      class="md:text-md w-36 rounded-lg bg-gradient-to-br from-red-500 to-red-200 p-1 px-1 text-[11px] font-bold text-black shadow-xl hover:bg-red-700 hover:bg-gradient-to-tl hover:from-red-500 hover:to-red-200 dark:text-white sm:py-2 sm:px-4 sm:text-sm"
+      >Remove</button>
+    </div>
   `;
+  
+  container.appendChild(entryDiv);
+}
 
-  // Get the "Add Education" button
-  const addButton = document.querySelector(
-    'button[onclick= "addEducationEntry()"]'
-  );
-
-  // Get the parent element of the button
-  const parentElement = addButton.parentNode;
-
-  // Insert the new entry before the button
-  parentElement.insertBefore(entryDiv, addButton);
+function removeEntry(button) {
+  button.closest(".education-entry").remove();
 }
 
 // Function to remove a certificate entry
@@ -512,4 +553,4 @@ async function getPdf() {
   } catch (error) {
     console.error('Error downloading PDF:', error);
   }
-}}
+}

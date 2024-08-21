@@ -15,7 +15,6 @@ const SignupPage = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(loading);
     setLoading(true);
 
     try {
@@ -63,7 +62,6 @@ const SignupPage = () => {
       setResponseStatus("error");
       setMessagee("An error occurred during registration");
     } finally {
-      // console.log(loading);
       setLoading(false);
     }
 

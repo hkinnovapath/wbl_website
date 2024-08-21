@@ -22,9 +22,9 @@ export default function Cards() {
               alt="Testimonial 01"
             />
           </div>
-          <h1 className="mt-3 text-center text-2xl font-bold">
+          <div className="mt-3 text-center text-2xl font-bold">
             Fullstack Development <a href=""></a>
-          </h1>
+          </div>
           <div className="mt-6 border-t border-gray-400 pt-5 text-center font-medium text-gray-700">
             <cite className="not-italic text-gray-200"></cite>{" "}
             <a
@@ -51,9 +51,9 @@ export default function Cards() {
               alt="Testimonial 02"
             />
           </div>
-          <h1 className="mt-3 text-center text-2xl font-bold">
+          <div className="mt-3 text-center text-2xl font-bold">
             Machine Learning
-          </h1>
+          </div>
           <div className="mt-6 border-t border-gray-400 pt-5 text-center font-medium text-gray-700">
             <cite className="not-italic text-gray-200"></cite>{" "}
             <a
@@ -80,9 +80,9 @@ export default function Cards() {
               alt="Testimonial 03"
             />
           </div>
-          <h1 className="mt-3 text-center text-2xl font-bold">
+          <div className="mt-3 text-center text-2xl font-bold">
             Data Engineering
-          </h1>
+          </div>
           <div className="mt-6 border-t border-gray-400 pt-5 text-center font-medium text-gray-700">
             <cite className="not-italic text-gray-200"></cite>{" "}
             <a

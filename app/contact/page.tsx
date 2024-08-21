@@ -20,9 +20,9 @@ const ContactPage = () => {
           </div>
         </div>
         <div>
-          <h1 className="mb-4   text-center  text-2xl font-bold  text-black dark:text-white sm:text-left  sm:text-3xl lg:text-4xl">
+          <div className="mb-4   text-center  text-2xl font-bold  text-black dark:text-white sm:text-left  sm:text-3xl lg:text-4xl">
             How to find us
-          </h1>
+          </div>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3156.692512341928!2d-121.91246142459563!3d37.703419816267946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fec05cb8a6a33%3A0x50cb7964adacbf25!2sWhitebox%20Learning%20Inc!5e0!3m2!1sen!2sin!4v1714515428412!5m2!1sen!2sin"
             className="mb-8 h-96 w-full rounded-lg shadow-2xl  brightness-90"

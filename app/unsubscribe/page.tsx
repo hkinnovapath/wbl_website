@@ -12,7 +12,6 @@ export default function Unsubscribe() {
     // Extract email from the query parameter
     const queryEmail = new URLSearchParams(window.location.search).get("email");
     if (queryEmail) {
-      console.log(queryEmail);
       setEmail(decodeURIComponent(queryEmail));
 
       // Trigger the unsubscribe action immediately
@@ -56,7 +55,8 @@ export default function Unsubscribe() {
               <div className="my-5 pb-4 text-lg font-extrabold sm:text-xl lg:text-2xl">
                 We&apos;re sorry to see you go 😞
               </div>{" "}
-              Please wait while we process your request to unsubscribe from our mailing list.
+              Please wait while we process your request to unsubscribe from our
+              mailing list.
             </div>
             <div className="mb-4 text-center text-xs font-bold sm:text-sm lg:text-base">
               Email:{" "}

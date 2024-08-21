@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { isAuthenticated } from "@/utils/auth";
-import Modal from "@/components/Common/Modal";
+// import Modal from "@/components/Common/Modal";
 import Layout from "@/components/Common/Layout";
 import ResourcesTable from "@/components/Common/resourcesTable";
 import CourseNavigation from "@/components/Common/CourseNavigation";
@@ -32,28 +32,30 @@ export default function Presentation() {
   const [activeComponent, setActiveComponent] =
     useState<ComponentType>("Presentations");
   const [loading, setLoading] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [showModal, setShowModal] = useState(false);
+  // const [errorMessage, setErrorMessage] = useState("");
+  // const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const checkAuthentication = async () => {
       try {
         const { valid, message } = await isAuthenticated();
         if (!valid) {
-          setErrorMessage(message);
-          setShowModal(true);
+          // setErrorMessage(message);
+          // setShowModal(true);
+          router.push("/login");
         } else {
           setLoading(false);
         }
       } catch (error) {
         console.error("Error while checking authentication:", error);
-        setErrorMessage("An error occurred while checking authentication");
-        setShowModal(true);
+        // setErrorMessage("An error occurred while checking authentication");
+        // setShowModal(true);
+        router.push("/login");
       }
     };
 
     checkAuthentication();
-  }, []);
+  }, [router]);
 
   const handleButtonClick = (component: ComponentType) => {
     setActiveComponent(component);
@@ -101,12 +103,12 @@ export default function Presentation() {
     );
   }
 
-  const handleClose = () => {
-    localStorage.removeItem("access_token");
-    sessionStorage.clear();
-    router.push("/login");
-    return setShowModal(false);
-  };
+  // const handleClose = () => {
+  //   localStorage.removeItem("access_token");
+  //   sessionStorage.clear();
+  //   router.push("/login");
+  //   return setShowModal(false);
+  // };
 
   return (
     <div>
@@ -145,13 +147,13 @@ export default function Presentation() {
           </div>
         </section>
       </main>
-      {showModal && (
+      {/* {showModal && (
         <Modal
           title="Authentication Error"
           message={errorMessage}
           onClose={handleClose}
         />
-      )}
+      )} */}
     </div>
   );
 }

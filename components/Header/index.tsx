@@ -158,7 +158,7 @@ const Header = () => {
                                 <Link
                                   href={submenuItem.path}
                                   key={submenuItem.id}
-                                  className="block rounded py-2.5 text-center text-sm font-semibold text-dark duration-500 hover:bg-gray-200 hover:font-semibold dark:text-white dark:hover:bg-black/70 sm:text-base lg:px-5"
+                                  className={`block rounded py-2.5 text-center text-sm font-semibold text-dark duration-500 hover:bg-gray-200 hover:font-semibold dark:text-white dark:hover:bg-black/70 sm:text-base lg:px-5  ${submenuItem.title === "Resume " ? "hidden lg:block" : ""}`}                                  
                                   onClick={closeNavbar}
                                 >
                                   {submenuItem.title}

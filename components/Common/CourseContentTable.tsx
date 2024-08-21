@@ -6,16 +6,16 @@ const CourseContentTable = (props: any) => {
       <table className="w-full table-auto border-collapse border border-gray-500 shadow-2xl shadow-gray-800">
         <thead>
           <tr className="text-md sm:text-lg lg:text-xl">
-            <th className="mb-1 w-1/3 border border-gray-500 bg-primary px-4 py-2 text-white">
+            <th className="mb-1 w-1/4 border border-gray-500 bg-primary px-4 py-2 text-white">
               Fundamentals
             </th>
-            <th className="mb-1 w-1/3 border border-gray-500 bg-primary px-4 py-2 text-white">
-              Fullstack Development
-            </th>
-            <th className="mb-1 w-1/3 border border-gray-500 bg-primary px-4 py-2 text-white">
+            <th className="mb-1 w-1/4 border border-gray-500 bg-primary px-4 py-2 text-white">
               DSML (Machine Learning)
             </th>
-            <th className="mb-1 w-1/3 border border-gray-500 bg-primary px-4 py-2 text-white">
+            <th className="mb-1 w-1/4 border border-gray-500 bg-primary px-4 py-2 text-white">
+              Fullstack Development
+            </th>
+            <th className="mb-1 w-1/4 border border-gray-500 bg-primary px-4 py-2 text-white">
               Quality Engineering
             </th>
           </tr>
@@ -34,10 +34,10 @@ const CourseContentTable = (props: any) => {
                 <p>{subject.Fundamentals}</p>
               </td>
               <td className="border border-primary px-4 py-2 text-center text-black dark:border-blue-900 dark:text-white">
-                <p>{subject.UI}</p>
+                <p>{subject.DSML}</p>
               </td>
               <td className="border border-primary px-4 py-2 text-center text-black dark:border-blue-900 dark:text-white">
-                <p>{subject.DSML}</p>
+                <p>{subject.UI}</p>
               </td>
               <td className="border border-primary px-4 py-2 text-center text-black dark:border-blue-900 dark:text-white">
                 <p>{subject.QE}</p>

@@ -439,7 +439,7 @@ function submitJson() {
     .then((response) => response.json())
     .then((data) => {
       htmlContent = data.html; // Save the HTML content
-      const iframe = document.getElementById('html-preview-frame');
+      const iframe = document.getElementById("html-preview-frame");
       const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
       iframeDoc.open();
       iframeDoc.write(htmlContent);
@@ -454,19 +454,19 @@ function submitJson() {
 // Button for downloading the json file
 function getJson() {
   fetch(`http://localhost:8001/download-json`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: jsonFileContent, // Assuming jsonString contains the form data in JSON format
-    })
-    .then(response => {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: jsonFileContent, // Assuming jsonString contains the form data in JSON format
+  })
+    .then((response) => {
       if (!response.ok) {
         throw new Error("Failed to download JSON file");
       }
       return response.blob(); // Get the response as a Blob
     })
-    .then(blob => {
+    .then((blob) => {
       // Create a link element to download the file
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
@@ -477,39 +477,38 @@ function getJson() {
       a.remove(); // Clean up by removing the link
       URL.revokeObjectURL(url); // Revoke the object URL
     })
-    .catch(error => {
-      
+    .catch((error) => {
       console.error("Error:", error);
     });
-};
-
-
+}
 
 // Button click for downloading the generated pdf
 async function getPdf() {
   try {
-    const response = await fetch('http://localhost:8001/generate-pdf', {
-      method: 'POST',
+    const response = await fetch("http://localhost:8001/generate-pdf", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ html: htmlContent })
+      body: JSON.stringify({ html: htmlContent }),
     });
 
     if (!response.ok) {
-      throw new Error(`Network response was not ok. Status: ${response.status}`);
+      throw new Error(
+        `Network response was not ok. Status: ${response.status}`
+      );
     }
 
     const blob = await response.blob();
     const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
-    a.download = 'resume.pdf';
+    a.download = "resume.pdf";
     document.body.appendChild(a); // Append anchor to the body
     a.click(); // Trigger download
     a.remove(); // Remove anchor from the body
     window.URL.revokeObjectURL(url); // Clean up
   } catch (error) {
-    console.error('Error downloading PDF:', error);
+    console.error("Error downloading PDF:", error);
   }
-}}
+}

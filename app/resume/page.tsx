@@ -4,15 +4,14 @@ import React, { useEffect, useRef, useState } from "react";
 import Script from "next/script";
 import { isAuthenticated } from "@/utils/auth";
 import { useRouter } from "next/navigation";
-<<<<<<< HEAD
+
 // import Modal from "@/components/Common/Modal"; // Import the Modal component
 // import ClassComp from "@/components/Recording/ClassComp";
 // import SearchComp from "@/components/Recording/SearchComp";
 // import SessionComp from "@/components/Recording/SessionComp";
 // import CourseNavigation from "@/components/Common/CourseNavigation";
-=======
 import Modal from "@/components/Common/Modal"; // Import the Modal component
->>>>>>> 2ad66ed2e50776b6978b8bb52ca5008d10844424
+
 
 
 export default function Assignment() {

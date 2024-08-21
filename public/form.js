@@ -61,7 +61,9 @@ function addWorkEntry(button) {
                       class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
                     ></textarea>
                   </div>
+
                   <!-- Highlights Subsection -->
+
                   <h3 class="text-lg font-semibold mb-2">Highlights</h3>
                   <div class="form-group mb-4">
                     <ul class="highlights-list space-y-2">
@@ -79,6 +81,18 @@ function addWorkEntry(button) {
                       onclick="addHighlight(this)"
                     >
                       Add Highlight
+
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="24px"
+                        viewBox="0 -960 960 960"
+                        width="24px"
+                        fill="#5f6368"
+                      >
+                        <path
+                          d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"
+                        />
+                      </svg>
                     </button>
                   </div>
                 </div>
@@ -95,7 +109,7 @@ function addWorkEntry(button) {
   <button
     type="button"
     class="md:text-md w-36 rounded-lg bg-gradient-to-br from-red-500 to-red-600 p-1 py-2 px-1 text-[11px] font-bold text-white hover:bg-red-700 hover:from-red-500 hover:to-red-600 mt-2 dark:text-white sm:py-2 sm:px-4 sm:text-sm"
-    onclick="removeEntry(this)"
+    onclick="removeWork(this)"
   >
     Remove Entry
   </button>
@@ -106,100 +120,97 @@ function addWorkEntry(button) {
   workEntryCount++;
 }
 
-function removeEntry(button) {
+//function to remove work entry
+function removeWork(button) {
   const entryDiv = button.closest(".work-entry");
-  entryDiv.remove();
+  
+  if (entryDiv) {
+    entryDiv.remove();
+  }
 }
 
-function removeHighlight(button) {
-  const li = button.closest("li");
-  li.remove();
-}
 
-// Initialize with one work entry
 
-// Function to remove an education entry
-function removeEntry(button) {
-  button.parentElement.remove();
-}
-
+//Add education 
 function addEducationEntry() {
-  const container = document.getElementById("education-section");
+  const container = document.getElementById("education-entry-container");
   const entryDiv = document.createElement("div");
   entryDiv.classList.add("education-entry");
   entryDiv.innerHTML = `
-    <div class="form-group">
+    <div class="form-group mb-4">
       <label for="education_institution">Institution:</label>
       <input type="text" name="education_institution[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
-    </div><br>
-    <div class="form-group">
-      <label for="education_area">Area of Study:</label>
+    </div>
+    <div class="form-group mb-4">
+      <label for="education_area">Field of Study:</label>
       <input type="text" name="education_area[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
-    </div><br>
-    <div class="form-group">
+    </div>
+    <div class="form-group mb-4">
       <label for="education_startDate">Start Date:</label>
       <input type="date" name="education_startDate[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
-    </div><br>
-    <div class="form-group">
+    </div>
+    <div class="form-group mb-4">
       <label for="education_endDate">End Date:</label>
       <input type="date" name="education_endDate[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
-    </div><br>
-    <div class="form-group">
+    </div>
+    <div class="form-group mb-4">
       <label for="education_score">Score:</label>
       <input type="text" name="education_score[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
-    </div><br>
-    <button type="button" onclick="removeEntry(this)" 
-    class="md:text-md w-36 rounded-lg bg-gradient-to-br from-red-500 to-red-200 p-1 px-1 text-[11px] font-bold text-black shadow-xl hover:bg-red-700 hover:bg-gradient-to-tl hover:from-red-500 hover:to-red-200 dark:text-white sm:py-2 sm:px-4 sm:text-sm"
-    >Remove</button>
+    </div>
+    <div class="flex justify-between">
+      <button type="button" onclick="addEducationEntry()" 
+      class="md:text-md w-36 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-200 p-1 py-2 px-1 text-[11px] font-bold text-black hover:bg-indigo-700 hover:from-indigo-500 hover:to-indigo-200 dark:text-white sm:py-2 sm:px-4 sm:text-sm"
+      >Add Education</button>
+      <button type="button" onclick="removeEducation(this)" 
+      class="md:text-md w-36 rounded-lg bg-gradient-to-br from-red-500 to-red-200 p-1 px-1 text-[11px] font-bold text-black shadow-xl hover:bg-red-700 hover:bg-gradient-to-tl hover:from-red-500 hover:to-red-200 dark:text-white sm:py-2 sm:px-4 sm:text-sm"
+      >Remove</button>
+    </div>
   `;
 
-  // Get the "Add Education" button
-  const addButton = document.querySelector(
-    'button[onclick= "addEducationEntry()"]'
-  );
-
-  // Get the parent element of the button
-  const parentElement = addButton.parentNode;
-
-  // Insert the new entry before the button
-  parentElement.insertBefore(entryDiv, addButton);
+  container.appendChild(entryDiv);
 }
 
-// Function to remove a certificate entry
-function removeEntry(button) {
-  button.parentElement.remove();
+//function to remove education entry
+function removeEducation(button) {
+  const entryDiv = button.closest(".education-entry");
+  if (entryDiv) {
+    entryDiv.remove();
+  }
 }
 
-function addCertificateEntry() {
-  const container = document.getElementById("certificates-section");
-  const entryDiv = document.createElement("div");
-  entryDiv.classList.add("certificate-entry"); // Add the CSS class
 
-  entryDiv.innerHTML = `
-    <div class="form-group">
-      <label for="certificates_name">Name:</label>
-      <input type="text" name="certificates_name[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
-    </div>
-    <div class="form-group">
-      <label for="certificates_date">Date:</label>
-      <input type="date" name="certificates_date[]" class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded" />
-    </div>
-    <button type="button" class="bg-red-500 text-white p-2 rounded mt-4" onclick="removeEntry(this)">Remove</button>
-  `;
 
-  // Get the "Add Certificate" button
-  const addButton = document.querySelector(
-    'button[onclick="addCertificateEntry()"]'
-  );
+// function addCertificateEntry() {
+//   const container = document.getElementById("certificates-section");
+//   const entryDiv = document.createElement("div");
+//   entryDiv.classList.add("certificate-entry"); // Add the CSS class
 
-  // Get the parent element of the button
-  const parentElement = addButton.parentNode;
+//   entryDiv.innerHTML = `
+//     <div class="form-group">
+//       <label for="certificates_name">Name:</label>
+//       <input type="text" name="certificates_name[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
+//     </div>
+//     <div class="form-group">
+//       <label for="certificates_date">Date:</label>
+//       <input type="date" name="certificates_date[]" class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded" />
+//     </div>
+//     <button type="button" class="bg-red-500 text-white p-2 rounded mt-4" onclick="removeEntry(this)">Remove</button>
+//   `;
 
-  // Insert the new entry before the button
-  parentElement.insertBefore(entryDiv, addButton);
-}
+//   // Get the "Add Certificate" button
+//   const addButton = document.querySelector(
+//     'button[onclick="addCertificateEntry()"]'
+//   );
+
+//   // Get the parent element of the button
+//   const parentElement = addButton.parentNode;
+
+//   // Insert the new entry before the button
+//   parentElement.insertBefore(entryDiv, addButton);
+// }
 
 // Function to remove a skill entry
+
 function removeEntry(button) {
   button.parentElement.remove();
 }
@@ -234,10 +245,12 @@ function addSkillEntry() {
   parentElement.insertBefore(entryDiv, addButton);
 }
 
+
 // Function to remove a language entry
 function removeEntry(button) {
   button.parentElement.remove();
 }
+
 
 function addLanguageEntry() {
   const container = document.getElementById("languages-section");
@@ -275,10 +288,13 @@ function addLanguageEntry() {
   parentElement.insertBefore(entryDiv, addButton);
 }
 
+
 // Function to remove an entry (interest or keyword)
 function removeEntry(button) {
   button.parentElement.remove();
 }
+
+
 
 function addHighlight(button) {
   const highlightsList = button.previousElementSibling;
@@ -313,12 +329,16 @@ Delete
   highlightsList.appendChild(newHighlight);
 }
 
+
 function deleteHighlight(button) {
+  // Find the specific highlights list that the button belongs to
   const highlightItem = button.parentElement;
+  const highlightsList = highlightItem.parentElement;
+
+  // Remove the highlight item
   highlightItem.remove();
 
   // If there are other highlights, add the delete button to the last one
-  const highlightsList = document.querySelector(".highlights-list");
   const lastHighlight = highlightsList.querySelector("li:last-child");
   if (lastHighlight && !lastHighlight.querySelector("button")) {
     const deleteButton = document.createElement("button");
@@ -328,6 +348,7 @@ function deleteHighlight(button) {
     lastHighlight.appendChild(deleteButton);
   }
 }
+
 
 let htmlContent = "";
 let jsonFileContent;
@@ -352,7 +373,7 @@ function submitJson() {
     },
     work: [],
     education: [],
-    certificates: [],
+    // certificates: [],
     skills: [],
     languages: [],
   };
@@ -403,14 +424,15 @@ function submitJson() {
   });
 
   // Add certificates
-  const certificateEntries = document.querySelectorAll(".certificate-entry");
-  certificateEntries.forEach((entry) => {
-    jsonObject.certificates.push({
-      name: entry.querySelector('input[name="certificates_name[]"]').value,
+  // const certificateEntries = document.querySelectorAll(".certificate-entry");
+  // certificateEntries.forEach((entry) => {
+  //   jsonObject.certificates.push({
+  //     name: entry.querySelector('input[name="certificates_name[]"]').value,
 
-      date: entry.querySelector('input[name="certificates_date[]"]').value,
-    });
-  });
+  //     date: entry.querySelector('input[name="certificates_date[]"]').value,
+  //   });
+  // });
+
   const skillEntries = document.querySelectorAll(".skill-entry");
   skillEntries.forEach((entry) => {
     jsonObject.skills.push({

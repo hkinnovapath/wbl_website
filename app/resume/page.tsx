@@ -1,17 +1,15 @@
 "use client";
 import Layout from "@/components/Common/Layout";
+import Modal from "@/components/Common/Modal";
 import React, { useEffect, useRef, useState } from "react";
 import Script from "next/script";
-import { isAuthenticated } from "@/utils/auth";
 import { useRouter } from "next/navigation";
+import { isAuthenticated } from "@/utils/auth";
 
-// import Modal from "@/components/Common/Modal"; // Import the Modal component
 // import ClassComp from "@/components/Recording/ClassComp";
 // import SearchComp from "@/components/Recording/SearchComp";
 // import SessionComp from "@/components/Recording/SessionComp";
 // import CourseNavigation from "@/components/Common/CourseNavigation";
-import Modal from "@/components/Common/Modal"; // Import the Modal component
-
 
 
 export default function Assignment() {
@@ -19,11 +17,11 @@ export default function Assignment() {
   // const [scriptLoaded, setScriptLoaded] = useState(false);
   const contentRef = useRef(null);
 
-  // const [canEdit, setCanEdit] = useState(false);
+  const [canEdit, setCanEdit] = useState(false);
   const router = useRouter(); // Initialize router
   const [loading, setLoading] = useState(true);
-  // const [errorMessage, setErrorMessage] = useState("");
-  // const [showModal, setShowModal] = useState(false); // State to control modal visibility
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showModal, setShowModal] = useState(false); // State to control modal visibility
 
   useEffect(() => {
     const fetchResumeContent = async () => {
@@ -96,12 +94,12 @@ export default function Assignment() {
   }, [router]); // Empty dependency array to run effect only once on mount
 
 
-  // const handleClose = () => {
-  //   localStorage.removeItem("access_token");
-  //   sessionStorage.clear();
-  //   router.push("/login");
-  //   return setShowModal(false);
-  // };
+  const handleClose = () => {
+    localStorage.removeItem("access_token");
+    sessionStorage.clear();
+    router.push("/login");
+    return setShowModal(false);
+  };
 
   return (
     <div key={resumeContent}> {/* The key property forces the component to re-mount */}
@@ -124,13 +122,13 @@ export default function Assignment() {
         />
       </main>
 
-      {/* {showModal && (
+      {showModal && (
         <Modal
           title="Authentication Error"
           message={errorMessage}
           onClose={handleClose}
         />
-      )} */}
+      )} 
     </div>
   );
 }

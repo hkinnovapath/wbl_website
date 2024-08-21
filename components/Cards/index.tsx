@@ -15,7 +15,7 @@ export default function Cards() {
         >
           <div className="flex justify-center">
             <Image
-              className="rounded-xl border h-56 w-[350px] dark:border-gray-700"
+              className="rounded-xl border sm:h-56 sm:w-[350px]  dark:border-gray-700"
               src={machine_learning}
               width={350}
               height={300}
@@ -44,9 +44,9 @@ export default function Cards() {
         >
           <div className="flex justify-center">
             <Image
-              className="rounded-xl border dark:border-gray-700"
+              className=" sm:h-56 sm:w-[360px] rounded-xl border dark:border-gray-700"
               src={data_engineer}
-              width={300}
+              width={350}
               height={250}
               alt="Testimonial 03"
             />
@@ -73,7 +73,7 @@ export default function Cards() {
         >
           <div className="flex justify-center">
             <Image
-              className="rounded-xl border h-56 w-[360px] dark:border-gray-700"
+              className="rounded-xl border sm:h-56 sm:w-[360px] dark:border-gray-700"
               src={fsd}
               width={350}
               height={250}

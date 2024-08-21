@@ -451,7 +451,7 @@ function submitJson() {
   let jsonString = JSON.stringify(jsonObject, null, 2);
   jsonFileContent = jsonString;
 
-  fetch(`http://localhost:8001/submit-form`, {
+  fetch(`http:localhost:8001/submit-form`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

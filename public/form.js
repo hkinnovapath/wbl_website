@@ -470,7 +470,7 @@ function submitJson() {
   let jsonString = JSON.stringify(jsonObject, null, 2);
   jsonFileContent = jsonString;
 
-  fetch(`http://localhost:8001/submit-form`, {
+  fetch(`http:localhost:8001/submit-form`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -494,7 +494,7 @@ function submitJson() {
 
 // Button for downloading the json file
 function getJson() {
-  fetch(`http://localhost:8001/download-json`, {
+  fetch(`http:localhost:8001/download-json`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -529,7 +529,7 @@ function getJson() {
 // Button click for downloading the generated pdf
 async function getPdf() {
   try {
-    const response = await fetch('http://localhost:8001/generate-pdf', {
+    const response = await fetch(`http:localhost:8001/generate-pdf`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

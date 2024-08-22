@@ -17,6 +17,7 @@ export default function SessionComp() {
   const [filteredSessions, setFilteredSessions] = useState<Session[]>([]);
   const [selectedSession, setSelectedSession] = useState<Session | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const sessionsDataFromStorage = sessionStorage.getItem("sessions_data");
@@ -49,6 +50,7 @@ export default function SessionComp() {
 
   const fetchSessions = async () => {
     try {
+      setIsLoading(true);
       const accessToken = localStorage.getItem("access_token");
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/sessions`,
@@ -67,8 +69,10 @@ export default function SessionComp() {
       setSessions(data.sessions);
       sessionStorage.setItem("sessions_data", JSON.stringify(data.sessions));
       sessionStorage.setItem("sessions_data_timestamp", Date.now().toString());
+      setError(null);
     } catch (error) {
       console.error("Error fetching sessions:", error);
+      setError("Failed to load sessions. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -97,12 +101,12 @@ export default function SessionComp() {
       return (
         <iframe
           width="100%"
-          height="250"
+          height="350"
           src={youtubeEmbedUrl}
           title={session.title}
           frameBorder="0"
           allowFullScreen
-          className="rounded-xl border-2 border-gray-500"
+          className="h-[350px] rounded-xl border-2 border-gray-500"
         ></iframe>
       );
     } else {
@@ -151,7 +155,7 @@ export default function SessionComp() {
   }
 
   return (
-    <div className="ml-4 flex-grow space-y-4">
+    <div className="mx-auto mt-6 max-w-full flex-grow space-y-4 sm:mt-0 sm:max-w-3xl">
       <div className="flex flex-grow flex-col">
         <label htmlFor="dropdown1">Session Type:</label>
         <select
@@ -161,7 +165,7 @@ export default function SessionComp() {
           onChange={handleTypeChange}
         >
           <option value="" disabled>
-            Please select
+            Please select a session type...
           </option>
           {Array.from(new Set(sessions.map((session) => session.type))).map(
             (type) =>
@@ -180,9 +184,10 @@ export default function SessionComp() {
           className="rounded-md border border-gray-300 px-2 py-1 text-black dark:bg-white"
           value={selectedSession ? selectedSession.sessionid.toString() : ""}
           onChange={handleSessionSelect}
+          disabled={!selectedType || filteredSessions.length === 0}
         >
           <option value="" disabled>
-            Please select a session
+            Please select a session name...
           </option>
           {filteredSessions.map((session) => (
             <option key={session.sessionid} value={String(session.sessionid)}>
@@ -191,6 +196,7 @@ export default function SessionComp() {
           ))}
         </select>
       </div>
+      {error && <p className="text-red-500">{error}</p>}
       {selectedSession && <div>{renderVideoPlayer(selectedSession)}</div>}
     </div>
   );

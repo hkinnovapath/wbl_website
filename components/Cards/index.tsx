@@ -15,16 +15,16 @@ export default function Cards() {
         >
           <div className="flex justify-center">
             <Image
-              className="rounded-xl border sm:h-56 sm:w-[350px]  dark:border-gray-700"
+              className="rounded-xl border dark:border-gray-700 sm:h-56  sm:w-[350px]"
               src={machine_learning}
               width={350}
               height={300}
               alt="Testimonial 02"
             />
           </div>
-          <h1 className="mt-3 text-center text-2xl font-bold">
+          <div className="mt-3 text-center text-2xl font-bold">
             Machine Learning
-          </h1>
+          </div>
           <div className="mt-6 border-t border-gray-400 pt-5 text-center font-medium text-gray-700">
             <cite className="not-italic text-gray-200"></cite>{" "}
             <a
@@ -34,26 +34,26 @@ export default function Cards() {
               Enroll Now
             </a>
           </div>
-        </div>       
+        </div>
 
         {/* 2nd testimonial */}
-         <div
+        <div
           className="flex flex-col rounded-2xl p-6 shadow-lg shadow-gray-400 duration-500 hover:scale-105 dark:shadow-gray-800"
           data-aos="fade-up"
           data-aos-delay="400"
         >
           <div className="flex justify-center">
             <Image
-              className=" sm:h-56 sm:w-[360px] rounded-xl border dark:border-gray-700"
+              className=" rounded-xl border dark:border-gray-700 sm:h-56 sm:w-[360px]"
               src={data_engineer}
               width={350}
               height={250}
               alt="Testimonial 03"
             />
           </div>
-          <h1 className="mt-3 text-center text-2xl font-bold">
+          <div className="mt-3 text-center text-2xl font-bold">
             Data Engineering
-          </h1>
+          </div>
           <div className="mt-6 border-t border-gray-400 pt-5 text-center font-medium text-gray-700">
             <cite className="not-italic text-gray-200"></cite>{" "}
             <a
@@ -63,9 +63,9 @@ export default function Cards() {
               Enroll Now
             </a>
           </div>
-        </div>   
+        </div>
 
-        {/* 3rd testimonial */} 
+        {/* 3rd testimonial */}
         <div
           className="flex flex-col rounded-2xl p-5 shadow-lg shadow-gray-400 duration-500 hover:scale-105 dark:shadow-gray-800"
           data-aos="fade-up"
@@ -73,16 +73,16 @@ export default function Cards() {
         >
           <div className="flex justify-center">
             <Image
-              className="rounded-xl border sm:h-56 sm:w-[360px] dark:border-gray-700"
+              className="rounded-xl border dark:border-gray-700 sm:h-56 sm:w-[360px]"
               src={fsd}
               width={350}
               height={250}
               alt="Testimonial 01"
             />
           </div>
-          <h1 className="mt-3 text-center text-2xl font-bold">
+          <div className="mt-3 text-center text-2xl font-bold">
             Fullstack Development <a href=""></a>
-          </h1>
+          </div>
           <div className="mt-6 border-t border-gray-400 pt-5 text-center font-medium text-gray-700">
             <cite className="not-italic text-gray-200"></cite>{" "}
             <a

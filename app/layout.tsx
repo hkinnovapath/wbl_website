@@ -14,8 +14,20 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
+      <head>
+        <title>Whitebox-Learning</title>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta
+          name="description"
+          content="A comprehensive learning ecosystem tailored for developers, machine learning enthusiasts, and data engineers."
+        />
+        <link rel="icon" href="/images/favicon.ico" />
+        <link rel="canonical" href="https://whitebox-learning.com/" />
+      </head>
       <body className="dark:bg-black">
-        <AuthProvider> {/* Wrap the entire application with AuthProvider */}
+        <AuthProvider>
+          {" "}
+          {/* Wrap the entire application with AuthProvider */}
           <Providers>
             <Header />
             {children}
@@ -27,4 +39,3 @@ export default function RootLayout({
     </html>
   );
 }
-

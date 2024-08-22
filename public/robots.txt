@@ -3,4 +3,4 @@ Disallow: /recording
 Disallow: /presentation
 
 # Sitemap location
-Sitemap: https://www.whitebox-learning.com/sitemap.xml
+Sitemap: https://whitebox-learning.com/sitemap.xml

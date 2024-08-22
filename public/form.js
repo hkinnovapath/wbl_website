@@ -181,38 +181,6 @@ function removeEducation(button) {
 }
 
 
-
-// function addCertificateEntry() {
-//   const container = document.getElementById("certificates-section");
-//   const entryDiv = document.createElement("div");
-//   entryDiv.classList.add("certificate-entry"); // Add the CSS class
-
-//   entryDiv.innerHTML = `
-//     <div class="form-group">
-//       <label for="certificates_name">Name:</label>
-//       <input type="text" name="certificates_name[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
-//     </div>
-//     <div class="form-group">
-//       <label for="certificates_date">Date:</label>
-//       <input type="date" name="certificates_date[]" class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded" />
-//     </div>
-//     <button type="button" class="bg-red-500 text-white p-2 rounded mt-4" onclick="removeEntry(this)">Remove</button>
-//   `;
-
-//   // Get the "Add Certificate" button
-//   const addButton = document.querySelector(
-//     'button[onclick="addCertificateEntry()"]'
-//   );
-
-//   // Get the parent element of the button
-//   const parentElement = addButton.parentNode;
-
-//   // Insert the new entry before the button
-//   parentElement.insertBefore(entryDiv, addButton);
-// }
-
-// Function to remove a skill entry
-
 function removeEntry(button) {
   button.parentElement.remove();
 }
@@ -352,11 +320,11 @@ function deleteHighlight(button) {
 }
 
 
-let htmlContent = "";
+var htmlContent = "";
 let jsonFileContent;
 
 function submitJson() {
-  const form = document.getElementById("submit-form");
+  const form = document.getElementById("/api/resume/submit-form");
   const formData = new FormData(form);
   const jsonObject = {
     basics: {
@@ -509,10 +477,10 @@ function getJson() {
     });
 }
 
-// Button click for downloading the generated pdf
+
 async function getPdf() {
   try {
-    const response = await fetch("https://whitebox-learning.com/api/resume/generate-pdf", {
+    const response = await fetch(`https://whitebox-learning.com/api/resume/generate-pdf`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -521,8 +489,9 @@ async function getPdf() {
     });
 
     if (!response.ok) {
+      const errorText = await response.text();
       throw new Error(
-        `Network response was not ok. Status: ${response.status}`
+        `Network response was not ok. Status: ${response.status}. Body: ${errorText}`
       );
     }
 

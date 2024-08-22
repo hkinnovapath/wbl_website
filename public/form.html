@@ -8,6 +8,9 @@
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  </head>
+  <body>
     <style>
       .section {
         display: none;
@@ -87,23 +90,14 @@
                 >Languages</a
               >
             </li>
-            <!-- <li class="flex-1">
-              <a
-                href="#"
-                data-section="certificates-section"
-                class="section-link block rounded-lg bg-gradient-to-r from-purple-600 to-red-400 px-8 py-2 text-center text-white shadow-lg transition hover:from-purple-400 hover:to-indigo-500"
-                >Certificates</a
-              >
-            </li> -->
           </ul>
           <button
-          type="button"
-          class="mb-1 w-full sm:w-50 mx-auto rounded-md bg-gradient-to-br from-primary to-blue-300 px-8 py-2 font-bold text-black hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300"
-          onclick="submitJson()"
-        >
-          Make ➤
-        </button>
-        
+            type="button"
+            class="sm:w-50 mx-auto mb-1 w-full rounded-md bg-gradient-to-br from-primary to-blue-300 px-8 py-2 font-bold text-black hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300"
+            onclick="submitJson()"
+          >
+            Make ➤
+          </button>
         </div>
 
         <!-- Form Content -->
@@ -111,7 +105,11 @@
           class="rounded-xl bg-gradient-to-r from-purple-500 to-red-400 p-5 lg:col-span-2"
           style="max-height: 87vh; overflow: auto"
         >
-          <form id="/api/resume/submit-form" class="space-y-8" style="max-height: 100%">
+          <form
+            id="/api/resume/submit-form"
+            class="space-y-8"
+            style="max-height: 100%"
+          >
             <!-- Basics Section -->
             <div class="section active" id="basics-section">
               <h2 class="mb-4 text-xl font-bold">Basics</h2>
@@ -421,45 +419,6 @@
               </div>
             </div>
 
-            <!-- Certificates Section -->
-<!--              
-            <div class="section" id="certificates-section">
-              <h2 class="mb-4 text-xl font-bold">Certificates</h2>
-              <div id="certificates-container" class="space-y-4">
-                <div class="certificate-entry">
-                  <div class="form-group mb-4">
-                    <label for="certificates_name" class="mb-2 block"
-                      >Certificate Name:</label
-                    >
-                    <input
-                      type="text"
-                      id="certificates_name"
-                      name="certificates_name[]"
-                      class="form-control w-full rounded border border-gray-500 bg-gray-100 p-2 text-black"
-                    />
-                  </div>
-                  <div class="form-group mb-4">
-                    <label for="certificates_date" class="mb-2 block"
-                      >Date Issued:</label
-                    >
-                    <input
-                      type="date"
-                      id="certificates_date"
-                      name="certificates_date[]"
-                      class="form-control w-full rounded border border-gray-500 bg-gray-100 p-2 text-black"
-                    />
-                  </div>
-                  <button
-                    type="button"
-                    class="md:text-md w-36 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-200 p-1 py-2 px-1 text-[11px] font-bold text-black hover:bg-indigo-700 hover:from-indigo-500 hover:to-indigo-200 dark:text-white sm:py-2 sm:px-4 sm:text-sm"
-                    onclick="addCertificateEntry()"
-                  >
-                    Add Certificate
-                  </button>
-                </div>
-              </div>
-            </div> -->
-
             <!-- Skills Section -->
             <div class="section" id="skills-section">
               <h2 class="mb-4 text-xl font-bold">Skills</h2>
@@ -541,105 +500,47 @@
                 </div>
               </div>
             </div>
-
-            <!-- Submit Button
-            <button
-              type="submit"
-              class="bg-green-400 text-white p-2 rounded w-60 mb-8"
-            >
-              Submit
-            </button> -->
-            <!-- <button
-              type="button"
-              class="w-30 duration-250 mx-auto mb-8 block cursor-pointer rounded-full bg-green-100 py-2 px-5 font-sans text-green-700 shadow-inner shadow-green-300 transition-all hover:rotate-[-1deg] hover:scale-105 hover:shadow-lg"
-              onclick="submitJson() "
-            >
-              Submit ➤
-            </button> -->
-<!-- 
-            <button
-  type="button"
-  class="w-30 duration-250 mx-auto mb-8 block cursor-pointer rounded-full bg-green-100 py-2 px-5 font-sans text-green-700 shadow-inner shadow-green-300 transition-all hover:rotate-[-1deg] hover:scale-105 hover:shadow-lg"
-  style="margin-top: -1px;" 
-  onclick="submitJson()"
->
-  Submit ➤
-</button> -->
-
-            
           </form>
         </div>
 
-        <!-- <div
-          class="w-full rounded-xl p-5 shadow-lg lg:col-span-3 lg:w-auto"
+        <div
+          class="w-full rounded-xl bg-gray-200 p-5 shadow-lg dark:bg-gray-800 lg:col-span-3 lg:w-auto"
           style="
             width: auto;
             height: 87vh;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            /* overflow-y: auto; /* Adds vertical scrolling */
-           /* overflow-x: hidden; Hides horizontal scrolling */
-            background-color: rgba(255, 255, 255, 0.341);
             position: relative;
           "
-        > -->
-        <!-- <div
-  class="w-full rounded-xl p-5 shadow-lg lg:col-span-3 lg:w-auto dark:bg-gray-800 dark:text-white white:bg-gray-800"
-  style="
-    width: auto;
-    height: 87vh;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    position: relative;
-  "
-> -->
-<div
-  class="w-full rounded-xl p-5 shadow-lg lg:col-span-3 lg:w-auto bg-gray-200 dark:bg-gray-800"
-  style="
-    width: auto;
-    height: 87vh;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    position: relative;
-  "
->
+        >
           <!-- <h2 class="text-lg font-bold mb-2 text-black">Resume Preview</h2> -->
           <div class="mb-4 flex items-center justify-between space-x-4">
             <div
-            class="hover:bg-gray-500 font-bold flex items-center space-x-2 rounded-lg border-2 p-1 border-white dark:border-white"
+              class="flex items-center space-x-2 rounded-lg border-2 border-white p-1 font-bold hover:bg-gray-500 dark:border-white"
             >
-              <i class="fas fa-download text-bold"></i>
+            <i class="fa fa-arrow-down" aria-hidden="true"></i>
               <button
                 class="json text rounded p-1"
                 id="download-json-btn"
                 onclick="getJson()"
               >
-                GetJson
+                Json
               </button>
             </div>
             <div
-            class="hover:bg-gray-500 font-bold flex items-center space-x-2 rounded-lg border-2 p-1 border-white dark:border-white"
+              class="flex items-center space-x-2 rounded-lg border-2 border-white p-1 font-bold hover:bg-gray-500 dark:border-white"
             >
-              <i class="fas fa-download text-bold"></i>
+            <i class="fa fa-arrow-down" aria-hidden="true"></i>
               <button
                 class="pdf text-gray rounded p-1"
                 id="generate-pdf"
                 onclick="getPdf()"
                 type="submit"
               >
-                GetPdf
+                Pdf
               </button>
             </div>
           </div>
-          <!-- loader -->
-          <div id="loading-bar">
-            <div class="bar"></div>
-          </div>
 
-          
-          <!-- <iframe
-            id="html-preview-frame"
-            style="width: 100%; height: 80%; display: none"
-            class="rounded border border-gray-500"
-          ></iframe> -->
-          <!-- Centering container for iframe -->
           <div
             style="
               display: flex;

@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useState, FormEvent, ChangeEvent } from "react";
 // import { isValidPhoneNumber } from "libphonenumber-js";
 import { countries } from "country-data";
-import { log } from "console";
 
 const SignupPage = () => {
   const [username, setUsername] = useState("");
@@ -41,6 +40,15 @@ const SignupPage = () => {
       setLoading(false);
       return;
     }
+    //   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    // // Email validation
+    // if (!isValidEmail(email)) {
+    //   setMessagee("Please enter a valid email address.");
+    //   setResponseStatus("error");
+    //   setLoading(false);
+    //   return;
+    // }
 
     try {
       const response = await fetch(
@@ -109,18 +117,16 @@ const SignupPage = () => {
   };
 
   // console.log(countries);
-  
+
   // const uniqueCountries = Array.from(
   //   new Set(
   //     Object.values(countries)
-  //       // .map((country) => country) // Extract country codes     
+  //       // .map((country) => country) // Extract country codes
   //       .filter((country) => country[].) // Filter out empty names
   //       // .map((country) => country.name) // Extract country names
-  //   )    
+  //   )
   // );
-//  console.log( uniqueCountries);
- 
-
+  //  console.log( uniqueCountries);
 
   return (
     <>
@@ -281,6 +287,8 @@ const SignupPage = () => {
                       onChange={(e) => setEmail(e.target.value)}
                       onFocus={handleInputFocus}
                       required
+                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}"
+                      title="Please enter a valid email address"
                     />
                   </div>
                   <div className="mb-6 sm:mb-8">

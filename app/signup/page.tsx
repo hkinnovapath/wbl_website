@@ -28,19 +28,6 @@ const SignupPage = () => {
     setLoading(true);
 
     const correctCountryCode = countryCode.replace(/[^+\d]/g, ""); // Removes any non-numeric characters except '+'
-    const fullPhone = `${correctCountryCode}${phone}`;
-
-    // Password validation
-    const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!passwordRegex.test(password)) {
-      setMessagee(
-        "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character"
-      );
-      setResponseStatus("error");
-      setLoading(false);
-      return;
-    }
 
     try {
       const response = await fetch(
@@ -88,7 +75,6 @@ const SignupPage = () => {
       setResponseStatus("error");
       setMessagee("An error occurred during registration");
     } finally {
-      // console.log(loading);
       setLoading(false);
     }
 
@@ -108,18 +94,6 @@ const SignupPage = () => {
     setMessagee("");
   };
 
-  // console.log(countries);
-  
-  // const uniqueCountries = Array.from(
-  //   new Set(
-  //     Object.values(countries)
-  //       // .map((country) => country) // Extract country codes     
-  //       .filter((country) => country[].) // Filter out empty names
-  //       // .map((country) => country.name) // Extract country names
-  //   )    
-  // );
-//  console.log( uniqueCountries);
- 
 
 
   return (

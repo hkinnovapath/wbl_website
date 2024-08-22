@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useState, FormEvent, ChangeEvent } from "react";
 // import { isValidPhoneNumber } from "libphonenumber-js";
 import { countries } from "country-data";
-import { log } from "console";
 
 const SignupPage = () => {
   const [username, setUsername] = useState("");
@@ -255,6 +254,8 @@ const SignupPage = () => {
                       onChange={(e) => setEmail(e.target.value)}
                       onFocus={handleInputFocus}
                       required
+                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}"
+                      title="Please enter a valid email address"
                     />
                   </div>
                   <div className="mb-6 sm:mb-8">

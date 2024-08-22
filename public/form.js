@@ -179,38 +179,6 @@ function removeEducation(button) {
 }
 
 
-
-// function addCertificateEntry() {
-//   const container = document.getElementById("certificates-section");
-//   const entryDiv = document.createElement("div");
-//   entryDiv.classList.add("certificate-entry"); // Add the CSS class
-
-//   entryDiv.innerHTML = `
-//     <div class="form-group">
-//       <label for="certificates_name">Name:</label>
-//       <input type="text" name="certificates_name[]" class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black" />
-//     </div>
-//     <div class="form-group">
-//       <label for="certificates_date">Date:</label>
-//       <input type="date" name="certificates_date[]" class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded" />
-//     </div>
-//     <button type="button" class="bg-red-500 text-white p-2 rounded mt-4" onclick="removeEntry(this)">Remove</button>
-//   `;
-
-//   // Get the "Add Certificate" button
-//   const addButton = document.querySelector(
-//     'button[onclick="addCertificateEntry()"]'
-//   );
-
-//   // Get the parent element of the button
-//   const parentElement = addButton.parentNode;
-
-//   // Insert the new entry before the button
-//   parentElement.insertBefore(entryDiv, addButton);
-// }
-
-// Function to remove a skill entry
-
 function removeEntry(button) {
   button.parentElement.remove();
 }
@@ -350,11 +318,11 @@ function deleteHighlight(button) {
 }
 
 
-let htmlContent = "";
+var htmlContent = "";
 let jsonFileContent;
 
 function submitJson() {
-  const form = document.getElementById("submit-form");
+  const form = document.getElementById("/api/resume/submit-form");
   const formData = new FormData(form);
   const jsonObject = {
     basics: {
@@ -450,11 +418,12 @@ function submitJson() {
 
   let jsonString = JSON.stringify(jsonObject, null, 2);
   jsonFileContent = jsonString;
-
-  fetch(`https://whitebox-learning.com/api/resume/submit-form`, {
+  const token = localStorage.getItem('access_token')
+  fetch(`http://localhost:8001/api/resume/submit-form`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
     },
     body: jsonString,
   })
@@ -475,7 +444,7 @@ function submitJson() {
 
 // Button for downloading the json file
 function getJson() {
-  fetch(`https://whitebox-learning.com/api/resume/download-json`, {
+  fetch(`http://localhost:8001/api/resume/download-json`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -504,10 +473,40 @@ function getJson() {
     });
 }
 
-// Button click for downloading the generated pdf
+// async function getPdf() {
+//   try {
+//     const response = await fetch(`http://localhost:8001/api/resume/generate-pdf`, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({ html: htmlContent }),
+//     });
+
+//     if (!response.ok) {
+//       const errorText = await response.text();
+//       throw new Error(
+//         `Network response was not ok. Status: ${response.status}. Body: ${errorText}`
+//       );
+//     }
+
+//     const blob = await response.blob();
+//     const url = window.URL.createObjectURL(blob);
+//     const a = document.createElement("a");
+//     a.href = url;
+//     a.download = "resume.pdf";
+//     document.body.appendChild(a); // Append anchor to the body
+//     a.click(); // Trigger download
+//     a.remove(); // Remove anchor from the body
+//     window.URL.revokeObjectURL(url); // Clean up
+//   } catch (error) {
+//     console.error("Error downloading PDF:", error);
+//   }
+// }
+
 async function getPdf() {
   try {
-    const response = await fetch("https://whitebox-learning.com/api/resume/generate-pdf", {
+    const response = await fetch(`http://localhost:8001/api/resume/generate-pdf`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -516,8 +515,9 @@ async function getPdf() {
     });
 
     if (!response.ok) {
+      const errorText = await response.text();
       throw new Error(
-        `Network response was not ok. Status: ${response.status}`
+        `Network response was not ok. Status: ${response.status}. Body: ${errorText}`
       );
     }
 

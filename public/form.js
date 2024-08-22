@@ -454,7 +454,7 @@ function submitJson() {
   //access token from local storage
   const token = localStorage.getItem('access_token');
 
-  fetch(`http://localhost:8001/api/resume/submit-form`, {
+  fetch(`https://whitebox-learning.com/api/resume/submit-form`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -479,7 +479,7 @@ function submitJson() {
 
 // Button for downloading the json file
 function getJson() {
-  fetch(`http://localhost:8001/api/resume/download-json`, {
+  fetch(`https://whitebox-learning.com/api/resume/download-json`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -512,7 +512,7 @@ function getJson() {
 // Button click for downloading the generated pdf
 async function getPdf() {
   try {
-    const response = await fetch("http://localhost:8001/api/resume/generate-pdf", {
+    const response = await fetch("https://whitebox-learning.com/api/resume/generate-pdf", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -532,22 +532,9 @@ const ResetPasswordPage = () => {
     }
   }, [token]);
 
-  const validatePassword = (password) => {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    return passwordRegex.test(password);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (loading) return;
-
-    if (!validatePassword(newPassword)) {
-      setMessage(
-        "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character."
-      );
-      setResponseStatus("error");
-      return;
-    }
 
     if (newPassword !== confirmPassword) {
       setMessage("Passwords do not match.");
@@ -620,6 +607,8 @@ const ResetPasswordPage = () => {
                     placeholder="Enter your new password"
                     className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-4 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"
                     value={newPassword}
+                    pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"
+                    title="Password must be at least 8 characters long and include uppercase, lowercase, number, and special character"
                     onChange={(e) => setNewPassword(e.target.value)}
                     onFocus={handleInputFocus}
                     required
@@ -639,6 +628,8 @@ const ResetPasswordPage = () => {
                     className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-4 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 sm:px-6"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
+                    pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"
+                    title="Password must be at least 8 characters long and include uppercase, lowercase, number, and special character"
                     onFocus={handleInputFocus}
                     required
                   />

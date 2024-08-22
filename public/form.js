@@ -447,7 +447,7 @@ function submitJson() {
 
 // Button for downloading the json file
 function getJson() {
-  fetch(`http://localhost:8001/api/resume/download-json`, {
+  fetch(`https://whitebox-learning.com/api/resume/download-json`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -477,40 +477,10 @@ function getJson() {
     });
 }
 
-// async function getPdf() {
-//   try {
-//     const response = await fetch(`http://localhost:8001/api/resume/generate-pdf`, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({ html: htmlContent }),
-//     });
-
-//     if (!response.ok) {
-//       const errorText = await response.text();
-//       throw new Error(
-//         `Network response was not ok. Status: ${response.status}. Body: ${errorText}`
-//       );
-//     }
-
-//     const blob = await response.blob();
-//     const url = window.URL.createObjectURL(blob);
-//     const a = document.createElement("a");
-//     a.href = url;
-//     a.download = "resume.pdf";
-//     document.body.appendChild(a); // Append anchor to the body
-//     a.click(); // Trigger download
-//     a.remove(); // Remove anchor from the body
-//     window.URL.revokeObjectURL(url); // Clean up
-//   } catch (error) {
-//     console.error("Error downloading PDF:", error);
-//   }
-// }
 
 async function getPdf() {
   try {
-    const response = await fetch(`http://localhost:8001/api/resume/generate-pdf`, {
+    const response = await fetch(`https://whitebox-learning.com/api/resume/generate-pdf`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

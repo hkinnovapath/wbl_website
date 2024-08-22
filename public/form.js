@@ -1,5 +1,7 @@
 let workEntryCount = 0;
 
+localStorage.setItem("name", "id")
+
 function addWorkEntry(button) {
   const container = document.getElementById("work-section");
 
@@ -311,18 +313,18 @@ function addHighlight(button) {
     <input
      type="text"
      name="work_highlights[]"
-     class="form-control w-full p-2 bg-gray-100 text-black border border-gray-500 rounded"
-   />
+     class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
+    />
    <button
-    type="button"
-    class="p-2 text-red-600 flex items-center space-x-2"
-    onclick="deleteHighlight(this)"
->
-Delete
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368">
-    <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
-  </svg>
-</button>
+     type="button"
+     class="p-2 text-red-600 flex items-center space-x-2"
+     onclick="deleteHighlight(this)"
+     >
+     Delete
+     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368">
+       <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+     </svg>
+   </button>
 
 
   `;
@@ -407,8 +409,6 @@ function submitJson() {
     });
   });
 
-  //console.log(JSON.stringify(jsonObject, null, 2));
-
   // Add education
   const educationEntries = document.querySelectorAll(".education-entry");
   educationEntries.forEach((entry) => {
@@ -451,10 +451,14 @@ function submitJson() {
   let jsonString = JSON.stringify(jsonObject, null, 2);
   jsonFileContent = jsonString;
 
-  fetch(`http://localhost:8001/submit-form`, {
+  //access token from local storage
+  const token = localStorage.getItem('access_token');
+
+  fetch(`http://localhost:8001/api/resume/submit-form`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}` //sending the token in headers
     },
     body: jsonString,
   })
@@ -475,10 +479,11 @@ function submitJson() {
 
 // Button for downloading the json file
 function getJson() {
-  fetch(`http://localhost:8001/download-json`, {
+  fetch(`http://localhost:8001/api/resume/download-json`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      
     },
     body: jsonFileContent, // Assuming jsonString contains the form data in JSON format
   })
@@ -507,7 +512,7 @@ function getJson() {
 // Button click for downloading the generated pdf
 async function getPdf() {
   try {
-    const response = await fetch("http://localhost:8001/generate-pdf", {
+    const response = await fetch("http://localhost:8001/api/resume/generate-pdf", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -525,7 +530,7 @@ async function getPdf() {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "resume.pdf";
+    a.download = "MyResume.pdf";
     document.body.appendChild(a); // Append anchor to the body
     a.click(); // Trigger download
     a.remove(); // Remove anchor from the body
@@ -534,3 +539,7 @@ async function getPdf() {
     console.error("Error downloading PDF:", error);
   }
 }
+
+
+
+

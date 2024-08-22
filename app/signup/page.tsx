@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState, FormEvent, ChangeEvent } from "react";
 // import { isValidPhoneNumber } from "libphonenumber-js";
 import { countries } from "country-data";
+import { log } from "console";
 
 const SignupPage = () => {
   const [username, setUsername] = useState("");
@@ -61,8 +62,8 @@ const SignupPage = () => {
             lastlogin: "",
             logincount: "",
             fullname: username,
-            // phone: phone,
-            phone: fullPhone,
+            phone: phone,
+            // phone: fullPhone,
             address: address,
             city: "",
             Zip: zip,
@@ -106,6 +107,20 @@ const SignupPage = () => {
   const handleCloseMessage = () => {
     setMessagee("");
   };
+
+  // console.log(countries);
+  
+  // const uniqueCountries = Array.from(
+  //   new Set(
+  //     Object.values(countries)
+  //       // .map((country) => country) // Extract country codes     
+  //       .filter((country) => country[].) // Filter out empty names
+  //       // .map((country) => country.name) // Extract country names
+  //   )    
+  // );
+//  console.log( uniqueCountries);
+ 
+
 
   return (
     <>
@@ -210,11 +225,12 @@ const SignupPage = () => {
                       >
                         {countries.all.map((country) => (
                           <option
-                            key={country.alpha2}
+                            // key={country.ioc}
+                            key={`${country.alpha2}-${country.name}`}
                             value={`${country.countryCallingCodes[0]}-${country.alpha2}`}
                             // value={country.countryCallingCodes[0]} // Use only the calling code
                           >
-                            ({country.alpha2}) {country.countryCallingCodes[0]}
+                            {country.alpha2} {country.countryCallingCodes[0]}
                           </option>
                         ))}
                       </select>

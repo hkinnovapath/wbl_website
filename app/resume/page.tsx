@@ -26,7 +26,7 @@ export default function Assignment() {
   useEffect(() => {
     const fetchResumeContent = async () => {
       try {
-        const response = await fetch("./form.html");
+        const response = await fetch("/form.html");
         const data = await response.text();
         setResumeContent(data);
       } catch (error) {

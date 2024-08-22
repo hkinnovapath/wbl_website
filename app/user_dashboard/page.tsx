@@ -28,7 +28,6 @@ const UserDashboard = () => {
         const userData = await response.json();
         sessionStorage.setItem("user_data", JSON.stringify(userData));
         sessionStorage.setItem("user_data_timestamp", Date.now().toString());
-        console.log(userData);
         setUser(userData);
       } catch (error) {
         console.error("Error fetching user details:", error);

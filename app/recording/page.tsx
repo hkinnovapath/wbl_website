@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Layout from "@/components/Common/Layout";
 import { isAuthenticated } from "@/utils/auth";
-import Modal from "@/components/Common/Modal"; // Import the Modal component
+// import Modal from "@/components/Common/Modal"; // Import the Modal component
 import ClassComp from "@/components/Recording/ClassComp";
 import SearchComp from "@/components/Recording/SearchComp";
 import SessionComp from "@/components/Recording/SessionComp";
@@ -15,12 +15,12 @@ export default function Recordings() {
   const router = useRouter(); // Initialize router
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
-  const [showModal, setShowModal] = useState(false); // State to control modal visibility
-
+//  const [showModal, setShowModal] = useState(false); // State to control modal visibility
+  const components = ["class", "search", "session"];
   // State to manage active component
   const [activeComponent, setActiveComponent] =
     useState<ComponentType>("class"); // Specify the type of activeComponent
-  const handleButtonClick = (component: ComponentType) => {
+  const handleTabClick = (component: ComponentType) => {
     // Specify the type of the component parameter
     setActiveComponent(component);
   };
@@ -48,27 +48,29 @@ export default function Recordings() {
       try {
         const { valid, message } = await isAuthenticated();
         if (!valid) {
-          setErrorMessage(message);
-          setShowModal(true); // Show modal if not valid
-        } else {
+          // setErrorMessage(message);
+          // setShowModal(true); // Show modal if not valid
+          router.push("/login");
+          } else {
           setLoading(false);
         }
       } catch (error) {
         console.error("Error while checking authentication:", error);
-        setErrorMessage("An error occurred while checking authentication");
-        setShowModal(true);
+        // setErrorMessage("An error occurred while checking authentication");
+        // setShowModal(true);
+        router.push("/login");
       }
     };
 
     checkAuthentication();
-  }, []); // Empty dependency array to run effect only once on mount
+  }, [router]); // Empty dependency array to run effect only once on mount
 
-  const handleClose = () => {
-    localStorage.removeItem("access_token");
-    sessionStorage.clear();
-    router.push("/login");
-    return setShowModal(false);
-  };
+  // const handleClose = () => {
+  //   localStorage.removeItem("access_token");
+  //   sessionStorage.clear();
+  //   router.push("/login");
+  //   return setShowModal(false);
+  // };
 
   return (
     <div>
@@ -81,52 +83,47 @@ export default function Recordings() {
             Recording
             <span className="text-lg font-light sm:text-2xl">(Classes)</span>
           </h1>
-          <div className="hidden  sm:block">
+          <div className="hidden sm:block">
             <Layout currentPage="Recordings" />
           </div>
         </nav>
-        {/* Section with buttons and dropdowns */}
+        {/* Section with course navigation and tabs */}
         <section className="mb-8 min-h-[500px]">
-          <CourseNavigation />
-          {/* Left side */}
-          <div className="flex flex-col justify-start sm:flex-row ">
-            <div className="mt-10 flex justify-center sm:w-1/4">
-              <div className="flex flex-col">
-                <button
-                  className="mb-1 w-full rounded-md bg-gradient-to-br from-primary to-blue-300 px-4 py-2 font-bold text-black hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 sm:w-36"
-                  onClick={() => handleButtonClick("class")}
-                >
-                  Class
-                </button>
-                <button
-                  className="mb-1 w-full rounded-md bg-gradient-to-br from-primary to-blue-300 px-4 py-2 font-bold text-black hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 sm:w-36"
-                  onClick={() => handleButtonClick("search")}
-                >
-                  Search
-                </button>
-                <button
-                  className="mb-1 w-full rounded-md bg-gradient-to-br from-primary to-blue-300 px-4 py-2 font-bold text-black hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 sm:w-36"
-                  onClick={() => handleButtonClick("session")}
-                >
-                  Session
-                </button>
+          <div className="flex flex-col items-center justify-around sm:flex-row md:justify-between">
+            {/* Left side - Course Navigation */}
+            <CourseNavigation />
+            {/* Right side - Tabs */}
+            <div className="mt-5 flex h-1/2 justify-center sm:mt-0 lg:w-1/2">
+              <div className="text-md sm:text-md flex justify-center border-gray-200  dark:text-blue-500 lg:text-xl">
+                <nav className="flex gap-5">
+                  {(components as ComponentType[]).map((component) => (
+                    <button
+                      key={component}
+                      className={`${
+                        activeComponent === component
+                          ? "bg-slate-300 text-indigo-700 dark:bg-slate-700 dark:text-primary"
+                          : "bg-transparent text-gray-800 hover:bg-slate-100 hover:text-blue-600 dark:bg-transparent dark:text-white dark:hover:bg-blue-800"
+                      } rounded-2xl border-2 border-gray-300 px-4 py-2 font-medium transition-colors duration-100 dark:border-gray-600`}
+                      onClick={() => handleTabClick(component)}
+                    >
+                      {component.charAt(0).toUpperCase() + component.slice(1)}
+                    </button>
+                  ))}
+                </nav>
               </div>
             </div>
-
-            {/* Right side */}
-            <div className="mt:5 space-y-4 sm:-mt-16 sm:ml-20 sm:w-1/2 ">
-              {renderComponent()}
-            </div>
           </div>
+          {/* Render the component based on the active tab */}
+          <div className="mt-6">{renderComponent()}</div>
         </section>
       </main>
-      {showModal && (
+      {/* {showModal && (
         <Modal
           title="Authentication Error"
           message={errorMessage}
           onClose={handleClose}
         />
-      )}
+      )} */}
     </div>
   );
 }

@@ -73,7 +73,7 @@ const ContactForm = () => {
     });
   };
   const handleCloseMessage = () => {
-    setMessageFromServer("");   
+    setMessageFromServer("");
   };
 
   const handleInputFocus = () => {
@@ -91,9 +91,9 @@ const ContactForm = () => {
                   <div className="absolute inset-0  hidden -skew-y-6 transform bg-gradient-to-r from-indigo-300 to-purple-400 shadow-lg dark:bg-gradient-to-r dark:from-indigo-700 dark:to-purple-500 sm:-rotate-6 sm:skew-y-0 sm:rounded-3xl md:block"></div>
                   <div className="relative rounded-3xl bg-gradient-to-br from-pink-400 to-sky-200 px-10 py-10 text-white shadow-lg dark:bg-gradient-to-br dark:from-pink-700 dark:to-sky-500 sm:p-16">
                     <div className="pb-10 text-center">
-                      <h1 className=" text-lg font-bold text-black dark:text-white sm:text-2xl md:text-3xl">
+                      <div className=" text-lg font-bold text-black dark:text-white sm:text-2xl md:text-3xl">
                         Get in touch!
-                      </h1>
+                      </div>
                       <p className="md:text-md text-xs font-semibold text-gray-700 dark:text-gray-300 sm:text-sm ">
                         We&apos;d love to hear from you.
                       </p>

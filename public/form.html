@@ -8,6 +8,9 @@
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  </head>
+  <body>
     <style>
       .section {
         display: none;
@@ -87,14 +90,6 @@
                 >Languages</a
               >
             </li>
-            <li class="flex-1">
-              <a
-                href="#"
-                data-section="certificates-section"
-                class="section-link block rounded-lg bg-gradient-to-r from-purple-600 to-red-400 px-8 py-2 text-center text-white shadow-lg transition hover:from-purple-400 hover:to-indigo-500"
-                >Certificates</a
-              >
-            </li>
           </ul>
           <button
             type="button"
@@ -110,7 +105,11 @@
           class="rounded-xl bg-gradient-to-r from-purple-500 to-red-400 p-5 lg:col-span-2"
           style="max-height: 87vh; overflow: auto"
         >
-          <form id="submit-form" class="space-y-8" style="max-height: 100%">
+          <form
+            id="/api/resume/submit-form"
+            class="space-y-8"
+            style="max-height: 100%"
+          >
             <!-- Basics Section -->
             <div class="section active" id="basics-section">
               <h2 class="mb-4 text-xl font-bold">Basics</h2>
@@ -314,7 +313,7 @@
                         <input
                           type="text"
                           name="work_highlights[]"
-                          class="form-control w-full rounded border border-gray-500 bg-gray-100 p-2 text-black"
+                          class="form-control w-full rounded-xl border border-gray-500 bg-gray-100 p-2 text-black"
                         />
                       </li>
                     </ul>
@@ -420,44 +419,6 @@
               </div>
             </div>
 
-            <!-- Certificates Section -->
-            <div class="section" id="certificates-section">
-              <h2 class="mb-4 text-xl font-bold">Certificates</h2>
-              <div id="certificates-container" class="space-y-4">
-                <div class="certificate-entry">
-                  <div class="form-group mb-4">
-                    <label for="certificates_name" class="mb-2 block"
-                      >Certificate Name:</label
-                    >
-                    <input
-                      type="text"
-                      id="certificates_name"
-                      name="certificates_name[]"
-                      class="form-control w-full rounded border border-gray-500 bg-gray-100 p-2 text-black"
-                    />
-                  </div>
-                  <div class="form-group mb-4">
-                    <label for="certificates_date" class="mb-2 block"
-                      >Date Issued:</label
-                    >
-                    <input
-                      type="date"
-                      id="certificates_date"
-                      name="certificates_date[]"
-                      class="form-control w-full rounded border border-gray-500 bg-gray-100 p-2 text-black"
-                    />
-                  </div>
-                  <button
-                    type="button"
-                    class="md:text-md w-36 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-200 p-1 py-2 px-1 text-[11px] font-bold text-black hover:bg-indigo-700 hover:from-indigo-500 hover:to-indigo-200 dark:text-white sm:py-2 sm:px-4 sm:text-sm"
-                    onclick="addCertificateEntry()"
-                  >
-                    Add Certificate
-                  </button>
-                </div>
-              </div>
-            </div>
-
             <!-- Skills Section -->
             <div class="section" id="skills-section">
               <h2 class="mb-4 text-xl font-bold">Skills</h2>
@@ -556,33 +517,30 @@
             <div
               class="flex items-center space-x-2 rounded-lg border-2 border-white p-1 font-bold hover:bg-gray-500 dark:border-white"
             >
-              <i class="fas fa-download text-bold"></i>
+            <i class="fa fa-arrow-down" aria-hidden="true"></i>
               <button
                 class="json text rounded p-1"
                 id="download-json-btn"
                 onclick="getJson()"
               >
-                GetJson
+                Json
               </button>
             </div>
             <div
               class="flex items-center space-x-2 rounded-lg border-2 border-white p-1 font-bold hover:bg-gray-500 dark:border-white"
             >
-              <i class="fas fa-download text-bold"></i>
+            <i class="fa fa-arrow-down" aria-hidden="true"></i>
               <button
                 class="pdf text-gray rounded p-1"
                 id="generate-pdf"
                 onclick="getPdf()"
                 type="submit"
               >
-                GetPdf
+                Pdf
               </button>
             </div>
           </div>
-          <!-- loader -->
-          <div id="loading-bar">
-            <div class="bar"></div>
-          </div>
+
           <div
             style="
               display: flex;

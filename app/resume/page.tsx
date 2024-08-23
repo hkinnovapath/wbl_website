@@ -1,10 +1,15 @@
 "use client";
 import Layout from "@/components/Common/Layout";
+import Modal from "@/components/Common/Modal";
 import React, { useEffect, useRef, useState } from "react";
 import Script from "next/script";
-import { isAuthenticated } from "@/utils/auth";
 import { useRouter } from "next/navigation";
-import Modal from "@/components/Common/Modal"; // Import the Modal component
+import { isAuthenticated } from "@/utils/auth";
+
+// import ClassComp from "@/components/Recording/ClassComp";
+// import SearchComp from "@/components/Recording/SearchComp";
+// import SessionComp from "@/components/Recording/SessionComp";
+// import CourseNavigation from "@/components/Common/CourseNavigation";
 
 
 export default function Assignment() {
@@ -21,7 +26,7 @@ export default function Assignment() {
   useEffect(() => {
     const fetchResumeContent = async () => {
       try {
-        const response = await fetch("./form.html");
+        const response = await fetch("/form.html");
         const data = await response.text();
         setResumeContent(data);
       } catch (error) {
@@ -71,20 +76,22 @@ export default function Assignment() {
       try {
         const { valid, message } = await isAuthenticated();
         if (!valid) {
-          setErrorMessage(message);
-          setShowModal(true); // Show modal if not valid
+          router.push("/login");
+          // setErrorMessage(message);
+          // setShowModal(true); // Show modal if not valid
         } else {
           setLoading(false);
         }
       } catch (error) {
         console.error("Error while checking authentication:", error);
-        setErrorMessage("An error occurred while checking authentication");
-        setShowModal(true);
+        // setErrorMessage("An error occurred while checking authentication");
+        // setShowModal(true);
+        router.push("/login");
       }
     };
 
     checkAuthentication();
-  }, []); // Empty dependency array to run effect only once on mount
+  }, [router]); // Empty dependency array to run effect only once on mount
 
 
   const handleClose = () => {
@@ -121,7 +128,7 @@ export default function Assignment() {
           message={errorMessage}
           onClose={handleClose}
         />
-      )}
+      )} 
     </div>
   );
 }

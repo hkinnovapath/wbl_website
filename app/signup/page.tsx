@@ -1,22 +1,32 @@
 "use client";
 import Link from "next/link";
 import { useState, FormEvent, ChangeEvent } from "react";
+// import { isValidPhoneNumber } from "libphonenumber-js";
+import { countries } from "country-data";
 
 const SignupPage = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [address, setAddress] = useState("");
   const [zip, setZip] = useState("");
   const [messagee, setMessagee] = useState("");
   const [responseStatus, setResponseStatus] = useState("");
   const [loading, setLoading] = useState(false);
+  const [countryCode, setCountryCode] = useState("+1-US");
+  const [phone, setPhone] = useState("");
+
+  const handleCountryChange = (e) => {
+    const selectedValue = e.target.value;
+    setCountryCode(selectedValue);
+    // setCountryCode(selectedValue.split("-")); // Only use the calling code
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(loading);
     setLoading(true);
+
+    const correctCountryCode = countryCode.replace(/[^+\d]/g, ""); // Removes any non-numeric characters except '+'
 
     try {
       const response = await fetch(
@@ -39,6 +49,7 @@ const SignupPage = () => {
             logincount: "",
             fullname: username,
             phone: phone,
+            // phone: fullPhone,
             address: address,
             city: "",
             Zip: zip,
@@ -63,7 +74,6 @@ const SignupPage = () => {
       setResponseStatus("error");
       setMessagee("An error occurred during registration");
     } finally {
-      // console.log(loading);
       setLoading(false);
     }
 
@@ -82,6 +92,8 @@ const SignupPage = () => {
   const handleCloseMessage = () => {
     setMessagee("");
   };
+
+
 
   return (
     <>
@@ -109,7 +121,7 @@ const SignupPage = () => {
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <g clip-path="url(#clip0_95:967)">
+                      <g clipPath="url(#clip0_95:967)">
                         <path
                           d="M20.0001 10.2216C20.0122 9.53416 19.9397 8.84776 19.7844 8.17725H10.2042V11.8883H15.8277C15.7211 12.539 15.4814 13.1618 15.1229 13.7194C14.7644 14.2769 14.2946 14.7577 13.7416 15.1327L13.722 15.257L16.7512 17.5567L16.961 17.5772C18.8883 15.8328 19.9997 13.266 19.9997 10.2216"
                           fill="#4285F4"
@@ -166,24 +178,64 @@ const SignupPage = () => {
                       required
                     />
                   </div>
-                  <div className="mb-6 sm:mb-8">
-                    <label
-                      htmlFor="name"
-                      className="mb-3 block  font-bold text-dark dark:text-white"
-                    >
-                      {" "}
-                      Phone <span className="text-[red]">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Enter your Phone Number"
-                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent  py-2 px-5 text-body-color   placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 "
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      onFocus={handleInputFocus}
-                      required
-                    />
+
+                  <div className="flex w-full">
+                    <div className="mb-6 mr-2 w-28 flex-shrink-0 sm:mb-8">
+                      <label
+                        htmlFor="country-code"
+                        className="mb-3 block font-bold text-dark dark:text-white"
+                      >
+                        Country Code <span className="text-[red]">*</span>
+                      </label>
+                      <select
+                        id="country-code"
+                        name="country-code"
+                        className="w-full rounded-3xl border py-2 px-5 text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:border-transparent sm:py-3"
+                        value={countryCode}
+                        onChange={handleCountryChange}
+                        onFocus={handleInputFocus}
+                        required
+                      >
+                        {countries.all.map((country) => (
+                          <option
+                            // key={country.ioc}
+                            key={`${country.alpha2}-${country.name}`}
+                            value={`${country.countryCallingCodes[0]}-${country.alpha2}`}
+                            // value={country.countryCallingCodes[0]} // Use only the calling code
+                          >
+                            {country.alpha2} {country.countryCallingCodes[0]}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div className="mb-6 flex-grow sm:mb-8">
+                      <label
+                        htmlFor="phone"
+                        className="mb-3 block font-bold text-dark dark:text-white"
+                      >
+                        Phone <span className="text-[red]">*</span>
+                      </label>
+                      <input
+                        type="tel" // Change type to 'tel' for phone numbers
+                        id="phone"
+                        name="phone"
+                        placeholder="Enter your Phone Number"
+                        className="w-full rounded-3xl border py-2 px-5 text-body-color  placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3"
+                        value={phone}
+                        onChange={(e) => {
+                          const inputValue = e.target.value;
+                          // Validate that input is numeric and within the character range
+                          if (/^\d{0,13}$/.test(inputValue)) {
+                            setPhone(inputValue);
+                          }
+                        }}
+                        onFocus={handleInputFocus}
+                        required
+                        pattern="\d{9,13}" // Ensures only 9 to 13 digits are allowed
+                        title="Please enter a valid phone number with 9 to 13 digits" // Custom error message
+                      />
+                    </div>
                   </div>
                   <div className="mb-6 sm:mb-8">
                     <label
@@ -202,12 +254,14 @@ const SignupPage = () => {
                       onChange={(e) => setEmail(e.target.value)}
                       onFocus={handleInputFocus}
                       required
+                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}"
+                      title="Please enter a valid email address"
                     />
                   </div>
                   <div className="mb-6 sm:mb-8">
                     <label
                       htmlFor="password"
-                      className="mb-3 block  font-bold text-dark dark:text-white"
+                      className="mb-3 block font-bold text-dark dark:text-white"
                     >
                       Password <span className="text-[red]">*</span>
                     </label>
@@ -215,9 +269,11 @@ const SignupPage = () => {
                       type="password"
                       name="password"
                       placeholder="Enter your password"
-                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent  py-2 px-5 text-body-color   placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3 "
+                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-5 text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
+                      pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"
+                      title="Password must be at least 8 characters long and include uppercase, lowercase, number, and special character"
                       onFocus={handleInputFocus}
                       required
                     />
@@ -282,11 +338,6 @@ const SignupPage = () => {
                       </label>
                     </div>
                   </div>
-                  {/* <div className="mb-6">
-                    <button className="hover:shadow-signUp flex w-full items-center justify-center rounded-3xl bg-primary py-3 px-6 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 sm:py-4 sm:px-9">
-                      Sign Up
-                    </button>
-                  </div> */}
                   {loading ? (
                     <div className="  text-md mb-4  text-center font-medium text-black  dark:text-white sm:text-2xl">
                       {/* <span className="text-4xl"> Loading </span> */}

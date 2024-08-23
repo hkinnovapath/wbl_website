@@ -20,11 +20,11 @@ const UserDashboard = () => {
             },
           }
         );
-
+        
         if (!response.ok) {
           throw new Error("Failed to fetch user details");
         }
-
+        
         const userData = await response.json();
         sessionStorage.setItem("user_data", JSON.stringify(userData));
         sessionStorage.setItem("user_data_timestamp", Date.now().toString());
@@ -92,21 +92,22 @@ const UserDashboard = () => {
     );
   }
 
+  const lastLogin=new Date(user.lastlogin).toLocaleString(); 
   const data = [
     { label: "Name", value: user.fullname },
     { label: "Phone", value: user.phone },
     { label: "Email", value: user.uname },
     { label: "Logincount", value: user.logincount },
-    { label: "Lastlogin", value: user.lastlogin || "Not available" },
+    { label: "Lastlogin", value: lastLogin || "Not available" },
   ];
 
   const TableRow = ({ label, value, isEven }) => (
-    <tr>
-      <td className="px-3 py-2 text-xs font-bold text-black dark:text-white sm:px-6  sm:py-4 sm:text-base">
+    <tr className="">
+      <td className="px-3 py-2 text-xs font-bold text-black dark:text-white sm:px-6  sm:py-4  md:text-base">
         {label}
         {":-"}
       </td>
-      <td className="rounded-4xl px-3  py-2 text-xs font-bold text-black dark:text-white sm:px-6 sm:py-4 sm:text-base">
+      <td className=" rounded-4xl px-3  py-2 text-xs font-bold text-black dark:text-white sm:px-6 sm:py-4 md:text-base">
         {value}
       </td>
     </tr>
@@ -124,13 +125,13 @@ const UserDashboard = () => {
           </div>
         </nav>
         <section className="relative flex h-full justify-center lg:h-[475px]">
-          <div className="flex w-72 flex-col justify-center rounded-3xl bg-gradient-to-tl from-sky-300 via-purple-300 to-indigo-400 p-8 px-10 py-10 text-white shadow-lg dark:bg-gradient-to-br dark:from-dark/50 dark:via-indigo-500 dark:to-primarylight sm:w-4/6">
+          <div className="flex w-72 flex-col justify-center rounded-3xl bg-gradient-to-tl from-sky-300 via-purple-300 to-indigo-400 p-8 px-10 py-10 text-white shadow-lg dark:bg-gradient-to-br dark:from-dark/50  dark:to-primarylight/25 sm:w-4/6">
             <h2 className="mb-8 text-center text-lg font-bold text-gray-800 dark:text-white sm:text-2xl">
-              My Details
+              My Details                                                      
             </h2>
-            <div className="flex w-full justify-center overflow-x-auto">
-              <div className="overflow-x-scroll rounded-2xl bg-gradient-to-br from-sky-300 via-purple-300 to-indigo-400 px-2 py-7 text-white shadow-2xl dark:bg-gradient-to-tl dark:from-dark/50 dark:via-indigo-500 dark:to-primarylight sm:overflow-hidden sm:px-16 sm:py-8">
-                <table className="w-1/2 divide-y divide-gray-200 dark:divide-gray-700">
+            <div className="flex w-full  justify-center overflow-x-auto">
+              <div className="overflow-x-scroll rounded-2xl bg-gradient-to-br from-sky-300 via-purple-300 to-indigo-400 text-white shadow-2xl dark:bg-gradient-to-tl dark:from-dark/50  dark:to-primarylight/25 sm:overflow-hidden  px-3 py-5   lg:px-24 lg:py-8 xl:px-28 xl:py-10">
+                <table className="divide-y divide-gray-200 dark:divide-gray-700">
                   <tbody>
                     {data.map((item, index) => (
                       <TableRow

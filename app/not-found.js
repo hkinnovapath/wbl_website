@@ -522,7 +522,7 @@ const ErrorPage = () => {
             </defs>
           </svg>
         </div>
-      </section>
+      </section> 
     </>
   );
 };

@@ -15,6 +15,37 @@
 // // };
 
 // // module.exports = nextConfig;
+// const path = require('path');
+
+// /** @type {import('next').NextConfig} */
+// const nextConfig = {
+//   images: {
+//     domains: ["whitebox-learning.com"],
+//   },
+//   experimental: {
+//     missingSuspenseWithCSRBailout: false,
+//   },
+//   reactStrictMode: false,
+//   env: {
+//     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+//   },
+//   webpack: (config, { isServer }) => {
+//     config.module.rules.push({
+//       test: /\.hbs$/,
+//       loader: "handlebars-loader",
+//       options: {
+//         // Specify the directory for partials
+//         partialDirs: [
+//           path.resolve(__dirname, '/public/templates/partials')
+//         ],
+//       },
+//     });
+
+//     return config;
+//   },
+// };
+
+// module.exports = nextConfig;
 
 const path = require('path');
 

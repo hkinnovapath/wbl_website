@@ -31,58 +31,40 @@ const ResumePreview: React.FC<ResumePreviewProps> = ({ renderedHtml, getJson, re
         // Optionally inject custom CSS for scrollbars and content fitting
         const style = doc.createElement('style');
         style.innerHTML = `
-          /* Enable scrolling for both axes */
-          body {
-            overflow: auto;
-            scroll-behavior: smooth;
-            margin: 0;
-            padding: 0;
-          }
+        /* Enable scrolling for both axes */
+        body {
+          overflow: auto;
+          scroll-behavior: smooth;
+          margin: 0;
+          padding: 0;
+        }
 
-          /* Responsive layout to prevent unnecessary scroll */
-          .container {
-            width: 100%;
-            box-sizing: border-box;
-          }
+        /* Responsive layout to prevent unnecessary scroll */
+        .container {
+          width: 100%;
+          box-sizing: border-box;
+        }
 
-          /* Scrollbar styling */
-          ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-          }
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+          width: 8px;
+          height: 8px;
+        }
 
-          ::-webkit-scrollbar-track {
-            background: var(--scrollbar-track-color, #ffffff);
-          }
+        ::-webkit-scrollbar-track {
+          background: #ffffff;
+        }
 
-          ::-webkit-scrollbar-thumb {
-            background: var(--scrollbar-thumb-color, #ffffff);
-            border-radius: 10px;
-            border: 1px solid var(--scrollbar-thumb-border-color, #cccccc);
-          }
+        ::-webkit-scrollbar-thumb {
+          background: #f0f0f0;
+          border-radius: 10px;
+          border: 1px solid #dcdcdc;
+        }
 
-          ::-webkit-scrollbar-thumb:hover {
-            background: var(--scrollbar-thumb-hover-color, #e0e0e0);
-          }
-
-          /* Light theme scrollbar colors */
-          :root {
-            --scrollbar-track-color: #f9f9f9;
-            --scrollbar-thumb-color: #f5f5f5;
-            --scrollbar-thumb-hover-color: #eeeeee;
-            --scrollbar-thumb-border-color: #dddddd;
-          }
-
-          /* Dark theme scrollbar colors */
-          @media (prefers-color-scheme: dark) {
-            :root {
-              --scrollbar-track-color: #2d3748;
-              --scrollbar-thumb-color: #4a5568;
-              --scrollbar-thumb-hover-color: #718096;
-              --scrollbar-thumb-border-color: transparent;
-            }
-          }
-        `;
+        ::-webkit-scrollbar-thumb:hover {
+          background: #e0e0e0;
+        }
+      `;
         doc.head.appendChild(style);
       }
     }
@@ -491,7 +473,7 @@ const ResumePreview: React.FC<ResumePreviewProps> = ({ renderedHtml, getJson, re
         </style>`
       );
       // console.log(modifiedRenderedHtml)
-     
+
       const response = await axios.post(`${apiUrl}/download-pdf`, {
         html: modifiedRenderedHtml,
         resumeJson: JSON.stringify(resumeJson),
@@ -502,18 +484,18 @@ const ResumePreview: React.FC<ResumePreviewProps> = ({ renderedHtml, getJson, re
         },
         responseType: 'blob'
       });
-        
 
-       // Extract the filename from the Content-Disposition header
-    const contentDisposition = response.headers['content-disposition'];
-    console.log(contentDisposition);
-    let filename = 'resume.pdf'; // Default filename
-    if (contentDisposition) {
-      const filenameMatch = contentDisposition.match(/filename="(.+)"/);
-      if (filenameMatch.length > 1) {
-        filename = filenameMatch[1]; // Use the filename from the response header
+
+      // Extract the filename from the Content-Disposition header
+      const contentDisposition = response.headers['content-disposition'];
+      // console.log(contentDisposition);
+      let filename = 'resume.pdf'; // Default filename
+      if (contentDisposition) {
+        const filenameMatch = contentDisposition.match(/filename="(.+)"/);
+        if (filenameMatch.length > 1) {
+          filename = filenameMatch[1]; // Use the filename from the response header
+        }
       }
-    }
       // Create a URL for the PDF blob and initiate download
       const url = window.URL.createObjectURL(new Blob([response.data], { type: 'application/pdf' }));
       const link = document.createElement('a');

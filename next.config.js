@@ -94,6 +94,12 @@ const nextConfig = {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
     RESUME_PUBLIC_API_URL: process.env.RESUME_PUBLIC_API_URL,
   },
+  rewrites: async () => [
+    {
+      source: '/resume/:id',
+      destination: `${process.env.RESUME_PUBLIC_API_URL}/:id`, // Proxy request to your backend API
+    },
+  ],
   webpack: (config, { isServer }) => {
     config.module.rules.push({
       test: /\.hbs$/, // Handle .hbs files

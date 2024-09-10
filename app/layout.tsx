@@ -21,7 +21,7 @@ export default function RootLayout({
           name="description"
           content="A comprehensive learning ecosystem tailored for developers, machine learning enthusiasts, and data engineers."
         />
-        <link rel="icon" href="/images/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
         <link rel="canonical" href="https://whitebox-learning.com/" />
       </head>
       <body className="dark:bg-black">

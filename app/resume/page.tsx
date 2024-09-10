@@ -9,9 +9,11 @@ import moment from "moment";
 import { useRouter } from "next/navigation";
 import { isAuthenticated } from "@/utils/auth";
 
-// import router from "next/router";
+// Cache for partials
+const partialCache = {};
 
-const fetchPartials = async () => {
+// Optimized fetchPartials function
+const fetchPartials = async (partialsNeeded) => {
   const partials = [
     "about",
     "basics",
@@ -20,7 +22,6 @@ const fetchPartials = async () => {
     "languages",
     "resume-header",
     "skills",
-    "languages",
     "summary",
     "social",
     "title",
@@ -28,16 +29,20 @@ const fetchPartials = async () => {
     "section-header",
   ];
 
-  const partialPromises = partials.map(async (partial) => {
-    try {
-      const response = await fetch(`/templates/partials/${partial}.hbs`);
-      if (!response.ok) {
-        throw new Error(`Failed to fetch ${partial}.hbs`);
+  const partialPromises = partialsNeeded.map(async (partial) => {
+    // Use the cache if the partial has been fetched already
+    if (!partialCache[partial]) {
+      try {
+        const response = await fetch(`/templates/partials/${partial}.hbs`);
+        if (!response.ok) {
+          throw new Error(`Failed to fetch ${partial}.hbs`);
+        }
+        const partialString = await response.text();
+        Handlebars.registerPartial(partial, partialString);
+        partialCache[partial] = partialString; // Cache the result
+      } catch (error) {
+        console.error(`Error fetching partial: ${partial}`, error);
       }
-      const partialString = await response.text();
-      Handlebars.registerPartial(partial, partialString);
-    } catch (error) {
-      console.error(`Error fetching partial: ${partial}`, error);
     }
   });
 
@@ -63,7 +68,7 @@ export default function Assignment() {
   const [activeSection, setActiveSection] = useState("basics");
   const [skills, setSkills] = useState([{ name: "", level: "" }]);
   const [renderedHtml, setRenderedHtml] = useState<string>("");
-  const [currentFormIndex, setCurrentFormIndex] = useState<number>(0)
+  const [currentFormIndex, setCurrentFormIndex] = useState<number>(0);
   const [languages, setLanguages] = useState([{ language: "", fluency: "" }]);
   const router = useRouter(); // Initialize router
   const [loading, setLoading] = useState(true);
@@ -103,8 +108,9 @@ export default function Assignment() {
       summary: "",
     },
   ]);
+
   const handleInputChange = (index, field, value) => {
-    setEducationEntries(prevEntries =>
+    setEducationEntries((prevEntries) =>
       prevEntries.map((entry, i) =>
         i === index ? { ...entry, [field]: value } : entry
       )
@@ -112,13 +118,13 @@ export default function Assignment() {
   };
 
   const handleRemoveEntry = (index) => {
-    setEducationEntries(prevEntries =>
+    setEducationEntries((prevEntries) =>
       prevEntries.filter((_, i) => i !== index)
     );
   };
 
   const handleAddEntry = () => {
-    setEducationEntries(prevEntries => [
+    setEducationEntries((prevEntries) => [
       ...prevEntries,
       {
         institution: "",
@@ -130,21 +136,11 @@ export default function Assignment() {
     ]);
   };
 
-  const debouncedSetBasics = useMemo(
-    () => debounce(setBasics, 100),
-    []
-  );
+  const debouncedSetBasics = useMemo(() => debounce(setBasics, 100), []);
 
-  const debouncedSetSkills = useMemo(
-    () => debounce(setSkills, 100),
-    []
-  );
+  const debouncedSetSkills = useMemo(() => debounce(setSkills, 100), []);
 
-  const debouncedSetLanguages = useMemo(
-    () => debounce(setLanguages, 100),
-    []
-  );
-
+  const debouncedSetLanguages = useMemo(() => debounce(setLanguages, 100), []);
 
   const debouncedSetEducationEntries = useMemo(
     () => debounce(setEducationEntries, 100),
@@ -168,11 +164,11 @@ export default function Assignment() {
     const updatedEntries = workEntries.map((entry, i) =>
       i === index
         ? {
-          ...entry,
-          highlights: entry.highlights.map((h, hi) =>
-            hi === highlightIndex ? value : h
-          ),
-        }
+            ...entry,
+            highlights: entry.highlights.map((h, hi) =>
+              hi === highlightIndex ? value : h
+            ),
+          }
         : entry
     );
     setWorkEntries(updatedEntries);
@@ -190,6 +186,7 @@ export default function Assignment() {
     setWorkEntries([...workEntries, newEntry]);
     setCurrentFormIndex(workEntries.length); // Show the new form
   };
+
   const handleRemoveWork = (index) => {
     if (workEntries.length > 1) {
       const updatedEntries = workEntries.filter((_, i) => i !== index);
@@ -200,8 +197,7 @@ export default function Assignment() {
     }
   };
 
-
-  const toggleSection = (section: string) => {
+  const toggleSection = (section) => {
     setActiveSection(activeSection === section ? "" : section);
   };
 
@@ -223,15 +219,25 @@ export default function Assignment() {
     link.click();
   };
 
+  // Lazy Loading and memoizing rendering for optimization
   const renderTemplate = useCallback(async () => {
     try {
-      await fetchPartials(); // Register partials before rendering
+      const partialsNeeded = [];
+      if (basics) partialsNeeded.push("about", "resume-header", "summary","title","info-tag","social","section-header");
+      if (workEntries.length > 0) partialsNeeded.push("work");
+      if (educationEntries.length > 0) partialsNeeded.push("education");
+      if (skills.length > 0) partialsNeeded.push("skills");
+      if (languages.length > 0) partialsNeeded.push("languages");
+
+      await fetchPartials(partialsNeeded); // Load only needed partials
+
       const response = await fetch("/templates/resume.hbs");
       if (!response.ok) {
         throw new Error("Failed to fetch resume.hbs");
       }
       const templateString = await response.text();
       const template = Handlebars.compile(templateString);
+
       const resume = {
         basics,
         work: workEntries,
@@ -239,8 +245,8 @@ export default function Assignment() {
         skills,
         languages,
       };
+
       const html = template(resume);
-      // console.log("Rendered HTML:", html);
       setRenderedHtml(html);
     } catch (error) {
       console.error("Error rendering template", error);
@@ -255,25 +261,20 @@ export default function Assignment() {
   useEffect(() => {
     const checkAuthentication = async () => {
       try {
-        const { valid, message } = await isAuthenticated();
+        const { valid } = await isAuthenticated();
         if (!valid) {
           router.push("/login");
-          // setErrorMessage(message);
-          // setShowModal(true); // Show modal if not valid
         } else {
           setLoading(false);
         }
       } catch (error) {
         console.error("Error while checking authentication:", error);
-        // setErrorMessage("An error occurred while checking authentication");
-        // setShowModal(true);
         router.push("/login");
       }
     };
 
     checkAuthentication();
-  }, [router]); // Empty dependency array to run effect only once on mount
-
+  }, [router]);
 
   const handleClose = () => {
     localStorage.removeItem("access_token");
@@ -281,7 +282,6 @@ export default function Assignment() {
     router.push("/login");
     return setShowModal(false);
   };
-
   return (
     <div>
       <main className="container mx-auto px-4 pb-6 dark:bg-gray-800 dark:text-white sm:px-6">
@@ -442,173 +442,6 @@ export default function Assignment() {
                 </div>
               </div>
             )}
-
-            {/* Work Section
-          {activeSection === "work" && (
-            <div className="rounded-lg border border-gray-300 bg-white p-4 shadow-md dark:border-gray-600 dark:bg-gray-700">
-              <h2 className="mb-4 text-xl font-bold">Work Experience</h2>
-              {workEntries.map((entry, index) => (
-                <div key={index} className="mb-6">
-                  <div className="grid grid-cols-2 gap-4">
-                    {["company", "position"].map((field, i) => (
-                      <div key={i}>
-                        <label className="block text-gray-700 dark:text-gray-300">
-                          {field.charAt(0).toUpperCase() + field.slice(1)}:
-                        </label>
-                        <input
-                          type="text"
-                          placeholder={`Enter ${field}`}
-                          className="mt-1 w-full border-b border-gray-300 bg-white p-2 text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-                          value={entry[field]}
-                          onChange={(e) =>
-                            debouncedSetWorkEntries(
-                              workEntries.map((w, i) =>
-                                i === index ? { ...w, [field]: e.target.value } : w
-                              )
-                            )
-                          }
-                          required
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-4 grid grid-cols-2 gap-4">
-                    {["startDate", "endDate"].map((field, i) => (
-                      <div key={i}>
-                        <label className="block text-gray-700 dark:text-gray-300">
-                          {field === "startDate" ? "Start Date" : "End Date"}:
-                        </label>
-                        <input
-                          type="date"
-                          placeholder={`Enter ${field}`}
-                          className="mt-1 w-full border-b border-gray-300 bg-white p-2 text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-                          value={entry[field]}
-                          onChange={(e) =>
-                            debouncedSetWorkEntries(
-                              workEntries.map((w, i) =>
-                                i === index ? { ...w, [field]: e.target.value } : w
-                              )
-                            )
-                          }
-                          required
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-4">
-                    <label className="block text-gray-700 dark:text-gray-300">
-                      Summary:
-                    </label>
-                    <textarea
-                      rows={3}
-                      placeholder="Enter summary"
-                      className="mt-1 w-full border-b border-gray-300 bg-white p-2 text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-                      value={entry.summary}
-                      onChange={(e) =>
-                        debouncedSetWorkEntries(
-                          workEntries.map((w, i) =>
-                            i === index ? { ...w, summary: e.target.value } : w
-                          )
-                        )
-                      }
-                      required
-                    />
-                  </div>
-                  <div className="mt-4">
-                    <label className="block text-gray-700 dark:text-gray-300">
-                      Highlights:
-                    </label>
-                    {entry.highlights.map((highlight, hIndex) => (
-                      <div key={hIndex} className="mb-2 flex items-center">
-                        <input
-                          type="text"
-                          placeholder="Highlight"
-                          className="w-full border-b border-gray-300 bg-white p-2 text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-                          value={highlight}
-                          onChange={(e) =>
-                            debouncedSetWorkEntries(
-                              workEntries.map((w, i) =>
-                                i === index
-                                  ? {
-                                    ...w,
-                                    highlights: w.highlights.map((h, hi) =>
-                                      hi === hIndex ? e.target.value : h
-                                    ),
-                                  }
-                                  : w
-                              )
-                            )
-                          }
-                        />
-                        <button
-                          className="ml-2 text-red-600 dark:text-red-400"
-                          onClick={() =>
-                            debouncedSetWorkEntries(
-                              workEntries.map((w, i) =>
-                                i === index
-                                  ? {
-                                    ...w,
-                                    highlights: w.highlights.filter(
-                                      (_, hi) => hi !== hIndex
-                                    ),
-                                  }
-                                  : w
-                              )
-                            )
-                          }
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    ))}
-                    <button
-                      className="mt-2 text-blue-600 dark:text-blue-400"
-                      onClick={() =>
-                        debouncedSetWorkEntries(
-                          workEntries.map((w, i) =>
-                            i === index
-                              ? {
-                                ...w,
-                                highlights: [...w.highlights, ""],
-                              }
-                              : w
-                          )
-                        )
-                      }
-                    >
-                      Add Highlight
-                    </button>
-                  </div>
-                  <button
-                    className="mt-2 text-red-600 dark:text-red-400"
-                    onClick={() =>
-                      debouncedSetWorkEntries(workEntries.filter((_, i) => i !== index))
-                    }
-                  >
-                    Remove Work Entry
-                  </button>
-                </div>
-              ))}
-              <button
-                className="text-blue-600 dark:text-blue-400"
-                onClick={() =>
-                  debouncedSetWorkEntries([
-                    ...workEntries,
-                    {
-                      company: "",
-                      position: "",
-                      startDate: "",
-                      endDate: "",
-                      summary: "",
-                      highlights: [""],
-                    },
-                  ])
-                }
-              >
-                Add Work Entry
-              </button>
-            </div>
-          )} */}
 
             {/* Work Section */}
             {activeSection === "work" && (

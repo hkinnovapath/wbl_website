@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,6 +11,7 @@ interface ResumePreviewProps {
 
 const ResumePreview: React.FC<ResumePreviewProps> = ({ renderedHtml, getJson, resumeJson }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   useEffect(() => {
     if (iframeRef.current) {
@@ -506,11 +507,30 @@ const ResumePreview: React.FC<ResumePreviewProps> = ({ renderedHtml, getJson, re
       link.remove();
       window.URL.revokeObjectURL(url); // Clean up after download
     } catch (error) {
-      console.error('Error downloading PDF:', error);
+      if (error.response && error.response.status === 401) {
+        // If status is 401, show the specific message to the user
+        setErrorMessage(`You can't download, Please register with a new email to continue` );
+      } else {
+        console.error('Error downloading PDF:', error);
+        setErrorMessage('An error occurred while downloading the PDF');
+      }
     }
   };
 
   return (
+    
+    <>
+    {errorMessage && (
+  <div className="relative top-[-50px] overflow-hidden">
+    <div
+      className=" inset-x-0 top-0 p-4 rounded-md text-red-700 bg-white transition-transform transform translate-x-full duration-500 ease-in-out"
+      style={{ transform: 'translateX(0)' }}
+    >
+      <p>{errorMessage}</p>
+    </div>
+  </div>
+)}
+    
     <div className="lg:col-span-3">
       <div className="flex h-full flex-col rounded-lg border border-gray-300 bg-white p-4 shadow-md dark:border-gray-600 dark:bg-gray-700">
         <div className="mb-4 flex items-center justify-between">
@@ -538,8 +558,10 @@ const ResumePreview: React.FC<ResumePreviewProps> = ({ renderedHtml, getJson, re
         />
       </div>
     </div>
+    </>
   );
 };
+
 
 export default ResumePreview;
 

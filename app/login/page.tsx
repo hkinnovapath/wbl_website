@@ -1,3 +1,10 @@
+"use client";
+import Link from "next/link";
+import UserDashboard from "@/app/user_dashboard/page";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
+import { useAuth } from "@/utils/AuthContext";
+
 // "use client";
 // import { useState, useEffect, Suspense } from "react";
 // import Link from "next/link";
@@ -331,12 +338,6 @@
 
 
 
-"use client";
-import { useState, useEffect, Suspense } from "react";
-import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
-import UserDashboard from "@/app/user_dashboard/page";
-import { useAuth } from "@/utils/AuthContext";
 
 
 const SigninPage = () => {
@@ -431,7 +432,7 @@ const SigninPage = () => {
                 </p>
                 <button
   className="dark:shadow-signUp mb-4 flex w-full items-center justify-center rounded-3xl bg-white py-2 px-5 text-sm font-medium text-primary shadow-one dark:bg-white dark:text-black sm:mb-6 sm:py-3 sm:text-base"
-  onClick={() => window.location.href = "http://localhost:8002/api/resume/signin"}
+  onClick={() => window.location.href = "http://localhost:8002/api/node/signin"}
 >
   <span className="mr-3">
     <svg

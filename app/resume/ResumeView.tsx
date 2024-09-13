@@ -473,7 +473,8 @@ const ResumePreview: React.FC<ResumePreviewProps> = ({ renderedHtml, getJson, re
   
         </style>`
       );
-      // console.log(modifiedRenderedHtml)
+      console.log(modifiedRenderedHtml)
+      console.log(JSON.stringify(resumeJson))
 
       const response = await axios.post(`${apiUrl}/download-pdf`, {
         html: modifiedRenderedHtml,
@@ -535,7 +536,7 @@ const ResumePreview: React.FC<ResumePreviewProps> = ({ renderedHtml, getJson, re
       <div className="flex h-full flex-col rounded-lg border border-gray-300 bg-white p-4 shadow-md dark:border-gray-600 dark:bg-gray-700">
         <div className="mb-4 flex items-center justify-between">
           <button
-            className="json text flex items-center rounded p-1"
+            className="json text-lg font-bold flex items-center   rounded-md  p-1"
             id="download-json-btn"
             onClick={getJson}
           >
@@ -543,7 +544,7 @@ const ResumePreview: React.FC<ResumePreviewProps> = ({ renderedHtml, getJson, re
             Json
           </button>
           <button
-            className="pdf text flex items-center rounded p-1"
+            className="pdf text-lg font-bold flex items-center rounded p-1"
             id="download-pdf-btn"
             onClick={handleDownloadPdf}
           >

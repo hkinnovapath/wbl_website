@@ -2,6 +2,8 @@
 import Link from "next/link";
 import { countries } from "country-data";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { useRouter } from 'next/router';
+
 
 // new one 
 
@@ -19,11 +21,13 @@ const SignupPage = () => {
   const [countryCode, setCountryCode] = useState("+1-US");
   const [phone, setPhone] = useState("");
 
+
   const handleCountryChange = (e) => {
     const selectedValue = e.target.value;
     setCountryCode(selectedValue);
     // setCountryCode(selectedValue.split("-")); // Only use the calling code
   };
+  
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -65,6 +69,8 @@ const SignupPage = () => {
       );
 
       const data = await response.json();
+
+      
 
       if (response.ok) {
         setResponseStatus("success");
@@ -334,8 +340,8 @@ const SignupPage = () => {
                         className=" font-bold text-black dark:text-white"
                       >
                         {" "}
-                        I accept the{" "}
-                        <a href="#" className="hover:underline">
+                        I accept   the{" "}
+                        <a href="../privacy-policy" className="hover:underline">
                           Privacy Policy
                         </a>{" "}
                         .{" "}

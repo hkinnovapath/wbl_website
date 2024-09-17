@@ -17,7 +17,7 @@ export default function TermsOfUse() {
         {/* Content */}
         <div className="rounded-lg bg-white p-11 pl-20 shadow-lg dark:bg-gray-800">
           <p className="mb-4 text-center italic text-gray-500 dark:text-gray-400">
-            These Terms of Use <strong>("Terms")</strong> were last updated on
+            These Terms of Use <strong>(Terms)</strong> were last updated on
             September 16, 2024.
           </p>
 
@@ -41,22 +41,19 @@ export default function TermsOfUse() {
           </h2>
 
           <p className="mb-6 leading-relaxed text-gray-800 dark:text-gray-300">
-            Whitebox-Learning's mission is to improve lives through learning. We
-            enable anyone anywhere to create and share educational content
-            (instructors) and to access that educational content to learn
-            (students). We consider our marketplace model the best way to offer
+            Whitebox-Learning mission is to improve lives through learning. We consider our marketplace model the best way to offer
             valuable educational content to our users. We need rules to keep our
             platform and services safe for you, us, and our student and
             instructor community. These Terms apply to all your activities on
-            the Whitebox-Learning website, our APIs, and other related services{" "}
-            <strong>(“Services”).</strong>
+            the Whitebox-Learning website, our APIs, and other related services
+            <strong>( Services).</strong>
           </p>
 
           <p className="mb-6 leading-relaxed text-gray-800 dark:text-gray-300">
             We also provide details
             regarding our processing of personal data of our students and
             instructors in our Privacy Policy. If you are using
-            Whitebox-Learning as part of your employer’s Whitebox-Learning
+            Whitebox-Learning as part of your employers Whitebox-Learning
             Business learning and development program, you can consult our
             Whitebox-Learning Business Privacy Statement. Our 
             Privacy Policy, and other Whitebox-Learning policies applicable to
@@ -116,9 +113,9 @@ export default function TermsOfUse() {
           </h2>
           <p className="mb-6 leading-relaxed text-gray-800 dark:text-gray-300">
             You need an account for most activities on our platform. Keep your
-            password somewhere safe, because you’re responsible for all activity
+            password somewhere safe, because you are responsible for all activity
             associated with your account. If you suspect someone else is using
-            your account, let us know by contacting our{" "}
+            your account, let us know by contacting our
             <u>
               <a
                 href="mailto:recruiting@whitebox-learning.com"
@@ -126,7 +123,7 @@ export default function TermsOfUse() {
               >
                 Recruiting Team.
               </a>
-            </u>{" "}
+            </u>
             You must have reached the age of consent for online services in your
             country to use Whitebox-Learning.
           </p>
@@ -140,7 +137,7 @@ export default function TermsOfUse() {
             any harm or damage (to us or anyone else) caused by someone using
             your account without your permission. This means you need to be
             careful with your password. You may not transfer your account to
-            someone else or use someone else’s account. If you contact us to
+            someone else or use someone else account. If you contact us to
             request access to an account, we will not grant you such access
             unless you can provide us with the information that we need to prove
             you are the owner of that account. In the event of the death of a
@@ -154,7 +151,7 @@ export default function TermsOfUse() {
              who have shared account login credentials. You must
             notify us immediately upon learning that someone else may be using
             your account without your permission (or if you suspect any other
-            breach of security) by contacting our{" "}
+            breach of security) by contacting our
             <u>
               <a
                 href="mailto:recruiting@whitebox-learning.com"
@@ -162,7 +159,7 @@ export default function TermsOfUse() {
               >
                 Recruiting Team.
               </a>
-            </u>{" "}
+            </u>
             We may request some information from you to confirm that you are
             indeed the owner of your account.
           </p>
@@ -223,9 +220,9 @@ export default function TermsOfUse() {
           <p className="mb-6 leading-relaxed text-gray-800 dark:text-gray-300">When you make a purchase, you agree not to use an invalid or unauthorized payment method. If your payment method fails and you still get access to the content you are enrolling in, you agree to pay us the corresponding fees within 30 days of notification from us. We reserve the right to disable access to any content for which we have not received adequate payment.</p>
           <h2 className="mb-6 text-2xl font-semibold text-gray-900 dark:text-white">Gift and Promotional Codes</h2>
 
-            <p className="mb-6 leading-relaxed text-gray-800 dark:text-gray-300">Whitebox-Learning or our partners may offer gift and promotional codes to students. Certain codes may be redeemed for gift or promotional credits applied to your Whitebox-Learning account, which then may be used to purchase eligible content on our platform, subject to the terms included with your codes. Other codes may be directly redeemable for specific content. Gift and promotional credits can’t be used for purchases in our mobile or TV applications.</p>
+            <p className="mb-6 leading-relaxed text-gray-800 dark:text-gray-300">Whitebox-Learning or our partners may offer gift and promotional codes to students. Certain codes may be redeemed for gift or promotional credits applied to your Whitebox-Learning account, which then may be used to purchase eligible content on our platform, subject to the terms included with your codes. Other codes may be directly redeemable for specific content. Gift and promotional credits cannot be used for purchases in our mobile or TV applications.</p>
 
-            <p className="mb-6 leading-relaxed text-gray-800 dark:text-gray-300" >These codes and credits, as well as any promotional value linked to them, may expire if not used within the period specified in your Whitebox-Learning account. Gift and promotional codes offered by Whitebox-Learning may not be refunded for cash, unless otherwise specified in the terms included with your codes or as required by applicable law. Gift and promotional codes offered by a partner are subject to that partner’s refund policies. If you have multiple saved credit amounts, Whitebox-Learning may determine which of your credits to apply to your purchase. Check out our Support Page and any terms included with your codes for more details.</p>
+            <p className="mb-6 leading-relaxed text-gray-800 dark:text-gray-300" >These codes and credits, as well as any promotional value linked to them, may expire if not used within the period specified in your Whitebox-Learning account. Gift and promotional codes offered by Whitebox-Learning may not be refunded for cash, unless otherwise specified in the terms included with your codes or as required by applicable law.  If you have multiple saved credit amounts, Whitebox-Learning may determine which of your credits to apply to your purchase. Check out our Support Page and any terms included with your codes for more details.</p>
             
           <h2 className="mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
             Content and Behavior Rules
@@ -266,7 +263,7 @@ export default function TermsOfUse() {
           </p>
           <ul className="mb-8 list-inside list-disc space-y-2 text-gray-800 dark:text-gray-300">
             <li className="font-medium transition duration-300 hover:text-blue-600 dark:hover:text-blue-600">
-            Access, tamper with, or use non-public areas of the platform (including content storage), Whitebox-Learning’s computer systems, or the technical delivery systems of Whitebox-Learning’s service providers.
+            Access, tamper with, or use non-public areas of the platform (including content storage), Whitebox-Learning computer systems, or the technical delivery systems of Whitebox-Learning service providers.
 
             </li>
             <li className="font-medium transition duration-300 hover:text-blue-600 dark:hover:text-blue-600">
@@ -340,21 +337,14 @@ export default function TermsOfUse() {
           </h2>
           <p className="mb-6 leading-relaxed text-gray-800 dark:text-gray-300">
             If you have any questions or concerns about these Terms or our
-            Services, please contact us via email at{" "}
-            <a
+            Services, please contact us via email at    
+             <a
               href="mailto:recruiting@whitebox-learning.com"
               className="text-blue-600 dark:text-blue-400"
             >
-              recruiting@whitebox-learning.com
-            </a>{" "}
-            or visit our{" "}
-            <a
-              href="https://www.whitebox-learning.com/support"
-              className="text-blue-600 dark:text-blue-400"
-            >
-              Support Page
+                 recruiting@whitebox-learning.com
             </a>
-            .
+              
           </p>
         </div>
       </div>

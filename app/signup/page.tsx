@@ -5,7 +5,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from 'next/router';
 
 
-// new one 
+// new one  terms
 
 // import { isValidPhoneNumber } from "libphonenumber-js";
 

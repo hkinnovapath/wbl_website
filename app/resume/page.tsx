@@ -315,7 +315,7 @@ export default function Assignment() {
             </ul>
           </div>
 
-          <div className="space-y-6 lg:col-span-4">
+          <div className="space-y-6 lg:col-span-3">
             {activeSection === "basics" && (
               <div className="rounded-lg border border-gray-300 bg-white p-4 shadow-md dark:border-gray-600 dark:bg-gray-700">
                 <h2 className="mb-4 text-xl font-bold">Basics</h2>
@@ -323,7 +323,10 @@ export default function Assignment() {
                   {["name", "label", "email", "phone"].map((field, index) => (
                     <div key={index}>
                       <label className="block text-gray-700 dark:text-gray-300">
+                        <strong>
                         {field.charAt(0).toUpperCase() + field.slice(1)}:
+                        </strong>
+                        <span className="text-red-500">*</span>
                       </label>
                       <input
                         type={field === "email" ? "email" : "text"}
@@ -343,7 +346,10 @@ export default function Assignment() {
                 </div>
                 <div className="mt-4">
                   <label className="block text-gray-700 dark:text-gray-300">
+                    <strong>
                     Summary:
+                    </strong>
+                    <span className="text-red-500">*</span>
                   </label>
                   <textarea
                     rows={4}
@@ -360,7 +366,10 @@ export default function Assignment() {
                   {["address", "postalCode", "city", "countryCode"].map((field, index) => (
                     <div key={index}>
                       <label className="block text-gray-700 dark:text-gray-300">
+                        <strong>
                         {field.charAt(0).toUpperCase() + field.slice(1)}:
+                        </strong>
+                        <span>*</span>
                       </label>
                       <input
                         type="text"
@@ -456,7 +465,10 @@ export default function Assignment() {
                           {["company", "position"].map((field, i) => (
                             <div key={i}>
                               <label className="block text-gray-700 dark:text-gray-300">
+                                <strong>
                                 {field.charAt(0).toUpperCase() + field.slice(1)}:
+                                </strong>
+                                <span className="text-red-500">*</span>
                               </label>
                               <input
                                 type="text"
@@ -477,8 +489,12 @@ export default function Assignment() {
                           {["startDate", "endDate"].map((field, i) => (
                             <div key={i}>
                               <label className="block text-gray-700 dark:text-gray-300">
+                                <strong>
                                 {field === "startDate" ? "Start Date" : "End Date"}:
+                                </strong>
+                                <span className="text-red-500">*</span>
                               </label>
+                             
                               <input
                                 type="date"
                                 className="mt-1 w-full border-b border-gray-300 bg-white p-2 text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
@@ -494,7 +510,9 @@ export default function Assignment() {
 
                         {/* Summary */}
                         <div className="mt-4">
-                          <label className="block text-gray-700 dark:text-gray-300">Summary:</label>
+                          <label className="block text-gray-700 dark:text-gray-300"><strong>Summary:</strong>
+                            <span className="text-red-500">*</span>
+                          </label>
                           <textarea
                             rows={3}
                             placeholder="Enter summary"
@@ -507,7 +525,11 @@ export default function Assignment() {
 
                         {/* Highlights */}
                         <div className="mt-4">
-                          <label className="block text-gray-700 dark:text-gray-300">Highlights:</label>
+                          <label className="block text-gray-700 dark:text-gray-300">
+                            <strong>Highlights:
+                            </strong>
+                            <span className="text-red-500">*</span>
+                            </label>
                           {entry.highlights.map((highlight, hIndex) => (
                             <div key={hIndex} className="mb-2 flex items-center">
                               <input
@@ -575,7 +597,10 @@ export default function Assignment() {
                       {["institution", "degree"].map((field, i) => (
                         <div key={i}>
                           <label className="block text-gray-700 dark:text-gray-300">
+                            <strong>
                             {field.charAt(0).toUpperCase() + field.slice(1)}:
+                            </strong>
+                            <span className="text-red-500">*</span>
                           </label>
                           <input
                             type="text"
@@ -594,7 +619,10 @@ export default function Assignment() {
                       {["startDate", "endDate"].map((field, i) => (
                         <div key={i}>
                           <label className="block text-gray-700 dark:text-gray-300">
+                            <strong>
                             {field === "startDate" ? "Start Date" : "End Date"}:
+                            </strong>
+                            <span className="text-red-500">*</span>
                           </label>
                           <input
                             type="date"
@@ -611,7 +639,10 @@ export default function Assignment() {
                     </div>
                     <div className="mt-4">
                       <label className="block text-gray-700 dark:text-gray-300">
+                        <strong>
                         Summary:
+                        </strong>
+                        <span className="text-red-500">*</span>
                       </label>
                       <textarea
                         rows={3}
@@ -640,7 +671,10 @@ export default function Assignment() {
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="block text-gray-700 dark:text-gray-300">
+                          <strong>
                           Skill:
+                          </strong>
+                          <span className="text-red-500">*</span>
                         </label>
                         <input
                           type="text"
@@ -659,7 +693,10 @@ export default function Assignment() {
                       </div>
                       <div>
                         <label className="block text-gray-700 dark:text-gray-300">
+                          <strong>
                           Level:
+                          </strong>
+                          <span className="text-red-500">*</span>
                         </label>
                         <select
                           className="mt-1 w-full border-b border-gray-300 bg-white p-2 text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
@@ -711,7 +748,10 @@ export default function Assignment() {
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="block text-gray-700 dark:text-gray-300">
+                          <strong>
                           Language:
+                          </strong>
+                          <span className="text-red-500">*</span>
                         </label>
                         <input
                           type="text"
@@ -730,7 +770,10 @@ export default function Assignment() {
                       </div>
                       <div>
                         <label className="block text-gray-700 dark:text-gray-300">
+                          <strong>
                           Fluency:
+                          </strong>
+                          <span className="text-red-500">*</span>
                         </label>
                         <select
                           className="mt-1 w-full border-b border-gray-300 bg-white p-2 text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
@@ -777,7 +820,7 @@ export default function Assignment() {
             )}
           </div>
 
-          <div className="col-span-1 lg:col-span-3 lg:pl-8">
+          <div className="col-span-1 lg:col-span-4 lg:pl-8">
             <ResumePreview renderedHtml={renderedHtml} getJson={getJson} resumeJson={resumeJson} />
           </div>
         </div>

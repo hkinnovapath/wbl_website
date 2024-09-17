@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { faArrowDown, faFileCode, faFilePdf } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface ResumePreviewProps {
@@ -11,6 +11,7 @@ interface ResumePreviewProps {
 
 const ResumePreview: React.FC<ResumePreviewProps> = ({ renderedHtml, getJson, resumeJson }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [isLoading, setIsLoading] = useState(false); // Spinner state
   const [errorMessage, setErrorMessage] = useState<string>('');
 
   useEffect(() => {
@@ -71,6 +72,7 @@ const ResumePreview: React.FC<ResumePreviewProps> = ({ renderedHtml, getJson, re
     }
   }, [renderedHtml]);
   const handleDownloadPdf = async () => {
+    setIsLoading(true);
     try {
       const token = localStorage.getItem('access_token');
       const apiUrl = process.env.RESUME_PUBLIC_API_URL;
@@ -516,6 +518,9 @@ const ResumePreview: React.FC<ResumePreviewProps> = ({ renderedHtml, getJson, re
         setErrorMessage('An error occurred while downloading the PDF');
       }
     }
+    finally {
+      setIsLoading(false); // Hide spinner after download completes
+    }
   };
 
   return (
@@ -532,7 +537,7 @@ const ResumePreview: React.FC<ResumePreviewProps> = ({ renderedHtml, getJson, re
   </div>
 )}
     
-    <div className="lg:col-span-3">
+    <div className="lg:col-span-2">
       <div className="flex h-full flex-col rounded-lg border border-gray-300 bg-white p-4 shadow-md dark:border-gray-600 dark:bg-gray-700">
         <div className="mb-4 flex items-center justify-between">
           <button
@@ -540,18 +545,73 @@ const ResumePreview: React.FC<ResumePreviewProps> = ({ renderedHtml, getJson, re
             id="download-json-btn"
             onClick={getJson}
           >
-            <FontAwesomeIcon icon={faArrowDown} className="mr-2" />
-            Json
+
+
+            {/* -------- CHANGING THE ICONS FOR JSON AND PDF */}
+            {/* <FontAwesomeIcon icon={faArrowDown} className="mr-2" />
+            Json */}
+             <FontAwesomeIcon icon={faFileCode}  className="mr-2 w-8 h-8 text-gray-700 dark:text-gray-300"  />
           </button>
           <button
             className="pdf text-lg font-bold flex items-center rounded p-1"
             id="download-pdf-btn"
             onClick={handleDownloadPdf}
           >
-            <FontAwesomeIcon icon={faArrowDown} className="mr-2" />
-            Pdf
+            {/* <FontAwesomeIcon icon={faArrowDown} className="mr-2" />
+            Pdf */}
+            <FontAwesomeIcon icon={faFilePdf} className="mr-2 w-8 h-8 text-gray-700 dark:text-gray-300" />
           </button>
         </div>
+        {/* --------------------------------------------- */}
+
+
+          {/* Spinner (Shows when loading) */}
+          {/* {isLoading && (
+            <div className="relative w-full h-2 bg-gray-200 rounded overflow-hidden mt-6">
+              <div
+                id="loader-bar"
+                className="absolute top-0 left-0 h-full bg-green-600"
+                style={{
+                  animation: 'slide 2s linear infinite',
+                  width: '100%',
+                }}
+              ></div>
+              <style jsx>{`
+                @keyframes slide {
+                  0% {
+                    transform: translateX(-100%);
+                  }
+                  100% {
+                    transform: translateX(100%);
+                  }
+                }
+              `}</style>
+            </div>
+          )} */}
+          {isLoading && (
+            <div className="bg-green-400 w-full h-2 relative overflow-hidden">
+              <div
+                id="loader-bar"
+                className="bg-green-600 h-full w-full"
+                style={{
+                  animation: 'slide 2s linear infinite'
+                }}
+              ></div>
+
+              {/* Inline CSS for spinner animation */}
+              <style jsx>{`
+                @keyframes slide {
+                  0% {
+                    transform: translateX(-100%);
+                  }
+                  100% {
+                    transform: translateX(100%);
+                  }
+                }
+              `}</style>
+            </div>
+          )}
+          <br/>
         <iframe
           ref={iframeRef}
           className="h-[80vh] w-full bg-gray-100 dark:bg-gray-800"

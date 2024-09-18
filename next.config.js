@@ -146,15 +146,15 @@ const nextConfig = {
 
     return config;
   },
-  async rewrites() {
-    return [
-      {
-        //for wildcard routing use below but it will display nothing for no pages 
-        source: '/:path*',
-        destination: 'http://localhost:3001/:path*', // Update with your React app's port    
-      },
-    ];
-  },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       //for wildcard routing use below but it will display nothing for no pages 
+  //       source: '/:path*',
+  //       destination: 'http://localhost:3001/:path*', // Update with your React app's port    
+  //     },
+  //   ];
+  // },
 };
 
 

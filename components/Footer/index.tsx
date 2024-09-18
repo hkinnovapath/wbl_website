@@ -148,7 +148,7 @@ const Footer = () => {
 
         <div className="flex h-10 items-center  bg-gray-300  py-10 dark:bg-primary/10 ">
           <div className="container  flex">
-            <div className=" sm:text-md text-blackdark:text-white  text-center text-sm font-semibold sm:w-11/12 sm:text-right lg:text-xl">
+            <div className=" sm:text-md text-bl ackdark:text-white  text-center text-sm font-semibold sm:w-11/12 sm:text-right lg:text-xl">
               &copy; {currentYear}{" "}
               <Link href="/" className="inline-block">
                 <div className="  text-blue-600 dark:text-blue-500">

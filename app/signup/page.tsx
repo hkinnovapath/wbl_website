@@ -1,9 +1,14 @@
 "use client";
 import Link from "next/link";
 import { countries } from "country-data";
+import { useRouter } from "next/router";
+import { useRouter } from "next/router";
+import { useRouter } from "next/router";
+import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { ChangeEvent, FormEvent, useState } from "react";
 
-// new one 
+// new one  terms
 
 // import { isValidPhoneNumber } from "libphonenumber-js";
 
@@ -19,11 +24,13 @@ const SignupPage = () => {
   const [countryCode, setCountryCode] = useState("+1-US");
   const [phone, setPhone] = useState("");
 
+
   const handleCountryChange = (e) => {
     const selectedValue = e.target.value;
     setCountryCode(selectedValue);
     // setCountryCode(selectedValue.split("-")); // Only use the calling code
   };
+  
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -65,6 +72,8 @@ const SignupPage = () => {
       );
 
       const data = await response.json();
+
+      
 
       if (response.ok) {
         setResponseStatus("success");
@@ -116,7 +125,7 @@ const SignupPage = () => {
                   Create your account
                 </p>
                 <button className="dark:shadow-signUp mb-4 flex w-full items-center justify-center rounded-3xl bg-white py-2 px-5 text-sm font-medium   text-primary shadow-one  dark:bg-white dark:text-black sm:mb-6 sm:py-3 sm:text-base"
-                onClick={() => window.location.href = "http://whitebox-learning.com/signin"} >
+                onClick={() => window.location.href = "https://whitebox-learning.com/api/node/signin"} >
                   <span className="mr-3">
                     <svg
                       width="20"
@@ -334,8 +343,8 @@ const SignupPage = () => {
                         className=" font-bold text-black dark:text-white"
                       >
                         {" "}
-                        I accept the{" "}
-                        <a href="#" className="hover:underline">
+                        I accept   the{" "}
+                        <a href="../privacy-policy" className="hover:underline">
                           Privacy Policy
                         </a>{" "}
                         .{" "}

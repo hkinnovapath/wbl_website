@@ -2,10 +2,6 @@
 import Link from "next/link";
 import { countries } from "country-data";
 import { useRouter } from "next/router";
-import { useRouter } from "next/router";
-import { useRouter } from "next/router";
-import { useRouter } from "next/router";
-import { useRouter } from "next/router";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 // new one  terms
@@ -221,7 +217,6 @@ const SignupPage = () => {
                         ))}
                       </select>
                     </div>
-
                     <div className="mb-6 flex-grow sm:mb-8">
                       <label
                         htmlFor="phone"

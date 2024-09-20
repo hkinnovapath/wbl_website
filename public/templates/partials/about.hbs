@@ -2,10 +2,9 @@
 <div class="container about-container">
     {{> title value="About"}}
        {{log this}}
-    {{#if location}}
-        {{#location}}
-        {{> info-tag text=(formatAddress address city region postalCode countryCode) icon="fa-map-marker"}}
-        {{/location}}
+     <!-- Location -->
+    {{#if location.address}}
+        {{> info-tag text=(formatAddress location.address location.city location.region location.postalCode location.countryCode) icon="fa-map-marker"}}
     {{/if}}
 
     {{#if birthday}}
@@ -15,7 +14,12 @@
     {{#if email}}
         {{> info-tag text=this.email icon="fa-envelope-o" isEmail=true url=this.email}}
     {{/if}}
+    
+    {{#if code}}
 
+     {{>countryCode}}
+    
+     {{/if}} 
     {{#if phone}}
         {{> info-tag text=this.phone icon="fa-mobile"}}
     {{/if}}

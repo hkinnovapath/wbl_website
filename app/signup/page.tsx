@@ -121,7 +121,7 @@ const SignupPage = () => {
                   Create your account
                 </p>
                 <button className="dark:shadow-signUp mb-4 flex w-full items-center justify-center rounded-3xl bg-white py-2 px-5 text-sm font-medium   text-primary shadow-one  dark:bg-white dark:text-black sm:mb-6 sm:py-3 sm:text-base"
-                onClick={() => window.location.href = "https://whitebox-learning.com/api/node/signin"} >
+                onClick={() => window.location.href = "https://whitebox-learning.com/api/node/signin"}>
                   <span className="mr-3">
                     <svg
                       width="20"

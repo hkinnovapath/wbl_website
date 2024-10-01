@@ -126,11 +126,11 @@ export default function Assignment() {
   const handlePrevious = () => {
     setCurrentFormIndex((prevIndex) => Math.max(prevIndex - 1, 0));
   };
-  
+
   const handleNext = () => {
     setCurrentFormIndex((prevIndex) => Math.min(prevIndex + 1, workEntries.length - 1));
   };
-  
+
 
 
   // Handle country code change
@@ -387,7 +387,7 @@ export default function Assignment() {
             </ul>
           </div>
           {/* ------------------------------------------------------------------------------------------- */}
-
+           
           <div className="space-y-6 lg:col-span-3">
 
             {/* ----------------------------------code without validation for basics------------------------------ */}
@@ -534,142 +534,142 @@ export default function Assignment() {
             {/* ------------------------------------------------------------------------------------- */}
             {/* ------------------------------------------------------------------------------------- */}
             {activeSection === "basics" && (
-  <div className="rounded-lg border border-gray-300 bg-white p-4 shadow-md dark:border-gray-600 dark:bg-gray-700">
-    <h2 className="mb-4 text-xl font-bold">Basics</h2>
-    <div className="grid grid-cols-2 gap-4">
-      {["name", "label", "email"].map((field, index) => (
-        <div key={index}>
-          <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
-            <strong>
-              {field.charAt(0).toUpperCase() + field.slice(1)}:
-            </strong>
-            <span className="text-red-500">*</span>
-          </label>
-          <input
-            type={field === "email" ? "email" : "text"}
-            placeholder={`Enter your ${field}`}
-            className="w-full border-b border-gray-300 bg-white p-2 text-sm text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-            value={basics[field]}
-            onChange={(e) =>
-              debouncedSetBasics({
-                ...basics,
-                [field]: e.target.value,
-              })
-            }
-            required
-            pattern={
-              field === "email"
-                ? "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$"
-                : ".*"
-            }
-            title={
-              field === "email"
-                ? "Please enter a valid email address (example@domain.com)"
-                : ""
-            }
-          />
-        </div>
-      ))}
+              <div className="rounded-lg border border-gray-300 bg-white p-4 shadow-md dark:border-gray-600 dark:bg-gray-700">
+                <h2 className="mb-4 text-xl font-bold">Basics</h2>
+                <div className="grid grid-cols-2 gap-4">
+                  {["name", "label", "email"].map((field, index) => (
+                    <div key={index}>
+                      <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
+                        <strong>
+                          {field.charAt(0).toUpperCase() + field.slice(1)}:
+                        </strong>
+                        <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type={field === "email" ? "email" : "text"}
+                        placeholder={`Enter your ${field}`}
+                        className="w-full border-b border-gray-300 bg-white p-2 text-sm text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                        value={basics[field]}
+                        onChange={(e) =>
+                          debouncedSetBasics({
+                            ...basics,
+                            [field]: e.target.value,
+                          })
+                        }
+                        required
+                        pattern={
+                          field === "email"
+                            ? "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$"
+                            : ".*"
+                        }
+                        title={
+                          field === "email"
+                            ? "Please enter a valid email address (example@domain.com)"
+                            : ""
+                        }
+                      />
+                    </div>
+                  ))}
 
-      {/* Country Code and Phone Number */}
-      <div className="col-span-2 flex space-x-4">
-        <div className="w-1/4">
-          <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
-            <strong>Phone:</strong>
-            <span className="text-red-500">*</span>
-          </label>
-          <div className="flex">
-            {/* Country Code Dropdown */}
-            <select
-              id="country-code"
-              name="country-code"
-              className="rounded-l-md border text-sm text-gray-700 dark:text-gray-300 py-2 px-3 shadow-one focus:outline-none dark:bg-black"
-              value={countryCode}
-              onChange={handleCountryChange}
-              required
-            >
-              {countries.all.map((country) => (
-                <option
-                  key={`${country.alpha2}-${country.name}`}
-                  value={country.countryCallingCodes[0]}
-                >
-                  {country.alpha2} {country.countryCallingCodes[0]}
-                </option>
-              ))}
-            </select>
+                  {/* Country Code and Phone Number */}
+                  <div className="col-span-2 flex space-x-4">
+                    <div className="w-1/4">
+                      <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
+                        <strong>Phone:</strong>
+                        <span className="text-red-500">*</span>
+                      </label>
+                      <div className="flex">
+                        {/* Country Code Dropdown */}
+                        <select
+                          id="country-code"
+                          name="country-code"
+                          className="rounded-l-md border text-sm text-gray-700 dark:text-gray-300 py-2 px-3 shadow-one focus:outline-none dark:bg-black"
+                          value={countryCode}
+                          onChange={handleCountryChange}
+                          required
+                        >
+                          {countries.all.map((country) => (
+                            <option
+                              key={`${country.alpha2}-${country.name}`}
+                              value={country.countryCallingCodes[0]}
+                            >
+                              {country.alpha2} {country.countryCallingCodes[0]}
+                            </option>
+                          ))}
+                        </select>
 
-            {/* Phone Number Input */}
-            <input
-              type="tel"
-              placeholder="Enter your phone number"
-              className="rounded-r-md border border-gray-300 p-2 text-sm text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-              value={phoneNumber}
-              onChange={handlePhoneChange}
-              required
-              pattern="[0-9]{3,15}"
-              minLength={9}
-              maxLength={15}
-              title="Phone number must be between 9 and 15 digits"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
+                        {/* Phone Number Input */}
+                        <input
+                          type="tel"
+                          placeholder="Enter your phone number"
+                          className="rounded-r-md border border-gray-300 p-2 text-sm text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                          value={phoneNumber}
+                          onChange={handlePhoneChange}
+                          required
+                          pattern="[0-9]{3,15}"
+                          minLength={9}
+                          maxLength={15}
+                          title="Phone number must be between 9 and 15 digits"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-    <div className="mt-4">
-      <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
-        <strong>Summary:</strong>
-        <span className="text-red-500">*</span>
-      </label>
-      <textarea
-        rows={4}
-        placeholder="Enter a summary"
-        className="w-full border-b border-gray-300 bg-white p-2 text-sm text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-        value={basics.summary}
-        onChange={(e) =>
-          debouncedSetBasics({ ...basics, summary: e.target.value })
-        }
-        required
-      />
-    </div>
+                <div className="mt-4">
+                  <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
+                    <strong>Summary:</strong>
+                    <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    rows={4}
+                    placeholder="Enter a summary"
+                    className="w-full border-b border-gray-300 bg-white p-2 text-sm text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                    value={basics.summary}
+                    onChange={(e) =>
+                      debouncedSetBasics({ ...basics, summary: e.target.value })
+                    }
+                    required
+                  />
+                </div>
 
-    <div className="mt-4 grid grid-cols-2 gap-4">
-      {["address", "postalCode", "city", "countryCode"].map((field, index) => (
-        <div key={index}>
-          <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
-            <strong>
-              {field.charAt(0).toUpperCase() + field.slice(1)}:
-            </strong>
-            <span className="text-red-500">*</span>
-          </label>
-          <input
-            type="text"
-            placeholder={`Enter your ${field}`}
-            className="w-full border-b border-gray-300 bg-white p-2 text-sm text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-            value={basics.location[field]}
-            onChange={(e) =>
-              debouncedSetBasics({
-                ...basics,
-                location: {
-                  ...basics.location,
-                  [field]: e.target.value,
-                },
-              })
-            }
-            required
-            pattern={
-              field === "postalCode" ? "[0-9]{5,10}" : ".*"
-            }
-            title={
-              field === "postalCode"
-                ? "Postal code must be between 5 and 10 digits"
-                : ""
-            }
-          />
-        </div>
-      ))}
-    </div>
-  
+                <div className="mt-4 grid grid-cols-2 gap-4">
+                  {["address", "postalCode", "city", "countryCode"].map((field, index) => (
+                    <div key={index}>
+                      <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
+                        <strong>
+                          {field.charAt(0).toUpperCase() + field.slice(1)}:
+                        </strong>
+                        <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        placeholder={`Enter your ${field}`}
+                        className="w-full border-b border-gray-300 bg-white p-2 text-sm text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                        value={basics.location[field]}
+                        onChange={(e) =>
+                          debouncedSetBasics({
+                            ...basics,
+                            location: {
+                              ...basics.location,
+                              [field]: e.target.value,
+                            },
+                          })
+                        }
+                        required
+                        pattern={
+                          field === "postalCode" ? "[0-9]{5,10}" : ".*"
+                        }
+                        title={
+                          field === "postalCode"
+                            ? "Postal code must be between 5 and 10 digits"
+                            : ""
+                        }
+                      />
+                    </div>
+                  ))}
+                </div>
+
 
                 {/* Profiles */}
                 <div className="mt-4">
@@ -678,11 +678,10 @@ export default function Assignment() {
                     <div key={index} className="mb-4">
                       <div className="flex items-end">
                         <button
-                          className={`p-1 rounded-full mr-2 ${
-                            index === 0
+                          className={`p-1 rounded-full mr-2 ${index === 0
                               ? "bg-gray-300 cursor-not-allowed"
                               : "bg-red-600 hover:bg-red-700"
-                          }`}
+                            }`}
                           onClick={() =>
                             debouncedSetBasics({
                               ...basics,
@@ -805,238 +804,235 @@ export default function Assignment() {
 
             {/* Work Section */}
             {activeSection === "work" && (
-  <div className="rounded-lg border border-gray-300 bg-white p-4 shadow-md dark:border-gray-600 dark:bg-gray-700">
-    <h2 className="mb-4 text-xl font-bold">Work Experience</h2>
-    {workEntries.length > 0 ? (
-      <div>
-        {workEntries.map((entry, index) =>
-          index === currentFormIndex ? (
-            <div key={index} className="mb-6">
-              {/* Entry Indicator */}
-              <div className="mb-4 text-xs text-gray-500 dark:text-gray-400">
-                Entry {currentFormIndex + 1} of {workEntries.length}
-              </div>
+              <div className="rounded-lg border border-gray-300 bg-white p-4 shadow-md dark:border-gray-600 dark:bg-gray-700">
+                <h2 className="mb-4 text-xl font-bold">Work Experience</h2>
+                {workEntries.length > 0 ? (
+                  <div>
+                    {workEntries.map((entry, index) =>
+                      index === currentFormIndex ? (
+                        <div key={index} className="mb-6">
+                          {/* Entry Indicator */}
+                          <div className="mb-4 text-xs text-gray-500 dark:text-gray-400">
+                            Entry {currentFormIndex + 1} of {workEntries.length}
+                          </div>
 
-              {/* Form Fields */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Company Field */}
-                <div>
-                  <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
-                    <strong>Company:</strong>
-                    <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter company"
-                    className="w-full border-b border-gray-300 bg-white p-2 text-sm text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-                    value={entry.company}
-                    onChange={(e) => handleChange(index, "company", e.target.value)}
-                    required
-                  />
-                </div>
+                          {/* Form Fields */}
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {/* Company Field */}
+                            <div>
+                              <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
+                                <strong>Company:</strong>
+                                <span className="text-red-500">*</span>
+                              </label>
+                              <input
+                                type="text"
+                                placeholder="Enter company"
+                                className="w-full border-b border-gray-300 bg-white p-2 text-sm text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                                value={entry.company}
+                                onChange={(e) => handleChange(index, "company", e.target.value)}
+                                required
+                              />
+                            </div>
 
-                {/* Position Field */}
-                <div>
-                  <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
-                    <strong>Position:</strong>
-                    <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter position"
-                    className="w-full border-b border-gray-300 bg-white p-2 text-sm text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-                    value={entry.position}
-                    onChange={(e) => handleChange(index, "position", e.target.value)}
-                    required
-                  />
-                </div>
-              </div>
+                            {/* Position Field */}
+                            <div>
+                              <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
+                                <strong>Position:</strong>
+                                <span className="text-red-500">*</span>
+                              </label>
+                              <input
+                                type="text"
+                                placeholder="Enter position"
+                                className="w-full border-b border-gray-300 bg-white p-2 text-sm text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                                value={entry.position}
+                                onChange={(e) => handleChange(index, "position", e.target.value)}
+                                required
+                              />
+                            </div>
+                          </div>
 
-              {/* Date Fields */}
-              <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Start Date */}
-                <div>
-                  <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
-                    <strong>Start Date:</strong>
-                    <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="date"
-                    className="w-full border-b border-gray-300 bg-white p-2 text-sm text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-                    value={entry.startDate}
-                    onChange={(e) => handleChange(index, "startDate", e.target.value)}
-                    required
-                  />
-                </div>
+                          {/* Date Fields */}
+                          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {/* Start Date */}
+                            <div>
+                              <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
+                                <strong>Start Date:</strong>
+                                <span className="text-red-500">*</span>
+                              </label>
+                              <input
+                                type="date"
+                                className="w-full border-b border-gray-300 bg-white p-2 text-sm text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                                value={entry.startDate}
+                                onChange={(e) => handleChange(index, "startDate", e.target.value)}
+                                required
+                              />
+                            </div>
 
-                {/* End Date */}
-                <div>
-                  <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
-                    <strong>End Date:</strong>
-                    <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="date"
-                    className="w-full border-b border-gray-300 bg-white p-2 text-sm text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-                    value={entry.endDate}
-                    onChange={(e) => handleChange(index, "endDate", e.target.value)}
-                    required
-                  />
-                </div>
-              </div>
+                            {/* End Date */}
+                            <div>
+                              <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
+                                <strong>End Date:</strong>
+                                <span className="text-red-500">*</span>
+                              </label>
+                              <input
+                                type="date"
+                                className="w-full border-b border-gray-300 bg-white p-2 text-sm text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                                value={entry.endDate}
+                                onChange={(e) => handleChange(index, "endDate", e.target.value)}
+                                required
+                              />
+                            </div>
+                          </div>
 
-              {/* Summary */}
-              <div className="mt-4">
-                <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
-                  <strong>Summary:</strong>
-                  <span className="text-red-500">*</span>
-                </label>
-                <textarea
-                  rows={4}
-                  placeholder="Enter summary"
-                  className="w-full border border-gray-300 bg-white p-2 text-sm text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-                  value={entry.summary}
-                  onChange={(e) => handleChange(index, "summary", e.target.value)}
-                  required
-                />
-              </div>
+                          {/* Summary */}
+                          <div className="mt-4">
+                            <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
+                              <strong>Summary:</strong>
+                              <span className="text-red-500">*</span>
+                            </label>
+                            <textarea
+                              rows={4}
+                              placeholder="Enter summary"
+                              className="w-full border border-gray-300 bg-white p-2 text-sm text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                              value={entry.summary}
+                              onChange={(e) => handleChange(index, "summary", e.target.value)}
+                              required
+                            />
+                          </div>
 
-              {/* Highlights */}
-              <div className="mt-4">
-                <label className="block text-sm text-gray-700 dark:text-gray-300 mb-2">
-                  <strong>Highlights:</strong>
-                  <span className="text-red-500">*</span>
-                </label>
-                {entry.highlights.map((highlight, hIndex) => (
-                  <div key={hIndex} className="flex items-center mb-2">
-                    <input
-                      type="text"
-                      placeholder="Highlight"
-                      className="flex-1 border border-gray-300 bg-white p-2 text-sm text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-                      value={highlight}
-                      onChange={(e) =>
-                        handleHighlightChange(index, hIndex, e.target.value)
-                      }
-                      required
-                    />
-                    <div className="flex space-x-2 ml-2">
-                      {/* Remove Highlight Button */}
-                      <button
-                        type="button"
-                        onClick={() =>
-                          handleChange(
-                            index,
-                            "highlights",
-                            entry.highlights.filter((_, hi) => hi !== hIndex)
-                          )
-                        }
-                        className="flex items-center justify-center w-6 h-6 bg-red-600 text-white rounded-full hover:bg-red-700 focus:outline-none"
-                        aria-label="Remove Highlight"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="w-4 h-4"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
-                        </svg>
-                      </button>
+                          {/* Highlights */}
+                          <div className="mt-4">
+                            <label className="block text-sm text-gray-700 dark:text-gray-300 mb-2">
+                              <strong>Highlights:</strong>
+                              <span className="text-red-500">*</span>
+                            </label>
+                            {entry.highlights.map((highlight, hIndex) => (
+                              <div key={hIndex} className="flex items-center mb-2">
+                                <input
+                                  type="text"
+                                  placeholder="Highlight"
+                                  className="flex-1 border border-gray-300 bg-white p-2 text-sm text-gray-900 focus:border-indigo-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                                  value={highlight}
+                                  onChange={(e) =>
+                                    handleHighlightChange(index, hIndex, e.target.value)
+                                  }
+                                  required
+                                />
+                                <div className="flex space-x-2 ml-2">
+                                  {/* Remove Highlight Button */}
+                                  <button
+                                    type="button"
+                                    onClick={() =>
+                                      handleChange(
+                                        index,
+                                        "highlights",
+                                        entry.highlights.filter((_, hi) => hi !== hIndex)
+                                      )
+                                    }
+                                    className="flex items-center justify-center w-6 h-6 bg-red-600 text-white rounded-full hover:bg-red-700 focus:outline-none"
+                                    aria-label="Remove Highlight"
+                                  >
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      className="w-4 h-4"
+                                      fill="none"
+                                      viewBox="0 0 24 24"
+                                      stroke="currentColor"
+                                    >
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                                    </svg>
+                                  </button>
 
-                      {/* Add Highlight Button */}
-                      <button
-                        type="button"
-                        onClick={() =>
-                          handleChange(index, "highlights", [...entry.highlights, ""])
-                        }
-                        className="flex items-center justify-center w-6 h-6 bg-blue-600 text-white rounded-full hover:bg-blue-700 focus:outline-none"
-                        aria-label="Add Highlight"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="w-4 h-4"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                        </svg>
-                      </button>
-                    </div>
+                                  {/* Add Highlight Button */}
+                                  <button
+                                    type="button"
+                                    onClick={() =>
+                                      handleChange(index, "highlights", [...entry.highlights, ""])
+                                    }
+                                    className="flex items-center justify-center w-6 h-6 bg-blue-600 text-white rounded-full hover:bg-blue-700 focus:outline-none"
+                                    aria-label="Add Highlight"
+                                  >
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      className="w-4 h-4"
+                                      fill="none"
+                                      viewBox="0 0 24 24"
+                                      stroke="currentColor"
+                                    >
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                                    </svg>
+                                  </button>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* Navigation and Action Buttons */}
+                          <div className="mt-6 flex justify-between items-center">
+                            {/* Navigation Buttons */}
+                            <div className="flex space-x-2">
+                              <button
+                                type="button"
+                                onClick={handlePrevious}
+                                disabled={currentFormIndex === 0}
+                                className={`px-3 py-1 text-xs rounded-md shadow ${currentFormIndex === 0
+                                    ? "bg-gray-300 text-gray-700 cursor-not-allowed"
+                                    : "bg-indigo-600 text-white hover:bg-indigo-700"
+                                  }`}
+                              >
+                                Previous
+                              </button>
+                              <button
+                                type="button"
+                                onClick={handleNext}
+                                disabled={currentFormIndex === workEntries.length - 1}
+                                className={`px-3 py-1 text-xs rounded-md shadow ${currentFormIndex === workEntries.length - 1
+                                    ? "bg-gray-300 text-gray-700 cursor-not-allowed"
+                                    : "bg-indigo-600 text-white hover:bg-indigo-700"
+                                  }`}
+                              >
+                                Next
+                              </button>
+                            </div>
+
+                            {/* Add/Remove Work Buttons */}
+                            <div className="flex space-x-2">
+                              <button
+                                type="button"
+                                className={`px-3 py-1 text-xs rounded-md shadow ${workEntries.length === 1
+                                    ? "bg-red-300 text-gray-400 cursor-not-allowed"
+                                    : "bg-red-600 text-white hover:bg-red-700"
+                                  }`}
+                                onClick={() => handleRemoveWork(index)}
+                                disabled={workEntries.length === 1}
+                              >
+                                Remove Work
+                              </button>
+                              <button
+                                type="button"
+                                className="px-3 py-1 text-xs rounded-md shadow bg-blue-600 text-white hover:bg-blue-700"
+                                onClick={handleAddWork}
+                              >
+                                Add Work
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      ) : null
+                    )}
                   </div>
-                ))}
+                ) : (
+                  <div className="text-sm text-gray-500 dark:text-gray-400">No Work Entries Available</div>
+                )}
               </div>
-
-              {/* Navigation and Action Buttons */}
-              <div className="mt-6 flex justify-between items-center">
-                {/* Navigation Buttons */}
-                <div className="flex space-x-2">
-                  <button
-                    type="button"
-                    onClick={handlePrevious}
-                    disabled={currentFormIndex === 0}
-                    className={`px-3 py-1 text-xs rounded-md shadow ${
-                      currentFormIndex === 0
-                        ? "bg-gray-300 text-gray-700 cursor-not-allowed"
-                        : "bg-indigo-600 text-white hover:bg-indigo-700"
-                    }`}
-                  >
-                    Previous
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleNext}
-                    disabled={currentFormIndex === workEntries.length - 1}
-                    className={`px-3 py-1 text-xs rounded-md shadow ${
-                      currentFormIndex === workEntries.length - 1
-                        ? "bg-gray-300 text-gray-700 cursor-not-allowed"
-                        : "bg-indigo-600 text-white hover:bg-indigo-700"
-                    }`}
-                  >
-                    Next
-                  </button>
-                </div>
-
-                {/* Add/Remove Work Buttons */}
-                <div className="flex space-x-2">
-                  <button
-                    type="button"
-                    className={`px-3 py-1 text-xs rounded-md shadow ${
-                      workEntries.length === 1
-                        ? "bg-red-300 text-gray-400 cursor-not-allowed"
-                        : "bg-red-600 text-white hover:bg-red-700"
-                    }`}
-                    onClick={() => handleRemoveWork(index)}
-                    disabled={workEntries.length === 1}
-                  >
-                    Remove Work
-                  </button>
-                  <button
-                    type="button"
-                    className="px-3 py-1 text-xs rounded-md shadow bg-blue-600 text-white hover:bg-blue-700"
-                    onClick={handleAddWork}
-                  >
-                    Add Work
-                  </button>
-                </div>
-              </div>
-            </div>
-          ) : null
-        )}
-      </div>
-    ) : (
-      <div className="text-sm text-gray-500 dark:text-gray-400">No Work Entries Available</div>
-    )}
-  </div>
-)}
+            )}
 
 
-             
-             {/* ---------------------------Not validated code for education ----------------------------------- */}
+
+            {/* ---------------------------Non-validated code for education ----------------------------------- */}
 
 
-             {/* ----------------------------------------------------------------------------------------------- */}
+            {/* ----------------------------------------------------------------------------------------------- */}
 
             {/* {activeSection === "education" && (
               <div className="rounded-lg border border-gray-300 bg-white p-4 shadow-md dark:border-gray-600 dark:bg-gray-700">
@@ -1112,8 +1108,8 @@ export default function Assignment() {
               </div>
             )} */}
 
-              {/*----------------------------------------------------------------------------------------------------------------  */}
-              {activeSection === "education" && (
+            {/*----------------------------------------------------------------------------------------------------------------  */}
+            {activeSection === "education" && (
               <div className="rounded-lg border border-gray-300 bg-white p-4 shadow-md dark:border-gray-600 dark:bg-gray-700">
                 <h2 className="mb-4 text-xl font-bold">Education</h2>
                 <div className="space-y-4">
@@ -1268,7 +1264,7 @@ export default function Assignment() {
                 </button>
               </div>
             )} */}
-                        {activeSection === "skills" && (
+            {activeSection === "skills" && (
               <div className="rounded-lg border border-gray-300 bg-white p-4 shadow-md dark:border-gray-600 dark:bg-gray-700">
                 <h2 className="mb-4 text-xl font-bold">Skills</h2>
                 <div className="space-y-4">
@@ -1323,15 +1319,14 @@ export default function Assignment() {
                 </div>
                 <div className="flex justify-between mt-4">
                   <button
-                    className={`p-2 rounded-full ${
-                      skills.length <= 1
+                    className={`p-2 rounded-full ${skills.length <= 1
                         ? "bg-gray-300 cursor-not-allowed"
                         : "bg-red-600 hover:bg-red-700"
-                    }`}
+                      }`}
                     onClick={() => debouncedSetSkills(skills.slice(0, -1))}
                     disabled={skills.length <= 1}
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-white" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
                     </svg>
                   </button>
@@ -1339,7 +1334,7 @@ export default function Assignment() {
                     className="p-2 rounded-full bg-blue-600 hover:bg-blue-700"
                     onClick={() => debouncedSetSkills([...skills, { name: "", level: "Beginner" }])}
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-white" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
                     </svg>
                   </button>
@@ -1402,15 +1397,14 @@ export default function Assignment() {
                 </div>
                 <div className="flex justify-between mt-4">
                   <button
-                    className={`p-2 rounded-full ${
-                      languages.length <= 1
+                    className={`p-2 rounded-full ${languages.length <= 1
                         ? "bg-gray-300 cursor-not-allowed"
                         : "bg-red-600 hover:bg-red-700"
-                    }`}
+                      }`}
                     onClick={() => debouncedSetLanguages(languages.slice(0, -1))}
                     disabled={languages.length <= 1}
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
                     </svg>
                   </button>
@@ -1418,12 +1412,12 @@ export default function Assignment() {
                     className="p-2 rounded-full bg-blue-600 hover:bg-blue-700"
                     onClick={() => debouncedSetLanguages([...languages, { language: "", fluency: "Beginner" }])}
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
                     </svg>
                   </button>
                 </div>
-                </div>
+              </div>
             )}
           </div>
           <div className="col-span-1 lg:col-span-4 lg:pl-8">

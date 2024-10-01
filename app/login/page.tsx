@@ -429,7 +429,7 @@ const SigninPage = () => {
                 </p>
                 <button
   className="dark:shadow-signUp mb-4 flex w-full items-center justify-center rounded-3xl bg-white py-2 px-5 text-sm font-medium text-primary shadow-one dark:bg-white dark:text-black sm:mb-6 sm:py-3 sm:text-base"
-  onClick={() => window.location.href = `https://whitebox-learning.com/signin`}
+  onClick={() => window.location.href=`https://whitebox-learning.com/api/node/signin`}
 >
   <span className="mr-3">
     <svg
@@ -459,7 +459,7 @@ const SigninPage = () => {
       </g>
       <defs>
         <clipPath id="clip0_95:967">
-          <rect width="20" height="20" fill="white" />
+          <rect width="20" height="20" fill="white"/>
         </clipPath>
       </defs>
     </svg>

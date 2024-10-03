@@ -1,3 +1,5 @@
+import { createContext, useContext, useEffect, useState } from "react";
+
 // import { createContext, useContext, useState, useEffect } from "react";
 
 // const AuthContext = createContext();
@@ -30,9 +32,8 @@
 
 // export const useAuth = () => useContext(AuthContext);
 
+//manisai commented  added below code
 
-
-import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
 

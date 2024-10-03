@@ -8,6 +8,9 @@ import { usePathname } from "next/navigation";
 import { Providers } from "./providers";
 import { AuthProvider } from "@/utils/AuthContext";
 
+// original 
+
+
 // export default function RootLayout({
 //   children,
 // }: {

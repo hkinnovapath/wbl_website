@@ -288,7 +288,7 @@ export default function Assignment() {
   // Lazy Loading and memoizing rendering for optimization
   const renderTemplate = useCallback(async () => {
     try {
-      const partialsNeeded = [];
+      const partialsNeeded: string[] = [];
       if (basics) partialsNeeded.push("about", "resume-header", "summary", "title", "info-tag", "social", "section-header");
       if (workEntries.length > 0) partialsNeeded.push("work");
       if (educationEntries.length > 0) partialsNeeded.push("education");

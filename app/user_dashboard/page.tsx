@@ -1,9 +1,20 @@
 "use client";
-
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import Layout from "@/components/Common/Layout";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
+// ------------------used for testing-----------------------------------@manisai
+
+// ----------------------------------------------------------------------
+
+// Define the User interface
+interface User {
+  lastlogin: string | number;
+  fullname: string;
+  phone: string;
+  uname: string;
+  logincount: number;
+}
 const UserDashboard = () => {
   const router = useRouter();
   const [user, setUser] = useState(null);

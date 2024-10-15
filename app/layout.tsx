@@ -49,15 +49,18 @@ export default function RootLayout({
 
 
 
-// "use client";
-// import Footer from "@/components/Footer";
-// import Header from "@/components/Header";
-// import ScrollToTop from "@/components/ScrollToTop";
-// import { AuthProvider } from "@/utils/AuthContext"; // Import the AuthProvider
-// import { SessionProvider } from "next-auth/react"; // Import SessionProvider from next-auth/react
-// import "node_modules/react-modal-video/css/modal-video.css";
-// import "../styles/index.css";
-// import { Providers } from "./providers";
+// // "use client";
+// // import Footer from "@/components/Footer";
+// // import Header from "@/components/Header";
+// // import ScrollToTop from "@/components/ScrollToTop";
+// // import { AuthProvider } from "@/utils/AuthContext"; // Import the AuthProvider
+// // import { SessionProvider } from "next-auth/react"; // Import SessionProvider from next-auth/react
+// // import "node_modules/react-modal-video/css/modal-video.css";
+// // import "../styles/index.css";
+// // import { Providers } from "./providers";
+
+// // original 
+
 
 // export default function RootLayout({
 //   children,
@@ -77,7 +80,6 @@ export default function RootLayout({
 //         <link rel="canonical" href="https://whitebox-learning.com/" />
 //       </head>
 //       <body className="dark:bg-black">
-//       <SessionProvider>
 //         <AuthProvider>
 //           {" "}
 //           {/* Wrap the entire application with AuthProvider */}
@@ -87,12 +89,11 @@ export default function RootLayout({
 //             <Footer />
 //             <ScrollToTop />
 //           </Providers>
+         
 //         </AuthProvider>
-//         </SessionProvider>
 //       </body>
 //     </html>
 //   );
 // }
-
 
 

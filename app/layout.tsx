@@ -4,6 +4,7 @@ import "../styles/index.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
+import { SessionProvider } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { Providers } from "./providers";
 import { AuthProvider } from "@/utils/AuthContext";
@@ -32,12 +33,18 @@ import { AuthProvider } from "@/utils/AuthContext";
 //         <AuthProvider>
 //           {" "}
 //           {/* Wrap the entire application with AuthProvider */}
+//           {" "}
+//           {/* Wrap the entire application with AuthProvider */}
 //           <Providers>
+//             <Header />
 //             <Header />
 //             {children}
 //             <Footer />
 //             <ScrollToTop />
+//             <Footer />
+//             <ScrollToTop />
 //           </Providers>
+         
          
 //         </AuthProvider>
 //       </body>
@@ -70,6 +77,7 @@ export default function RootLayout({
         <link rel="canonical" href="https://whitebox-learning.com/" />
       </head>
       <body className="dark:bg-black">
+      <SessionProvider>
         <AuthProvider>
           <Providers>
             {!isViewSection && <Header />} {/* Conditionally render Header */}
@@ -78,6 +86,7 @@ export default function RootLayout({
             {!isViewSection && <ScrollToTop />} {/* Conditionally render ScrollToTop */}
           </Providers>
         </AuthProvider>
+        </SessionProvider>
       </body>
     </html>
   );

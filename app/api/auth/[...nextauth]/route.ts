@@ -10,6 +10,7 @@ declare module "next-auth/jwt" {
     email?: string;
     status?: string;
     accessToken?: string;
+    candidateId?: string;
   }
 }
 
@@ -22,6 +23,7 @@ declare module "next-auth" {
       email?: string;
       image?: string;
       status?: string;
+      candidateId?: string;
     };
     accessToken?: string;
   }
@@ -38,7 +40,7 @@ const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         // Call register or login based on the user status
-        const { accessToken, status } = await handleUserRegistrationOrLogin(user);
+        const { accessToken, status , candidateId} = await handleUserRegistrationOrLogin(user);
 
         // Attach the access token and status to the JWT token
         if (accessToken) {
@@ -49,6 +51,7 @@ const authOptions: NextAuthOptions = {
         token.name = user.name;
         token.email = user.email;
         token.status = status; // Attach user status (inactive, active, etc.)
+        token.candidateId = candidateId; // Attach candidate ID
       }
       return token;
     },
@@ -58,6 +61,7 @@ const authOptions: NextAuthOptions = {
       session.user.email = token.email as string;
       session.accessToken = token.accessToken as string; // Pass the access token to the session
       session.user.status = token.status; // Pass user status to session
+      session.user.candidateId = token.candidateId;
       return session;
     },
   },
@@ -86,8 +90,9 @@ async function handleUserRegistrationOrLogin(user: any) {
      return { 
       accessToken: null, 
       status: 'registered', 
-      message: registerResponse.data.message // Include the message from the response
-     }
+      message: registerResponse.data.message ,// Include the message from the response
+      candidateId: registerResponse.data.candidate_id // Include candidate ID
+    }
     } else if (checkResponse.data.status === "active") {
       // If the user exists and is active, log in
       const loginResponse = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/google_login/`, payload);

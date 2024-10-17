@@ -721,7 +721,7 @@ export default function Assignment() {
                               <option value="Instagram">Instagram</option>
                               <option value="Twitter">Twitter</option>
                               <option value="LinkedIn">LinkedIn</option>
-                              <option value="Naukri">Naukri</option>
+                              {/* <option value="Naukri">Naukri</option> */}
                               <option value="Other">Other</option>
                             </select>
                           </div>

@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 
 async function fetchResumeData(id: string) {
-  const apiUrl = process.env.NEXT_PUBLIC_RESUME_API_URL || 'http://localhost:8001/api/node';
+  const apiUrl =process.env.RESUME_PUBLIC_API_URL;
   console.log('API URL:', apiUrl);
 
   try {
@@ -24,10 +24,20 @@ export default async function Page({ params }: { params: { id: string } }) {
     const resumeHtml = await fetchResumeData(params.id);
     
     return (
-      <div dangerouslySetInnerHTML={{ __html: resumeHtml }} />
+      // <div dangerouslySetInnerHTML={{ __html: resumeHtml }} />
+      <div className="fixed inset-0 w-screen h-screen m-0 p-0 flex justify-center items-center bg-gradient-to-br from-blue-100 via-indigo-200 to-purple-200">
+        <div className="w-[90%] h-[90%] bg-white rounded-2xl shadow-2xl overflow-hidden">
+          <iframe
+            srcDoc={resumeHtml}
+            className="w-full h-full border-none rounded-2xl"
+            title="Resume"
+          />
+        </div>
+      </div>
     );
   } catch (error) {
     console.error('Error in Page component:', error);
     return <div>Error: {(error as Error).message}</div>;
   }
 }
+

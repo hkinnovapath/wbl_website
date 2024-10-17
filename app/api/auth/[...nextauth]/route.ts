@@ -256,7 +256,7 @@ declare module "next-auth/jwt" {
     email?: string;
     status?: string;
     accessToken?: string;
-    candidateId?: string;
+    // candidateId?: string;
   }
 }
 
@@ -269,7 +269,7 @@ declare module "next-auth" {
       email?: string;
       image?: string;
       status?: string;
-      candidateId?: string;
+      // candidateId?: string;
     };
     accessToken?: string;
   }
@@ -291,7 +291,7 @@ const authOptions: NextAuthOptions = {
         console.log("User in jwt callback:", user);
 
         // Call register or login based on the user status
-        const { accessToken, status , candidateId} = await handleUserRegistrationOrLogin(user);
+        const { accessToken, status } = await handleUserRegistrationOrLogin(user);
 
         // Attach the access token and status to the JWT token
         if (accessToken) {
@@ -302,7 +302,7 @@ const authOptions: NextAuthOptions = {
         token.name = user.name;
         token.email = user.email;
         token.status = status; // Attach user status (inactive, active, etc.)
-        token.candidateId = candidateId; // Attach candidate ID
+        // token.candidateId = candidateId; // Attach candidate ID
       }
       console.log("Token in jwt callback:", token);
 

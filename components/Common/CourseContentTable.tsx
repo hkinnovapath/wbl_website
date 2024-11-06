@@ -10,7 +10,7 @@ const CourseContentTable = (props: any) => {
               Fundamentals
             </th>
             <th className="mb-1 w-1/4 border border-gray-500 bg-primary px-4 py-2 text-white">
-              DSML (Machine Learning)
+              AIML (Artificial Intelligence & Machine Learning)
             </th>
             <th className="mb-1 w-1/4 border border-gray-500 bg-primary px-4 py-2 text-white">
               Fullstack Development
@@ -34,7 +34,7 @@ const CourseContentTable = (props: any) => {
                 <p>{subject.Fundamentals}</p>
               </td>
               <td className="border border-primary px-4 py-2 text-center text-black dark:border-blue-900 dark:text-white">
-                <p>{subject.DSML}</p>
+                <p>{subject.AIML}</p>
               </td>
               <td className="border border-primary px-4 py-2 text-center text-black dark:border-blue-900 dark:text-white">
                 <p>{subject.UI}</p>

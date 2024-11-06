@@ -10,18 +10,20 @@ import CourseNavigation from "@/components/Common/CourseNavigation";
 type ComponentType =
   | "Presentations"
   | "Cheatsheets"
+  | "Diagrams"
   | "Installations"
   | "Miscellaneous"
   | "Books"
   | "Softwares";
 
 const buttons = [
-  { type: "Presentations", label: "Presentation" },
+  { type: "Presentations", label: "Presentations" },
   { type: "Cheatsheets", label: "Cheatsheets" },
-  { type: "Softwares", label: "Software" },
-  { type: "Installations", label: "Installation" },
+  { type: "Diagrams", label: "Diagrams" },
+  { type: "Softwares", label: "Softwares" },
+  { type: "Installations", label: "Installations" },
   { type: "Books", label: "Books" },
-  { type: "Miscellaneous", label: "Miscellaneous" },
+  { type: "Miscellaneous", label: "Newsletter" },
 ];
 
 export default function Presentation() {
@@ -130,8 +132,13 @@ export default function Presentation() {
               {buttons.map((button) => (
                 <button
                   key={button.type}
-                  className={`mb-1 w-full rounded-md bg-gradient-to-br from-primary to-blue-300 px-4 py-2 font-bold text-black hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 sm:w-36 ${
-                    activeComponent === button.type ? "bg-blue-500" : ""
+                  // className={`mb-1 w-full rounded-md bg-gradient-to-br from-primary to-blue-300 px-4 py-2 font-bold text-black hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 sm:w-36 ${
+                  //   activeComponent === button.type ? "bg-blue-500" : ""
+                  // }`}
+                  className={`mb-1 w-full rounded-md px-4 py-2 font-bold text-black hover:bg-gradient-to-tl hover:from-primary hover:to-blue-300 sm:w-36 ${
+                    activeComponent === button.type
+                      ? "bg-gradient-to-br from-primary to-blue-400 text-white border-2  border-blue-600 shadow-lg" // Styling for the active button
+                      : "bg-gradient-to-br from-primary to-blue-300"
                   }`}
                   onClick={() =>
                     handleButtonClick(button.type as ComponentType)

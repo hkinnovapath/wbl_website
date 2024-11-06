@@ -19,7 +19,7 @@ export default function Faq() {
           <div className="rounded-lg bg-white dark:bg-transparent">
             <Accordion
               title="What are the courses Whitebox-Learning Offers?"
-              content="Fullstack Development, DSML(Data Science and Machine Learning)"
+              content="AIML(Artificial intelligence & Machine learning), Full Stack Development"
             />
             <Accordion
               title="Do you provide corporate training?"
@@ -73,10 +73,10 @@ export default function Faq() {
               title="Where can I find your class schedules and syllabus for training?"
               content={
                 <>
-                  Please follow the links to go through :
+                  Please follow the links to go through:&nbsp;
                   <Link href="/schedule" className="inline-block">
                     <div className="text-blue-600 dark:text-blue-500">
-                      Class Schedule and Syllabus(Course Content)
+                       Class Schedule and Syllabus(Course Content)
                     </div>
                   </Link>
                 </>

@@ -6,6 +6,11 @@ import { RxDotFilled } from "react-icons/rx";
 import ml1 from "public/images/Carousel/ML 1.jpeg";
 import html_css_js from "public/images/Carousel/html-css-JS.webp";
 import js_libs from "public/images/Carousel/js-libs.png";
+import GenAI from "public/images/Carousel/GenAI.jpg";
+import DL1 from "public/images/Carousel/DL1.jpg";
+import DL2 from "public/images/Carousel/DL2.jpg";
+import DL3 from "public/images/Carousel/DL3.jpg";
+// import GenAI2 from "public/images/Carousel/GenAI2.jpg";
 import ml from "public/images/Carousel/mll.png";
 import ntt from "public/images/Carousel/next-tailwind-TS.avif";
 import de1 from "public/images/Carousel/DE 1.jpeg";
@@ -16,14 +21,18 @@ import ml2 from "public/images/Carousel/ml2.jpeg";
 function Carousel() {
   const slides = [
     { url: ml1 },
+    { url: DL3 },
+    { url: GenAI },
+    // { url: GenAI2 },
+    { url: DL1 },
+    { url: DL2 },
     // { url: ml },
     // { url: de1 },
     { url: ml3 },
-    // { url: ml2 },
-    { url: js_libs },
+    // { url: js_libs },
     // { url: ntt },
     { url: html_css_js },
-    { url: tlJ },
+    // { url: tlJ },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);

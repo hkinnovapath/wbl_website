@@ -14,6 +14,65 @@ const ResumePreview: React.FC<ResumePreviewProps> = ({ renderedHtml, getJson, re
   const [isLoading, setIsLoading] = useState(false); // Spinner state
   const [errorMessage, setErrorMessage] = useState<string>('');
 
+  // useEffect(() => {
+  //   if (iframeRef.current) {
+  //     const iframe = iframeRef.current;
+  //     const doc = iframe.contentDocument || iframe.contentWindow?.document;
+
+  //     if (doc) {
+  //       doc.open();
+  //       doc.write(renderedHtml);
+  //       doc.close();
+
+  //       // Inject external stylesheet into the iframe's document
+  //       const styleLink = doc.createElement('link');
+  //       styleLink.rel = 'stylesheet';
+  //       styleLink.href = '/templates/style.css';
+  //       doc.head.appendChild(styleLink);
+
+  //       // Optionally inject custom CSS for scrollbars and content fitting
+  //       const style = doc.createElement('style');
+  //       style.innerHTML = `
+  //       /* Enable scrolling for both axes */
+  //       body {
+  //         overflow: auto;
+  //         scroll-behavior: smooth;
+  //         margin: 0;
+  //         padding: 0;
+  //       }
+
+  //       /* Responsive layout to prevent unnecessary scroll */
+  //       .container {
+  //         width: 100%;
+  //         box-sizing: border-box;
+  //       }
+
+  //       /* Scrollbar styling */
+  //       ::-webkit-scrollbar {
+  //         width: 8px;
+  //         height: 8px;
+  //       }
+
+  //       ::-webkit-scrollbar-track {
+  //         background: #ffffff;
+  //       }
+
+  //       ::-webkit-scrollbar-thumb {
+  //         background: #f0f0f0;
+  //         border-radius: 10px;
+  //         border: 1px solid #dcdcdc;
+  //       }
+
+  //       ::-webkit-scrollbar-thumb:hover {
+  //         background: #e0e0e0;
+  //       }
+  //     `;
+  //       doc.head.appendChild(style);
+  //     }
+  //   }
+  // }, [renderedHtml]);
+  
+  
   useEffect(() => {
     if (iframeRef.current) {
       const iframe = iframeRef.current;
@@ -30,47 +89,77 @@ const ResumePreview: React.FC<ResumePreviewProps> = ({ renderedHtml, getJson, re
         styleLink.href = '/templates/style.css';
         doc.head.appendChild(styleLink);
 
-        // Optionally inject custom CSS for scrollbars and content fitting
+        // Inject custom CSS for content fitting and completely hiding scrollbars
         const style = doc.createElement('style');
         style.innerHTML = `
-        /* Enable scrolling for both axes */
+        /* Global scrollbar hiding */
+        * {
+          scrollbar-width: none !important;
+          -ms-overflow-style: none !important;
+        }
+        
+        *::-webkit-scrollbar {
+          display: none !important;
+          width: 0 !important;
+          height: 0 !important;
+        }
+
+        /* Body specific styles */
         body {
           overflow: auto;
           scroll-behavior: smooth;
           margin: 0;
           padding: 0;
+          scrollbar-width: none !important;
+          -ms-overflow-style: none !important;
         }
 
-        /* Responsive layout to prevent unnecessary scroll */
+        body::-webkit-scrollbar {
+          display: none !important;
+          width: 0 !important;
+          height: 0 !important;
+        }
+
+        /* Container styles */
         .container {
           width: 100%;
           box-sizing: border-box;
+          overflow: auto;
+          scrollbar-width: none !important;
+          -ms-overflow-style: none !important;
         }
 
-        /* Scrollbar styling */
-        ::-webkit-scrollbar {
-          width: 8px;
-          height: 8px;
+        .container::-webkit-scrollbar {
+          display: none !important;
+          width: 0 !important;
+          height: 0 !important;
         }
 
-        ::-webkit-scrollbar-track {
-          background: #ffffff;
+        /* Hide scrollbars for all elements */
+        div, section, article, aside, nav, header, footer {
+          scrollbar-width: none !important;
+          -ms-overflow-style: none !important;
         }
 
-        ::-webkit-scrollbar-thumb {
-          background: #f0f0f0;
-          border-radius: 10px;
-          border: 1px solid #dcdcdc;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-          background: #e0e0e0;
+        div::-webkit-scrollbar,
+        section::-webkit-scrollbar,
+        article::-webkit-scrollbar,
+        aside::-webkit-scrollbar,
+        nav::-webkit-scrollbar,
+        header::-webkit-scrollbar,
+        footer::-webkit-scrollbar {
+          display: none !important;
+          width: 0 !important;
+          height: 0 !important;
         }
       `;
         doc.head.appendChild(style);
       }
     }
   }, [renderedHtml]);
+  
+  
+  
   const handleDownloadPdf = async () => {
     setIsLoading(true);
     try {
@@ -522,84 +611,196 @@ const ResumePreview: React.FC<ResumePreviewProps> = ({ renderedHtml, getJson, re
       setIsLoading(false); // Hide spinner after download completes
     }
   };
+// ... existing code ...
 
-  return (
-    
-    <>
+// return (
+//   <div className="flex flex-col h-full">
+//     {/* Error Message */}
+//     {errorMessage && (
+//       <div className="mb-4">
+//         <div className="p-4 rounded-md bg-red-50 border border-red-200">
+//           <p className="text-red-700 text-sm">{errorMessage}</p>
+//         </div>
+//       </div>
+//     )}
+
+//     {/* Main Content */}
+//     <div className="lg:col-span-2 flex-grow">
+//       <div className="flex h-full flex-col rounded-lg border border-gray-300 bg-white shadow-md dark:border-gray-600 dark:bg-gray-700">
+//         {/* Header with Download Buttons */}
+//         <div className="p-4 border-b border-gray-200 dark:border-gray-600">
+//           <div className="flex justify-between items-center">
+//             {/* JSON Download Button */}
+//             <button
+//               className="flex items-center p-2 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-md transition-colors"
+//               onClick={getJson}
+//               title="Download JSON"
+//             >
+//               <svg 
+//                 xmlns="http://www.w3.org/2000/svg" 
+//                 className="w-8 h-8 text-gray-700 dark:text-gray-300"
+//                 viewBox="0 0 16 16"
+//               >
+//                 <path fill="currentColor" fillRule="evenodd" d="M14 4.5V11h-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM4.151 15.29a1.2 1.2 0 0 1-.111-.449h.764a.58.58 0 0 0 .255.384q.105.073.25.114q.142.041.319.041q.245 0 .413-.07a.56.56 0 0 0 .255-.193a.5.5 0 0 0 .084-.29a.39.39 0 0 0-.152-.326q-.152-.12-.463-.193l-.618-.143a1.7 1.7 0 0 1-.539-.214a1 1 0 0 1-.352-.367a1.1 1.1 0 0 1-.123-.524q0-.366.19-.639q.192-.272.528-.422q.337-.15.777-.149q.456 0 .779.152q.326.153.5.41q.18.255.2.566h-.75a.56.56 0 0 0-.12-.258a.6.6 0 0 0-.246-.181a.9.9 0 0 0-.37-.068q-.324 0-.512.152a.47.47 0 0 0-.185.384q0 .18.144.3a1 1 0 0 0 .404.175l.621.143q.326.075.566.211a1 1 0 0 1 .375.358q.135.222.135.56q0 .37-.188.656a1.2 1.2 0 0 1-.539.439q-.351.158-.858.158q-.381 0-.665-.09a1.4 1.4 0 0 1-.478-.252a1.1 1.1 0 0 1-.29-.375z"/>
+//               </svg>
+//             </button>
+
+//             {/* PDF Download Button */}
+//             <button
+//               className="flex items-center p-2 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-md transition-colors"
+//               onClick={handleDownloadPdf}
+//               title="Download PDF"
+//             >
+//               <svg 
+//                 xmlns="http://www.w3.org/2000/svg" 
+//                 className="w-8 h-8 text-gray-700 dark:text-gray-300"
+//                 viewBox="0 0 16 16"
+//               >
+//                 <path fill="currentColor" fillRule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.6 11.85H0v3.999h.791v-1.342h.803q.43 0 .732-.173q.305-.175.463-.474a1.4 1.4 0 0 0 .161-.677q0-.375-.158-.677a1.2 1.2 0 0 0-.46-.477q-.3-.18-.732-.179z"/>
+//               </svg>
+//             </button>
+//           </div>
+//         </div>
+
+//         {/* Loading Bar */}
+//         {isLoading && (
+//           <div className="px-4 py-2">
+//             <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+//               <div className="h-full w-full relative">
+//                 <div className="absolute top-0 left-0 h-full w-1/3 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 animate-loading-bar"></div>
+//                 <div className="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-white to-transparent opacity-30 animate-shimmer"></div>
+//               </div>
+//             </div>
+//           </div>
+//         )}
+
+//         {/* Resume Preview */}
+//         <div className="flex-grow p-4">
+//           <iframe
+//             ref={iframeRef}
+//             className="w-full h-full bg-gray-100 dark:bg-gray-800 rounded-md"
+//             title="Resume Preview"
+//           />
+//         </div>
+//       </div>
+//     </div>
+
+//     {/* Animation Styles */}
+//     <style jsx>{`
+//       @keyframes loading-bar {
+//         0% { left: -33.33%; }
+//         100% { left: 100%; }
+//       }
+//       @keyframes shimmer {
+//         0% { transform: translateX(-100%); }
+//         100% { transform: translateX(100%); }
+//       }
+//       .animate-loading-bar {
+//         animation: loading-bar 2s ease-in-out infinite;
+//       }
+//       .animate-shimmer {
+//         animation: shimmer 1.5s linear infinite;
+//       }
+//     `}</style>
+//   </div>
+// );
+
+return (
+  <div className="flex flex-col h-[calc(100vh-6rem)] overflow-hidden">
+    {/* Error Message */}
     {errorMessage && (
-  <div className="relative top-[-50px] overflow-hidden">
-    <div
-      className=" inset-x-0 top-0 p-4 rounded-md text-red-700 bg-white transition-transform transform translate-x-full duration-500 ease-in-out"
-      style={{ transform: 'translateX(0)' }}
-    >
-      <p>{errorMessage}</p>
-    </div>
-  </div>
-)}
-    
-    <div className="lg:col-span-2">
-      <div className="flex h-full flex-col rounded-lg border border-gray-300 bg-white p-4 shadow-md dark:border-gray-600 dark:bg-gray-700">
-        <div className="mb-4 flex items-center justify-between">
+      <div className="absolute top-0 left-0 right-0 z-50">
+        <div className="mx-auto max-w-md p-4">
+          <div className="rounded-md bg-red-50 p-4 shadow-lg">
+            <p className="text-center text-sm text-red-700">{errorMessage}</p>
+          </div>
+        </div>
+      </div>
+    )}
+
+    {/* Main Content */}
+    <div className="flex flex-col flex-grow rounded-lg border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800">
+      {/* Header with Download Buttons */}
+      <div className="border-b border-gray-200 bg-white px-4 py-3 dark:border-gray-700 dark:bg-gray-800">
+   
+      {/* Header with Download Buttons */}
+      <div className="border-b border-gray-200 bg-white px-4 py-3 dark:border-gray-700 dark:bg-gray-800">
+        <div className="flex items-center justify-between">
+          {/* JSON Download Button */}
           <button
-            className="json text-lg font-bold flex items-center   rounded-md  p-1"
-            id="download-json-btn"
             onClick={getJson}
+            className="inline-flex items-center rounded-md px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
+            title="Download JSON"
           >
-            {/* -------- CHANGING THE ICONS FOR JSON AND PDF */}
-            {/* <FontAwesomeIcon icon={faArrowDown} className="mr-2" />
-            Json */}
-             {/* <FontAwesomeIcon icon={faFileCode}  className="mr-2 w-8 h-8 text-gray-700 dark:text-gray-300"  /> */}
-             <svg xmlns="http://www.w3.org/2000/svg" width="2.3rem" height="2.3rem" viewBox="0 0 16 16"><path fill="currentColor" fillRule="evenodd" d="M14 4.5V11h-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM4.151 15.29a1.2 1.2 0 0 1-.111-.449h.764a.58.58 0 0 0 .255.384q.105.073.25.114q.142.041.319.041q.245 0 .413-.07a.56.56 0 0 0 .255-.193a.5.5 0 0 0 .084-.29a.39.39 0 0 0-.152-.326q-.152-.12-.463-.193l-.618-.143a1.7 1.7 0 0 1-.539-.214a1 1 0 0 1-.352-.367a1.1 1.1 0 0 1-.123-.524q0-.366.19-.639q.192-.272.528-.422q.337-.15.777-.149q.456 0 .779.152q.326.153.5.41q.18.255.2.566h-.75a.56.56 0 0 0-.12-.258a.6.6 0 0 0-.246-.181a.9.9 0 0 0-.37-.068q-.324 0-.512.152a.47.47 0 0 0-.185.384q0 .18.144.3a1 1 0 0 0 .404.175l.621.143q.326.075.566.211a1 1 0 0 1 .375.358q.135.222.135.56q0 .37-.188.656a1.2 1.2 0 0 1-.539.439q-.351.158-.858.158q-.381 0-.665-.09a1.4 1.4 0 0 1-.478-.252a1.1 1.1 0 0 1-.29-.375m-3.104-.033a1.3 1.3 0 0 1-.082-.466h.764a.6.6 0 0 0 .074.27a.5.5 0 0 0 .454.246q.285 0 .422-.164q.137-.165.137-.466v-2.745h.791v2.725q0 .66-.357 1.005q-.355.345-.985.345a1.6 1.6 0 0 1-.568-.094a1.15 1.15 0 0 1-.407-.266a1.1 1.1 0 0 1-.243-.39m9.091-1.585v.522q0 .384-.117.641a.86.86 0 0 1-.322.387a.9.9 0 0 1-.47.126a.9.9 0 0 1-.47-.126a.87.87 0 0 1-.32-.387a1.55 1.55 0 0 1-.117-.641v-.522q0-.386.117-.641a.87.87 0 0 1 .32-.387a.87.87 0 0 1 .47-.129q.265 0 .47.129a.86.86 0 0 1 .322.387q.117.255.117.641m.803.519v-.513q0-.565-.205-.973a1.46 1.46 0 0 0-.59-.63q-.38-.22-.916-.22q-.534 0-.92.22a1.44 1.44 0 0 0-.589.628q-.205.407-.205.975v.513q0 .562.205.973q.205.407.589.626q.386.217.92.217q.536 0 .917-.217q.384-.22.589-.626q.204-.41.205-.973m1.29-.935v2.675h-.746v-3.999h.662l1.752 2.66h.032v-2.66h.75v4h-.656l-1.761-2.676z"/></svg>
+            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 17V19C4 19.5304 4.21071 20.0391 4.58579 20.4142C4.96086 20.7893 5.46957 21 6 21H18C18.5304 21 19.0391 20.7893 19.4142 20.4142C19.7893 20.0391 20 19.5304 20 19V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M7 11L12 16L17 11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M12 4V16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <span className="ml-1">JSON</span>
           </button>
+
+          {/* PDF Download Button */}
           <button
-            className="pdf text-lg font-bold flex items-center rounded p-1"
-            id="download-pdf-btn"
             onClick={handleDownloadPdf}
-            // type="submit"
+            className="inline-flex items-center rounded-md px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
+            title="Download PDF"
           >
-            {/* <FontAwesomeIcon icon={faArrowDown} className="mr-2" />
-            Pdf */}
-            {/* <FontAwesomeIcon icon={faFilePdf} className="mr-2 w-8 h-8 text-gray-700 dark:text-gray-300" /> */}
-            <svg xmlns="http://www.w3.org/2000/svg" width="2.3rem" height="2.3rem" viewBox="0 0 16 16"><path fill="currentColor" fillRule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.6 11.85H0v3.999h.791v-1.342h.803q.43 0 .732-.173q.305-.175.463-.474a1.4 1.4 0 0 0 .161-.677q0-.375-.158-.677a1.2 1.2 0 0 0-.46-.477q-.3-.18-.732-.179m.545 1.333a.8.8 0 0 1-.085.38a.57.57 0 0 1-.238.241a.8.8 0 0 1-.375.082H.788V12.48h.66q.327 0 .512.181q.185.183.185.522m1.217-1.333v3.999h1.46q.602 0 .998-.237a1.45 1.45 0 0 0 .595-.689q.196-.45.196-1.084q0-.63-.196-1.075a1.43 1.43 0 0 0-.589-.68q-.396-.234-1.005-.234zm.791.645h.563q.371 0 .609.152a.9.9 0 0 1 .354.454q.118.302.118.753a2.3 2.3 0 0 1-.068.592a1.1 1.1 0 0 1-.196.422a.8.8 0 0 1-.334.252a1.3 1.3 0 0 1-.483.082h-.563zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638z"/></svg>
+            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 17V19C4 19.5304 4.21071 20.0391 4.58579 20.4142C4.96086 20.7893 5.46957 21 6 21H18C18.5304 21 19.0391 20.7893 19.4142 20.4142C19.7893 20.0391 20 19.5304 20 19V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M7 11L12 16L17 11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M12 4V16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <span className="ml-1">PDF</span>
           </button>
         </div>
-        {/* --------------------------------------------- */}
-        {isLoading && (
-            <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-              <div className="h-full w-full relative">
-                <div className="absolute top-0 left-0 h-full w-1/3 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 animate-loading-bar"></div>
-                <div className="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-white to-transparent opacity-30 animate-shimmer"></div>
-              </div>
+      </div>
 
-              {/* Inline CSS for animations */}
-              <style jsx>{`
-                @keyframes loading-bar {
-                  0% { left: -33.33%; }
-                  100% { left: 100%; }
-                }
-                @keyframes shimmer {
-                  0% { transform: translateX(-100%); }
-                  100% { transform: translateX(100%); }
-                }
-                .animate-loading-bar {
-                  animation: loading-bar 2s ease-in-out infinite;
-                }
-                .animate-shimmer {
-                  animation: shimmer 1.5s linear infinite;
-                }
-              `}</style>
-            </div>
-          )}
-          <br/>
+      </div>
+
+      {/* Loading Bar */}
+      {isLoading && (
+        <div className="absolute inset-x-7 top-0">
+          <div className="h-1 overflow-hidden bg-gray-200 dark:bg-gray-700">
+            <div className="animate-loading-progress h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+          </div>
+        </div>
+      )}
+
+      {/* Resume Preview */}
+      <div className="relative flex-grow p-4">
         <iframe
           ref={iframeRef}
-          className="h-[80vh] w-full bg-gray-100 dark:bg-gray-800"
+          className="h-full w-full rounded-md border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
           title="Resume Preview"
         />
       </div>
     </div>
-    </>
-  );
+
+    {/* Animation Styles */}
+    <style jsx>{`
+      @keyframes loading-progress {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+      }
+      .animate-loading-progress {
+        animation: loading-progress 1s ease-in-out infinite;
+      }
+    `}</style>
+
+    {/* Global styles to hide scrollbars */}
+    <style jsx global>{`
+      iframe {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      iframe::-webkit-scrollbar {
+        display: none;
+      }
+    `}</style>
+  </div>
+);
+
 };
 
 export default ResumePreview;

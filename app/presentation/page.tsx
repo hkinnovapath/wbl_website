@@ -12,7 +12,7 @@ type ComponentType =
   | "Cheatsheets"
   | "Diagrams"
   | "Installations"
-  | "Miscellaneous"
+  | "Newsletters"
   | "Books"
   | "Softwares";
 
@@ -23,7 +23,7 @@ const buttons = [
   { type: "Softwares", label: "Softwares" },
   { type: "Installations", label: "Installations" },
   { type: "Books", label: "Books" },
-  { type: "Miscellaneous", label: "Newsletter" },
+  { type: "Newsletters", label: "Newsletters" },
 ];
 
 export default function Presentation() {

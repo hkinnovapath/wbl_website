@@ -5,7 +5,7 @@
 //   | "Cheatsheets"
 //   | "Diagrams"
 //   | "Installations"
-//   | "Miscellaneous"
+//   | "Newsletters"
 //   | "Books"
 //   | "Softwares";
 
@@ -155,7 +155,7 @@
 //                 <td className="border border-primary px-4 py-2   text-center text-blue-600 dark:border-blue-900 dark:text-white">
 //                   <a href={subject.link} target="_blank" rel="noreferrer">
 //                     {" "}
-//                     {type === "Miscellaneous" ? (
+//                     {type === "Newsletters" ? (
 //                       <span
 //                         dangerouslySetInnerHTML={{ __html: subject.name }}
 //                       />
@@ -183,7 +183,7 @@ type ComponentType =
   | "Cheatsheets"
   | "Diagrams"
   | "Installations"
-  | "Miscellaneous"
+  | "Newsletters"
   | "Books"
   | "Softwares";
 
@@ -348,7 +348,7 @@ const ResourcesTable = ({
                     onClick={() => handleSubjectClick(subject.link)}
                     className="text-blue-600  dark:text-white"
                   >
-                    {type === "Miscellaneous" ? (
+                    {type === "Newsletters" ? (
                       <span
                         dangerouslySetInnerHTML={{ __html: subject.name }}
                       />

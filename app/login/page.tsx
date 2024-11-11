@@ -63,9 +63,8 @@
 //         setGoogleMessage("Logged in successfully!");
 //         setGoogleStatus("success");
 
-        
 //           router.push('/');
-        
+
 //       } else {
 //         setGoogleMessage("Unexpected status received: " + status);
 //         setGoogleStatus("error");
@@ -77,7 +76,6 @@
 
 //     setGLoading(false); // Set gloading to false at the end
 //   };
-
 
 //  // useEffect to handle session changes
 //  useEffect(() => {
@@ -176,7 +174,7 @@
 //                 </h3>
 //                 <p className="md:text-md mb-7 text-center text-xs font-semibold text-gray-700 dark:text-white sm:mb-11 sm:text-sm">
 //                   Sign In to your account
-//                 </p>                
+//                 </p>
 //                 <button
 //   className="dark:shadow-signUp mb-4 flex w-full items-center justify-center rounded-3xl bg-white py-2 px-5 text-sm font-medium text-primary shadow-one dark:bg-white dark:text-black sm:mb-6 sm:py-3 sm:text-base"
 //   onClick={handleGoogleSignIn}
@@ -190,7 +188,7 @@
 //         viewBox="0 0 24 24"
 //         fill="currentColor"
 //         className="h-5 w-5 mr-2  sm:h-8 sm:w-8"
-        
+
 //       >
 //         <circle cx="4" cy="12" r="3" fill="currentColor">
 //           <animate
@@ -219,7 +217,7 @@
 //           />
 //         </circle>
 //       </svg>
-      
+
 //     </div>
 //   ) : (
 //     <>
@@ -550,8 +548,7 @@ const SigninPage = () => {
         setGoogleMessage("Logged in successfully!");
         setGoogleStatus("success");
 
-        router.push('/');
-
+        router.push("/");
       } else {
         setGoogleMessage("Unexpected status received: " + status);
         setGoogleStatus("error");
@@ -564,20 +561,23 @@ const SigninPage = () => {
     setGLoading(false); // Set gloading to false at the end
   };
 
-  // useEffect to handle session changes
-  useEffect(() => {
-    if (session?.user?.status === "inactive") {
-      setGoogleMessage("Inactive account. Please contact admin.");
-      setGoogleStatus("error");
-    } else if (session?.user?.status === "registered") {
-      setGoogleMessage("Registered successfully !!");
-      setGoogleStatus("success");
-    } else if (session?.user?.status === "active") {
-      setGoogleMessage("Logged in successfully!");
-      setGoogleStatus("success");
-      router.push('/');
-    }
-  }, [session, router]);
+  // // **************************************************************
+  // // useEffect to handle session changes
+  // useEffect(() => {
+  //   if (session?.user?.status === "inactive") {
+  //     setGoogleMessage("Inactive account. Please contact admin.");
+  //     setGoogleStatus("error");
+  //   } else if (session?.user?.status === "registered") {
+  //     setGoogleMessage("Registered successfully !!");
+  //     setGoogleStatus("success");
+  //   } else if (session?.user?.status === "active") {
+  //     setGoogleMessage("Logged in successfully!");
+  //     setGoogleStatus("success");
+  //     router.push("/");
+  //   }
+  // }, [session, router]);
+  
+  // // **************************************************************
 
   // Reset messages on component mount
   useEffect(() => {
@@ -668,43 +668,81 @@ const SigninPage = () => {
                   Sign In to your account
                 </p>
                 <button
-                  className="dark:shadow-signUp mb-4 flex w-full items-center justify-center rounded-3xl bg-white py-2 px-5 text-sm font-medium text-primary shadow-one dark:bg-white dark:text-black sm:mb-6 sm:py-3 sm:text-base"
+                  className="dark:shadow-signUp mb-4 flex w-full items-center justify-center rounded-xl bg-white py-2 px-5 text-sm font-medium text-primary shadow-one dark:bg-white dark:text-black sm:mb-6 sm:py-3 sm:text-base"
                   onClick={handleGoogleSignIn}
                   disabled={gloading} // Disable button while gloading
                 >
                   {gloading ? (
-                    <div className="flex items-center justify-center text-center   sm:text-2xl">
+                    // <div className="flex items-center justify-center text-center   sm:text-2xl">
+                    //   Loading
+                    //   <svg
+                    //     xmlns="http://www.w3.org/2000/svg"
+                    //     viewBox="0 0 24 24"
+                    //     fill="currentColor"
+                    //     className="h-5 w-5 mr-2  sm:h-8 sm:w-8"
+                    //   >
+                    //     <circle cx="4" cy="12" r="3" fill="currentColor">
+                    //       <animate
+                    //         id="svgSpinners3DotsScale0"
+                    //         attributeName="r"
+                    //         begin="0;svgSpinners3DotsScale1.end-0.2s"
+                    //         dur="0.6s"
+                    //         values="3;.2;3"
+                    //       />
+                    //     </circle>
+                    //     <circle cx="12" cy="12" r="3" fill="currentColor">
+                    //       <animate
+                    //         attributeName="r"
+                    //         begin="svgSpinners3DotsScale0.end-0.48s"
+                    //         dur="0.6s"
+                    //         values="3;.2;3"
+                    //       />
+                    //     </circle>
+                    //     <circle cx="20" cy="12" r="3" fill="currentColor">
+                    //       <animate
+                    //         id="svgSpinners3DotsScale1"
+                    //         attributeName="r"
+                    //         begin="svgSpinners3DotsScale0.end-0.36s"
+                    //         dur="0.6s"
+                    //         values="3;.2;3"
+                    //       />
+                    //     </circle>
+                    //   </svg>
+                    // </div>
+                    <div className="flex items-center justify-center text-center text-sm sm:text-base">
                       Loading
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="currentColor"
-                        className="h-5 w-5 mr-2  sm:h-8 sm:w-8"
+                        className="mr-1 h-4 w-4 sm:h-5 sm:w-5" // Reduced size here
                       >
-                        <circle cx="4" cy="12" r="3" fill="currentColor">
+                        <circle cx="4" cy="12" r="2" fill="currentColor">
+                          {" "}
+                          {/* Reduced r */}
                           <animate
                             id="svgSpinners3DotsScale0"
                             attributeName="r"
                             begin="0;svgSpinners3DotsScale1.end-0.2s"
                             dur="0.6s"
-                            values="3;.2;3"
+                            values="2;.2;2" // Adjusted values to match smaller size
                           />
                         </circle>
-                        <circle cx="12" cy="12" r="3" fill="currentColor">
+                        <circle cx="12" cy="12" r="2" fill="currentColor">
                           <animate
                             attributeName="r"
                             begin="svgSpinners3DotsScale0.end-0.48s"
                             dur="0.6s"
-                            values="3;.2;3"
+                            values="2;.2;2"
                           />
                         </circle>
-                        <circle cx="20" cy="12" r="3" fill="currentColor">
+                        <circle cx="20" cy="12" r="2" fill="currentColor">
                           <animate
                             id="svgSpinners3DotsScale1"
                             attributeName="r"
                             begin="svgSpinners3DotsScale0.end-0.36s"
                             dur="0.6s"
-                            values="3;.2;3"
+                            values="2;.2;2"
                           />
                         </circle>
                       </svg>
@@ -771,56 +809,107 @@ const SigninPage = () => {
                       type="text"
                       name="email"
                       placeholder="Enter your email"
-                      className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-5 text-black placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3"
+                      className="dark:shadow-signUp w-full rounded-xl border border-transparent py-2 px-5 text-black placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       onFocus={handleInputFocus}
                       required
                     />
-                  </div>              
-                
-<div className="mb-6 sm:mb-8 relative">
-  <label
-    htmlFor="password"
-    className="mb-3 block font-bold text-dark dark:text-white"
-  >
-    Password <span className="text-red-600">*</span>
-  </label>
-  <div className="relative">
-    <input
-      type={showPassword ? "text" : "password"}
-      name="password"
-      placeholder="Enter your password"
-      // className="w-full py-2 pl-4 pr-10 text-body-color placeholder-body-color border border-transparent rounded-3xl outline-none focus:border-primary focus-visible:shadow-none dark:bg-white" 
-        className="dark:shadow-signUp w-full rounded-3xl border border-transparent py-2 px-5 text-black placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3"
-      value={password}
-      onChange={(e) => setPassword(e.target.value)}
-      onFocus={handleInputFocus}
-      required
-    />
-    <button
-      type="button"
-      className="absolute inset-y-0 right-0 flex items-center justify-center w-10 h-full text-black dark:text-white"
-      onClick={togglePasswordVisibility}
-      aria-label={showPassword ? "Hide password" : "Show password"}
-    >
-      {showPassword ? (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M2 2L22 22" stroke="#555555" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M6.71277 6.7226C3.66479 8.79527 2 12 2 12C2 12 5.63636 19 12 19C14.0503 19 15.8174 18.2734 17.2711 17.2884M11 5.05822C11.3254 5.02013 11.6588 5 12 5C18.3636 5 22 12 22 12C22 12 21.3082 13.3317 20 14.8335" stroke="#555555" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M14 14.2362C13.4692 14.7112 12.7684 15.0001 12 15.0001C10.3431 15.0001 9 13.657 9 12.0001C9 11.1764 9.33193 10.4303 9.86932 9.88818" stroke="#555555" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      ) : (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12" stroke="#555555" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M1 12C1 12 5 20 12 20C19 20 23 12 23 12" stroke="#555555" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <circle cx="12" cy="12" r="3" stroke="#555555" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      )}
-    </button>
-  </div>
-</div>
+                  </div>
 
+                  <div className="relative mb-6 sm:mb-8">
+                    <label
+                      htmlFor="password"
+                      className="mb-3 block font-bold text-dark dark:text-white"
+                    >
+                      Password <span className="text-red-600">*</span>
+                    </label>
+                    <div className="relative">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        name="password"
+                        placeholder="Enter your password"
+                        // className="w-full py-2 pl-4 pr-10 text-body-color placeholder-body-color border border-transparent rounded-3xl outline-none focus:border-primary focus-visible:shadow-none dark:bg-white"
+                        className="dark:shadow-signUp w-full rounded-xl border border-transparent py-2 px-5 text-black placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-white sm:py-3"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        onFocus={handleInputFocus}
+                        required
+                      />
+                      <button
+                        type="button"
+                        className="absolute inset-y-0 right-0 flex h-full w-10 items-center justify-center text-black dark:text-white"
+                        onClick={togglePasswordVisibility}
+                        aria-label={
+                          showPassword ? "Hide password" : "Show password"
+                        }
+                      >
+                        {showPassword ? (
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M2 2L22 22"
+                              stroke="#555555"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                            <path
+                              d="M6.71277 6.7226C3.66479 8.79527 2 12 2 12C2 12 5.63636 19 12 19C14.0503 19 15.8174 18.2734 17.2711 17.2884M11 5.05822C11.3254 5.02013 11.6588 5 12 5C18.3636 5 22 12 22 12C22 12 21.3082 13.3317 20 14.8335"
+                              stroke="#555555"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                            <path
+                              d="M14 14.2362C13.4692 14.7112 12.7684 15.0001 12 15.0001C10.3431 15.0001 9 13.657 9 12.0001C9 11.1764 9.33193 10.4303 9.86932 9.88818"
+                              stroke="#555555"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        ) : (
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12"
+                              stroke="#555555"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                            <path
+                              d="M1 12C1 12 5 20 12 20C19 20 23 12 23 12"
+                              stroke="#555555"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                            <circle
+                              cx="12"
+                              cy="12"
+                              r="3"
+                              stroke="#555555"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        )}
+                      </button>
+                    </div>
+                  </div>
 
                   <div>
                     <a
@@ -869,7 +958,7 @@ const SigninPage = () => {
                   ) : (
                     <button
                       type="submit"
-                      className="hover:shadow-signUp flex w-full items-center justify-center rounded-3xl bg-primary py-2 px-6 font-bold text-white transition duration-300 ease-in-out hover:bg-opacity-80 sm:py-3"
+                      className="hover:shadow-signUp flex w-full items-center justify-center rounded-xl bg-primary py-2 px-6 font-bold text-white transition duration-300 ease-in-out hover:bg-opacity-80 sm:py-3"
                     >
                       Login
                     </button>

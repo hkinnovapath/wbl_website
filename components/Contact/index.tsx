@@ -331,7 +331,7 @@ const ContactForm = () => {
                         Name:
                       </label>{" "}
                       <input
-                        className=" mb-4 w-full  rounded-3xl bg-white py-3 px-5 leading-tight text-gray-700 shadow "
+                        className=" mb-4 w-full  rounded-xl bg-white py-3 px-5 leading-tight text-gray-700 shadow "
                         type="text"
                         placeholder="Enter Your Name"
                         name="name"
@@ -343,7 +343,7 @@ const ContactForm = () => {
                         Email:
                       </label>
                       <input
-                        className="  mb-4 w-full appearance-none rounded-3xl bg-white py-3 px-5 leading-tight text-gray-700"
+                        className="  mb-4 w-full appearance-none rounded-xl bg-white py-3 px-5 leading-tight text-gray-700"
                         type="email"
                         placeholder="Enter Your Email"
                         name="email"
@@ -355,7 +355,7 @@ const ContactForm = () => {
                         Phone:
                       </label>
                       <input
-                        className="mb-4 w-full appearance-none rounded-3xl bg-white py-3 px-5 leading-tight text-gray-700 shadow"
+                        className="mb-4 w-full appearance-none rounded-xl bg-white py-3 px-5 leading-tight text-gray-700 shadow"
                         type="tel"
                         placeholder="Enter Your Phone"
                         name="phone"
@@ -367,7 +367,7 @@ const ContactForm = () => {
                         Message:
                       </label>
                       <textarea
-                        className="mb-4 h-64 min-h-0 w-full appearance-none rounded-3xl bg-white py-2 px-3 leading-tight text-gray-700 shadow"
+                        className="mb-4 h-64 min-h-0 w-full appearance-none rounded-xl bg-white py-2 px-3 leading-tight text-gray-700 shadow"
                         placeholder="Type your message here..."
                         name="message"
                         style={{ height: "121px" }}

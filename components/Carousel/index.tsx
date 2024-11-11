@@ -21,17 +21,17 @@ import ml2 from "public/images/Carousel/ml2.jpeg";
 function Carousel() {
   const slides = [
     { url: ml1 },
-    { url: DL3 },
-    { url: GenAI },
-    // { url: GenAI2 },
     { url: DL1 },
+    { url: GenAI },
+    { url: ml3 },
     { url: DL2 },
+    { url: DL3 },
+    { url: html_css_js },
+    // { url: GenAI2 },
     // { url: ml },
     // { url: de1 },
-    { url: ml3 },
     // { url: js_libs },
     // { url: ntt },
-    { url: html_css_js },
     // { url: tlJ },
   ];
 

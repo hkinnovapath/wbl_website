@@ -761,13 +761,20 @@ return (
       </div>
 
       {/* Loading Bar */}
-      {isLoading && (
+      {/* {isLoading && (
         <div className="absolute inset-x-7 top-0">
           <div className="h-1 overflow-hidden bg-gray-200 dark:bg-gray-700">
             <div className="animate-loading-progress h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
           </div>
         </div>
-      )}
+      )} */}
+      {isLoading && (
+  <div className="absolute top-0 left-10 right-0"> {/* Adjust 'left-10' to control the starting position */}
+    <div className="h-1 overflow-hidden bg-gray-200 dark:bg-gray-700 m-0 p-0">
+      <div className="animate-loading-progress h-full w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 m-0 p-0"></div>
+    </div>
+  </div>
+)}
 
       {/* Resume Preview */}
       <div className="relative flex-grow p-4">
@@ -781,15 +788,16 @@ return (
 
     {/* Animation Styles */}
     <style jsx>{`
-      @keyframes loading-progress {
-        0% { transform: translateX(-100%); }
-        100% { transform: translateX(100%); }
-      }
-      .animate-loading-progress {
-        animation: loading-progress 1s ease-in-out infinite;
-      }
-    `}</style>
-
+  @keyframes loading-progress {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  .animate-loading-progress {
+    animation: loading-progress 1s ease-in-out infinite;
+    margin: 0;
+    padding: 0;
+  }
+`}</style>
     {/* Global styles to hide scrollbars */}
     <style jsx global>{`
       iframe {

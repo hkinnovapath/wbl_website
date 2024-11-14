@@ -3095,7 +3095,7 @@ const fetchPartials = async (partialsNeeded: string[]) => {
         Handlebars.registerPartial(partial, partialString);
         partialCache[partial] = partialString;
       } catch (error) {
-        console.error(`Error fetching partial: ${partial}`, error);
+        // console.error(`Error fetching partial: ${partial}`, error);
       }
     }
   });
@@ -3616,7 +3616,7 @@ export default function Assignment() {
       const html = template(resumeJson);
       setRenderedHtml(html);
     } catch (error) {
-      console.error("Error rendering template", error);
+      // console.error("Error rendering template", error);
     }
   }, [basics, workEntries, educationEntries, skills, languages]);
 
@@ -3686,7 +3686,7 @@ export default function Assignment() {
           setLoading(false);
         }
       } catch (error) {
-        console.error("Error checking authentication:", error);
+        // console.error("Error checking authentication:", error);
         router.push("/login");
       }
     };

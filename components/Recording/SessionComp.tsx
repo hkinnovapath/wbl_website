@@ -320,7 +320,7 @@ export default function SessionComp() {
       sessionStorage.setItem("sessions_data_timestamp", Date.now().toString());
       setError(null);
     } catch (error) {
-      console.error("Error fetching sessions:", error);
+      //console.error("Error fetching sessions:", error);
       setError("Failed to load sessions. Please try again.");
     } finally {
       setIsLoading(false);

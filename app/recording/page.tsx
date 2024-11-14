@@ -55,7 +55,7 @@ export default function Recordings() {
           setLoading(false);
         }
       } catch (error) {
-        console.error("Error while checking authentication:", error);
+        // console.error("Error while checking authentication:", error);
         // setErrorMessage("An error occurred while checking authentication");
         // setShowModal(true);
         router.push("/login");

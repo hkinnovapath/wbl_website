@@ -564,8 +564,8 @@ const ResumePreview: React.FC<ResumePreviewProps> = ({ renderedHtml, getJson, re
         
               </style>`
             );
-            console.log(modifiedRenderedHtml)
-            console.log(JSON.stringify(resumeJson))
+            // console.log(modifiedRenderedHtml)
+            //console.log(JSON.stringify(resumeJson))
       
             const response = await axios.post(`${apiUrl}/download-pdf`, {
               html: modifiedRenderedHtml,
@@ -603,7 +603,7 @@ const ResumePreview: React.FC<ResumePreviewProps> = ({ renderedHtml, getJson, re
         // If status is 401, show the specific message to the user
         setErrorMessage(`You can't download, Please register with a new email to continue` );
       } else {
-        console.error('Error downloading PDF:', error);
+        // console.error('Error downloading PDF:', error);
         setErrorMessage('An error occurred while downloading the PDF');
       }
     }

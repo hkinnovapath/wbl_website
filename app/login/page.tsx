@@ -562,7 +562,7 @@ const SigninPage = () => {
   };
 
   // // **************************************************************
-  // // useEffect to handle session changes
+  // useEffect to handle session changes
   useEffect(() => {
     if (session?.user?.status === "inactive") {
       setGoogleMessage("Inactive account. Please contact admin.");

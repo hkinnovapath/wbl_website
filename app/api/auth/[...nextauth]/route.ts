@@ -11,7 +11,6 @@
 //     email?: string;
 //     status?: string;
 //     accessToken?: string;
-//     // candidateId?: string;
 //   }
 // }
 
@@ -24,7 +23,6 @@
 //       email?: string;
 //       image?: string;
 //       status?: string;
-//       // candidateId?: string;
 //     };
 //     accessToken?: string;
 //   }
@@ -37,30 +35,34 @@
 //       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
 //     }),
 //   ],
-//   // pages: {
-//   //   error: '/api/auth/error', // Custom error page
-//   // },
+//   pages: {
+//     error: '/auth/error', // Custom error page for better UX on errors
+//   },
 //   callbacks: {
 //     async jwt({ token, user }) {
 //       if (user) {
 //         console.log("User in jwt callback:", user);
 
-//         // Call register or login based on the user status
-//         const { accessToken, status } = await handleUserRegistrationOrLogin(user);
+//         try {
+//           // Call register or login based on the user status
+//           const { accessToken, status, message } = await handleUserRegistrationOrLogin(user);
 
-//         // Attach the access token and status to the JWT token
-//         if (accessToken) {
-//           token.accessToken = accessToken;
+//           // Attach the access token and status to the JWT token
+//           if (accessToken) {
+//             token.accessToken = accessToken;
+//           }
+//           token.id = user.id;
+//           token.name = user.name;
+//           token.email = user.email;
+//           token.status = status; // Attach user status (inactive, active, etc.)
+
+//           console.log("JWT callback - Token after processing:", token);
+//           console.log("----------------Status message:", message);
+//         } catch (error) {
+//           console.error("---------------------------Error in jwt callback during user handling:", error);
+//           token.error = "---------------------------Error during registration/login handling";
 //         }
-        
-//         token.id = user.id;
-//         token.name = user.name;
-//         token.email = user.email;
-//         token.status = status; // Attach user status (inactive, active, etc.)
-//         // token.candidateId = candidateId; // Attach candidate ID
 //       }
-//       console.log("Token in jwt callback:", token);
-
 //       return token;
 //     },
 //     async session({ session, token }) {
@@ -69,13 +71,15 @@
 //       session.user.id = token.id as string;
 //       session.user.name = token.name as string;
 //       session.user.email = token.email as string;
-//       session.accessToken = token.accessToken as string; // Pass the access token to the session
-//       session.user.status = token.status; // Pass user status to session
-//       console.log("Session in session callback:", session);
+//       session.accessToken = token.accessToken as string;
+//       session.user.status = token.status;
+
+//       console.log("---------------------------Session in session callback:", session);
 
 //       return session;
 //     },
 //   },
+//   debug: true, // Enable debug mode for detailed logs
 //   secret: process.env.NEXTAUTH_SECRET as string,
 // };
 
@@ -93,13 +97,13 @@
 //   try {
 //     const checkResponse = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/check_user/`, payload);
 
-//     if (!checkResponse.data.exists) { 
+//     if (!checkResponse.data.exists) {
 //       // If the user does not exist, register them
 //       const registerResponse = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/google_users/`, payload);
 //       return {
 //         accessToken: null,
 //         status: 'registered',
-//         message: registerResponse.data.message // Include the message from the response
+//         message: registerResponse.data.message // Include message from response
 //       };
 //     } else if (checkResponse.data.status === "active") {
 //       // If the user exists and is active, log in
@@ -110,41 +114,12 @@
 //       return { accessToken: null, status: 'inactive' };
 //     }
 //   } catch (error) {
-//     console.error("Error during operation:", error.response?.data.detail || error.message);
+//     console.error("---------------------------Error during registration/login operation:", error.response?.data.detail || error.message);
 //     return { accessToken: null, status: 'error' };
 //   }
 // }
 
-// // Function to handle the OAuth callback and exchange the code for tokens
-// async function handleOAuthCallback(req, res) {
-//   const { code } = req.query; // Extract code from query
-//   const codeVerifier = req.cookies.get("code_verifier"); // Get code verifier from cookies
 
-//   // Prepare the request to exchange code for tokens
-//   const params = new URLSearchParams();
-//   params.append('code', code as string);
-//   params.append('client_id', process.env.GOOGLE_CLIENT_ID as string);
-//   params.append('client_secret', process.env.GOOGLE_CLIENT_SECRET as string);
-//   params.append('redirect_uri', process.env.NEXT_PUBLIC_REDIRECT_URI as string); // The same redirect URI used in authorization
-//   params.append('grant_type', 'authorization_code');
-//   params.append('code_verifier', codeVerifier); // Use the code verifier
-
-//   try {
-//     const tokenResponse = await axios.post('https://oauth2.googleapis.com/token', params);
-    
-//     // Handle the response and extract the access token
-//     const { access_token, refresh_token } = tokenResponse.data;
-
-//     // Here, you can store the refresh token in the user session or database
-//     return res.status(200).json({ access_token, refresh_token });
-//   } catch (error) {
-//     console.error("Error exchanging code for tokens:", error.response?.data || error.message);
-//     return res.status(400).json({ error: "Failed to exchange code for tokens" });
-//   }
-// }
-
-
-// frntend/app/api/auth/[...nextauth]/route.ts
 import NextAuth, { NextAuthOptions, Session } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import axios from "axios";
@@ -157,6 +132,7 @@ declare module "next-auth/jwt" {
     email?: string;
     status?: string;
     accessToken?: string;
+    error?: string;
   }
 }
 
@@ -171,6 +147,7 @@ declare module "next-auth" {
       status?: string;
     };
     accessToken?: string;
+    error?: string;
   }
 }
 
@@ -190,37 +167,46 @@ const authOptions: NextAuthOptions = {
         console.log("User in jwt callback:", user);
 
         try {
-          // Call register or login based on the user status
           const { accessToken, status, message } = await handleUserRegistrationOrLogin(user);
 
-          // Attach the access token and status to the JWT token
           if (accessToken) {
             token.accessToken = accessToken;
           }
           token.id = user.id;
           token.name = user.name;
           token.email = user.email;
-          token.status = status; // Attach user status (inactive, active, etc.)
+          token.status = status;
 
           console.log("JWT callback - Token after processing:", token);
-          console.log("----------------Status message:", message);
+          console.log("Status message:", message);
         } catch (error) {
-          console.error("---------------------------Error in jwt callback during user handling:", error);
-          token.error = "---------------------------Error during registration/login handling";
+          console.error("Error in jwt callback during user handling:", error);
+          token.error = "Error during registration/login handling";
         }
       }
+
+      // Check if token is expired and refresh it
+      if (token.accessToken && isTokenExpired(token.accessToken)) {
+        try {
+          const refreshedToken = await refreshAccessToken(token.accessToken);
+          token.accessToken = refreshedToken;
+        } catch (error) {
+          console.error("Token refresh failed:", error);
+          token.error = "Token refresh failed";
+        }
+      }
+
       return token;
     },
     async session({ session, token }) {
-      console.log("Token in session callback:", token);
-
       session.user.id = token.id as string;
       session.user.name = token.name as string;
       session.user.email = token.email as string;
       session.accessToken = token.accessToken as string;
       session.user.status = token.status;
+      session.error = token.error;
 
-      console.log("---------------------------Session in session callback:", session);
+      console.log("Session in session callback:", session);
 
       return session;
     },
@@ -260,7 +246,31 @@ async function handleUserRegistrationOrLogin(user: any) {
       return { accessToken: null, status: 'inactive' };
     }
   } catch (error) {
-    console.error("---------------------------Error during registration/login operation:", error.response?.data.detail || error.message);
+    console.error("Error during registration/login operation:", error.response?.data.detail || error.message);
     return { accessToken: null, status: 'error' };
   }
+}
+
+// Utility function to check if the token is expired
+function isTokenExpired(token: string): boolean {
+  const decoded = parseJwt(token);
+  if (!decoded || !decoded.exp) return true;
+  return decoded.exp * 1000 < Date.now();
+}
+
+// Function to decode the JWT token and parse its payload
+function parseJwt(token: string) {
+  try {
+    return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString('utf-8'));
+  } catch (e) {
+    console.error("Failed to parse JWT:", e);
+    return null;
+  }
+}
+
+// Dummy function to refresh an access token (replace with actual API call)
+async function refreshAccessToken(token: string) {
+  console.log("Refreshing access token...");
+  // Make your API call to refresh the token here
+  return "newAccessToken";
 }

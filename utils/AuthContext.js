@@ -1,4 +1,4 @@
-// // frntend\utils\AuthContext.js
+// // frntend/utils/AuthContext.js
 // import { useSession } from "next-auth/react";
 // import { signOut } from "next-auth/react";
 // import { useRouter } from "next/navigation";
@@ -12,7 +12,7 @@
 //   const [isAuthenticated, setIsAuthenticated] = useState(false);
 //   const { data: session } = useSession();
 //   const router = useRouter();
-  
+
 //   // Initial check on component mount
 //   useEffect(() => {
 //     const token = localStorage.getItem("access_token");
@@ -21,40 +21,57 @@
 //     } else {
 //       setIsAuthenticated(false);
 //     }
-    
+
 //     const interval = setInterval(() => {
 //       if (authToken) {
 //         checkToken(authToken);
-//       } 
+//       }
 //     }, 1000 * 60); // Check every minute
-    
+
 //     return () => clearInterval(interval); // Clean up the interval on unmount
 //   }, [authToken]);
-  
+
 //   // Function to check if the token is expired
 //   const checkToken = (token) => {
 //     if (isTokenExpired(token)) {
-//       logout(); // Trigger logout to clear storage and state
-//       router.push("/login");
+//       handleTokenExpiration();
 //     } else {
 //       setAuthToken(token);
 //       setIsAuthenticated(true);
 //     }
 //   };
-  
+
+//   // Function to handle token expiration
+//   const handleTokenExpiration = () => {
+//     logout();
+//     const currentPath = router.pathname;
+    
+//     if (currentPath === "/") {
+//       // If on home page, clear session and stay on the home page
+//       localStorage.removeItem("access_token");
+//       sessionStorage.clear();
+//       setAuthToken(null);
+//       setIsAuthenticated(false);
+//       alert("Session expired. Please login again."); // Optional alert (can be removed)
+//     } else {
+//       // If on any other page, redirect to login page
+//       router.push("/login");
+//     }
+//   };
+
 //   // Monitor session changes from NextAuth
 //   useEffect(() => {
 //     if (session?.accessToken) {
 //       login(session.accessToken);
 //     }
 //   }, [session]);
-  
+
 //   const login = (token) => {
 //     setAuthToken(token);
 //     localStorage.setItem("access_token", token);
 //     setIsAuthenticated(true);
 //   };
-  
+
 //   const logout = () => {
 //     localStorage.removeItem("access_token");
 //     sessionStorage.clear();
@@ -63,7 +80,7 @@
 //     clearNextAuthCookies();
 //     signOut({ redirect: false }); // Prevent automatic redirect on sign-out
 //   };
-  
+
 //   function clearNextAuthCookies() {
 //     if (typeof window !== "undefined") {
 //       const cookiesToClear = [
@@ -76,7 +93,7 @@
 //       });
 //     }
 //   }
-  
+
 //   return (
 //     <AuthContext.Provider value={{ isAuthenticated, authToken, login, logout }}>
 //       {children}
@@ -87,7 +104,6 @@
 // export const useAuth = () => useContext(AuthContext);
 
 
-// frntend/utils/AuthContext.js
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -99,7 +115,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [authToken, setAuthToken] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
 
   // Initial check on component mount
@@ -148,9 +164,11 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Monitor session changes from NextAuth
+  // Monitor session changes and handle errors from NextAuth
   useEffect(() => {
-    if (session?.accessToken) {
+    if (session?.error === "TokenExpiredError") {
+      handleTokenExpiration();
+    } else if (session?.accessToken) {
       login(session.accessToken);
     }
   }, [session]);

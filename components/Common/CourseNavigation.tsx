@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 
 const CourseNavigation = () => {
@@ -7,16 +7,37 @@ const CourseNavigation = () => {
   const router = useRouter();
   const path = usePathname();
 
+  
+
+
   const courseOptions = [
     { short: "ML", full: "Machine Learning" },
     { short: "UI", full: "UI Fullstack" },
     { short: "QA", full: "Quality Engineer" },
   ];
+ 
+  // added this @manisai
+  useEffect(() => {
+    // Check if a course is already stored in session storage
+    const storedCourse = sessionStorage.getItem('courseShortName');
+    if (!storedCourse) {
+      // Store default course short name in session storage on component mount
+      sessionStorage.setItem('courseShortName', 'ML');
+    } else {
+      // Set the selected option to the stored course
+      const selectedCourse = courseOptions.find((opt) => opt.short === storedCourse);
+      if (selectedCourse) {
+        setSelectedOption(selectedCourse.full);
+      }
+    }
+  }, []);
 
   const handleNavigation = (course) => {
     const selectedCourse = courseOptions.find((opt) => opt.short === course);
     setSelectedOption(selectedCourse.full);
     setIsOpen(false); // Close the dropdown after selection
+    // Store course short name in session storage
+    sessionStorage.setItem('courseShortName', course);
     router.push(`${path}?course=${course}`);
   };
 

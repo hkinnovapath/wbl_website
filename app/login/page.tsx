@@ -563,19 +563,19 @@ const SigninPage = () => {
 
   // // **************************************************************
   // // useEffect to handle session changes
-  // useEffect(() => {
-  //   if (session?.user?.status === "inactive") {
-  //     setGoogleMessage("Inactive account. Please contact admin.");
-  //     setGoogleStatus("error");
-  //   } else if (session?.user?.status === "registered") {
-  //     setGoogleMessage("Registered successfully !!");
-  //     setGoogleStatus("success");
-  //   } else if (session?.user?.status === "active") {
-  //     setGoogleMessage("Logged in successfully!");
-  //     setGoogleStatus("success");
-  //     router.push("/");
-  //   }
-  // }, [session, router]);
+  useEffect(() => {
+    if (session?.user?.status === "inactive") {
+      setGoogleMessage("Inactive account. Please contact admin.");
+      setGoogleStatus("error");
+    } else if (session?.user?.status === "registered") {
+      setGoogleMessage("Registered successfully !!");
+      setGoogleStatus("success");
+    } else if (session?.user?.status === "active") {
+      setGoogleMessage("Logged in successfully!");
+      setGoogleStatus("success");
+      router.push("/");
+    }
+  }, [session, router]);
   
   // // **************************************************************
 

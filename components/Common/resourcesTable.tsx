@@ -188,6 +188,8 @@ type ComponentType =
   | "Softwares";
 
 const fetchPresentationData = async (course: string, type: ComponentType) => {
+  console.log("*********************************************************",course,type);
+  
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/materials?course=${course}&search=${type}`
@@ -224,6 +226,9 @@ const ResourcesTable = ({
       setError(null);
 
       const sessionData = sessionStorage.getItem(`data_${course}_${type}`);
+
+      console.log("*********************************************************",sessionData);
+      
       const sessionDataTimestamp = sessionStorage.getItem(
         `data_${course}_${type}_timestamp`
       );

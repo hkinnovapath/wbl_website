@@ -15,7 +15,7 @@ const CourseContent = () => {
         );
         setSubjects(response.data.coursecontent);
       } catch (error) {
-        console.error("Error fetching course content:", error);
+        //console.error("Error fetching course content:", error);
       }
       setLoading(false);
     };

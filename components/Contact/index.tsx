@@ -276,7 +276,7 @@ const ContactForm = () => {
         setMessageType("error");
       }
     } catch (error) {
-      console.error("Error sending message:", error);
+      // console.error("Error sending message:", error);
       setMessageFromServer("Please try again later.");
       setMessageType("error");
     } finally {

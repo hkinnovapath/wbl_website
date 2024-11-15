@@ -188,7 +188,7 @@ type ComponentType =
   | "Softwares";
 
 const fetchPresentationData = async (course: string, type: ComponentType) => {
-  console.log("*********************************************************",course,type);
+  // console.log("*********************************************************",course,type);
   
   try {
     const response = await fetch(
@@ -199,11 +199,11 @@ const fetchPresentationData = async (course: string, type: ComponentType) => {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     
     return data;
   } catch (error) {
-    console.error("Failed to fetch data:", error);
+    // console.error("Failed to fetch data:", error);
     return null;
   }
 };
@@ -227,7 +227,7 @@ const ResourcesTable = ({
 
       const sessionData = sessionStorage.getItem(`data_${course}_${type}`);
 
-      console.log("*********************************************************",sessionData);
+      // console.log("*********************************************************",sessionData);
       
       const sessionDataTimestamp = sessionStorage.getItem(
         `data_${course}_${type}_timestamp`

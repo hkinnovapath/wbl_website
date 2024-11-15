@@ -164,7 +164,7 @@ const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        console.log("User in jwt callback:", user);
+        // console.log("User in jwt callback:", user);
 
         try {
           const { accessToken, status, message } = await handleUserRegistrationOrLogin(user);
@@ -177,10 +177,10 @@ const authOptions: NextAuthOptions = {
           token.email = user.email;
           token.status = status;
 
-          console.log("JWT callback - Token after processing:", token);
-          console.log("Status message:", message);
+          // console.log("JWT callback - Token after processing:", token);
+          // console.log("Status message:", message);
         } catch (error) {
-          console.error("Error in jwt callback during user handling:", error);
+          // console.error("Error in jwt callback during user handling:", error);
           token.error = "Error during registration/login handling";
         }
       }
@@ -191,7 +191,7 @@ const authOptions: NextAuthOptions = {
           const refreshedToken = await refreshAccessToken(token.accessToken);
           token.accessToken = refreshedToken;
         } catch (error) {
-          console.error("Token refresh failed:", error);
+          // console.error("Token refresh failed:", error);
           token.error = "Token refresh failed";
         }
       }
@@ -206,7 +206,7 @@ const authOptions: NextAuthOptions = {
       session.user.status = token.status;
       session.error = token.error;
 
-      console.log("Session in session callback:", session);
+      // console.log("Session in session callback:", session);
 
       return session;
     },
@@ -246,7 +246,7 @@ async function handleUserRegistrationOrLogin(user: any) {
       return { accessToken: null, status: 'inactive' };
     }
   } catch (error) {
-    console.error("Error during registration/login operation:", error.response?.data.detail || error.message);
+    // console.error("Error during registration/login operation:", error.response?.data.detail || error.message);
     return { accessToken: null, status: 'error' };
   }
 }
@@ -263,14 +263,14 @@ function parseJwt(token: string) {
   try {
     return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString('utf-8'));
   } catch (e) {
-    console.error("Failed to parse JWT:", e);
+    // console.error("Failed to parse JWT:", e);
     return null;
   }
 }
 
 // Dummy function to refresh an access token (replace with actual API call)
 async function refreshAccessToken(token: string) {
-  console.log("Refreshing access token...");
+  // console.log("Refreshing access token...");
   // Make your API call to refresh the token here
   return "newAccessToken";
 }

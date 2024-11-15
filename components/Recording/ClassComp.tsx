@@ -62,7 +62,7 @@ const RecordingComp: React.FC = () => {
         setSelectedBatch(data.batches[0]);
       }
     } catch (error) {
-      console.error("Error fetching batches:", error);
+      // console.error("Error fetching batches:", error);
       setError("Failed to load batches. Please try again.");
     } finally {
       setIsLoadingBatches(false);
@@ -84,7 +84,7 @@ const RecordingComp: React.FC = () => {
         setError("No recordings found for this batch.");
       }
     } catch (error) {
-      console.error("Error fetching recordings:", error);
+      // console.error("Error fetching recordings:", error);
       setError("No recordings found for this batch. Please try again.");
     } finally {
       setIsLoadingRecordings(false);

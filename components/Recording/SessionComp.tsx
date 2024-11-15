@@ -312,7 +312,7 @@ export default function SessionComp() {
       setError(null);
       console.log("Fetched sessions:", data.sessions); // Debug log
     } catch (error) {
-      console.error("Error fetching sessions:", error);
+      //console.error("Error fetching sessions:", error);
       setError("Failed to load sessions. Please try again.");
     } finally {
       setIsLoading(false);

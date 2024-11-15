@@ -255,13 +255,13 @@ const UserDashboard = () => {
         }
 
         const userData = await response.json();
-        console.log(userData);
+        // console.log(userData);
 
         sessionStorage.setItem("user_data", JSON.stringify(userData));
         sessionStorage.setItem("user_data_timestamp", Date.now().toString());
         setUser(userData);
       } catch (error) {
-        console.error("Error fetching user details:", error);
+        // console.error("Error fetching user details:", error);
         localStorage.removeItem("access_token");
         sessionStorage.clear();
         router.push("/login");

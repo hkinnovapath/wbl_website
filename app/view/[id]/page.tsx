@@ -2,7 +2,7 @@ import { Suspense } from "react";
 
 async function fetchResumeData(id: string) {
   const apiUrl =process.env.RESUME_PUBLIC_API_URL;
-  console.log('API URL:', apiUrl);
+  // console.log('API URL:', apiUrl);
 
   try {
     const response = await fetch(`${apiUrl}/${id}`);
@@ -13,14 +13,14 @@ async function fetchResumeData(id: string) {
     const data = await response.text();
     return data;
   } catch (error) {
-    console.error('Error fetching resume data:', error);
+    // console.error('Error fetching resume data:', error);
     throw error;
   }
 }
 
 export default async function Page({ params }: { params: { id: string } }) {
   try {
-    console.log('Fetching resume data for ID:', params.id);
+    // console.log('Fetching resume data for ID:', params.id);
     const resumeHtml = await fetchResumeData(params.id);
     
     return (
@@ -36,7 +36,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       </div>
     );
   } catch (error) {
-    console.error('Error in Page component:', error);
+    // console.error('Error in Page component:', error);
     return <div>Error: {(error as Error).message}</div>;
   }
 }

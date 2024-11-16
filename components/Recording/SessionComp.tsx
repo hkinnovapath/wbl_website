@@ -582,8 +582,14 @@ interface Session {
   sessiondate: string;
   type: string;
   link: string;
+  videoid: string; // Add the videoid if needed
+  description: string; // Add description if needed
 }
-
+interface Video {
+  link: string;
+  videoid: string; // Adjust if `videoid` can be null or undefined
+  description: string;
+}
 const SessionComp = () => {
   const searchParams = useSearchParams();
   const course = searchParams.get("course") || "ML"; // Default to 'ML' if course is not in URL

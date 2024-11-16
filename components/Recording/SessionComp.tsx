@@ -568,6 +568,13 @@ interface SessionType {
   type: string;
 }
 
+interface Video {
+  // id: number;
+  description: string;
+  link: string;
+  videoid: string;
+}
+
 interface Session {
   sessionid: number;
   title: string;

@@ -561,15 +561,241 @@
 
 // export default SessionComp;
 
+
+//_______________________mani sai ___________________________________
+
+// import { useState, useEffect } from "react";
+// import { useSearchParams } from "next/navigation";
+
+// interface SessionType {
+//   type: string;
+// }
+
+// interface Video {
+//   // id: number;
+//   description: string;
+//   link: string;
+//   videoid: string;
+// }
+
+// interface Session {
+//   sessionid: number;
+//   title: string;
+//   status: string;
+//   sessiondate: string;
+//   type: string;
+//   link: string;
+//   videoid: string; // Add the videoid if needed
+//   description: string; // Add description if needed
+// }
+// interface Video {
+//   link: string;
+//   videoid: string; // Adjust if `videoid` can be null or undefined
+//   description: string;
+// }
+// const SessionComp = () => {
+//   const searchParams = useSearchParams();
+//   const course = searchParams.get("course") || "ML"; // Default to 'ML' if course is not in URL
+
+//   // Loading state for session types and sessions
+//   const [isLoadingSessionTypes, setIsLoadingSessionTypes] = useState<boolean>(true);
+//   const [isLoadingSessions, setIsLoadingSessions] = useState<boolean>(true);
+
+//   const [sessionTypes, setSessionTypes] = useState<SessionType[]>([]);
+//   const [sessions, setSessions] = useState<Session[]>([]);
+//   const [selectedType, setSelectedType] = useState<string>("Group Mock");
+//   const [selectedSession, setSelectedSession] = useState<Session | null>(null);
+//   const [error, setError] = useState<string | null>(null);
+
+//   // Fetch session types when the component mounts
+//   useEffect(() => {
+//     setIsLoadingSessionTypes(true); // Start loading session types
+//     fetch(`${process.env.NEXT_PUBLIC_API_URL}/session-types`)
+//       .then((res) => res.json())
+//       .then((data) => {
+//         setSessionTypes(data.types);
+//         setIsLoadingSessionTypes(false); // Stop loading when data is fetched
+//       })
+//       .catch((error) => {
+//         setError("Error fetching session types.");
+//         setIsLoadingSessionTypes(false); // Stop loading even if there's an error
+//       });
+//   }, []);
+
+//   // Fetch sessions based on the selected session type and course name
+//   const fetchSessions = () => {
+//     setIsLoadingSessions(true); // Start loading sessions
+//     fetch(
+//       `${process.env.NEXT_PUBLIC_API_URL}/sessions?course_name=${course}&session_type=${selectedType}`
+//     )
+//       .then((res) => res.json())
+//       .then((data) => {
+//         setSessions(data.sessions);
+//         setIsLoadingSessions(false); // Stop loading when data is fetched
+//       })
+//       .catch((error) => {
+//         setError("Error fetching sessions.");
+//         setIsLoadingSessions(false); // Stop loading even if there's an error
+//       });
+//   };
+
+//   // Run fetchSessions whenever sessionType or courseName changes
+//   useEffect(() => {
+//     setSessions([]); // Clear previous sessions when the course or session type changes
+//     setSelectedSession(null); // Reset selected session
+//     setError(null); // Reset errors
+//     fetchSessions(); // Fetch new sessions based on selected course and type
+//   }, [course, selectedType]);
+
+//   // Handle session selection
+//   const handleSessionSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+//     const selectedId = parseInt(e.target.value);
+//     const selected = sessions.find((session) => session.sessionid === selectedId);
+//     if (selected) {
+//       setSelectedSession(selected);
+//       setError(null); // Clear any errors when a session is selected
+//     } else {
+//       setSelectedSession(null);
+//       setError("Selected session not found.");
+//     }
+//   };
+
+//   const renderVideoPlayer = (video: Video) => {
+//     if (video.link.includes("youtu.be") || video.link.includes("youtube.com")) {
+//       const youtubeId = video.videoid;
+//       const youtubeEmbedUrl = `https://www.youtube.com/embed/${youtubeId}`;
+//       return (
+//         <iframe
+//           width="100%"
+//           height="350"
+//           src={youtubeEmbedUrl}
+//           title={video.description}
+//           frameBorder="0"
+//           allowFullScreen
+//           className="h-[350px] rounded-xl border-2 border-gray-500"
+//         ></iframe>
+//       );
+//     } else {
+//       return <video src={video.link} controls className="mb-2 w-full" />;
+//     }
+//   };
+
+//   return (
+//     <div className="mx-auto mt-6 max-w-full flex-grow space-y-4 sm:mt-0 sm:max-w-3xl">
+//       {/* Session Type Dropdown */}
+//       <div className="flex flex-grow flex-col">
+//         <label htmlFor="session-type">Select Session Type:</label>
+//         <select
+//           id="session-type"
+//           className="rounded-md border border-gray-300 px-2 py-1 text-black dark:bg-white"
+//           value={selectedType}
+//           onChange={(e) => setSelectedType(e.target.value)}
+//           disabled={isLoadingSessionTypes} // Disable until session types are loaded
+//         >
+//           {isLoadingSessionTypes ? (
+//             <option disabled className="text-gray-500">
+//               Loading session types...
+//             </option> // Show Loading message with styled color
+//           ) : (
+//             <>
+//               <option value="">Please select a session type...</option>
+//               {sessionTypes.map((type) => (
+//                 <option key={type.type} value={type.type}>
+//                   {type.type || "No Type"}
+//                 </option>
+//               ))}
+//             </>
+//           )}
+//         </select>
+//       </div>
+
+//       {/* Session Videos Dropdown */}
+//       <div className="flex flex-grow flex-col">
+//         <label htmlFor="session-dropdown">Sessions:</label>
+//         <select
+//           id="session-dropdown"
+//           className="mb-5 rounded-md border border-gray-300 px-2 py-1 text-black dark:bg-white"
+//           onChange={handleSessionSelect}
+//           disabled={isLoadingSessions} // Disable until session videos are loaded
+//         >
+//           {isLoadingSessions ? (
+//             <option disabled className="text-gray-500">
+//               Loading session videos...
+//             </option> // Show Loading message with styled color
+//           ) : (
+//             <>
+//               <option value="">Please select a session...</option>
+//               {sessions.map((session) => (
+//                 <option key={session.sessionid} value={String(session.sessionid)}>
+//                   {session.title}
+//                 </option>
+//               ))}
+//             </>
+//           )}
+//         </select>
+//       </div>
+
+//       {/* Error Message */}
+//       {error && <p className="text-red-500">{error}</p>}
+
+//       {/* Render selected session details and video */}
+//       {selectedSession && (
+//         <div className="mt-4">              
+//           <div className="mt-2">{renderVideoPlayer(selectedSession)}</div>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default SessionComp;
+
+
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+
+// Helper function to format the title
+const formatVideoTitle = (filename: string) => {
+  // Remove the "Class" and any variations (case insensitive) from anywhere in the filename
+  filename = filename.replace(/session_/gi, ""); // Remove Class_ prefix
+  filename = filename.replace(/session_/gi, ""); // Remove Class from anywhere
+  
+  // Remove any sequence numbers like _152_, _123_
+  filename = filename.replace(/_\d+_/g, "_");
+
+  // Replace all underscores with spaces
+  filename = filename.replace(/_/g, " ");
+
+  // Remove any file extensions (.mp4, .wmv, etc.)
+  filename = filename.replace(/\.(mp4|wmv|avi|mov|mpg|mkv)$/i, "");
+
+  // Trim any extra spaces around the filename
+  filename = filename.trim();
+
+  // Match and extract the date in the format YYYY-MM-DD
+  const dateRegex = /\d{4}-\d{2}-\d{2}/;
+  const dateMatch = filename.match(dateRegex);
+
+  if (dateMatch) {
+    const date = dateMatch[0]; // Extract the date part
+    const restOfTitle = filename.replace(dateRegex, "").trim(); // Get the rest of the title after the date
+
+    // The rest should include the tutor's name and subject name
+    return `${date} ${restOfTitle}`;
+  }
+
+  // If the filename doesn't contain a valid date, return the original formatted string
+  return filename;
+};
 
 interface SessionType {
   type: string;
 }
 
 interface Video {
-  // id: number;
   description: string;
   link: string;
   videoid: string;
@@ -582,75 +808,66 @@ interface Session {
   sessiondate: string;
   type: string;
   link: string;
-  videoid: string; // Add the videoid if needed
-  description: string; // Add description if needed
-}
-interface Video {
-  link: string;
-  videoid: string; // Adjust if `videoid` can be null or undefined
+  videoid: string;
   description: string;
 }
+
 const SessionComp = () => {
   const searchParams = useSearchParams();
-  const course = searchParams.get("course") || "ML"; // Default to 'ML' if course is not in URL
+  const course = searchParams.get("course") || "ML";
 
-  // Loading state for session types and sessions
   const [isLoadingSessionTypes, setIsLoadingSessionTypes] = useState<boolean>(true);
   const [isLoadingSessions, setIsLoadingSessions] = useState<boolean>(true);
 
   const [sessionTypes, setSessionTypes] = useState<SessionType[]>([]);
   const [sessions, setSessions] = useState<Session[]>([]);
-  const [selectedType, setSelectedType] = useState<string>("Resume Session");
+  const [selectedType, setSelectedType] = useState<string>("Group Mock");
   const [selectedSession, setSelectedSession] = useState<Session | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch session types when the component mounts
   useEffect(() => {
-    setIsLoadingSessionTypes(true); // Start loading session types
+    setIsLoadingSessionTypes(true);
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/session-types`)
       .then((res) => res.json())
       .then((data) => {
         setSessionTypes(data.types);
-        setIsLoadingSessionTypes(false); // Stop loading when data is fetched
+        setIsLoadingSessionTypes(false);
       })
-      .catch((error) => {
+      .catch(() => {
         setError("Error fetching session types.");
-        setIsLoadingSessionTypes(false); // Stop loading even if there's an error
+        setIsLoadingSessionTypes(false);
       });
   }, []);
 
-  // Fetch sessions based on the selected session type and course name
   const fetchSessions = () => {
-    setIsLoadingSessions(true); // Start loading sessions
+    setIsLoadingSessions(true);
     fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/sessions?course_name=${course}&session_type=${selectedType}`
     )
       .then((res) => res.json())
       .then((data) => {
         setSessions(data.sessions);
-        setIsLoadingSessions(false); // Stop loading when data is fetched
+        setIsLoadingSessions(false);
       })
-      .catch((error) => {
+      .catch(() => {
         setError("Error fetching sessions.");
-        setIsLoadingSessions(false); // Stop loading even if there's an error
+        setIsLoadingSessions(false);
       });
   };
 
-  // Run fetchSessions whenever sessionType or courseName changes
   useEffect(() => {
-    setSessions([]); // Clear previous sessions when the course or session type changes
-    setSelectedSession(null); // Reset selected session
-    setError(null); // Reset errors
-    fetchSessions(); // Fetch new sessions based on selected course and type
+    setSessions([]);
+    setSelectedSession(null);
+    setError(null);
+    fetchSessions();
   }, [course, selectedType]);
 
-  // Handle session selection
   const handleSessionSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedId = parseInt(e.target.value);
     const selected = sessions.find((session) => session.sessionid === selectedId);
     if (selected) {
       setSelectedSession(selected);
-      setError(null); // Clear any errors when a session is selected
+      setError(null);
     } else {
       setSelectedSession(null);
       setError("Selected session not found.");
@@ -679,7 +896,6 @@ const SessionComp = () => {
 
   return (
     <div className="mx-auto mt-6 max-w-full flex-grow space-y-4 sm:mt-0 sm:max-w-3xl">
-      {/* Session Type Dropdown */}
       <div className="flex flex-grow flex-col">
         <label htmlFor="session-type">Select Session Type:</label>
         <select
@@ -687,15 +903,15 @@ const SessionComp = () => {
           className="rounded-md border border-gray-300 px-2 py-1 text-black dark:bg-white"
           value={selectedType}
           onChange={(e) => setSelectedType(e.target.value)}
-          disabled={isLoadingSessionTypes} // Disable until session types are loaded
+          disabled={isLoadingSessionTypes}
         >
           {isLoadingSessionTypes ? (
             <option disabled className="text-gray-500">
               Loading session types...
-            </option> // Show Loading message with styled color
+            </option>
           ) : (
             <>
-              <option value="">Please select a session type...</option>
+              {/* <option value="">Please select a session type...</option> */}
               {sessionTypes.map((type) => (
                 <option key={type.type} value={type.type}>
                   {type.type || "No Type"}
@@ -706,25 +922,24 @@ const SessionComp = () => {
         </select>
       </div>
 
-      {/* Session Videos Dropdown */}
       <div className="flex flex-grow flex-col">
         <label htmlFor="session-dropdown">Sessions:</label>
         <select
           id="session-dropdown"
           className="mb-5 rounded-md border border-gray-300 px-2 py-1 text-black dark:bg-white"
           onChange={handleSessionSelect}
-          disabled={isLoadingSessions} // Disable until session videos are loaded
+          disabled={isLoadingSessions}
         >
           {isLoadingSessions ? (
             <option disabled className="text-gray-500">
               Loading session videos...
-            </option> // Show Loading message with styled color
+            </option>
           ) : (
             <>
-              <option value="">Please select a session...</option>
+              <option value="">Please select a session...</option> 
               {sessions.map((session) => (
                 <option key={session.sessionid} value={String(session.sessionid)}>
-                  {session.title}
+                  {formatVideoTitle(session.title)}
                 </option>
               ))}
             </>
@@ -732,12 +947,10 @@ const SessionComp = () => {
         </select>
       </div>
 
-      {/* Error Message */}
       {error && <p className="text-red-500">{error}</p>}
 
-      {/* Render selected session details and video */}
       {selectedSession && (
-        <div className="mt-4">              
+        <div className="mt-4">
           <div className="mt-2">{renderVideoPlayer(selectedSession)}</div>
         </div>
       )}

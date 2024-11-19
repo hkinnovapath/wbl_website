@@ -117,6 +117,42 @@ const RecordingComp: React.FC = () => {
     }
   };
 
+//*************** */ added logic for formatting the video titles**************
+  const formatVideoTitle = (filename: string) => {
+    // Remove the "Class" and any variations (case insensitive) from anywhere in the filename
+    filename = filename.replace(/class_/gi, ""); // Remove Class_ prefix
+    filename = filename.replace(/class/gi, ""); // Remove Class from anywhere
+    
+    // Remove any sequence numbers like _152_, _123_
+    filename = filename.replace(/_\d+_/g, "_");
+  
+    // Replace all underscores with spaces
+    filename = filename.replace(/_/g, " ");
+  
+    // Remove any file extensions (.mp4, .wmv, etc.)
+    filename = filename.replace(/\.(mp4|wmv|avi|mov|mpg|mkv)$/i, "");
+  
+    // Trim any extra spaces around the filename
+    filename = filename.trim();
+  
+    // Match and extract the date in the format YYYY-MM-DD
+    const dateRegex = /\d{4}-\d{2}-\d{2}/;
+    const dateMatch = filename.match(dateRegex);
+  
+    if (dateMatch) {
+      const date = dateMatch[0]; // Extract the date part
+      const restOfTitle = filename.replace(dateRegex, "").trim(); // Get the rest of the title after the date
+  
+      // The rest should include the tutor's name and subject name
+      return `${date} ${restOfTitle}`;
+    }
+  
+    // If the filename doesn't contain a valid date, return the original formatted string
+    return filename;
+  };
+
+  // ----------------****************---------------------------------------------------
+  
   const renderVideoPlayer = (video: Video) => {
     if (video.link.includes("youtu.be") || video.link.includes("youtube.com")) {
       const youtubeId = video.videoid;
@@ -141,6 +177,30 @@ const RecordingComp: React.FC = () => {
     <div className="mx-auto mt-6 max-w-full flex-grow space-y-4 sm:mt-0 sm:max-w-3xl">
       <div className="flex flex-grow flex-col">
         <label htmlFor="dropdown1">Batch:</label>
+        {/* old code  */}
+        {/* 
+         <select
+          id="dropdown2"
+          className="mb-5 rounded-md border border-gray-300 px-2 py-1 text-black dark:bg-white"
+          onChange={handleVideoSelect}
+          disabled={!selectedBatch || isLoadingRecordings}
+        >
+          {isLoadingRecordings ? (
+            <option disabled>Loading recordings...</option>
+          ) : (
+            <>
+              <option value="">Please select a recording...</option>
+              {recordings.map((recording) => (
+                <option key={recording.id} value={String(recording.id)}>
+                  {recording.description}
+                </option>
+              ))}
+            </>
+          )}
+        </select>
+         */}
+
+         {/* updated code */}
         <select
           id="dropdown1"
           className="rounded-md border border-gray-300 px-2 py-1 text-black dark:bg-white"
@@ -163,28 +223,30 @@ const RecordingComp: React.FC = () => {
             </>
           )}
         </select>
+        {/* ---------ended------------------ */}
       </div>
       <div className="flex flex-grow flex-col justify-between">
         <label htmlFor="dropdown2">Recordings:</label>
         <select
-          id="dropdown2"
-          className="mb-5 rounded-md border border-gray-300 px-2 py-1 text-black dark:bg-white"
-          onChange={handleVideoSelect}
-          disabled={!selectedBatch || isLoadingRecordings}
-        >
-          {isLoadingRecordings ? (
-            <option disabled>Loading recordings...</option>
-          ) : (
-            <>
-              <option value="">Please select a recording...</option>
-              {recordings.map((recording) => (
-                <option key={recording.id} value={String(recording.id)}>
-                  {recording.description}
-                </option>
-              ))}
-            </>
-          )}
-        </select>
+         id="dropdown2"
+         className="mb-5 rounded-md border border-gray-300 px-2 py-1 text-black dark:bg-white"
+         onChange={handleVideoSelect}
+         disabled={!selectedBatch || isLoadingRecordings}
+       >
+  {isLoadingRecordings ? (
+    <option disabled>Loading recordings...</option>
+  ) : (
+    <>
+      <option value="">Please select a recording...</option>
+      {recordings.map((recording) => (
+        <option key={recording.id} value={String(recording.id)}>
+          {formatVideoTitle(recording.description)}
+        </option>
+      ))}
+    </>
+  )}
+</select>
+
       </div>
       {error && <p className="text-red-500">{error}</p>}
       {selectedVideo && <div>{renderVideoPlayer(selectedVideo)}</div>}

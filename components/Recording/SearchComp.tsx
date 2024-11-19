@@ -96,6 +96,45 @@ const SearchComp: React.FC = () => {
     setShowSearchBox(false);
   };
 
+  // added logic for removing the extra spaces in the title names 
+
+  /// Helper function to format the title
+const formatVideoTitle = (filename: string) => {
+  // Remove the "Class" and any variations (case insensitive) from anywhere in the filename
+  filename = filename.replace(/class_/gi, ""); // Remove Class_ prefix
+  filename = filename.replace(/class/gi, ""); // Remove Class from anywhere
+  
+  // Remove any sequence numbers like _152_, _123_
+  filename = filename.replace(/_\d+_/g, "_");
+
+  // Replace all underscores with spaces
+  filename = filename.replace(/_/g, " ");
+
+  // Remove any file extensions (.mp4, .wmv, etc.)
+  filename = filename.replace(/\.(mp4|wmv|avi|mov|mpg|mkv)$/i, "");
+
+  // Trim any extra spaces around the filename
+  filename = filename.trim();
+
+  // Match and extract the date in the format YYYY-MM-DD
+  const dateRegex = /\d{4}-\d{2}-\d{2}/;
+  const dateMatch = filename.match(dateRegex);
+
+  if (dateMatch) {
+    const date = dateMatch[0]; // Extract the date part
+    const restOfTitle = filename.replace(dateRegex, "").trim(); // Get the rest of the title after the date
+
+    // The rest should include the tutor's name and subject name
+    return `${date} ${restOfTitle}`;
+  }
+
+  // If the filename doesn't contain a valid date, return the original formatted string
+  return filename;
+};
+
+
+// ---------------********************--------------------------------
+
   const renderVideoPlayer = (video: Video) => {
     if (video.link.includes("youtu.be") || video.link.includes("youtube.com")) {
       const youtubeId = video.videoid;
@@ -172,7 +211,8 @@ const SearchComp: React.FC = () => {
                   onClick={() => handleVideoSelect(video)}
                   className="mb-2 mr-2 cursor-pointer rounded-md px-3 py-2 hover:bg-primarylight"
                 >
-                  {video.description}
+                  {/* {video.description} */}
+                  {formatVideoTitle(video.description)}
                 </div>
               ))}
             </div>

@@ -632,9 +632,9 @@ const formatVideoTitle = (filename: string) => {
 const desiredOrder = [
   "Group Mock",
   "Individual Mock",
+  "Resume Session",
   "Interview Prep",
   "Job Help",
-  "Resume Session",
   "Misc",
 ];
 

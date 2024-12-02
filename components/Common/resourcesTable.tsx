@@ -265,6 +265,7 @@ const ResourcesTable = ({
     if (!link) {
       setClickError("Oops !! No data found");
       setTimeout(() => setClickError(null), 3000); // Clear message after 3 seconds
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
     window.open(link, "_blank");

@@ -136,6 +136,9 @@ export const AuthProvider = ({ children }) => {
     return () => clearInterval(interval); // Clean up the interval on unmount
   }, [authToken]);
 
+
+  
+  
   // Function to check if the token is expired
   const checkToken = (token) => {
     if (isTokenExpired(token)) {
@@ -145,33 +148,59 @@ export const AuthProvider = ({ children }) => {
       setIsAuthenticated(true);
     }
   };
-
-  // Function to handle token expiration
-  const handleTokenExpiration = () => {
-    logout();
-    const currentPath = router.pathname;
     
-    if (currentPath === "/") {
-      // If on home page, clear session and stay on the home page
-      localStorage.removeItem("access_token");
-      sessionStorage.clear();
-      setAuthToken(null);
-      setIsAuthenticated(false);
-      alert("Session expired. Please login again."); // Optional alert (can be removed)
-    } else {
-      // If on any other page, redirect to login page
-      router.push("/login");
-    }
-  };
-
   // Monitor session changes and handle errors from NextAuth
   useEffect(() => {
-    if (session?.error === "TokenExpiredError") {
+    if (session?.error === "TokenExpiredError"|| !session) {
       handleTokenExpiration();
     } else if (session?.accessToken) {
       login(session.accessToken);
     }
   }, [session]);
+
+
+  // Function to handle token expiration
+  // const handleTokenExpiration = () => {
+    
+  //   const currentPath = router.pathname;
+  //   logout()
+  //   console.log(currentPath);
+    
+  //   if (currentPath === "/") {
+  //     // If on home page, clear session and stay on the home page
+  //     localStorage.removeItem("access_token");
+  //     sessionStorage.clear();
+  //     setAuthToken(null);
+  //     setIsAuthenticated(false);
+  //     alert("Session expired. Please login again.");
+  //     // Optional alert (can be removed)
+  //     // router.push("/");
+  //   } else {
+  //     // If on any other page, redirect to login page
+  //     router.push("/login");
+  //   }
+  // };
+
+  const handleTokenExpiration = () => {
+    const currentPath = router.pathname;
+  
+    console.log("Session expired. Current path:", currentPath);
+  
+    if (currentPath === "/") {
+      // For home page, clear session data and update state
+      localStorage.removeItem("access_token");
+      sessionStorage.clear();
+      setAuthToken(null);
+      setIsAuthenticated(false);
+  
+      console.log("Cleared session data on home page.");
+    } else {
+      // For other routes, log out and redirect to login page
+      logout();
+      router.push("/login");
+      console.log("Redirected to login page.");
+    }
+  };
 
   const login = (token) => {
     setAuthToken(token);
@@ -209,3 +238,4 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => useContext(AuthContext);
+

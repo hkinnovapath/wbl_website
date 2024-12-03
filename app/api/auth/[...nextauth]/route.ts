@@ -162,40 +162,66 @@ const authOptions: NextAuthOptions = {
     error: '/auth/error', // Custom error page for better UX on errors
   },
   callbacks: {
+    // async jwt({ token, user }) {
+    //   if (user) {
+    //     // console.log("User in jwt callback:", user);
+
+    //     try {
+    //       const { accessToken, status, message } = await handleUserRegistrationOrLogin(user);
+
+    //       if (accessToken) {
+    //         token.accessToken = accessToken;
+    //       }
+    //       token.id = user.id;
+    //       token.name = user.name;
+    //       token.email = user.email;
+    //       token.status = status;
+
+    //       // console.log("JWT callback - Token after processing:", token);
+    //       // console.log("Status message:", message);
+    //     } catch (error) {
+    //       // console.error("Error in jwt callback during user handling:", error);
+    //       token.error = "Error during registration/login handling";
+    //     }
+    //   }
+
+    //   // Check if token is expired and refresh it
+    //   if (token.accessToken && isTokenExpired(token.accessToken)) {
+    //     try {
+    //       const refreshedToken = await refreshAccessToken(token.accessToken);
+    //       token.accessToken = refreshedToken;
+    //     } catch (error) {
+    //       // console.error("Token refresh failed:", error);
+    //       token.error = "Token refresh failed";
+    //     }
+    //   }
+
+    //   return token;
+    // }
     async jwt({ token, user }) {
       if (user) {
-        // console.log("User in jwt callback:", user);
-
         try {
+          // Register or login user
           const { accessToken, status, message } = await handleUserRegistrationOrLogin(user);
-
-          if (accessToken) {
-            token.accessToken = accessToken;
-          }
+    
+          // Assign token details
           token.id = user.id;
           token.name = user.name;
           token.email = user.email;
           token.status = status;
-
-          // console.log("JWT callback - Token after processing:", token);
-          // console.log("Status message:", message);
+          token.accessToken = accessToken;
+    
+          // If status is inactive or error, throw an error to trigger redirection
+          if (status === "inactive") {
+            throw new Error(message || "Your account is inactive.");
+          } else if (status === "error") {
+            throw new Error(message || "Error during authentication.");
+          }
         } catch (error) {
-          // console.error("Error in jwt callback during user handling:", error);
-          token.error = "Error during registration/login handling";
+          console.error("JWT callback error:", error);
+          token.error = error.message || "Unknown error during authentication.";
         }
       }
-
-      // Check if token is expired and refresh it
-      if (token.accessToken && isTokenExpired(token.accessToken)) {
-        try {
-          const refreshedToken = await refreshAccessToken(token.accessToken);
-          token.accessToken = refreshedToken;
-        } catch (error) {
-          // console.error("Token refresh failed:", error);
-          token.error = "Token refresh failed";
-        }
-      }
-
       return token;
     },
     async session({ session, token }) {
@@ -219,6 +245,37 @@ const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
 
 // Function to handle user registration or login
+// async function handleUserRegistrationOrLogin(user: any) {
+//   const payload = {
+//     email: user.email,
+//     name: user.name,
+//     google_id: user.id,
+//   };
+
+//   try {
+//     const checkResponse = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/check_user/`, payload);
+
+//     if (!checkResponse.data.exists) {
+//       // If the user does not exist, register them
+//       const registerResponse = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/google_users/`, payload);
+//       return {
+//         accessToken: null,
+//         status: 'registered',
+//         message: registerResponse.data.message // Include message from response
+//       };
+//     } else if (checkResponse.data.status === "active") {
+//       // If the user exists and is active, log in
+//       const loginResponse = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/google_login/`, payload);
+//       return { accessToken: loginResponse.data.access_token, status: 'active' };
+//     } else {
+//       // If user exists but is inactive
+//       return { accessToken: null, status: 'inactive' };
+//     }
+//   } catch (error) {
+//     // console.error("Error during registration/login operation:", error.response?.data.detail || error.message);
+//     return { accessToken: null, status: 'error' };
+//   }
+// }
 async function handleUserRegistrationOrLogin(user: any) {
   const payload = {
     email: user.email,
@@ -227,27 +284,36 @@ async function handleUserRegistrationOrLogin(user: any) {
   };
 
   try {
+    // Check if the user exists
     const checkResponse = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/check_user/`, payload);
 
     if (!checkResponse.data.exists) {
-      // If the user does not exist, register them
+      // Register new user if they don't exist
       const registerResponse = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/google_users/`, payload);
       return {
         accessToken: null,
         status: 'registered',
-        message: registerResponse.data.message // Include message from response
+        message: registerResponse.data.message || "User successfully registered",
       };
     } else if (checkResponse.data.status === "active") {
-      // If the user exists and is active, log in
+      // Login active users
       const loginResponse = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/google_login/`, payload);
-      return { accessToken: loginResponse.data.access_token, status: 'active' };
+      return {
+        accessToken: loginResponse.data.access_token,
+        status: 'active',
+      };
     } else {
-      // If user exists but is inactive
-      return { accessToken: null, status: 'inactive' };
+      // Handle inactive users
+      return {
+        accessToken: null,
+        status: 'inactive',
+        message: "Your account is inactive. Please contact support.",
+      };
     }
   } catch (error) {
-    // console.error("Error during registration/login operation:", error.response?.data.detail || error.message);
-    return { accessToken: null, status: 'error' };
+    // Log detailed error for debugging
+    console.error("Error during user registration/login:", error.response?.data || error.message);
+    return { accessToken: null, status: 'error', message: "An error occurred during authentication." };
   }
 }
 

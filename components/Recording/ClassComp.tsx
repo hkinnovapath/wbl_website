@@ -177,28 +177,6 @@ const RecordingComp: React.FC = () => {
     <div className="mx-auto mt-6 max-w-full flex-grow space-y-4 sm:mt-0 sm:max-w-3xl">
       <div className="flex flex-grow flex-col">
         <label htmlFor="dropdown1">Batch:</label>
-        {/* old code  */}
-        {/* 
-         <select
-          id="dropdown2"
-          className="mb-5 rounded-md border border-gray-300 px-2 py-1 text-black dark:bg-white"
-          onChange={handleVideoSelect}
-          disabled={!selectedBatch || isLoadingRecordings}
-        >
-          {isLoadingRecordings ? (
-            <option disabled>Loading recordings...</option>
-          ) : (
-            <>
-              <option value="">Please select a recording...</option>
-              {recordings.map((recording) => (
-                <option key={recording.id} value={String(recording.id)}>
-                  {recording.description}
-                </option>
-              ))}
-            </>
-          )}
-        </select>
-         */}
 
          {/* updated code */}
         <select
@@ -255,3 +233,29 @@ const RecordingComp: React.FC = () => {
 };
 
 export default RecordingComp;
+
+
+
+
+/* old code  */
+        {/* 
+         <select
+          id="dropdown2"
+          className="mb-5 rounded-md border border-gray-300 px-2 py-1 text-black dark:bg-white"
+          onChange={handleVideoSelect}
+          disabled={!selectedBatch || isLoadingRecordings}
+        >
+          {isLoadingRecordings ? (
+            <option disabled>Loading recordings...</option>
+          ) : (
+            <>
+              <option value="">Please select a recording...</option>
+              {recordings.map((recording) => (
+                <option key={recording.id} value={String(recording.id)}>
+                  {recording.description}
+                </option>
+              ))}
+            </>
+          )}
+        </select>
+         */}

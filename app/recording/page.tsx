@@ -8,6 +8,7 @@ import ClassComp from "@/components/Recording/ClassComp";
 import SearchComp from "@/components/Recording/SearchComp";
 import SessionComp from "@/components/Recording/SessionComp";
 import CourseNavigation from "@/components/Common/CourseNavigation";
+// import InternalComp from "@/components/Recording/InternalComp";
 
 type ComponentType = "class" | "search" | "session"; // Define a union type for valid component types
 
@@ -33,7 +34,7 @@ export default function Recordings() {
       case "search":
         return <SearchComp />;
       case "session":
-        return <SessionComp />;
+        return <SessionComp />;   
       default:
         return null;
     }

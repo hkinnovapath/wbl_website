@@ -636,14 +636,21 @@ const desiredOrder = [
   "Interview Prep",
   "Job Help",
   "Misc",
+  "Internal Sessions"
 ];
 
+// const sortSessionTypes = (types: SessionType[]) => {
+//   return types.sort(
+//     (a, b) => desiredOrder.indexOf(a.type) - desiredOrder.indexOf(b.type)
+//   );
+// };
 const sortSessionTypes = (types: SessionType[]) => {
-  return types.sort(
-    (a, b) => desiredOrder.indexOf(a.type) - desiredOrder.indexOf(b.type)
-  );
+  return types.sort((a, b) => {
+    if (a.type === "Internal Session") return 1; // Push "Internal Session" to the end
+    if (b.type === "Internal Session") return -1; // Push "Internal Session" to the end
+    return desiredOrder.indexOf(a.type) - desiredOrder.indexOf(b.type);
+  });
 };
-
 
 const SessionComp = () => {
   const searchParams = useSearchParams();
@@ -658,8 +665,6 @@ const SessionComp = () => {
   const [selectedType, setSelectedType] = useState<string>("Group Mock");
   const [selectedSession, setSelectedSession] = useState<Session | null>(null);
   const [error, setError] = useState<string | null>(null);
-
-
 
   useEffect(() => {
     setIsLoadingSessionTypes(true); // Start loading session types
@@ -842,6 +847,236 @@ export default SessionComp;
 
 
 
+// 858585*********************************
+// import { useState, useEffect } from "react";
+// import { useSearchParams } from "next/navigation";
+
+// interface SessionType {
+//   type: string;
+// }
+
+// interface Video {
+//   description: string;
+//   link: string;
+//   videoid: string;
+// }
+
+// interface Session {
+//   sessionid: number;
+//   title: string;
+//   status: string;
+//   sessiondate: string;
+//   type: string;
+//   link: string;
+//   videoid: string;
+//   description: string;
+// }
+
+// const formatVideoTitle = (filename: string) => {
+//   filename = filename.replace(/session_/gi, "");
+//   filename = filename.replace(/_\d+_/g, "_");
+//   filename = filename.replace(/_/g, " ");
+//   filename = filename.replace(/\.(mp4|wmv|avi|mov|mpg|mkv)$/i, "");
+//   filename = filename.trim();
+//   const dateRegex = /\d{4}-\d{2}-\d{2}/;
+//   const dateMatch = filename.match(dateRegex);
+
+//   if (dateMatch) {
+//     const date = dateMatch[0];
+//     const restOfTitle = filename.replace(dateRegex, "").trim();
+//     return `${date} ${restOfTitle}`;
+//   }
+
+//   return filename;
+// };
+
+// const desiredOrder = [
+//   "Group Mock",
+//   "Individual Mock",
+//   "Resume Session",
+//   "Interview Prep",
+//   "Job Help",
+//   "Misc",
+// ];
+
+// const sortSessionTypes = (types: SessionType[]) =>
+//   types.sort((a, b) => desiredOrder.indexOf(a.type) - desiredOrder.indexOf(b.type));
+
+// const SessionComp = () => {
+//   const searchParams = useSearchParams();
+//   const course = searchParams.get("course") || "ML";
+
+//   const [isLoadingSessionTypes, setIsLoadingSessionTypes] = useState<boolean>(true);
+//   const [isLoadingSessions, setIsLoadingSessions] = useState<boolean>(false);
+
+//   const [sessionTypes, setSessionTypes] = useState<SessionType[]>([]);
+//   const [sessions, setSessions] = useState<Session[]>([]);
+//   const [selectedType, setSelectedType] = useState<string>("Group Mock");
+//   const [selectedSession, setSelectedSession] = useState<Session | null>(null);
+//   const [error, setError] = useState<string | null>(null);
+
+//   useEffect(() => {
+//     setIsLoadingSessionTypes(true);
+//     const token = localStorage.getItem("access_token");
+
+//     fetch(`${process.env.NEXT_PUBLIC_API_URL}/session-types`, {
+//       method: "GET",
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//       },
+//     })
+//       .then((res) => {
+//         if (!res.ok) throw new Error("Network response was not ok");
+//         return res.json();
+//       })
+//       .then((data) => {
+//         const sortedTypes = sortSessionTypes(data.types);
+//         setSessionTypes(sortedTypes);
+//         setIsLoadingSessionTypes(false);
+//       })
+//       .catch((error) => {
+//         console.error("Error fetching session types:", error);
+//         setError("Error fetching session types.");
+//         setIsLoadingSessionTypes(false);
+//       });
+//   }, []);
+
+//   const fetchSessions = () => {
+//     if (!selectedType) return;
+
+//     setIsLoadingSessions(true);
+//     const token = localStorage.getItem("access_token");
+
+//     fetch(
+//       `${process.env.NEXT_PUBLIC_API_URL}/sessions?course_name=${course}&session_type=${selectedType}`,
+//       {
+//         method: "GET",
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//       }
+//     )
+//       .then((res) => {
+//         if (!res.ok) throw new Error("Network response was not ok");
+//         return res.json();
+//       })
+//       .then((data) => {
+//         setSessions(data.sessions);
+//         setIsLoadingSessions(false);
+//       })
+//       .catch((error) => {
+//         console.error("Error fetching sessions:", error);
+//         setError("Error fetching sessions.");
+//         setIsLoadingSessions(false);
+//       });
+//   };
+
+//   useEffect(() => {
+//     if (!isLoadingSessionTypes && selectedType) {
+//       setSessions([]);
+//       setSelectedSession(null);
+//       setError(null);
+//       fetchSessions();
+//     }
+//   }, [isLoadingSessionTypes, selectedType]);
+
+//   const handleSessionSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+//     const selectedId = parseInt(e.target.value);
+//     const selected = sessions.find((session) => session.sessionid === selectedId);
+//     if (selected) {
+//       setSelectedSession(selected);
+//       setError(null);
+//     } else {
+//       setSelectedSession(null);
+//       setError("Selected session not found.");
+//     }
+//   };
+
+//   const renderVideoPlayer = (video: Video) => {
+//     if (video.link.includes("youtube")) {
+//       const youtubeEmbedUrl = `https://www.youtube.com/embed/${video.videoid}`;
+//       return (
+//         <iframe
+//           width="100%"
+//           height="350"
+//           src={youtubeEmbedUrl}
+//           title={video.description}
+//           frameBorder="0"
+//           allowFullScreen
+//           className="h-[350px] rounded-xl border-2 border-gray-500"
+//         ></iframe>
+//       );
+//     } else {
+//       return <video src={video.link} controls className="mb-2 w-full" />;
+//     }
+//   };
+
+//   return (
+//     <div className="mx-auto mt-6 max-w-full flex-grow space-y-4 sm:mt-0 sm:max-w-3xl">
+//       <div className="flex flex-grow flex-col">
+//         <label htmlFor="session-type">Select Session Type:</label>
+//         <select
+//           id="session-type"
+//           className="rounded-md border border-gray-300 px-2 py-1 text-black dark:bg-white"
+//           value={selectedType}
+//           onChange={(e) => setSelectedType(e.target.value)}
+//           disabled={isLoadingSessionTypes}
+//         >
+//           {isLoadingSessionTypes ? (
+//             <option disabled>Loading session types...</option>
+//           ) : (
+//             sessionTypes.map((type) => (
+//               <option key={type.type} value={type.type}>
+//                 {type.type || "No Type"}
+//               </option>
+//             ))
+//           )}
+//         </select>
+//       </div>
+
+//       <div className="flex flex-grow flex-col">
+//         <label htmlFor="session-dropdown">Sessions:</label>
+//         <select
+//           id="session-dropdown"
+//           className="rounded-md border border-gray-300 px-2 py-1 text-black dark:bg-white"
+//           onChange={handleSessionSelect}
+//           disabled={isLoadingSessions || !selectedType}
+//         >
+//           {isLoadingSessions ? (
+//             <option disabled>Loading sessions...</option>
+//           ) : (
+//             <>
+//               <option value="">Please select a session...</option>
+//               {sessions.length > 0 ? (
+//                 sessions.map((session) => (
+//                   <option key={session.sessionid} value={session.sessionid}>
+//                     {formatVideoTitle(session.title)}
+//                   </option>
+//                 ))
+//               ) : (
+//                 <option disabled>No sessions found.</option>
+//               )}
+//             </>
+//           )}
+//         </select>
+//       </div>
+
+//       {selectedSession && (
+//         <div className="mt-4">
+//           <div className="mt-2">{renderVideoPlayer(selectedSession)}</div>
+//         </div>
+//       )}
+
+//       {error && <p className="text-red-500">{error}</p>}
+//     </div>
+//   );
+// };
+
+// export default SessionComp;
+
+
+
+
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 // Fetch sessions based on the selected session type and course name
@@ -860,3 +1095,19 @@ export default SessionComp;
   //       setIsLoadingSessions(false); // Stop loading even if there's an error
   //     });
   // };
+
+
+  // /   // Fetch session types when the component mounts
+//   useEffect(() => {
+//     setIsLoadingSessionTypes(true); // Start loading session types
+//     fetch(`${process.env.NEXT_PUBLIC_API_URL}/session-types`)
+//       .then((res) => res.json())
+//       .then((data) => {
+//         setSessionTypes(data.types);
+//         setIsLoadingSessionTypes(false); // Stop loading when data is fetched
+//       })
+//       .catch((error) => {
+//         setError("Error fetching session types.");
+//         setIsLoadingSessionTypes(false); // Stop loading even if there's an error
+//       });
+//   }, []);

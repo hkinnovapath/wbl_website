@@ -14,7 +14,7 @@ const ContactDetails = () => {
         Contact Details
       </h3>
       <p className="md:text-md mb-2  text-xs font-bold sm:text-sm">
-        Fremont Office:
+        Dublin Office:
       </p>
 
       <a
